@@ -1,0 +1,641 @@
+/* OVERALL CSS  */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow: auto;
+}
+
+strong,
+b {
+  font-weight: 600;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+a:link,
+a:active,
+a:visited {
+  color: #5e5e5e;
+  text-decoration: none;
+}
+
+input {
+  vertical-align: middle;
+}
+
+fieldset {
+  border: 0;
+}
+
+legend {
+  width: 0;
+  height: 0;
+  font-size: 0;
+  line-height: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-inline-start: 2px;
+  padding-inline-end: 2px;
+  border-style: none;
+  border-color: initial;
+  border-image: initial;
+}
+
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+img {
+  color: #4f535c;
+}
+
+body {
+  color: #4f535c;
+  /* text-align: center; */
+  font-size: 12px;
+  /* background-color: blue; */
+}
+
+ul {
+  list-style: none;
+}
+
+tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+/* OVERALL CSS  */
+
+/* Nav bar css */
+.nav__bar {
+  height: 45px;
+  width: 100%;
+  color: wheat;
+  font-size: 11px;
+  min-width: 1003px;
+  background: url(https://portal.hanyang.ac.kr/images/bg/gnb.gif) repeat-x left
+    top;
+}
+
+.user__info {
+  float: left;
+  min-width: 380px;
+  padding: 3px 0 0 0;
+}
+
+.user__name {
+  position: relative;
+  margin-right: 15px;
+  padding-top: 2px;
+}
+
+.name__wrap {
+  float: left;
+  position: relative;
+  margin-left: 5px;
+  padding-left: 7px;
+}
+
+.btn__user {
+  color: aquamarine;
+  float: left;
+  display: block;
+  height: 20px;
+  padding: 7px 10px 0 0;
+}
+
+.btn__user__span {
+  background-image: none;
+  cursor: default;
+  float: left;
+  color: #fff;
+  padding: 0 12px 0 3px;
+  margin-top: 1px;
+}
+
+.user__wrap {
+  position: absolute;
+  left: 0;
+  top: 26px;
+  padding: 0 4px 4px 0;
+  margin-right: 10px;
+  visibility: hidden;
+  z-index: 1001;
+}
+
+.user__list {
+  min-width: 449px;
+  border: 1px solid #3f82ca;
+  background: #fff;
+  white-space: nowrap;
+}
+
+.user__list__on {
+  border-bottom: 1px solid #cecece;
+}
+
+.user__list__on a {
+  font-size: 12px;
+}
+
+.notice__count {
+  display: block;
+  padding: 6px 10px 0 0;
+  float: left;
+  cursor: pointer;
+}
+
+.notice__count a {
+  color: white;
+}
+
+.count__num {
+  background: url(https://portal.hanyang.ac.kr/images/bg/count_blue.png)
+    no-repeat right top;
+  display: inline-block;
+  margin-left: 8px;
+  padding-right: 7px;
+  height: 17px;
+}
+
+.btr__area {
+  margin-left: -131px;
+  padding-left: 50%;
+  background: url(https://portal.hanyang.ac.kr/images/bg/gnb_line.gif) right 0
+    no-repeat;
+  cursor: pointer;
+}
+
+.btn__area li {
+  width: 50px;
+  float: left;
+  position: relative;
+}
+
+.btn__area li a {
+  display: inline-block;
+  width: 50px;
+  height: 41px;
+  color: #fff;
+}
+
+.btn__on {
+  background: 'https://portal.hanyang.ac.kr/images/bg/gnb_on.gif' 0 0 repeat-x;
+}
+
+.right__area {
+  float: right;
+  padding-right: 10px;
+  margin-top: 10px;
+}
+
+.wrap {
+  float: left;
+}
+
+.wrap a {
+  color: white;
+}
+
+.logout__link {
+  float: left;
+  padding: 5px 8px;
+  color: #fff;
+}
+
+.logout__link img {
+  margin-top: -2px;
+}
+
+.settings {
+  float: left;
+  padding: 5px 8px;
+  color: #fff;
+}
+
+.settings img {
+  margin-top: -2px;
+}
+
+.direct__area {
+  float: left;
+  position: relative;
+  height: 27px;
+  width: 87px;
+  padding: 3px 0 0 0;
+  margin-top: -3px;
+}
+
+.direct__link {
+  float: left;
+  padding: 5px 10px 0 10px;
+  color: #fff;
+  background: url(https://portal.hanyang.ac.kr/images/icon/under.png) right 9px
+    no-repeat;
+}
+
+.direct__link:link {
+  color: #fff;
+}
+
+.direct__link img {
+  margin-top: -2px;
+}
+
+.direct__wrap {
+  width: 207px;
+  position: absolute;
+  left: -115px;
+  top: 25px;
+  padding-bottom: 7px;
+  z-index: 1001;
+  display: none;
+}
+
+/* Nav bar css */
+
+/* Logo Area */
+
+#logo__area {
+  width: 100%;
+  height: 45px;
+  background-color: #cecece;
+  /* background: repeat-x left top; */
+  min-width: 1003px;
+}
+
+#logo__area::after {
+  display: block;
+  content: '.';
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.left__area {
+  float: left;
+  padding: 7px 0 0 10px;
+}
+
+.right__area {
+  float: right;
+  padding-top: 7px;
+  padding-right: 10px;
+}
+
+.left__area h1 {
+  float: left;
+  cursor: pointer;
+}
+
+.left__area h2 {
+  margin: 3px 0 0 10px;
+  padding: 4px 0 2px 8px;
+  font-size: 16px;
+  color: #55606d;
+  border-left: 1px solid #bac2cb;
+  float: left;
+}
+
+.right__area {
+  float: right;
+  padding-top: 7px;
+  padding-right: 10px;
+}
+
+.right__area .btn__mymenu {
+  display: block;
+  margin-top: 3px;
+}
+
+.mymenu__area {
+  position: relative;
+  float: left;
+}
+
+.btn__mymenu {
+  padding-top: 5px;
+  width: 85px;
+  height: 23px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #646e7a;
+  text-align: center;
+}
+
+.btn__sitemap {
+  display: inline-block;
+  padding: 5px 5px 0;
+  font-size: 14px;
+  color: #646e7a;
+  font-weight: 600;
+  margin-top: 3px;
+}
+
+.search__area {
+  width: 169px;
+  height: 25px;
+  padding-right: 6px;
+  margin: 3px 0 0 15px;
+}
+
+/* Logo area */
+
+/* Body nav area */
+
+.body__nav {
+  background: url('https://portal.hanyang.ac.kr/images/bg/snb.gif') 0 0 repeat-x;
+  height: 41px;
+  min-width: 782px;
+  padding-left: 37px;
+}
+
+.body__nav__ul {
+  margin-left: 0;
+}
+
+.body__nav__ul li {
+  float: left;
+  position: relative;
+}
+
+.over__btn {
+  display: block;
+  height: 29px;
+  padding: 0 13px;
+  border: 1px solid transparent;
+  padding-top: 12px;
+  font-size: 13px;
+  color: #fff !important;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+
+/* Body nav area */
+
+/* contents area */
+
+.body__wrap {
+  min-width: 1003px;
+  width: 100%;
+}
+
+.content__wrap {
+  min-width: 1003px;
+  min-height: 100%;
+}
+
+.contents__div {
+  padding: 22px;
+  background-color: #fff;
+  min-height: 330px;
+}
+
+.main__top__slide {
+  margin-left: 15px;
+  width: 930px;
+  height: 268px;
+  position: relative;
+}
+
+.main__slides {
+  height: 218px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.front__section {
+  margin: 0 15px;
+  padding: 16px 0 4px 0;
+  width: 930px;
+  border-top: 1px solid #ededed;
+  clear: both;
+  overflow: hidden;
+}
+
+.portal__main {
+  margin-right: 20px;
+  width: 300px;
+  float: left;
+  position: relative;
+  height: 176px;
+}
+
+.portal__main h2 {
+  margin-bottom: 15px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.notifications li {
+  height: 12px;
+  margin-bottom: 12px;
+}
+
+.nt__subject {
+  width: 260px;
+  float: left;
+  display: inline-block;
+}
+
+.nt__date {
+  text-align: right;
+  display: inline-block;
+  float: left;
+}
+
+.more {
+  font-size: 9px;
+  font-weight: 600;
+  position: absolute;
+  top: 5px;
+  right: 7px;
+  bottom: 159.5px;
+  height: 11.5px;
+  margin: 0;
+}
+
+.tab {
+  margin: 0 0 17px 0;
+}
+
+.tab a {
+  margin: 0;
+  padding: 0;
+  border: none;
+  color: #666b76;
+  display: inline-block;
+  height: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -1px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.info__container ul {
+  margin-bottom: 10px;
+  padding-bottom: 1px;
+  overflow: hidden;
+  list-style: none;
+  background: none;
+}
+
+.info__container ul li {
+  margin-bottom: 8px;
+  padding-left: 10px;
+  width: 129px;
+  background: url(https://portal.hanyang.ac.kr/images/icon/bul_yellow_dot.gif)
+    no-repeat left 50%;
+  float: left;
+  overflow: hidden;
+}
+
+/* contents area */
+
+/* middle area */
+
+.section__middle {
+  padding: 20px 0 0 0;
+}
+
+.table__container {
+  margin-right: 20px;
+  width: 445px;
+  float: left;
+}
+
+.table__container h2 {
+  margin-bottom: 22px;
+  font-size: 15px;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.table__details {
+  display: inline-block;
+  float: right;
+  overflow: hidden;
+  margin: 0;
+}
+
+.table__details span {
+  /* background-position: left -107px; */
+  display: inline-block;
+  cursor: pointer;
+  padding-left: 2px;
+  vertical-align: middle;
+  margin: 0px;
+}
+
+.table__details span a {
+  text-decoration: none;
+  padding: 0 10px 0 8px;
+  font-size: 11px;
+  line-height: 18px;
+  display: inline-block;
+  border: none;
+  overflow: visible;
+  text-align: center;
+  white-space: nowrap;
+  margin: 0px;
+  vertical-align: middle;
+}
+
+.table__display {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 2px !important;
+}
+
+.table__display colgroup col:first-child {
+  width: 65px;
+}
+
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+.tr__001 {
+  height: 41px;
+}
+
+.tr__001 th {
+  padding-left: 10px;
+  text-align: left;
+  height: 40px;
+  font-size: 11px;
+  line-height: 150%;
+  border: 1px solid #e6e6e6;
+  background: #f4f4f4;
+}
+
+.tr__001 td {
+  padding-left: 10px;
+  text-align: left;
+  height: 40px;
+  border: 1px solid #e6e6e6;
+  font-size: 11px;
+  line-height: 150%;
+}
+
+.table__graph {
+  margin: 0 13px 0 -10px;
+  width: 280px;
+  height: 25px;
+  background: #eee;
+  float: left;
+  overflow: hidden;
+}
+
+.table__graph span {
+  width: 100%;
+  display: block;
+  padding-top: 5px;
+  height: 20px;
+  color: #fff;
+  text-align: center;
+  background: #1db8e8 -webkit-gradient(linear, 0% 0%, 100% 0%, from(#1db8e8), to(#6bcdeb));
+}
+
+.table__zero {
+  background: #eee !important;
+}
+
+.table__data {
+  padding-top: 4px;
+  padding-right: 10px;
+  text-align: right;
+  margin: 0;
+}
+
+/* middle area */
+
+/* temp */
+
+.main__top__slide {
+  background-color: #eee;
+  border-radius: 3px;
+}
