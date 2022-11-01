@@ -1,0 +1,143 @@
+body {
+  background-color: antiquewhite;
+}
+
+.join_all {
+  display: flex;
+  flex-direction: column;
+  max-width: 900px;
+  margin: 5em auto;
+  padding-top: 3em;
+  padding-bottom: 8em;
+  /* border: 1px solid #000; */
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.join_announce {
+  display: flex;
+  flex-direction: column;
+  margin: 2em auto;
+  max-width: 900px;
+  text-align: left;
+}
+
+.join_announce h3 {
+  font-size: 2em;
+}
+
+.join_announce p {
+  margin-top: 10px;
+  font-size: 1em;
+  letter-spacing: -0.02em;
+}
+
+.join_section {
+  display: flex;
+  max-width: 900px;
+  justify-content: left;
+  margin-left: 15em;
+}
+
+.cols .col1 {
+  font-size: 1em;
+  font-weight: 600;
+  margin-bottom: 8px;
+  margin-top: 15px;
+}
+
+.cols .col2 input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0;
+  width: 100%;
+  height: 40px;
+}
+
+.input_email {
+  width: 32.9% !important;
+}
+
+.select_email {
+  width: 120px;
+  height: 43px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.input_hakbun {
+  position: relative;
+}
+
+.input_hakbun button {
+  position: absolute;
+  width: 90px;
+  height: 38px;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto 0;
+  border-radius: 3px;
+  background-color: #ea965a;
+  color: #fff;
+  border: none;
+  font-weight: 600;
+}
+
+.btn_addr {
+  margin-top: 5px;
+  margin-bottom: 4px;
+  width: 130px;
+  height: 43px !important;
+  /* border: 1px solid #ea965a !important; */
+  border: none !important;
+  border-radius: 4px;
+  background-color: #ea965a;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
+.input_addr {
+  margin-top: 2px;
+}
+
+.addr_top {
+  width: 49% !important;
+}
+
+.join_submit {
+  margin-top: 15px;
+  width: 100%;
+  height: 40px;
+  background-color: #ea965a;
+  border-radius: 4px;
+  /* border: 1px solid #ea965a; */
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.05em;
+  box-shadow: 0 3.5px 7px rgba(0, 0, 0, 0.25), 0 2.5px 2.5px rgba(0, 0, 0, 0.22);
+}
+
+.join_submit:hover,
+.btn_addr:hover,
+.input_hakbun button:hover {
+  background: #404040;
+  transition: 0.25s;
+}
+
+.select_email::-webkit-scrollbar {
+  width: 4px;
+}
+
+.select_email::-webkit-scrollbar-thumb {
+  background-color: #8d8d8d;
+  border-radius: 2px;
+}
+
+.select_email::-webkit-scrollbar-track {
+  background-color: #ebe9e9;
+  border-radius: 5px;
+}
