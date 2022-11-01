@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/join.css">
+  <script defer src="js/join.js"></script>
+  <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+  <title>회원가입 창</title>
+</head>
+
+<body>
+  <!-- 회원가입 section -->
+  <div class="join_all">
+    <div class="join_announce">
+      <h3>회원가입</h3>
+      <p>부여 받은 학번을 입력하고 나머지 정보를 기재해주시기 바랍니다.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+      <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+    </div>
+    <div class="join_section">
+      <form action="join.jsp" method="post">
+        <ul id="mem_form">
+          <li>
+
+            <ul class="cols">
+              <li class="col1">학번</li>
+              <div class="input_hakbun">
+                <li class="col2 "><input type="text" name="id" value="학번 입력(12자)"></li>
+                <button>중복확인</button>
+              </div>
+            </ul>
+          </li>
+          <li>
+            <ul class="cols">
+              <li class="col1">비밀번호</li>
+              <li class="col2"><input type="text" name="pwd" value="비밀번호 입력(문자, 숫자, 특수문자 포함 8~20자)"></li>
+            </ul>
+          </li>
+          <li>
+            <ul class="cols">
+              <li class="col1">비밀번호 확인</li>
+              <li class="col2"><input type="text" name="pwd" value="비밀번호 재입력"></li>
+            </ul>
+          </li>
+          <li>
+            <ul class="cols">
+              <li class="col1">이름</li>
+              <li class="col2"><input type="text" name="name" value="이름을 입력해주세요"></li>
+            </ul>
+          </li>
+          <li>
+            <ul class="cols">
+              <li class="col1">전화번호</li>
+              <li class="col2">
+                <input type="text" name="phone_2nd" class="hp" value="휴대폰 번호 입력('-'제외 11자리 입력)">
+                <!-- <select name="phone_1st" id="phone_1st">
+                  <option>010</option>
+                  <option>02</option>
+                  <option>031</option>
+                  <option>051</option>
+                </select> -
+                <input type="text" name="phone_2nd" class="hp" size="5"> -
+                <input type="text" name="phone_3rd" class="hp" size="5"> -->
+              </li>
+            </ul>
+          </li>
+          <li>
+            <ul class="cols">
+              <li class="col1">이메일</li>
+              <li class="col2">
+                <input class="input_email" type="text" /> @ <input class="input_email" type="text" id="email_id" />
+                <select class="select_email" id="email_domain">
+                  <option value="type">직접 입력</option>
+                  <option value="naver.com">naver.com</option>
+                  <option value="gmail.com">gmail.com</option>
+                  <option value="hanmail.net">hanmail.net</option>
+                  <option value="nate.com">nate.com</option>
+                  <option value="kakao.com">kakao.com</option>
+                </select>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <ul class="cols">
+              <li class="col1 col_addr">주소</li>
+              <li class="col2">
+                <input class="btn_addr" type="button" onclick="sample4_execDaumPostcode()" value="주소 찾기"><br>
+                <input class="input_addr addr_top" type="text" id="sample4_postcode" placeholder="우편번호">
+                <input class="input_addr addr_top" type="text" id="sample4_roadAddress" placeholder="도로명주소"
+                  size="40"><br>
+                <input type="hidden" id="sample4_jibunAddress" placeholder="지번주소" size="40">
+                <span id="guide" style="color:#999;display:none"></span>
+                <input class="input_addr" type="text" id="sample4_detailAddress" placeholder="상세주소" size="40"><br>
+                <input type="hidden" id="sample4_extraAddress" placeholder="참고항목" size="40">
+                <input type="hidden" id="sample4_engAddress" placeholder="영문주소" size="40"><br>
+              </li>
+            </ul>
+          </li>
+          <input class="join_submit" type="submit" value="가입하기">
+        </ul>
+      </form>
+    </div>
+  </div>
+  <!-- 회원가입 section -->
+</body>
+
+</html>

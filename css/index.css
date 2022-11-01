@@ -240,6 +240,8 @@ button:hover {
 
 .login_title h1 {
   color: #404040;
+  font-size: 2em;
+  font-weight: 700;
 }
 
 .dummy_txt:hover {
