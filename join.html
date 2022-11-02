@@ -14,95 +14,72 @@
 
 <body>
   <!-- 회원가입 section -->
-  <div class="join_all">
-    <div class="join_announce">
-      <h3>회원가입</h3>
-      <p>부여 받은 학번을 입력하고 나머지 정보를 기재해주시기 바랍니다.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-      <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-    </div>
-    <div class="join_section">
-      <form action="join.jsp" method="post">
-        <ul id="mem_form">
-          <li>
-
-            <ul class="cols">
-              <li class="col1">학번</li>
-              <div class="input_hakbun">
-                <li class="col2 "><input type="text" name="id" value="학번 입력(12자)"></li>
-                <button>중복확인</button>
-              </div>
-            </ul>
-          </li>
-          <li>
-            <ul class="cols">
-              <li class="col1">비밀번호</li>
-              <li class="col2"><input type="text" name="pwd" value="비밀번호 입력(문자, 숫자, 특수문자 포함 8~20자)"></li>
-            </ul>
-          </li>
-          <li>
-            <ul class="cols">
-              <li class="col1">비밀번호 확인</li>
-              <li class="col2"><input type="text" name="pwd" value="비밀번호 재입력"></li>
-            </ul>
-          </li>
-          <li>
-            <ul class="cols">
-              <li class="col1">이름</li>
-              <li class="col2"><input type="text" name="name" value="이름을 입력해주세요"></li>
-            </ul>
-          </li>
-          <li>
-            <ul class="cols">
-              <li class="col1">전화번호</li>
-              <li class="col2">
-                <input type="text" name="phone_2nd" class="hp" value="휴대폰 번호 입력('-'제외 11자리 입력)">
-                <!-- <select name="phone_1st" id="phone_1st">
-                  <option>010</option>
-                  <option>02</option>
-                  <option>031</option>
-                  <option>051</option>
-                </select> -
-                <input type="text" name="phone_2nd" class="hp" size="5"> -
-                <input type="text" name="phone_3rd" class="hp" size="5"> -->
-              </li>
-            </ul>
-          </li>
-          <li>
-            <ul class="cols">
-              <li class="col1">이메일</li>
-              <li class="col2">
-                <input class="input_email" type="text" /> @ <input class="input_email" type="text" id="email_id" />
-                <select class="select_email" id="email_domain">
-                  <option value="type">직접 입력</option>
-                  <option value="naver.com">naver.com</option>
-                  <option value="gmail.com">gmail.com</option>
-                  <option value="hanmail.net">hanmail.net</option>
-                  <option value="nate.com">nate.com</option>
-                  <option value="kakao.com">kakao.com</option>
-                </select>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <ul class="cols">
-              <li class="col1 col_addr">주소</li>
-              <li class="col2">
-                <input class="btn_addr" type="button" onclick="sample4_execDaumPostcode()" value="주소 찾기"><br>
-                <input class="input_addr addr_top" type="text" id="sample4_postcode" placeholder="우편번호">
-                <input class="input_addr addr_top" type="text" id="sample4_roadAddress" placeholder="도로명주소"
-                  size="40"><br>
-                <input type="hidden" id="sample4_jibunAddress" placeholder="지번주소" size="40">
-                <span id="guide" style="color:#999;display:none"></span>
-                <input class="input_addr" type="text" id="sample4_detailAddress" placeholder="상세주소" size="40"><br>
-                <input type="hidden" id="sample4_extraAddress" placeholder="참고항목" size="40">
-                <input type="hidden" id="sample4_engAddress" placeholder="영문주소" size="40"><br>
-              </li>
-            </ul>
-          </li>
-          <input class="join_submit" type="submit" value="가입하기">
-        </ul>
+  <div class="join_main_div">
+    <header class="join_header">
+      <h1 class="join_header_h1">
+        <a href="index.html" class="join_header_txt">SAMSEON UNIV</a>
+      </h1>
+    </header>
+    <section class="join_section">
+      <form class="join_form" action="join.jsp" method="post">
+        <div class="join_txt_area">
+          <span class="join_txt_span">학번</span>
+          <input type="text" name="id" autocomplete="off" autocorrect="off" autocapitalize="none" title="학번입력"
+            class="input_value">
+        </div>
+        <div class="join_txt_area">
+          <span class="join_txt_span">비밀번호</span>
+          <input type="text" name="pwd" autocomplete="off" autocorrect="off" autocapitalize="none" title="비밀번호 입력"
+            class="input_value">
+        </div>
+        <div class="join_txt_area">
+          <span class="join_txt_span">비밀번호 확인</span>
+          <input type="text" name="pwd" autocomplete="off" autocorrect="off" autocapitalize="none" title="비밀번호 입력"
+            class="input_value">
+        </div>
+        <div class="join_txt_area">
+          <span class="join_txt_span">이름</span>
+          <input type="text" name="name" autocomplete="off" autocorrect="off" autocapitalize="none" title="이름 입력"
+            class="input_value">
+        </div>
+        <div class="join_txt_area">
+          <span class="join_txt_span">휴대폰 번호 ('-'제외 11자리 입력)</span>
+          <input type="text" name="phone" autocomplete="off" autocorrect="off" autocapitalize="none" title="비밀번호 입력"
+            class="input_value">
+        </div>
+        <div class="join_txt_area postal_wrap">
+          <div class="postal_input postal_wrap_1st">
+            <span class=" join_txt_span">우편번호</span>
+            <input class="input_value" id="sample4_postcode" type="text">
+          </div>
+          <div class="postal_input">
+            <span class="postal_span join_txt_span btn_addr_txt">주소 찾기</span>
+            <input type="button" onclick="sample4_execDaumPostcode()" class="input_value btn_addr">
+          </div>
+        </div>
+        <div class="join_txt_area">
+          <span class="join_txt_span">도로명주소</span>
+          <input class="input_value" id="sample4_roadAddress" type="text">
+        </div>
+        <div class="join_txt_area">
+          <span class="join_txt_span">상세주소</span>
+          <input class="input_value" id="sample4_detailAddress" type="text">
+        </div>
+        <div class="optional_area">
+          <p class="optianl_txt">선택입력</p>
+          <div class="join_txt_area">
+            <span class="join_txt_span">이메일</span>
+            <input class="input_value" type="text" name="email" autocomplete="off" autocorrect="off"
+              autocapitalize="none" title="이메일 입력" class="input_value" />
+          </div>
+        </div>
+        <div class="join_txt_area">
+          <span class="join_txt_span btn_addr_txt">가입하기</span>
+          <input type="submit" name="pwd" autocomplete="off" autocorrect="off" autocapitalize="none" title="비밀번호 입력"
+            class="input_value btn_addr" placeholder="">
+        </div>
       </form>
-    </div>
+    </section>
   </div>
   <!-- 회원가입 section -->
 </body>
