@@ -60,3 +60,30 @@ function sample4_execDaumPostcode() {
 }
 
 ////////////////////////////////////////
+// input area text event JS
+
+// variables
+
+const txt = document.querySelector('.input_id_txt > input');
+const innerInput = document.querySelector('.input_id_txt > span');
+const innerHiddenInput = document.querySelectorAll(
+  '.join_txt_area > .inner_hidden_warning',
+);
+//$('.input_id_txt > .inner_warning');
+
+// function
+const hideAndShow = function () {
+  innerInput.classList.replace('inner_warning', 'inner_hidden_warning');
+  innerInput.innerText = '부여받은 학번 8자리 입력';
+};
+
+const showAndHide = function () {
+  if (txt.value.length === 0) {
+    innerInput.classList.replace('inner_hidden_warning', 'inner_warning');
+    innerInput.innerText = '학번';
+  }
+};
+
+// execute
+txt.addEventListener('keydown', hideAndShow);
+txt.addEventListener('blur', showAndHide);
