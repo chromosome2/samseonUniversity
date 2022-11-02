@@ -10,7 +10,7 @@
     <link rel="stylesheet" as="style" crossorigin
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
     <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/table.css">
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/common.js"></script>
     <title>삼선대학교</title>
@@ -54,13 +54,13 @@
                 <nav>
                     <h2 class="hidden">메인메뉴</h2>
                     <ul class="main_menu">
-                        <li><a href="#" class="menu_title">공지사항</a></li>
+                        <li><a href="board.html" class="menu_title">공지사항</a></li>
                         <li><a href="#" class="menu_title">수강신청</a></li>
                         <li class="my_page point"><div class="my_page_click_area"><a href="#" class="menu_title">마이페이지</a></div>
                             <ul class="my_page_menu">
-                                <li><a href="mypage_total_score.html">전체성적 조회</a></li>
-                                <li><a href="mypage_my_lecture.html">수강중인 과목 조회</a></li>
-                                <li><a href="mypage_privacy_check.html" class="mypage_point">개인정보</a></li>
+                                <li><a href="viewScores.html">전체성적 조회</a></li>
+                                <li><a href="viewMyLectures_ST.html" class="mypage_point">수강중인 과목 조회</a></li>
+                                <li><a href="privacy_check.html">개인정보</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -68,15 +68,35 @@
             </div>
 
             <div id="contents_area">
-                <p>개인정보 수정</p>
-                <form action="" method="post" id="pwd_checkForm" name="pwd_checkForm">
-                    <div class="password_check_area">
-                        <h3>비밀번호 재확인</h3>
-                        <p>안전한 정보보호를 위하여 비밀번호를 다시 한번 확인합니다.<br>비밀번호가 타인에게 노출되지 않도록 주의하여 주세요.</p>
-                        <input type="password" placeholder="비밀번호">
+                <div class="contents_wrapper">
+                    <h3>수강중인 과목 조회</h3>
+                    <div class="st_lecture_list">
+                        <table border="1">
+                            <tr>
+                                <th>NO</th>
+                                <th>과목 코드</th>
+                                <th>과목 이름</th>
+                                <th>교수 이름</th>
+                                <th>학점</th>
+                                <th>중간 점수</th>
+                                <th>기말 점수</th>
+                                <th>강의 시간</th>
+                                <th>강의실</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>555555</td>
+                                <td>컴퓨터개론및실습</td>
+                                <td>김선생</td>
+                                <td>3</td>
+                                <td>27</td>
+                                <td></td>
+                                <td>수,금 9시~10시 30분</td>
+                                <td>IT 203호</td>
+                            </tr>
+                        </table>
                     </div>
-                    <input type="submit" value="확인">
-                </form>
+                </div>
             </div>
         </div>
 
