@@ -16,70 +16,6 @@ ul{
     left: -9999px;
 }
 
-/*웹 폰트*/
-@font-face {
-	font-family: 'Pretendard';
-	font-weight: 900;
-	font-display: swap;
-	src: local('Pretendard Black'), url('font/woff2/Pretendard-Black.woff2') format('woff2'), url('font/woff/Pretendard-Black.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'Pretendard';
-	font-weight: 800;
-	font-display: swap;
-	src: local('Pretendard ExtraBold'), url('font/woff2/Pretendard-ExtraBold.woff2') format('woff2'), url('font/woff/Pretendard-ExtraBold.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'Pretendard';
-	font-weight: 700;
-	font-display: swap;
-	src: local('Pretendard Bold'), url('font/woff2/Pretendard-Bold.woff2') format('woff2'), url('font/woff/Pretendard-Bold.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'Pretendard';
-	font-weight: 600;
-	font-display: swap;
-	src: local('Pretendard SemiBold'), url('font/woff2/Pretendard-SemiBold.woff2') format('woff2'), url('font/woff/Pretendard-SemiBold.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'Pretendard';
-	font-weight: 500;
-	font-display: swap;
-	src: local('Pretendard Medium'), url('font/woff2/Pretendard-Medium.woff2') format('woff2'), url('font/woff/Pretendard-Medium.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'Pretendard';
-	font-weight: 400;
-	font-display: swap;
-	src: local('Pretendard Regular'), url('font/woff2/Pretendard-Regular.woff2') format('woff2'), url('font/woff/Pretendard-Regular.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'Pretendard';
-	font-weight: 300;
-	font-display: swap;
-	src: local('Pretendard Light'), url('font/woff2/Pretendard-Light.woff2') format('woff2'), url('font/woff/Pretendard-Light.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'Pretendard';
-	font-weight: 200;
-	font-display: swap;
-	src: local('Pretendard ExtraLight'), url('font/woff2/Pretendard-ExtraLight.woff2') format('woff2'), url('font/woff/Pretendard-ExtraLight.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'Pretendard';
-	font-weight: 100;
-	font-display: swap;
-	src: local('Pretendard Thin'), url('font/woff2/Pretendard-Thin.woff2') format('woff2'), url('font/woff/Pretendard-Thin.woff') format('woff');
-}
-
 /*링크 스타일*/
 a:link, a:visited {
     color:rgb(37, 37, 37);
@@ -227,6 +163,7 @@ header .header_contents, #middle_area, #footerInner{
 	color: rgb(228, 228, 228);
 	padding: 5px 13px;
 	border-radius: 5px;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
 }
 .head2{
 	height: 30px;
@@ -245,7 +182,7 @@ header .header_contents, #middle_area, #footerInner{
 #middle_area{
 	box-shadow: -2px 0px 5px rgba(0,0,0,0.4), 2px 0px 5px rgba(0,0,0,0.4);
 	overflow: hidden;
-	height: 500px;
+	height: 600px;
 }
 #main_menu_back{
 	background-color: #EA965A;
