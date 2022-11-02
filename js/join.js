@@ -63,27 +63,28 @@ function sample4_execDaumPostcode() {
 // input area text event JS
 
 // variables
+const text = document.querySelectorAll('.input_value');
 
-const txt = document.querySelector('.input_id_txt > input');
-const innerInput = document.querySelector('.input_id_txt > span');
-const innerHiddenInput = document.querySelectorAll(
-  '.join_txt_area > .inner_hidden_warning',
-);
-//$('.input_id_txt > .inner_warning');
+// functions
+text.forEach(el => {
+  // el.previousElementSibling : 가려져 있던 태그
+  // el.previousElementSibling.previousElementSibling : 보였던 태그
+  const prevSpan = el.previousElementSibling.previousElementSibling;
+  const hiddenSpan = el.previousElementSibling;
+  let initSpan = '';
 
-// function
-const hideAndShow = function () {
-  innerInput.classList.replace('inner_warning', 'inner_hidden_warning');
-  innerInput.innerText = '부여받은 학번 8자리 입력';
-};
+  el.addEventListener('focus', () => {
+    initSpan = prevSpan.innerText;
+    prevSpan.innerText = hiddenSpan.innerText;
+    prevSpan.classList.replace('inner_warning', 'inner_hidden_warning');
+  });
 
-const showAndHide = function () {
-  if (txt.value.length === 0) {
-    innerInput.classList.replace('inner_hidden_warning', 'inner_warning');
-    innerInput.innerText = '학번';
-  }
-};
-
-// execute
-txt.addEventListener('keydown', hideAndShow);
-txt.addEventListener('blur', showAndHide);
+  el.addEventListener('blur', () => {
+    // console.log(prevSpan.innerText);
+    // console.log(initSpan);
+    if (el.value.length === 0) {
+      prevSpan.classList.replace('inner_hidden_warning', 'inner_warning');
+      prevSpan.innerText = initSpan;
+    }
+  });
+});
