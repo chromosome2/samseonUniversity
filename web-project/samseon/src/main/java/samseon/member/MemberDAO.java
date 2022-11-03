@@ -68,9 +68,8 @@ public class MemberDAO {
 	}
 	
 	//로그인 시 학생 정보 확인
-	public MemberVO getStudentInfo(MemberVO memberVO) {
+	public MemberVO getStudentInfo(int id) {
 		MemberVO vo=new MemberVO();
-		int id=memberVO.getId();
 		try {
 			conn=dataFactory.getConnection();
 			String query="select * from studenttbl where st_id=?";
@@ -106,9 +105,8 @@ public class MemberDAO {
 	}
 	
 	//로그인 시 교수 정보 확인
-	public MemberVO getProfessorInfo(MemberVO memberVO) {
+	public MemberVO getProfessorInfo(int id) {
 		MemberVO vo=new MemberVO();
-		int id=memberVO.getId();
 		try {
 			conn=dataFactory.getConnection();
 			String query="select * from professortbl where pf_id=?";
@@ -275,7 +273,7 @@ public class MemberDAO {
 				pstmt.setString(3, userLevel);
 				pstmt.executeUpdate();
 				pstmt.close();
-				query="insert into professortbl(pf_id,pf_name,pf_pwd,pf_ph,pf_email,m_num,m_name,dan) values(?,?,?,?,?,?,?,?)";
+				query="insert into professortbl values(?,?,?,?,?,?,?,?)";
 				pstmt=conn.prepareStatement(query);
 				pstmt.setInt(1, id);
 				pstmt.setString(2, name);
@@ -291,6 +289,38 @@ public class MemberDAO {
 			} catch (Exception e) {
 				System.out.println("교수 회원 가입 처리 중 에러 발생");
 			}
+		}
+	}
+	
+	//회원 정보 수정
+	public void modInfo(MemberVO memberVO) {
+		int id=memberVO.getId();
+		String pwd=memberVO.getPwd();
+		String phone=memberVO.getPhone();
+		String email=memberVO.getEmail();
+		String address=memberVO.getAddr();
+		try {
+			conn=dataFactory.getConnection();
+			String query="update studenttbl set st_ph=?, st_email=?, st_add=?";
+			if(pwd != null && pwd.length() != 0) {
+				query+=", st_pwd=?";
+			}
+			query+=" where st_id=?";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1, phone);
+			pstmt.setString(2, email);
+			pstmt.setString(3, address);
+			if(pwd != null && pwd.length() != 0) {
+				pstmt.setString(4, pwd);
+				pstmt.setInt(5, id);
+			}else {
+				pstmt.setInt(4, id);
+			}
+			pstmt.executeUpdate();
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			System.out.println("회원 정보 수정 중 에러" + e.getMessage());
 		}
 	}
 	

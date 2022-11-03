@@ -22,7 +22,7 @@
         <div class="join_main_div">
           <header class="join_header">
             <h1 class="join_header_h1">
-              <a href="${contextPath}/index.html" class="join_header_txt">SAMSEON UNIV</a>
+              <a href="${contextPath}/index.jsp" class="join_header_txt">SAMSEON UNIV</a>
             </h1>
           </header>
           <section class="join_section">
@@ -39,7 +39,7 @@
               </div>
               <div class="join_txt_area">
                 <span class="inner_warning">비밀번호 확인</span>
-                <input type="text" name="pwd" autocomplete="off" autocorrect="off" autocapitalize="none" title="비밀번호 입력"
+                <input type="text" name="pwd1" autocomplete="off" autocorrect="off" autocapitalize="none" title="비밀번호 입력"
                   class="input_value pwd_check_change">
               </div>
               <div class="join_txt_area">
@@ -55,7 +55,7 @@
               <div class="join_txt_area postal_wrap">
                 <div class="join_txt_area postal_input postal_wrap_1st">
                   <span class="inner_hidden_warning">우편번호</span>
-                  <input class="input_value_none" name="addr1" id="sample4_postcode" type="text">
+                  <input class="input_value_none" name="addr" id="sample4_postcode" type="text">
                 </div>
                 <div class="postal_input">
                   <span class="postal_span inner_warning btn_addr_txt">주소 찾기</span>
@@ -64,11 +64,11 @@
               </div>
               <div class="join_txt_area">
                 <span class="inner_hidden_warning">도로명주소</span>
-                <input class="input_value_none" name="addr2" id="sample4_roadAddress" type="text">
+                <input class="input_value_none" name="addr" id="sample4_roadAddress" type="text">
               </div>
               <div class="join_txt_area">
                 <span class="inner_warning">상세주소</span>
-                <input class="input_value postal_change" name="addr3" id="sample4_detailAddress" type="text">
+                <input class="input_value postal_change" name="addr" id="sample4_detailAddress" type="text">
               </div>
               <div class="optional_area">
                 <p class="optianl_txt">선택입력</p>

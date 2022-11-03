@@ -20,6 +20,13 @@
     <script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
     <script src="${contextPath}/js/common.js"></script>
     <title>삼선대학교</title>
+    <c:if test="${msg=='info_modified'}">
+		<script type="text/javascript">
+			window.onload=function() {
+				alert("회원정보가 수정되었습니다.");
+			}
+		</script>
+	</c:if>
 </head>
 <body>
     <jsp:include page="../common/header.jsp"/>
