@@ -93,22 +93,26 @@ text.forEach(el => {
 
 // variables
 const oldIdInput = '학번';
-const newIdInput = '부여받은 학번 8자리 입력';
 const oldPwdInput = '비밀번호';
-const newPwdInput = '8자 이상, 영문/숫자/특수문자 중 2가지 이상 입력';
 const oldPwdChkInput = '비밀번호 확인';
-const newPwdChkInput = '비밀번호 재입력';
 const oldNameInput = '이름';
-const newNameInput = '이름 입력';
-const oldAddrInput = '상세주소';
-const newAddrInput = '상세주소 입력';
+const oldPostalInput = '상세주소';
 const oldEmailInput = '이메일';
+
+const newIdInput = '부여받은 학번 8자리 입력';
+const newPwdInput = '8자 이상, 영문/숫자/특수문자 중 2가지 이상 입력';
+const newPwdChkInput = '비밀번호 재입력';
+const newNameInput = '이름 입력';
+const newPostalInput = '상세주소 입력';
 const newEmailInput = '이메일 입력';
 
 const id_change = document.querySelector('.id_change');
+const pwd_change = document.querySelector('.pwd_change');
+const pwd_check_change = document.querySelector('.pwd_check_change');
+const name_change = document.querySelector('.name_change');
+const postal_change = document.querySelector('.postal_change');
+const email_change = document.querySelector('.email_change');
 
-console.log(id_change.previousElementSibling);
-console.log(id_change.value.length);
 // functions
 const changeText = function (input, oldTxt, newTxt) {
   const targetText = input.previousElementSibling;
@@ -126,7 +130,11 @@ const changeText = function (input, oldTxt, newTxt) {
 
 // execute
 changeText(id_change, oldIdInput, newIdInput);
-
+changeText(pwd_change, oldPwdInput, newPwdInput);
+changeText(pwd_check_change, oldPwdChkInput, newPwdChkInput);
+changeText(name_change, oldNameInput, newNameInput);
+changeText(postal_change, oldPostalInput, newPostalInput);
+changeText(email_change, oldEmailInput, newEmailInput);
 // 예외 1. 우편번호, 도로명 주소
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -138,7 +146,7 @@ const email = document.getElementById('email');
 ///// functions
 const mailCheck = function (email) {
   const emailRegExp = new RegExp(
-    "([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|[[\t -Z^-~]*])"
+    "([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|[[\t -Z^-~]*])",
   );
   return emailRegExp.test(email);
 };
@@ -154,4 +162,5 @@ const mailAlert = function () {
 email.addEventListener('blur', mailAlert);
 
 ////////////////////////////////////////////////////////////////////////////////
-// 아이디 정규식
+// 휴대폰 번호 정규식
+const telRegExp = /\d{3}-\d{4}-\d{4}/;
