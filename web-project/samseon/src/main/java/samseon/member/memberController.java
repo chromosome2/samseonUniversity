@@ -47,7 +47,7 @@ public class memberController extends HttpServlet {
 			if(result) {  //회원정보 존재
 				String user_level=memberDAO.getUserLevel(memberVO);
 				if(user_level.equals("student")) {
-					MemberVO studentInfo=memberDAO.getStudentInfo(memberVO);
+					MemberVO studentInfo=memberDAO.getStudentInfo(id);
 					HttpSession session=request.getSession();
 					session.setAttribute("isLogin", true);
 					session.setAttribute("log_id", id);
@@ -55,7 +55,7 @@ public class memberController extends HttpServlet {
 					session.setAttribute("studentInfo", studentInfo);
 					nextPage="/board.jsp";
 				}else if(user_level.equals("professor")) {
-					MemberVO professorInfo=memberDAO.getProfessorInfo(memberVO);
+					MemberVO professorInfo=memberDAO.getProfessorInfo(id);
 					HttpSession session=request.getSession();
 					session.setAttribute("isLogin", true);
 					session.setAttribute("log_id", id);
@@ -109,15 +109,13 @@ public class memberController extends HttpServlet {
 			String name=request.getParameter("name");
 			String phone=request.getParameter("phone");
 			String email=request.getParameter("email");
-			String address=request.getParameter("addr1")+" "+request.getParameter("addr2")+" "+request.getParameter("addr3");
-//			String[] addr=request.getParameterValues("addr");
-//			String address="";
-//			for(int i=0; i<addr.length; i++) {
-//				if(addr[i] != null && addr[i].length() != 0) {
-//					address+=addr[i]+", ";
-//				}
-//				System.out.println(address);
-//			}
+			String[] addr=request.getParameterValues("addr");
+			String address="";
+			for(int i=0; i<addr.length; i++) {
+				if(addr[i] != null && addr[i].length() != 0) {
+					address+=addr[i]+" ";
+				}
+			}
 			System.out.println(address);
 			memberVO.setId(id);
 			memberVO.setPwd(pwd);
@@ -150,7 +148,23 @@ public class memberController extends HttpServlet {
 				return;
 			}
 		}else if(action.equals("/modInfo.do")) {  //개인정보 수정
-			
+			HttpSession session=request.getSession(false);
+			int id=(int) session.getAttribute("log_id");
+			session.removeAttribute("studentInfo");
+			String pwd=request.getParameter("pwd");
+			String phone=request.getParameter("tel");
+			String email=request.getParameter("email");
+			String address=request.getParameter("addr");
+			memberVO.setId(id);
+			memberVO.setPwd(pwd);
+			memberVO.setPhone(phone);
+			memberVO.setEmail(email);
+			memberVO.setAddr(address);
+			memberDAO.modInfo(memberVO);
+			MemberVO studentInfo=memberDAO.getStudentInfo(id);
+			session.setAttribute("studentInfo", studentInfo);
+			request.setAttribute("msg", "info_modified");
+			nextPage="/student/privacy.jsp";
 		}
 		RequestDispatcher dispatcher=request.getRequestDispatcher(nextPage);
 		dispatcher.forward(request, response);
