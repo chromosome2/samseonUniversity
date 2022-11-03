@@ -29,12 +29,19 @@
                 <div class="header_contents">
                     <div class="white_head1">
                         <h2 class="hidden">대학교 로고</h2>
-                        <a href="${contextPath}/student/board.jsp">
+                        <a href="${contextPath}/board.jsp">
                             <img src="${contextPath}/images/logo.png" alt="삼선대학교 로고">
                             <span>삼선대학교</span>
                         </a>
                     </div>
-                    <span class="st_name">${studentInfo.m_name} ${studentInfo.name}님</span>
+                    <c:choose>
+						<c:when test="${user_level == 'student'}">
+		                    <span class="st_name">${studentInfo.m_name} ${studentInfo.name}님</span>						
+						</c:when>
+						<c:when test="${user_level == 'professor'}">
+		                    <span class="st_name">${professorInfo.m_name} ${professorInfo.name} 교수님</span>						
+						</c:when>
+                    </c:choose>
                     <ul class="mini_menu">
                         <li><a href="#">학교 서비스</a>
                             <ul class="service_menu">
@@ -46,7 +53,14 @@
                             </ul>
                         </li>
                     </ul>
-                    <a href="${contextPath}/member/logout.do" class="btn_logout">로그아웃</a>
+                    <c:choose>
+			          <c:when test="${!empty isLogin && isLogin == true}">
+				      	<a href="${contextPath}/member/logout.do" class="btn_logout">로그아웃</a>     
+			          </c:when>
+			          <c:otherwise>
+			          	<a href="${contextPath}/index.jsp" class="btn_logout">로그인</a>
+			          </c:otherwise>
+		         	 </c:choose>
                 </div>
             </div>
             <div class="head2">
@@ -60,7 +74,7 @@
                 <nav>
                     <h2 class="hidden">메인메뉴</h2>
                     <ul class="main_menu">
-                        <li><a href="${contextPath}/student/board.jsp" class="menu_title">공지사항</a></li>
+                        <li><a href="${contextPath}/board.jsp" class="menu_title">공지사항</a></li>
                         <li><a href="${contextPath}/student/main_apply_lectures.jsp" class="menu_title">수강신청</a></li>
                         <li class="my_page point"><div class="my_page_click_area"><a href="#" class="menu_title">마이페이지</a></div>
                             <ul class="my_page_menu">
@@ -76,11 +90,11 @@
             <div id="contents_area">
                 <div class="contents_wrapper">
                     <h2>개인정보</h2>
-                    <form action="${contextPath}/" method="post" id="privacy_modForm" name="privacy_modForm">
+                    <form action="${contextPath}/member/modInfo.do" method="post" id="privacy_modForm" name="privacy_modForm">
                         <table border="1">
                             <tr>
                                 <th>학번</th>
-                                <td><input type="number" value="1111" disabled></td>
+                                <td><input type="number" value="${log_id}" disabled></td>
                             </tr>
                             <tr>
                                 <th>비밀번호</th>
@@ -88,31 +102,39 @@
                             </tr>
                             <tr>
                                 <th>이름</th>
-                                <td><input type="text" value="홍길동" disabled></td>
+                                <td><input type="text" value="${studentInfo.name}" disabled></td>
                             </tr>
                             <tr>
                                 <th>전화번호</th>
-                                <td><input type="tel" value="01012341111" name="tel"></td>
+                                <td><input type="tel" value="${studentInfo.phone}" name="tel"></td>
                             </tr>
                             <tr>
                                 <th>이메일</th>
-                                <td><input type="text" value="hong@naver.com" name="email"></td>
+                                <td><input type="text" value="${studentInfo.email}" name="email"></td>
                             </tr>
                             <tr>
                                 <th>주소</th>
-                                <td><input type="text" value="서울시 종로구 종로동 77-7" name="addr"></td>
+                                <td><input type="text" value="${studentInfo.addr}" name="addr"></td>
                             </tr>
                             <tr>
                                 <th>학적 상태</th>
-                                <td><input type="text" value="재직" disabled></td>
+                                <c:if test="${studentInfo.st_cnd == 1}">
+	                                <td><input type="text" value="재직" disabled></td>                                
+                                </c:if>
+                                <c:if test="${studentInfo.st_cnd == 2 }">
+                                    <td><input type="text" value="휴학" disabled></td>
+                                </c:if>
+                                <c:if test="${studentInfo.st_cnd == 3 }">
+                                	<td><input type="text" value="졸업" disabled></td>
+                                </c:if>
                             </tr>
                             <tr>
                                 <th>학과 명</th>
-                                <td><input type="text" value="컴퓨터공학과" disabled></td>
+                                <td><input type="text" value="${studentInfo.m_name}" disabled></td>
                             </tr>
                             <tr>
                                 <th>단과 대학</th>
-                                <td><input type="text" value="IT대학" disabled></td>
+                                <td><input type="text" value="${studentInfo.dan}" disabled></td>
                             </tr>
                         </table>
                         <input type="submit" value="수정하기">

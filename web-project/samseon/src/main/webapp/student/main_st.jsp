@@ -21,70 +21,17 @@
     <title>삼선대학교</title>
 </head>
 <body>
-    <div id="wrapper">
-        <header>
-            <div class="head1">
-                <div class="black_head1"></div>
-                <div class="header_contents">
-                    <div class="white_head1">
-                        <h2 class="hidden">대학교 로고</h2>
-                        <a href="${contextPath}/student/board.jsp">
-                            <img src="${contextPath}/images/logo.png" alt="삼선대학교 로고">
-                            <span>삼선대학교</span>
-                        </a>
-                    </div>
-                    <span class="st_name">${studentInfo.m_name} ${studentInfo.name}님</span>
-                    <ul class="mini_menu">
-                        <li><a href="#">학교 서비스</a>
-                            <ul class="service_menu">
-                                <li><a href="#">대학홈페이지</a></li>
-                                <li><a href="#">도서관</a></li>
-                                <li><a href="#">총학생회</a></li>
-                                <li><a href="#">학생생활상담소</a></li>
-                                <li><a href="#">취업정보센터</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <a href="${contextPath}/member/logout.do" class="btn_logout">로그아웃</a>
-                </div>
-            </div>
-            <div class="head2">
-            </div>
-            <div class="head3">
-            </div>
-        </header>
+    <jsp:include page="../common/header.jsp"/>
 
         <div id="middle_area">
             <div id="main_menu_back">
-                <nav>
-                    <h2 class="hidden">메인메뉴</h2>
-                    <ul class="main_menu">
-                        <li class="point"><a href="${contextPath}/student/board.jsp" class="menu_title">공지사항</a></li>
-                        <li><a href="${contextPath}/student/main_apply_lectures.jsp" class="menu_title">수강신청</a></li>
-                        <li class="my_page"><div class="my_page_click_area"><a href="#" class="menu_title">마이페이지</a></div>
-                            <ul class="my_page_menu">
-                                <li><a href="${contextPath}/student/viewScores.jsp">전체성적 조회</a></li>
-                                <li><a href="${contextPath}/student/viewMyLectures_ST.jsp">수강중인 과목 조회</a></li>
-                                <li><a href="${contextPath}/student/privacy_check.jsp">개인정보</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
+				<jsp:include page="../common/menu.jsp"/>
             </div>
 
             <div id="contents_area">
             </div>
         </div>
 
-        <footer id="footer">
-            <div id="footerInner">
-                <a href="#" class="privacy_policy">개인정보 처리방침</a>
-                <address>
-                    <span>서울시 종로구 종로동 11-1 삼선대학교</span>
-                    <span>Tel : 02)333-1234</span>
-                </address>
-            </div>
-        </footer>
-    </div>
+	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>
