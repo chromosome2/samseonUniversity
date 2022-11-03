@@ -1,0 +1,17 @@
+.contents_header {
+  display: flex;
+  justify-content: center;
+  letter-spacing: -0.01em;
+  max-height: 40px;
+
+  margin-top: 50px;
+}
+
+.contents_header h3 {
+  margin: 0;
+  line-height: 40px;
+}
+
+.table_horizontal {
+  /* display: block; */
+}
