@@ -41,6 +41,10 @@
 			                    <li class="point"><a href="${contextPath}/board.jsp" class="menu_title">공지사항</a></li>
 		                        <li><a href="#" class="menu_title">수업 등록</a></li>
 		                        <li class="my_page"><div class="my_page_click_area"><a href="#" class="menu_title">나의 수업</a></div>
+		                            <ul class="my_page_menu">
+		                                <li><a href="#">학생 관리</a></li>
+		                                <li><a href="#">과목 공지사항</a></li>
+		                            </ul>
 		                        </li>						
 							</c:when>
 							<c:when test="${user_level == 'admin'}">
