@@ -53,7 +53,7 @@ public class memberController extends HttpServlet {
 					session.setAttribute("log_id", id);
 					session.setAttribute("user_level", user_level);
 					session.setAttribute("studentInfo", studentInfo);
-					nextPage="/main.jsp";
+					nextPage="/board.jsp";
 				}else if(user_level.equals("professor")) {
 					MemberVO professorInfo=memberDAO.getProfessorInfo(memberVO);
 					HttpSession session=request.getSession();
@@ -61,7 +61,7 @@ public class memberController extends HttpServlet {
 					session.setAttribute("log_id", id);
 					session.setAttribute("user_level", user_level);
 					session.setAttribute("professorInfo", professorInfo);
-					nextPage="/main.jsp";
+					nextPage="/board.jsp";
 				}else if(user_level.equals("admin")) {
 					
 				}
@@ -109,7 +109,16 @@ public class memberController extends HttpServlet {
 			String name=request.getParameter("name");
 			String phone=request.getParameter("phone");
 			String email=request.getParameter("email");
-			String address=request.getParameter("addr_1st")+" "+request.getParameter("addr_2nd")+" "+request.getParameter("addr_3rd");
+			String address=request.getParameter("addr1")+" "+request.getParameter("addr2")+" "+request.getParameter("addr3");
+//			String[] addr=request.getParameterValues("addr");
+//			String address="";
+//			for(int i=0; i<addr.length; i++) {
+//				if(addr[i] != null && addr[i].length() != 0) {
+//					address+=addr[i]+", ";
+//				}
+//				System.out.println(address);
+//			}
+			System.out.println(address);
 			memberVO.setId(id);
 			memberVO.setPwd(pwd);
 			memberVO.setName(name);
@@ -123,6 +132,25 @@ public class memberController extends HttpServlet {
 					+ "location.href='" + request.getContextPath() + "/index.jsp'"
 					+ "</script>");
 			return;
+		}else if(action.equals("/checkPwd.do")) {  //비밀번호 확인
+			HttpSession session=request.getSession(false);
+			int id=(int) session.getAttribute("log_id");
+			String pwd=request.getParameter("pwd");
+			memberVO.setId(id);
+			memberVO.setPwd(pwd);
+			Boolean result=memberDAO.memExists(memberVO);
+			if(result) {  //비밀번호 일치
+				nextPage="/student/privacy.jsp";
+			}else {  //비밀번호 불일치
+				pw=response.getWriter();
+				pw.print("<script>"
+						+ "alert('비밀번호가 일치하지 않습니다.');"
+						+ "location.href='" + request.getContextPath() + "/student/privacy_check.jsp'"
+						+ "</script>");
+				return;
+			}
+		}else if(action.equals("/modInfo.do")) {  //개인정보 수정
+			
 		}
 		RequestDispatcher dispatcher=request.getRequestDispatcher(nextPage);
 		dispatcher.forward(request, response);

@@ -19,6 +19,13 @@
   <link rel="stylesheet" href="${contextPath}/css/reset.css">
   <link rel="stylesheet" href="${contextPath}/css/index.css">
   <title>삼선대학교 포털</title>
+  <c:if test="${msg=='login_failed'}">
+		<script type="text/javascript">
+			window.onload=function() {
+				alert("로그인 정보가 틀립니다.");
+			}
+		</script>
+	</c:if>
 </head>
 
 <body>
@@ -35,14 +42,14 @@
           <form class="login_form" name="frmLogin" method="post" action="${contextPath}/member/login.do">
             <span class="login_form_title">로그인</span>
             <div class="wrap_input">
-              <input type="text" class="input" name="email" placeholder="아이디" required>
+              <input type="text" class="input" name="id" placeholder="아이디" required>
               <span class="focus_input"></span>
               <span class="symbol_input">
                 <i class="fa fa_envelope" aria-hidden="true"></i>
               </span>
             </div>
             <div class="wrap_input">
-              <input type="password" class="input" name="pass" placeholder="비밀번호" required>
+              <input type="password" class="input" name="pwd" placeholder="비밀번호" required>
               <span class="focus_input"></span>
               <span class="symbol_input">
                 <i class="fa fa_lock" aria-hidden="true"></i>

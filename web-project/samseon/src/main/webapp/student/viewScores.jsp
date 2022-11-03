@@ -29,7 +29,7 @@
                 <div class="header_contents">
                     <div class="white_head1">
                         <h2 class="hidden">대학교 로고</h2>
-                        <a href="${contextPath}/student/board.jsp">
+                        <a href="${contextPath}/board.jsp">
                             <img src="${contextPath}/images/logo.png" alt="삼선대학교 로고">
                             <span>삼선대학교</span>
                         </a>
@@ -46,7 +46,14 @@
                             </ul>
                         </li>
                     </ul>
-                    <a href="${contextPath}/member/logout.do" class="btn_logout">로그아웃</a>
+                    <c:choose>
+			          <c:when test="${!empty isLogin && isLogin == true}">
+				      	<a href="${contextPath}/member/logout.do" class="btn_logout">로그아웃</a>     
+			          </c:when>
+			          <c:otherwise>
+			          	<a href="${contextPath}/index.jsp" class="btn_logout">로그인</a>
+			          </c:otherwise>
+		         	 </c:choose>
                 </div>
             </div>
             <div class="head2">
@@ -60,7 +67,7 @@
                 <nav>
                     <h2 class="hidden">메인메뉴</h2>
                     <ul class="main_menu">
-                        <li><a href="${contextPath}/student/board.jsp" class="menu_title">공지사항</a></li>
+                        <li><a href="${contextPath}/board.jsp" class="menu_title">공지사항</a></li>
                         <li><a href="${contextPath}/student/main_apply_lectures.jsp" class="menu_title">수강신청</a></li>
                         <li class="my_page point"><div class="my_page_click_area"><a href="#" class="menu_title">마이페이지</a></div>
                             <ul class="my_page_menu">
