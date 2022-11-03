@@ -28,7 +28,7 @@
                 <div class="header_contents">
                     <div class="white_head1">
                         <h2 class="hidden">대학교 로고</h2>
-                        <a href="${contextPath}/main.jsp">
+                        <a href="${contextPath}/board.jsp">
                             <img src="${contextPath}/images/logo.png" alt="삼선대학교 로고">
                             <span>삼선대학교</span>
                         </a>
@@ -52,7 +52,14 @@
                             </ul>
                         </li>
                     </ul>
-                   	<a href="${contextPath}/member/logout.do" class="btn_logout">로그아웃</a>
+                   	<c:choose>
+			          <c:when test="${!empty isLogin && isLogin == true}">
+				      	<a href="${contextPath}/member/logout.do" class="btn_logout">로그아웃</a>     
+			          </c:when>
+			          <c:otherwise>
+			          	<a href="${contextPath}/index.jsp" class="btn_logout">로그인</a>
+			          </c:otherwise>
+		         	 </c:choose>
                 </div>
             </div>
             <div class="head2">
