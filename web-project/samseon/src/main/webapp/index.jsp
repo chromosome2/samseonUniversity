@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="${contextPath}/css/reset.css">
   <link rel="stylesheet" href="${contextPath}/css/index.css">
   <title>삼선대학교 포털</title>
-  <c:if test="${msg=='login_failed'}">
+	<c:if test="${msg=='login_failed'}">
 		<script type="text/javascript">
 			window.onload=function() {
 				alert("로그인 정보가 틀립니다.");
