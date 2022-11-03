@@ -60,3 +60,31 @@ function sample4_execDaumPostcode() {
 }
 
 ////////////////////////////////////////
+// input area text event JS
+
+// variables
+const text = document.querySelectorAll('.input_value');
+
+// functions
+text.forEach(el => {
+  // el.previousElementSibling : 가려져 있던 태그
+  // el.previousElementSibling.previousElementSibling : 보였던 태그
+  const prevSpan = el.previousElementSibling.previousElementSibling;
+  const hiddenSpan = el.previousElementSibling;
+  let initSpan = '';
+
+  el.addEventListener('focus', () => {
+    initSpan = prevSpan.innerText;
+    prevSpan.innerText = hiddenSpan.innerText;
+    prevSpan.classList.replace('inner_warning', 'inner_hidden_warning');
+  });
+
+  el.addEventListener('blur', () => {
+    // console.log(prevSpan.innerText);
+    // console.log(initSpan);
+    if (el.value.length === 0) {
+      prevSpan.classList.replace('inner_hidden_warning', 'inner_warning');
+      prevSpan.innerText = initSpan;
+    }
+  });
+});
