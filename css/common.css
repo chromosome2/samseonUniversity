@@ -196,6 +196,9 @@ header .header_contents, #middle_area, #footerInner{
 	margin-bottom: 5px;
 	cursor: pointer;
 }
+.main_menu > li a {
+	display: block;
+}
 .main_menu > .point{
 	background-color: rgb(224, 224, 224);
 }
