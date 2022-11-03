@@ -5,16 +5,16 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="images/logo.png">
+  <link rel="shortcut icon" href="${contextPath}/images/logo.png">
   <link rel="stylesheet" as="style" crossorigin
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard-dynamic-subset.css" />
   <link rel="stylesheet" as="style" crossorigin
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
-  <link rel="stylesheet" href="css/common.css">
-  <link rel="stylesheet" href="css/table.css">
-  <link rel="stylesheet" href="css/main_apply_lectures.css">
-  <script src="js/jquery-3.6.0.min.js"></script>
-  <script src="js/common.js"></script>
+  <link rel="stylesheet" href="${contextPath}/css/common.css">
+  <link rel="stylesheet" href="${contextPath}/css/table.css">
+  <link rel="stylesheet" href="${contextPath}/css/main_apply_lectures.css">
+  <script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
+  <script src="${contextPath}/js/common.js"></script>
   <title>삼선대학교</title>
 </head>
 
@@ -26,12 +26,12 @@
         <div class="header_contents">
           <div class="white_head1">
             <h2 class="hidden">대학교 로고</h2>
-            <a href="board.html">
-              <img src="images/logo.png" alt="삼선대학교 로고">
+            <a href="${contextPath}/student/board.jsp">
+              <img src="${contextPath}/images/logo.png" alt="삼선대학교 로고">
               <span>삼선대학교</span>
             </a>
           </div>
-          <span class="st_name">컴퓨터공학과 조수진님</span>
+          <span class="st_name">${studentInfo.m_name} ${studentInfo.name}님</span>
           <ul class="mini_menu">
             <li><a href="#">학교 서비스</a>
               <ul class="service_menu">
@@ -43,7 +43,7 @@
               </ul>
             </li>
           </ul>
-          <a href="index.html" class="btn_logout">로그아웃</a>
+          <a href="${contextPath}/member/logout.do" class="btn_logout">로그아웃</a>
         </div>
       </div>
       <div class="head2">
@@ -57,14 +57,14 @@
         <nav>
           <h2 class="hidden">메인메뉴</h2>
           <ul class="main_menu">
-            <li><a href="board.html" class="menu_title">공지사항</a></li>
-            <li class="point"><a href="main_apply_lectures.html" class="menu_title">수강신청</a></li>
+            <li><a href="${contextPath}/student/board.jsp" class="menu_title">공지사항</a></li>
+            <li class="point"><a href="${contextPath}/student/main_apply_lectures.jsp" class="menu_title">수강신청</a></li>
             <li class="my_page">
               <div class="my_page_click_area"><a href="#" class="menu_title">마이페이지</a></div>
               <ul class="my_page_menu">
-                <li><a href="viewScores.html">전체성적 조회</a></li>
-                <li><a href="viewMyLectures_ST.html">수강중인 과목 조회</a></li>
-                <li><a href="privacy_check.html">개인정보</a></li>
+                <li><a href="${contextPath}/student/viewScores.jsp">전체성적 조회</a></li>
+                <li><a href="${contextPath}/student/viewMyLectures_ST.jsp">수강중인 과목 조회</a></li>
+                <li><a href="${contextPath}/student/privacy_check.jsp">개인정보</a></li>
               </ul>
             </li>
           </ul>

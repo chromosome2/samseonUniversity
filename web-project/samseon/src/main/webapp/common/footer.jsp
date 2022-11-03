@@ -21,6 +21,15 @@
     <title>삼선대학교</title>
 </head>
 <body>
-
+		<footer id="footer">
+            <div id="footerInner">
+                <a href="#" class="privacy_policy">개인정보 처리방침</a>
+                <address>
+                    <span>서울시 종로구 종로동 11-1 삼선대학교</span>
+                    <span>Tel : 02)333-1234</span>
+                </address>
+            </div>
+        </footer>
+    </div>
 </body>
 </html>
