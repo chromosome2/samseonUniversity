@@ -154,7 +154,7 @@ header .header_contents, #middle_area, #footerInner{
 	text-decoration: underline;
 	text-underline-position:under;
 }
-.header_contents > button {
+.header_contents > .btn_logout {
 	position: absolute;
 	right: 35px;
 	top: 10px;
