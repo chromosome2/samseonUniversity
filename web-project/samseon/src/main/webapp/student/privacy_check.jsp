@@ -29,7 +29,7 @@
                 <div class="header_contents">
                     <div class="white_head1">
                         <h2 class="hidden">대학교 로고</h2>
-                        <a href="${contextPath}/main.jsp">
+                        <a href="${contextPath}/student/board.jsp">
                             <img src="${contextPath}/images/logo.png" alt="삼선대학교 로고">
                             <span>삼선대학교</span>
                         </a>
@@ -46,7 +46,7 @@
                             </ul>
                         </li>
                     </ul>
-                    <a href="${contextPath}/member/logout.do">로그아웃</a>
+                    <a href="${contextPath}/member/logout.do" class="btn_logout">로그아웃</a>
                 </div>
             </div>
             <div class="head2">
@@ -60,8 +60,8 @@
                 <nav>
                     <h2 class="hidden">메인메뉴</h2>
                     <ul class="main_menu">
-                        <li><a href="${contextPath}/board.jsp" class="menu_title">공지사항</a></li>
-                        <li><a href="#" class="menu_title">수강신청</a></li>
+                        <li><a href="${contextPath}/student/board.jsp" class="menu_title">공지사항</a></li>
+                        <li><a href="${contextPath}/student/main_apply_lectures.jsp" class="menu_title">수강신청</a></li>
                         <li class="my_page point"><div class="my_page_click_area"><a href="#" class="menu_title">마이페이지</a></div>
                             <ul class="my_page_menu">
                                 <li><a href="${contextPath}/student/viewScores.jsp">전체성적 조회</a></li>
@@ -76,7 +76,7 @@
             <div id="contents_area">
                 <div class="contents_wrapper">
                     <p class="privacy_title">※ 개인정보 수정</p>
-                    <form action="" method="post" id="pwd_checkForm" name="pwd_checkForm">
+                    <form action="${contextPath}/" method="post" id="pwd_checkForm" name="pwd_checkForm">
                         <div class="password_check_area">
                             <h3>비밀번호 재확인</h3>
                             <p>안전한 정보보호를 위하여 비밀번호를 다시 한번 확인합니다.<br>비밀번호가 타인에게 노출되지 않도록 주의하여 주세요.</p>
@@ -99,4 +99,5 @@
         </footer>
     </div>
 </body>
+</html>
 </html>

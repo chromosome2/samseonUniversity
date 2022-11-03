@@ -18,7 +18,7 @@ html {
   width: 100%;
   height: 100%;
   content: '';
-  background-image: url(/images/college.png),
+  background-image: url(../images/college.png),
     linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
   background-position: center;
   position: absolute;
