@@ -29,12 +29,19 @@
                 <div class="header_contents">
                     <div class="white_head1">
                         <h2 class="hidden">대학교 로고</h2>
-                        <a href="${contextPath}/student/board.jsp">
+                        <a href="${contextPath}/board.jsp">
                             <img src="${contextPath}/images/logo.png" alt="삼선대학교 로고">
                             <span>삼선대학교</span>
                         </a>
                     </div>
-                    <span class="st_name">${studentInfo.m_name} ${studentInfo.name}님</span>
+                    <c:choose>
+						<c:when test="${user_level == 'student'}">
+		                    <span class="st_name">${studentInfo.m_name} ${studentInfo.name}님</span>						
+						</c:when>
+						<c:when test="${user_level == 'professor'}">
+		                    <span class="st_name">${professorInfo.m_name} ${professorInfo.name} 교수님</span>						
+						</c:when>
+                    </c:choose>
                     <ul class="mini_menu">
                         <li><a href="#">학교 서비스</a>
                             <ul class="service_menu">
@@ -46,7 +53,14 @@
                             </ul>
                         </li>
                     </ul>
-                    <a href="${contextPath}/member/logout.do" class="btn_logout">로그아웃</a>
+                    <c:choose>
+			          <c:when test="${!empty isLogin && isLogin == true}">
+				      	<a href="${contextPath}/member/logout.do" class="btn_logout">로그아웃</a>     
+			          </c:when>
+			          <c:otherwise>
+			          	<a href="${contextPath}/index.jsp" class="btn_logout">로그인</a>
+			          </c:otherwise>
+		         	</c:choose>
                 </div>
             </div>
             <div class="head2">
@@ -60,15 +74,29 @@
                 <nav>
                     <h2 class="hidden">메인메뉴</h2>
                     <ul class="main_menu">
-                        <li class="point"><a href="${contextPath}/student/board.jsp" class="menu_title">공지사항</a></li>
-                        <li><a href="${contextPath}/student/main_apply_lectures.jsp" class="menu_title">수강신청</a></li>
-                        <li class="my_page"><div class="my_page_click_area"><a href="#" class="menu_title">마이페이지</a></div>
-                            <ul class="my_page_menu">
-                                <li><a href="${contextPath}/student/viewScores.jsp">전체성적 조회</a></li>
-                                <li><a href="${contextPath}/student/viewMyLectures_ST.jsp">수강중인 과목 조회</a></li>
-                                <li><a href="${contextPath}/student/privacy_check.jsp">개인정보</a></li>
-                            </ul>
-                        </li>
+                    <c:choose>
+	                    <c:when test="${user_level == 'student'}">
+	                        <li class="point"><a href="${contextPath}/board.jsp" class="menu_title">공지사항</a></li>
+	                        <li><a href="${contextPath}/student/main_apply_lectures.jsp" class="menu_title">수강신청</a></li>
+	                        <li class="my_page"><div class="my_page_click_area"><a href="#" class="menu_title">마이페이지</a></div>
+	                            <ul class="my_page_menu">
+	                                <li><a href="${contextPath}/student/viewScores.jsp">전체성적 조회</a></li>
+	                                <li><a href="${contextPath}/student/viewMyLectures_ST.jsp">수강중인 과목 조회</a></li>
+	                                <li><a href="${contextPath}/student/privacy_check.jsp">개인정보</a></li>
+	                            </ul>
+	                        </li>
+	                     </c:when>
+	                     <c:when test="${user_level == 'professor'}">
+		                    <li class="point"><a href="${contextPath}/board.jsp" class="menu_title">공지사항</a></li>
+	                        <li><a href="#" class="menu_title">수업 등록</a></li>
+	                        <li class="my_page"><div class="my_page_click_area"><a href="#" class="menu_title">나의 수업</a></div>
+	                            <ul class="my_page_menu">
+	                                <li><a href="#">학생 관리</a></li>
+	                                <li><a href="#">과목 공지사항</a></li>
+	                            </ul>
+	                        </li>						
+						</c:when>
+                     </c:choose>
                     </ul>
                 </nav>
             </div>

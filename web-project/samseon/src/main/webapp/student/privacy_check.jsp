@@ -29,12 +29,19 @@
                 <div class="header_contents">
                     <div class="white_head1">
                         <h2 class="hidden">대학교 로고</h2>
-                        <a href="${contextPath}/student/board.jsp">
+                        <a href="${contextPath}/board.jsp">
                             <img src="${contextPath}/images/logo.png" alt="삼선대학교 로고">
                             <span>삼선대학교</span>
                         </a>
                     </div>
-                    <span class="st_name">${studentInfo.m_name} ${studentInfo.name}님</span>
+                    <c:choose>
+						<c:when test="${user_level == 'student'}">
+		                    <span class="st_name">${studentInfo.m_name} ${studentInfo.name}님</span>						
+						</c:when>
+						<c:when test="${user_level == 'professor'}">
+		                    <span class="st_name">${professorInfo.m_name} ${professorInfo.name} 교수님</span>						
+						</c:when>
+                    </c:choose>
                     <ul class="mini_menu">
                         <li><a href="#">학교 서비스</a>
                             <ul class="service_menu">
@@ -46,7 +53,14 @@
                             </ul>
                         </li>
                     </ul>
-                    <a href="${contextPath}/member/logout.do" class="btn_logout">로그아웃</a>
+                    <c:choose>
+			          <c:when test="${!empty isLogin && isLogin == true}">
+				      	<a href="${contextPath}/member/logout.do" class="btn_logout">로그아웃</a>     
+			          </c:when>
+			          <c:otherwise>
+			          	<a href="${contextPath}/index.jsp" class="btn_logout">로그인</a>
+			          </c:otherwise>
+		         	</c:choose>
                 </div>
             </div>
             <div class="head2">
@@ -60,7 +74,7 @@
                 <nav>
                     <h2 class="hidden">메인메뉴</h2>
                     <ul class="main_menu">
-                        <li><a href="${contextPath}/student/board.jsp" class="menu_title">공지사항</a></li>
+                        <li><a href="${contextPath}/board.jsp" class="menu_title">공지사항</a></li>
                         <li><a href="${contextPath}/student/main_apply_lectures.jsp" class="menu_title">수강신청</a></li>
                         <li class="my_page point"><div class="my_page_click_area"><a href="#" class="menu_title">마이페이지</a></div>
                             <ul class="my_page_menu">
@@ -76,11 +90,11 @@
             <div id="contents_area">
                 <div class="contents_wrapper">
                     <p class="privacy_title">※ 개인정보 수정</p>
-                    <form action="${contextPath}/" method="post" id="pwd_checkForm" name="pwd_checkForm">
+                    <form action="${contextPath}/member/checkPwd.do" method="post" id="pwd_checkForm" name="pwd_checkForm">
                         <div class="password_check_area">
                             <h3>비밀번호 재확인</h3>
                             <p>안전한 정보보호를 위하여 비밀번호를 다시 한번 확인합니다.<br>비밀번호가 타인에게 노출되지 않도록 주의하여 주세요.</p>
-                            <input type="password" class="pwd_check_box" placeholder="비밀번호">
+                            <input type="password" class="pwd_check_box" name="pwd" placeholder="비밀번호">
                         </div>
                         <input type="submit" value="확인">
                     </form>

@@ -57,7 +57,7 @@
         <div class="join_txt_area postal_wrap">
           <div class="join_txt_area postal_input postal_wrap_1st">
             <span class="inner_hidden_warning">우편번호</span>
-            <input class="input_value_none" id="sample4_postcode" type="text" disabled>
+            <input class="input_value_none" name="addr1" id="sample4_postcode" type="text" disabled>
           </div>
           <div class="postal_input">
             <span class="postal_span inner_warning btn_addr_txt">주소 찾기</span>
@@ -66,11 +66,11 @@
         </div>
         <div class="join_txt_area">
           <span class="inner_hidden_warning">도로명주소</span>
-          <input class="input_value_none" id="sample4_roadAddress" type="text" disabled>
+          <input class="input_value_none" name="addr2" id="sample4_roadAddress" type="text" disabled>
         </div>
         <div class="join_txt_area">
           <span class="inner_warning">상세주소</span>
-          <input class="input_value postal_change" id="sample4_detailAddress" type="text">
+          <input class="input_value postal_change" name="addr3" id="sample4_detailAddress" type="text">
         </div>
         <div class="optional_area">
           <p class="optianl_txt">선택입력</p>
