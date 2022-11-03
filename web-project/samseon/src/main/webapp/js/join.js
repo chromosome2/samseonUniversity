@@ -1,25 +1,4 @@
 ////////////////////////////////////////
-// email 직접입력 구현
-
-// 도메인 직접 입력 or domain option 선택
-const domainListEl = document.getElementById('email_domain');
-const domainInputEl = document.getElementById('email_id');
-// select 옵션 변경 시
-domainListEl.addEventListener('change', event => {
-  // option에 있는 도메인 선택 시
-  if (event.target.value !== 'type') {
-    // 선택한 도메인을 input에 입력하고 disabled
-    domainInputEl.value = event.target.value;
-    domainInputEl.disabled = true;
-  } else {
-    // 직접 입력 시
-    // input 내용 초기화 & 입력 가능하도록 변경
-    domainInputEl.value = '';
-    domainInputEl.disabled = false;
-  }
-});
-
-////////////////////////////////////////
 // 우편번호 찾기 JS
 
 //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
@@ -81,3 +60,98 @@ function sample4_execDaumPostcode() {
 }
 
 ////////////////////////////////////////
+// 인풋 영역 text event #1.
+
+///// variables
+const text = document.querySelectorAll('.input_value');
+
+///// functions
+text.forEach(el => {
+  // el.previousElementSibling : 가려져 있던 태그
+  // el.previousElementSibling.previousElementSibling : 보였던 태그
+  const prevSpan = el.previousElementSibling;
+  // const hiddenSpan = el.previousElementSibling;
+  // let initSpan = '';
+
+  el.addEventListener('focus', () => {
+    // initSpan = prevSpan.innerText;
+    // prevSpan.innerText = hiddenSpan.innerText;
+
+    prevSpan.classList.replace('inner_warning', 'inner_hidden_warning');
+  });
+
+  el.addEventListener('blur', () => {
+    if (el.value.length === 0) {
+      prevSpan.classList.replace('inner_hidden_warning', 'inner_warning');
+      // prevSpan.innerText = initSpan;
+    }
+  });
+});
+
+////////////////////////////////////////////////////////////////////////////////
+// 인풋 영역 text event #2.
+
+// variables
+const oldIdInput = '학번';
+const newIdInput = '부여받은 학번 8자리 입력';
+const oldPwdInput = '비밀번호';
+const newPwdInput = '8자 이상, 영문/숫자/특수문자 중 2가지 이상 입력';
+const oldPwdChkInput = '비밀번호 확인';
+const newPwdChkInput = '비밀번호 재입력';
+const oldNameInput = '이름';
+const newNameInput = '이름 입력';
+const oldAddrInput = '상세주소';
+const newAddrInput = '상세주소 입력';
+const oldEmailInput = '이메일';
+const newEmailInput = '이메일 입력';
+
+const id_change = document.querySelector('.id_change');
+
+console.log(id_change.previousElementSibling);
+console.log(id_change.value.length);
+// functions
+const changeText = function (input, oldTxt, newTxt) {
+  const targetText = input.previousElementSibling;
+  input.addEventListener('focus', () => {
+    targetText.innerText = newTxt;
+  });
+
+  input.addEventListener('blur', () => {
+    if (input.value.length === 0) {
+      targetText.innerText = oldTxt;
+      console.log(oldTxt);
+    }
+  });
+};
+
+// execute
+changeText(id_change, oldIdInput, newIdInput);
+
+// 예외 1. 우편번호, 도로명 주소
+
+////////////////////////////////////////////////////////////////////////////////
+// 이메일 정규식
+
+///// variables
+const email = document.getElementById('email');
+
+///// functions
+const mailCheck = function (email) {
+  const emailRegExp = new RegExp(
+    "([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|[[\t -Z^-~]*])"
+  );
+  return emailRegExp.test(email);
+};
+
+const mailAlert = function () {
+  if (email.value.trim() !== '' && !mailCheck(email.value)) {
+    alert('이메일 형식에 맞게 입력해주세요');
+    email.value = '';
+  }
+};
+
+///// execute
+email.addEventListener('blur', mailAlert);
+
+////////////////////////////////////////////////////////////////////////////////
+// 아이디 정규식

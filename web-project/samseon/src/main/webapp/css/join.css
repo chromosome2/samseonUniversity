@@ -175,11 +175,11 @@ a:visited {
 }
 
 .join_txt_area {
-  margin-bottom: 10px;
+  margin-bottom: 7px;
   position: relative;
 }
 
-.join_txt_span {
+.inner_warning {
   position: absolute;
   top: 18px;
   left: 10px;
@@ -188,10 +188,30 @@ a:visited {
   transition: transform 0.2s ease 0s;
   user-select: none;
   z-index: 3;
-  color: #ea965a;
+  color: rgb(230, 73, 56);
 }
 
 .input_value {
+  margin-bottom: -1px;
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 48px;
+  padding: 21px 10px 7px;
+  overflow: hidden;
+  background: white;
+  color: rgb(48, 53, 56);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 0;
+  box-shadow: none;
+  appearance: none;
+  border: 1px solid rgb(250, 186, 179);
+  z-index: 1;
+  border-radius: 4px;
+}
+
+.input_value_none {
   margin-bottom: -1px;
   display: block;
   position: relative;
@@ -236,12 +256,13 @@ a:visited {
   text-align: center;
   width: 100%;
   left: 0;
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 900;
 }
 
 .postal_wrap {
   display: flex;
+  max-height: 48px;
 }
 
 .postal_input {
@@ -258,3 +279,23 @@ a:visited {
 }
 
 /* form Section End */
+
+/* login inner message */
+
+.inner_hidden_warning {
+  position: absolute;
+  top: 18px;
+  left: 10px;
+  font-size: 15px;
+  pointer-events: none;
+  transition: transform 0.2s ease 0s;
+  user-select: none;
+  z-index: 3;
+  color: #ea965a !important;
+  transform: translateY(-12px) scale(0.7);
+  transform-origin: left center;
+}
+
+.hidden {
+  display: none;
+}

@@ -154,7 +154,7 @@ header .header_contents, #middle_area, #footerInner{
 	text-decoration: underline;
 	text-underline-position:under;
 }
-.header_contents > a {
+.header_contents > .btn_logout {
 	position: absolute;
 	right: 35px;
 	top: 10px;
@@ -195,6 +195,9 @@ header .header_contents, #middle_area, #footerInner{
 	line-height: 80px;
 	margin-bottom: 5px;
 	cursor: pointer;
+}
+.main_menu > li a {
+	display: block;
 }
 .main_menu > .point{
 	background-color: rgb(224, 224, 224);
