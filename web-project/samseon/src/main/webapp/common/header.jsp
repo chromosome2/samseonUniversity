@@ -52,7 +52,7 @@
                             </ul>
                         </li>
                     </ul>
-                   	<a href="${contextPath}/member/logout.do">로그아웃</a>
+                   	<a href="${contextPath}/member/logout.do" class="btn_logout">로그아웃</a>
                 </div>
             </div>
             <div class="head2">
