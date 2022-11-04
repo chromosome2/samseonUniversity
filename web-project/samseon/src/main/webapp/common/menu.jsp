@@ -26,14 +26,14 @@
                     <ul class="main_menu">
                     	<c:choose>
 							<c:when test="${user_level == 'student'}">
-		                        <li class="point"><a href="${contextPath}/board/listArticles.do" class="menu_title">공지사항</a></li>
-		                        <li><a href="${contextPath}/student/main_apply_lectures.jsp" class="menu_title">수강신청</a></li>
-		                        <li class="my_page">
+		                        <li class="point" onclick="fn_menu_change()"><a href="${contextPath}/board/listArticles.do" class="menu_title">공지사항</a></li>
+		                        <li onclick="fn_menu_change()"><a href="${contextPath}/student/main_apply_lectures.jsp" class="menu_title">수강신청</a></li>
+		                        <li class="my_page" onclick="fn_menu_change()">
 		                        	<div class="my_page_click_area"><a href="#" class="menu_title">마이페이지</a></div>
 		                            <ul class="my_page_menu">
-		                                <li><a href="${contextPath}/student/viewScores.jsp">전체성적 조회</a></li>
-		                                <li><a href="${contextPath}/student/viewMyLectures_ST.jsp">수강중인 과목 조회</a></li>
-		                                <li><a href="${contextPath}/student/privacy_check.jsp">개인정보</a></li>
+		                                <li onclick="fn_mypage_change()"><a href="${contextPath}/student/viewScores.jsp">전체성적 조회</a></li>
+		                                <li onclick="fn_mypage_change()"><a href="${contextPath}/student/viewMyLectures_ST.jsp">수강중인 과목 조회</a></li>
+		                                <li onclick="fn_mypage_change()"><a href="${contextPath}/student/privacy_check.jsp">개인정보</a></li>
 		                            </ul>
 		                        </li>		
 							</c:when>
@@ -51,18 +51,18 @@
 			                    <li class="point"><a href="#" class="menu_title">공지사항 관리</a></li>
 		                        <li><a href="#" class="menu_title">학생, 교수 관리</a></li>					
 							</c:when>
-							<%-- <c:otherwise>
-								<li class="point"><a href="${contextPath}/board.jsp" class="menu_title">공지사항</a></li>
-		                        <li><a href="${contextPath}/student/main_apply_lectures.jsp" class="menu_title">수강신청</a></li>
-		                        <li class="my_page">
+							<c:otherwise><%-- 이 부분은 로그인 안했을때 css 수정하기 위해서 넣어놨습니다! 나중에 작업 마치면 삭제하셔도 됩니다. --%>
+								<li class="point" onclick="fn_menu_change()"><a href="${contextPath}/board/listArticles.do" class="menu_title">공지사항</a></li>
+		                        <li onclick="fn_menu_change()"><a href="${contextPath}/student/main_apply_lectures.jsp" class="menu_title">수강신청</a></li>
+		                        <li class="my_page" onclick="fn_menu_change()">
 		                        	<div class="my_page_click_area"><a href="#" class="menu_title">마이페이지</a></div>
 		                            <ul class="my_page_menu">
-		                                <li><a href="${contextPath}/student/viewScores.jsp">전체성적 조회</a></li>
-		                                <li><a href="${contextPath}/student/viewMyLectures_ST.jsp">수강중인 과목 조회</a></li>
-		                                <li><a href="${contextPath}/student/privacy_check.jsp">개인정보</a></li>
+		                                <li onclick="fn_mypage_change()"><a href="${contextPath}/student/viewScores.jsp">전체성적 조회</a></li>
+		                                <li onclick="fn_mypage_change()"><a href="${contextPath}/student/viewMyLectures_ST.jsp">수강중인 과목 조회</a></li>
+		                                <li onclick="fn_mypage_change()"><a href="${contextPath}/student/privacy_check.jsp">개인정보</a></li>
 		                            </ul>
 		                        </li>
-							</c:otherwise> --%>
+							</c:otherwise>
 	                    </c:choose>
                         
                     </ul>

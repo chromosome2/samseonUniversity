@@ -84,6 +84,7 @@ header .header_contents,
   background-size: 250px 50px;
   width: 250px;
   display: inline-block;
+  margin-left: 235px;
 }
 .white_head1 img {
   height: 40px;
@@ -100,7 +101,7 @@ header .header_contents,
 }
 .st_name {
   position: absolute;
-  left: 280px;
+  left: 515px;
   font-size: 1.1em;
   color: #fff;
   line-height: 50px;

@@ -17,5 +17,10 @@ $(function(){
             $(this).removeClass('my_page_click');
         }
         sw=!sw;
-    })
+    });
 });
+//메인메뉴
+function fn_menu_change(me) {
+	$('.point').removeClass('point');
+	$(me).addClass('point');
+}
