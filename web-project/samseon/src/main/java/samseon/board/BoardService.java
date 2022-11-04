@@ -20,7 +20,6 @@ public class BoardService {
 		Map articleMap=new HashMap();
 		List<ArticleVO> articleList=boardDAO.selectAllArticles(pagingMap);
 		int totalArticles=boardDAO.selectTotalArticles();
-		System.out.println(totalArticles);
 		articleMap.put("articleList", articleList);
 		articleMap.put("totalArticles", totalArticles);
 		return articleMap;

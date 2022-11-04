@@ -53,7 +53,7 @@ public class memberController extends HttpServlet {
 					session.setAttribute("log_id", id);
 					session.setAttribute("user_level", user_level);
 					session.setAttribute("studentInfo", studentInfo);
-					nextPage="/board";
+					nextPage="/board/listArticles.do";
 				}else if(user_level.equals("professor")) {
 					MemberVO professorInfo=memberDAO.getProfessorInfo(id);
 					HttpSession session=request.getSession();
@@ -61,7 +61,7 @@ public class memberController extends HttpServlet {
 					session.setAttribute("log_id", id);
 					session.setAttribute("user_level", user_level);
 					session.setAttribute("professorInfo", professorInfo);
-					nextPage="/board";
+					nextPage="/board/listArticles.do";
 				}else if(user_level.equals("admin")) {
 					MemberVO adminInfo=memberDAO.getAdminInfo(id);
 					HttpSession session=request.getSession();
@@ -69,7 +69,7 @@ public class memberController extends HttpServlet {
 					session.setAttribute("log_id", id);
 					session.setAttribute("user_level", user_level);
 					session.setAttribute("adminInfo", adminInfo);
-					nextPage="/board";
+					nextPage="/board/listArticles.do";
 				}
 			}else {  //회원정보 없음
 				request.setAttribute("msg", "login_failed");

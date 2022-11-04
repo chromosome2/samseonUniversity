@@ -1,11 +1,18 @@
+<%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
       <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-      <c:set var="totalArticles" value="${articleMap.get('totalArticles')}"/>
-      <c:set var="articleList" value="${articleMap.get('articleList')}"/>
-      <c:set var="section" value="${articleMap.get('section')}"/>
-      <c:set var="pageNum" value="${articleMap.get('pageNum')}"/>
+      <c:set var="articleList" value="${articleMap.articleList}"/>
+      <c:set var="cnt" value="${articleMap.totalArticles}"/>
+      <c:set var="pageSize" value="10"/>
+      <c:set var="currentPage" value="${articleMap.pageNum}"/>
+      <%
+		Map articleMap=(Map)request.getAttribute("articleMap");
+      	int currentPage = Integer.parseInt(articleMap.get("pageNum").toString());
+      %>
+      <c:set var="section" value="${articleMap.section}"/>
+      <c:set var="pageNum" value="${articleMap.pageNum}"/>
       <!DOCTYPE html>
       <html lang="ko">
 
@@ -25,11 +32,6 @@
         <script src="${contextPath}/js/common.js"></script>
         <script src="${contextPath}/js/menu_first.js"></script>
         <title>삼선대학교</title>
-        <style type="text/css">
-        	a.selectedPage {
-        		color:red;!important
-        	}
-        </style>
       </head>
 
       <body>
@@ -96,29 +98,58 @@
                   </table>
                  
                  <!-- 페이징 -->
-                <div align="center">
-                	<c:if test="${totalArticles != 0}">
+                 <c:if test="${cnt != 0}">
+                 	<c:set var="pageCount" value="${cnt / pageSize + (cnt%pageSize==0?0:1)}"/>
+                 	<c:set var="pageBlock" value="10"/>
+                 	<%
+                 		int startPage = (currentPage-1)/10*10 + 1;
+                 	%>
+                 	<c:set var="startPage" value="<%=startPage%>"/>
+                 	<c:set var="endPage" value="${startPage + pageBlock - 1}"/>
+                 	<c:if test="${endPage > pageCount}">
+                 		<c:set var="endPage" value="${pageCount}"/>
+                 	</c:if>
+                 </c:if>
+                 
+                 <c:if test="${startPage > pageBlock}">
+                 	<a href="${contextPath}/board/listArticles.do?section=${section-1}&pageNum=${startPage-pageBlock}">prev</a>
+                 </c:if>
+                 
+                 <c:forEach var="page" begin="${startPage}" end="${endPage}" step="1">
+                 	<c:if test="${page == currentPage}">
+                 		<a style="color:orangered;" href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${page}</a>
+                 	</c:if>
+                 	<c:if test="${page != currentPage}">
+                 		<a href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${page}</a>
+                 	</c:if>
+                 </c:forEach>
+                 
+                 <c:if test="${endPage < pageCount}">
+                 	<a href="${contextPath}/board/listArticles.do?section=${section+1}&pageNum=${startPage+pageBlock}">next</a>
+                 </c:if>
+                 
+                	<%-- <c:if test="${totalArticles != 0}">
                 		<c:choose>
-		                	<c:when test="${totalArticles > 30}">
+		                	<c:when test="${totalArticles > 25}">
 		                		<c:forEach var="page" begin="1" end="5" step="1">
 		                			<c:if test="${section > 1 && page == 1}">
-		                				<a href="${contextPath}/board/listArticles.do?section=${section-1}&pageNum=${(section-1)*10+1}"> prev</a>
+		                				<a href="${contextPath}/board/listArticles.do?section=${section-1}&pageNum=1"> prev</a>
 		                			</c:if>
 		                			<a href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${(section-1)*5+page}</a>
-		                			<%-- <c:choose>
+		                			<c:choose>
 										<c:when test="${page==pageNum}">
 											<a class="selectedPage" href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${(section-1)*10+page}</a>
 										</c:when>
 										<c:otherwise>
 											<a class="notSelectedPage" href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${page}</a>
 										</c:otherwise>
-									</c:choose> --%>
+									</c:choose>
 		                			<c:if test="${page == 5}">
-		                				<a href="${contextPath}/board/listArticles.do?section=${section+1}&pageNum=${section*10+1}"> next</a>
+		                				<a href="${contextPath}/board/listArticles.do?section=${section+1}&pageNum=1"> next</a>
 		                			</c:if>
 		                		</c:forEach>
 		                	</c:when>
-		                	<c:when test="${totalArticles == 30}">
+		                	<c:when test="${totalArticles == 25}">
 		                		<c:forEach var="page" begin="1" end="5" step="1">
 		                			<c:choose>
 										<c:when test="${page==pageNum}">
@@ -130,7 +161,7 @@
 									</c:choose>
 		                		</c:forEach>
 		                	</c:when>
-							<c:when test="${totalArticles < 30}">
+							<c:when test="${totalArticles < 25}">
 								<c:forEach var="page" begin="1" end="${totalArticles/5 + 1}" step="1">
 									<c:choose>
 										<c:when test="${page==pageNum}">
@@ -143,7 +174,7 @@
 								</c:forEach>
 							</c:when>                		
                 		</c:choose>
-                	</c:if>
+                	</c:if> --%>
                 </div>
                  
                  <!-- 새 글 작성 : 관리자에게만 보임 -->

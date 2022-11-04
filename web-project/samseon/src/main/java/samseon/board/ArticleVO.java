@@ -15,7 +15,7 @@ public class ArticleVO {
 	
 	//생성자
 	public ArticleVO() {
-		System.out.println("ArticleVO 생성");
+
 	}
 	
 	public ArticleVO(int articleNo, String title, String content, String imageFileName, String adminDepartment) {
