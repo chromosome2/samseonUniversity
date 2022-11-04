@@ -13,7 +13,16 @@ public class MemberVO {
 	private String addr;
 	private int st_cnd;
 	private int st_grade;
+	private String department;
 	
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
 	public int getSt_grade() {
 		return st_grade;
 	}

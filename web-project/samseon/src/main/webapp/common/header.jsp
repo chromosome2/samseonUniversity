@@ -18,13 +18,14 @@
     <link rel="stylesheet" href="${contextPath}/css/common.css">
     <script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
     <script src="${contextPath}/js/common.js"></script>
-    <c:if test="${isLogin != true}">
-	 <script>
-	 	alert("로그인되지 않았습니다.");
-	 	location.href="${contextPath}/index.jsp";
-	 </script>    
-	</c:if>
     <title>삼선대학교</title>
+   	<!-- 로그인하지 않았을 경우 index.jsp로 이동 -->
+    <%-- <c:if test="${isLogin != true && empty studentInfo && empty professorInfo && empty adminInfo}">
+		 <script>
+	 		alert("로그인되지 않았습니다.");
+		 	location.href="${contextPath}/index.jsp";
+		 </script>    
+	</c:if> --%>
 </head>
 <body>
 	<div id="wrapper">
@@ -34,7 +35,7 @@
                 <div class="header_contents">
                     <div class="white_head1">
                         <h2 class="hidden">대학교 로고</h2>
-                        <a href="${contextPath}/board.jsp">
+                        <a href="${contextPath}/board/listArticles.do">
                             <img src="${contextPath}/images/logo.png" alt="삼선대학교 로고">
                             <span>삼선대학교</span>
                         </a>
@@ -45,6 +46,9 @@
 						</c:when>
 						<c:when test="${user_level == 'professor'}">
 		                    <span class="st_name">${professorInfo.m_name} ${professorInfo.name} 교수님</span>						
+						</c:when>
+						<c:when test="${user_level == 'admin'}">
+							<span class="st_name">관리자 ${adminInfo.name}님</span>
 						</c:when>
                     </c:choose>
                     <ul class="mini_menu">
