@@ -45,7 +45,7 @@ body {
 header .header_contents,
 #middle_area,
 #footerInner {
-  width: 1280px;
+  min-width: 1280px;
   margin: 0 auto;
   box-sizing: border-box;
 }
@@ -84,6 +84,7 @@ header .header_contents,
   background-size: 250px 50px;
   width: 250px;
   display: inline-block;
+  margin-left: 235px;
 }
 .white_head1 img {
   height: 40px;
@@ -100,7 +101,7 @@ header .header_contents,
 }
 .st_name {
   position: absolute;
-  left: 280px;
+  left: 515px;
   font-size: 1.1em;
   color: #fff;
   line-height: 50px;
@@ -214,14 +215,19 @@ header .header_contents,
   box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.4), 2px 0px 5px rgba(0, 0, 0, 0.4);
   overflow: hidden;
   /* height 600 -> 650 수정 (1103, 영민) */
-  height: 650px;
+  /* height: 650px; => min-height 900으로 수정 (1105, 영민) */
+  min-height: 900px;
+  width: 100%;
 }
 #main_menu_back {
   background-color: #ea965a;
   float: left;
   height: 100%;
+  min-height: 900px;
   width: 235px;
+  display: block;
 }
+
 .main_menu > li {
   background-color: #404040;
   line-height: 80px;
@@ -335,6 +341,5 @@ header .header_contents,
 }
 
 #contents_area {
-  float: right;
-  width: 1045px;
+  overflow: hidden;
 }
