@@ -37,7 +37,7 @@
           <h3>수강 신청 및 조회</h3>
           <div class="st_lecture_area">
             <div class="lt_search_form">
-              <div class="lt_select">
+              <!-- <div class="lt_select">
                 <label class="lt_label">학년</label>
                 <div class="lt_inner">
                   <select name="lt_options" id="lt_options">
@@ -47,7 +47,7 @@
                     <option value="1">3학년</option>
                   </select>
                 </div>
-              </div>
+              </div> -->
               <div class="lt_select">
                 <label class="lt_label">학기</label>
                 <div class="lt_inner">
@@ -84,7 +84,7 @@
                 </div>
               </div>
               <div class="lt_search_submit lt_select">
-                <button class="search_btn">검색</button>
+                <button class="search_btn">검색</button> <!-- ajax : input type button -->
               </div>
             </div>
           </div>

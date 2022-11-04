@@ -116,6 +116,7 @@ public class memberController extends HttpServlet {
 					address+=addr[i]+" ";
 				}
 			}
+			address.trim();
 			System.out.println(address);
 			memberVO.setId(id);
 			memberVO.setPwd(pwd);
@@ -150,11 +151,13 @@ public class memberController extends HttpServlet {
 		}else if(action.equals("/modInfo.do")) {  //개인정보 수정
 			HttpSession session=request.getSession(false);
 			int id=(int) session.getAttribute("log_id");
+			String user_level=(String) session.getAttribute("user_level");
 			session.removeAttribute("studentInfo");
 			String pwd=request.getParameter("pwd");
 			String phone=request.getParameter("tel");
 			String email=request.getParameter("email");
 			String address=request.getParameter("addr");
+			memberVO.setUser_level(user_level);
 			memberVO.setId(id);
 			memberVO.setPwd(pwd);
 			memberVO.setPhone(phone);

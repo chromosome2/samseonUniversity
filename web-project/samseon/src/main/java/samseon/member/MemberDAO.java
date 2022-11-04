@@ -294,6 +294,7 @@ public class MemberDAO {
 	
 	//회원 정보 수정
 	public void modInfo(MemberVO memberVO) {
+		String user_level=memberVO.getUser_level();
 		int id=memberVO.getId();
 		String pwd=memberVO.getPwd();
 		String phone=memberVO.getPhone();
@@ -301,8 +302,16 @@ public class MemberDAO {
 		String address=memberVO.getAddr();
 		try {
 			conn=dataFactory.getConnection();
-			String query="update studenttbl set st_ph=?, st_email=?, st_add=?";
-			if(pwd != null && pwd.length() != 0) {
+			if(pwd != null && pwd.length() != 0) {  //비밀번호를 수정하는 경우 membertbl의 pwd 컬럼도 수정
+				String query="update membertbl set pwd=? where id=?";
+				pstmt=conn.prepareStatement(query);
+				pstmt.setString(1, pwd);
+				pstmt.setInt(2, id);
+				pstmt.executeUpdate();
+				pstmt.close();
+			}
+			String query="update studenttbl set st_ph=?, st_email=?, st_add=?";  //studenttbl 수정
+			if(pwd != null && pwd.length() != 0) {  //비밀번호를 수정하는 경우
 				query+=", st_pwd=?";
 			}
 			query+=" where st_id=?";
