@@ -18,6 +18,12 @@
     <link rel="stylesheet" href="${contextPath}/css/common.css">
     <script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
     <script src="${contextPath}/js/common.js"></script>
+    <c:if test="${isLogin != true}">
+	 <script>
+	 	alert("로그인되지 않았습니다.");
+	 	location.href="${contextPath}/index.jsp";
+	 </script>    
+	</c:if>
     <title>삼선대학교</title>
 </head>
 <body>
@@ -52,8 +58,8 @@
                             </ul>
                         </li>
                     </ul>
-                   	<c:choose>
-			          <c:when test="${!empty isLogin && isLogin == true}">
+                    <c:choose>
+			          <c:when test="${isLogin == true && (!empty studentInfo || !empty professorInfo || !empty adminInfo)}">
 				      	<a href="${contextPath}/member/logout.do" class="btn_logout">로그아웃</a>     
 			          </c:when>
 			          <c:otherwise>

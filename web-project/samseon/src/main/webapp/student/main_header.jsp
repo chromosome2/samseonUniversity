@@ -53,7 +53,14 @@
                             </ul>
                         </li>
                     </ul>
-                   	<a href="${contextPath}/member/logout.do">로그아웃</a>
+                   	<c:choose>
+			          <c:when test="${!empty isLogin && isLogin == true}">
+				      	<a href="${contextPath}/member/logout.do" class="btn_logout">로그아웃</a>     
+			          </c:when>
+			          <c:otherwise>
+			          	<a href="${contextPath}/index.jsp" class="btn_logout">로그인</a>
+			          </c:otherwise>
+		         	 </c:choose>
                 </div>
             </div>
             <div class="head2">
