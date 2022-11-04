@@ -214,6 +214,7 @@ header .header_contents,
   box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.4), 2px 0px 5px rgba(0, 0, 0, 0.4);
   overflow: hidden;
   /* height 600 -> 650 수정 (1103, 영민) */
+
   height: 650px;
 }
 #main_menu_back {
