@@ -2,6 +2,10 @@
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
       <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+      <c:set var="totalArticles" value="${articleMap.get('totalArticles')}"/>
+      <c:set var="articleList" value="${articleMap.get('articleList')}"/>
+      <c:set var="section" value="${articleMap.get('section')}"/>
+      <c:set var="pageNum" value="${articleMap.get('pageNum')}"/>
       <!DOCTYPE html>
       <html lang="ko">
 
@@ -20,6 +24,11 @@
         <script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
         <script src="${contextPath}/js/common.js"></script>
         <title>삼선대학교</title>
+        <style type="text/css">
+        	a.selectedPage {
+        		color:red;!important
+        	}
+        </style>
       </head>
 
       <body>
@@ -65,31 +74,82 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>3</td>
-                        <th>
-                          <a href="#!">[공지사항] 2023학년도 여름계절학기 수요조사 안내</a>
-                          <p>테스트</p>
-                        </th>
-                        <td>학사팀</td>
-                        <td>2023.03.21</td>
-                      </tr>
-
-                      <tr>
-                        <td>2</td>
-                        <th><a href="#!">[연구지원팀] 2023년도 한국연구재단 과학기술정보통신부 소관 연구사업 공고 안내</a></th>
-                        <td>연구지원팀</td>
-                        <td>2023.03.15</td>
-                      </tr>
-
-                      <tr>
-                        <td>1</td>
-                        <th><a href="#!">[한국소프트웨어산업협회] 2023년 채용확정형 교육과정 상반기 1차 모집</a></th>
-                        <td>커리어센터</td>
-                        <td>2023.02.28</td>
-                      </tr>
+                    
+                    <c:if test="${empty articleList}">
+                    	<tr>
+                    		<td colspan="4">공지사항이 없습니다.</td>
+                    	</tr>
+                    </c:if>
+                    <c:if test="${!empty articleList}">
+                    	<c:forEach var="article" items="${articleList}" varStatus="articleNum">
+                    		<tr>
+                    			<td>${articleNum.count}</td>
+                    			<th><a href="${contextPath}/board/viewArticle.do?articleNo=${article.articleNo}">${article.title}</a></th>
+                    			<td>${article.adminDepartment}</td>
+                    			<td>${article.writeDate}</td>
+                    		</tr>
+                    	</c:forEach>
+                    </c:if>
+                    
                     </tbody>
                   </table>
+                 
+                 <!-- 페이징 -->
+                <div align="center">
+                	<c:if test="${totalArticles != 0}">
+                		<c:choose>
+		                	<c:when test="${totalArticles > 30}">
+		                		<c:forEach var="page" begin="1" end="5" step="1">
+		                			<c:if test="${section > 1 && page == 1}">
+		                				<a href="${contextPath}/board/listArticles.do?section=${section-1}&pageNum=${(section-1)*10+1}"> prev</a>
+		                			</c:if>
+		                			<a href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${(section-1)*5+page}</a>
+		                			<%-- <c:choose>
+										<c:when test="${page==pageNum}">
+											<a class="selectedPage" href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${(section-1)*10+page}</a>
+										</c:when>
+										<c:otherwise>
+											<a class="notSelectedPage" href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${page}</a>
+										</c:otherwise>
+									</c:choose> --%>
+		                			<c:if test="${page == 5}">
+		                				<a href="${contextPath}/board/listArticles.do?section=${section+1}&pageNum=${section*10+1}"> next</a>
+		                			</c:if>
+		                		</c:forEach>
+		                	</c:when>
+		                	<c:when test="${totalArticles == 30}">
+		                		<c:forEach var="page" begin="1" end="5" step="1">
+		                			<c:choose>
+										<c:when test="${page==pageNum}">
+											<a class="selectedPage" href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${page}</a>
+										</c:when>
+										<c:otherwise>
+											<a class="notSelectedPage" href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${page}</a>
+										</c:otherwise>
+									</c:choose>
+		                		</c:forEach>
+		                	</c:when>
+							<c:when test="${totalArticles < 30}">
+								<c:forEach var="page" begin="1" end="${totalArticles/5 + 1}" step="1">
+									<c:choose>
+										<c:when test="${page==pageNum}">
+											<a class="selectedPage" href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${page}</a>
+										</c:when>
+										<c:otherwise>
+											<a class="notSelectedPage" href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${page}</a>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</c:when>                		
+                		</c:choose>
+                	</c:if>
+                </div>
+                 
+                 <!-- 새 글 작성 : 관리자에게만 보임 -->
+                 <c:if test="${user_level == 'admin'}">
+                 	<a href="${contextPath}/board/articleForm.do">글쓰기</a>                  
+                 </c:if>
+                  
                 </div>
               </div>
 

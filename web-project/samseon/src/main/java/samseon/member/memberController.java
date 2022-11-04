@@ -53,7 +53,7 @@ public class memberController extends HttpServlet {
 					session.setAttribute("log_id", id);
 					session.setAttribute("user_level", user_level);
 					session.setAttribute("studentInfo", studentInfo);
-					nextPage="/board.jsp";
+					nextPage="/board";
 				}else if(user_level.equals("professor")) {
 					MemberVO professorInfo=memberDAO.getProfessorInfo(id);
 					HttpSession session=request.getSession();
@@ -61,9 +61,15 @@ public class memberController extends HttpServlet {
 					session.setAttribute("log_id", id);
 					session.setAttribute("user_level", user_level);
 					session.setAttribute("professorInfo", professorInfo);
-					nextPage="/board.jsp";
+					nextPage="/board";
 				}else if(user_level.equals("admin")) {
-					
+					MemberVO adminInfo=memberDAO.getAdminInfo(id);
+					HttpSession session=request.getSession();
+					session.setAttribute("isLogin", true);
+					session.setAttribute("log_id", id);
+					session.setAttribute("user_level", user_level);
+					session.setAttribute("adminInfo", adminInfo);
+					nextPage="/board";
 				}
 			}else {  //회원정보 없음
 				request.setAttribute("msg", "login_failed");
@@ -116,7 +122,7 @@ public class memberController extends HttpServlet {
 					address+=addr[i]+" ";
 				}
 			}
-			address.trim();
+			address=address.trim();
 			System.out.println(address);
 			memberVO.setId(id);
 			memberVO.setPwd(pwd);
@@ -157,6 +163,7 @@ public class memberController extends HttpServlet {
 			String phone=request.getParameter("tel");
 			String email=request.getParameter("email");
 			String address=request.getParameter("addr");
+			address=address.trim();
 			memberVO.setUser_level(user_level);
 			memberVO.setId(id);
 			memberVO.setPwd(pwd);

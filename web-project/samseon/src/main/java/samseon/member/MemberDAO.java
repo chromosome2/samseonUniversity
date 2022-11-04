@@ -135,6 +135,31 @@ public class MemberDAO {
 		return vo;
 	}
 	
+	//로그인 시 관리자 정보 확인
+	public MemberVO getAdminInfo(int id) {
+		MemberVO adminInfo=new MemberVO();
+		try {
+			conn=dataFactory.getConnection();
+			String query="select * from admintbl where id=?";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setInt(1, id);
+			ResultSet rs=pstmt.executeQuery();
+			rs.next();
+			String name=rs.getString("name");
+			String department=rs.getString("dp");
+			String email=rs.getString("email");
+			adminInfo.setName(name);
+			adminInfo.setDepartment(department);
+			adminInfo.setEmail(email);
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			System.out.println("교수 정보 확인 중 에러" + e.getMessage());
+		}
+		return adminInfo;
+	}
+	
 	/*
 	//entrancetbl에서 학번 정보 존재하는지 확인
 	public boolean usableHakbun(int id) {
