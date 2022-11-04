@@ -40,7 +40,7 @@
 
             <div id="contents_area">
                 <div class="contents_wrapper">
-                    <h2>개인정보</h2>
+                    <h3>개인정보</h3>
                     <form action="${contextPath}/member/modInfo.do" method="post" id="privacy_modForm" name="privacy_modForm">
                         <table border="1">
                             <tr>
