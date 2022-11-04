@@ -22,6 +22,8 @@
     <script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
     <script src="${contextPath}/js/common.js"></script>
     <script defer src="${contextPath}js/table.js"></script>
+    <script src="${contextPath}/js/menu_third.js"></script>
+    <script src="${contextPath}/js/mypage_first.js"></script>
     <title>삼선대학교</title>
 </head>
 <body>
