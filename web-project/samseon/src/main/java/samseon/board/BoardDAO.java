@@ -34,7 +34,6 @@ public class BoardDAO {
 		try {
 			conn=dataFactory.getConnection();
 			String query="select * from adminnoticetbl order by n_id desc";
-			System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
@@ -63,18 +62,25 @@ public class BoardDAO {
 	public List<ArticleVO> selectAllArticles(Map<String, Integer> pagingMap) {
 		List<ArticleVO> articleList=new ArrayList<ArticleVO>();
 		int section=pagingMap.get("section");
-		int pagingNum=pagingMap.get("pageNum");
+		int pageNum=pagingMap.get("pageNum");
+		//첫 행 번호를 계산
+		int startRow=(pageNum-1)*10+1;
 		try {
 			conn=dataFactory.getConnection();
-			String query="select * from (select rownum as recNum, n_id, n_title, "
-					+ "n_date, dp from adminnoticetbl order by n_id desc) where "
-					+ "recNum between (?-1)*30+(?-1)*5+1 and (?-1)*30+?*5";
-			System.out.println(query);
+//			String query = "select rownum as recNum, n_id, n_title, n_date, dp from (select * from adminnoticetbl order by n_id desc) WHERE recNum BETWEEN (?-1)*100+(?-1)*10+1 AND (?-1)*100+?*10";
+			
+//			String query="select * from (select rownum as recNum, n_id, n_title, n_date, dp from (select * from adminnoticetbl order by n_id desc) where recNum between (?-1)*100+(?-1)*10+1 and (?-1)*100+?*10)";
+			
+//			String query="select * from (select rownum as recNum, n_id, n_title, "
+//					+ "n_date, dp from adminnoticetbl order by n_id desc) where "
+//					+ "recNum between (?-1)*100+(?-1)*10+1 and (?-1)*100+?*10";
+//			String query="select * from (select rownum as recNum, n_id, n_title, n_date, dp from (select * from adminnoticetbl order by n_id desc)) WHERE recNum BETWEEN (?-1)*100+(?-1)*10+1 AND (?-1)*100+?*10";
+			
+			String query="select * from (select rownum as recNum, n_id, n_title, n_date, dp from (select * from adminnoticetbl order by n_id desc)) WHERE recNum BETWEEN ? AND ?";
+			
 			pstmt=conn.prepareStatement(query);
-			pstmt.setInt(1, section);
-			pstmt.setInt(2, pagingNum);
-			pstmt.setInt(3, section);
-			pstmt.setInt(4, pagingNum);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, startRow+9);
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
 				int articleNo=rs.getInt("n_id");
@@ -109,6 +115,9 @@ public class BoardDAO {
 			if(rs.next()) {
 				total=rs.getInt("total");				
 			}
+			rs.close();
+			pstmt.close();
+			conn.close();
 		} catch (Exception e) {
 			System.out.println("전체 글 개수 조회 중 에러");
 		}
