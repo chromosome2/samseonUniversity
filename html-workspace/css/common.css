@@ -217,6 +217,7 @@ header .header_contents,
   /* height 600 -> 650 수정 (1103, 영민) */
   /* height: 650px; => min-height 900으로 수정 (1105, 영민) */
   min-height: 900px;
+  width: 100%;
 }
 #main_menu_back {
   background-color: #ea965a;
