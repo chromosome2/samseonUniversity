@@ -63,7 +63,7 @@
                             </tr>
                             <tr>
                                 <th>주소</th>
-                                <td><input type="text" value="${studentInfo.addr.trim()}" name="addr"></td>
+                                <td><input type="text" value="${studentInfo.addr}" name="addr"></td>
                             </tr>
                             <tr>
                                 <th>학적 상태</th>
