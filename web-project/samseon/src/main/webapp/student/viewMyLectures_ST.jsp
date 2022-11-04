@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="${contextPath}/css/table.css">
     <script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
     <script src="${contextPath}/js/common.js"></script>
+	<script src="${contextPath}/js/menu_third.js"></script>
+	<script src="${contextPath}/js/mypage_second.js"></script>
     <title>삼선대학교</title>
 </head>
 <body>
