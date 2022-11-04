@@ -225,6 +225,7 @@ header .header_contents,
   height: 100%;
   min-height: 900px;
   width: 235px;
+  display: block;
 }
 
 .main_menu > li {
@@ -340,6 +341,5 @@ header .header_contents,
 }
 
 #contents_area {
-  float: right;
-  width: 1045px;
+  overflow: hidden;
 }
