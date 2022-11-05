@@ -31,26 +31,30 @@
 	<div id="wrapper">
         <header>
             <div class="head1">
-                <div class="black_head1"></div>
+                <div class="black_head1">
+                	<h2 class="hidden">대학교 로고</h2>
+                    <a href="${contextPath}/board/listArticles.do">
+                        <img src="${contextPath}/images/logo_white.png" alt="삼선대학교 로고">
+                        <span>삼선대학교</span>
+                    </a>
+                </div>
                 <div class="header_contents">
                     <div class="white_head1">
-                        <h2 class="hidden">대학교 로고</h2>
-                        <a href="${contextPath}/board/listArticles.do">
-                            <img src="${contextPath}/images/logo.png" alt="삼선대학교 로고">
-                            <span>삼선대학교</span>
-                        </a>
+	                   	<c:choose>
+	                      	<c:when test="${user_level == 'student'}">
+			                    <span class="st_name">${studentInfo.m_name} ${studentInfo.name}님</span>						
+							</c:when>
+							<c:when test="${user_level == 'professor'}">
+			                    <span class="st_name">${professorInfo.m_name} ${professorInfo.name} 교수님</span>						
+							</c:when>
+							<c:when test="${user_level == 'admin'}">
+								<span class="st_name">관리자 ${adminInfo.name}님</span>
+							</c:when>
+							<c:otherwise>
+								<span class="st_name">컴퓨터공학과 조수진님</span>
+							</c:otherwise>
+	                    </c:choose>
                     </div>
-                    <c:choose>
-						<c:when test="${user_level == 'student'}">
-		                    <span class="st_name">${studentInfo.m_name} ${studentInfo.name}님</span>						
-						</c:when>
-						<c:when test="${user_level == 'professor'}">
-		                    <span class="st_name">${professorInfo.m_name} ${professorInfo.name} 교수님</span>						
-						</c:when>
-						<c:when test="${user_level == 'admin'}">
-							<span class="st_name">관리자 ${adminInfo.name}님</span>
-						</c:when>
-                    </c:choose>
                     <ul class="mini_menu">
                         <li><a href="#">학교 서비스</a>
                             <ul class="service_menu">
