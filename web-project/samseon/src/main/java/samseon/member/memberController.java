@@ -46,7 +46,7 @@ public class memberController extends HttpServlet {
 			Boolean result=memberDAO.memExists(memberVO);
 			if(result) {  //회원정보 존재
 				String user_level=memberDAO.getUserLevel(memberVO);
-				if(user_level.equals("student")) {
+				if(user_level.equals("student")) {  //학생이 로그인
 					MemberVO studentInfo=memberDAO.getStudentInfo(id);
 					HttpSession session=request.getSession();
 					session.setAttribute("isLogin", true);
@@ -54,7 +54,7 @@ public class memberController extends HttpServlet {
 					session.setAttribute("user_level", user_level);
 					session.setAttribute("studentInfo", studentInfo);
 					nextPage="/board/listArticles.do";
-				}else if(user_level.equals("professor")) {
+				}else if(user_level.equals("professor")) {  //교수가 로그인
 					MemberVO professorInfo=memberDAO.getProfessorInfo(id);
 					HttpSession session=request.getSession();
 					session.setAttribute("isLogin", true);
@@ -62,7 +62,7 @@ public class memberController extends HttpServlet {
 					session.setAttribute("user_level", user_level);
 					session.setAttribute("professorInfo", professorInfo);
 					nextPage="/board/listArticles.do";
-				}else if(user_level.equals("admin")) {
+				}else if(user_level.equals("admin")) {  //관리자로 로그인
 					MemberVO adminInfo=memberDAO.getAdminInfo(id);
 					HttpSession session=request.getSession();
 					session.setAttribute("isLogin", true);

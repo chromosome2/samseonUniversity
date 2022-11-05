@@ -21,36 +21,11 @@
           <link rel="stylesheet" href="${contextPath}/css/board_detail.css">
           <script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
           <script src="${contextPath}/js/common.js"></script>
-          <script>
-          	function toList() {  //공지사항 목록 보기
-          		location.href="${contextPath}/board/listArticles.do";
-          	}
-          	function fn_modify(url, articleNo) {  //공지사항 수정
-          		let form=document.createElement("form");
-          		form.setAttribute("method","post");
-          		form.setAttribute("action",url);
-          		let articleNoInput=document.createElement("input");
-          		articleNoInput.setAttribute("type","hidden");
-          		articleNoInput.setAttribute("name","articleNo");
-          		articleNoInput.setAttribute("value",articleNo);
-          		form.appendChild(articleNoInput);
-          		document.body.appendChild(form);
-          		form.submit();
-          	}
-          	function fn_removeNotice(url, articleNo) {  //공지사항 삭제
-          		let form=document.createElement("form");
-          		form.setAttribute("method","post");
-          		form.setAttribute("action",url);
-          		let articleNoInput=document.createElement("input");
-          		articleNoInput.setAttribute("type","hidden");
-          		articleNoInput.setAttribute("name","articleNo");
-          		articleNoInput.setAttribute("value",articleNo);
-          		form.appendChild(articleNoInput);
-          		document.body.appendChild(form);
-          		form.submit();
-          	}
-          </script>
-
+		  <script type="text/javascript">
+		  	function toList() {
+		  		location.href="${contextPath}/board/listArticles.do";
+		  	}
+		  </script>
           <title>삼선대학교</title>
         </head>
 
@@ -70,38 +45,32 @@
                 </div>
                 <div id="board-list">
                   <div class="container">
-                    <table class="board-table">
+                  <form action="${contextPath}/board/modNotice.do" method="post">
+                  
+                    <table class="board-table write_table">
                       <thead>
                         <tr>
                           <th scope="col" class="th_title_02">제목</th>
-                          <th scope="col" class="th_title_txt">${article.title}
+                          <th scope="col" class="th_title_txt"><input type="text" name="title" value="${notice.title}" required>
                           </th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <td class="th_title_02">작성일</td>
-                          <td class="th_title_txt">${article.writeDate}</td>
-                        </tr>
-                        <tr>
-                          <td class="th_title_02">공지부서</td>
-                          <td class="th_title_txt">${article.adminDepartment}</td>
-                        </tr>
-                        <tr>
                           <td colspan="2" class="th_write" height="300px">
-                          <!-- white-space: pre 때문에 div 태그 사이에 공백 제거해야 함 -->
-                            <div style="white-space: pre-wrap; text-align: justify !important; width: 800px; padding: 22px;"">
-${article.content}
-                            </div>
+                            <textarea name="content" id="text_write" cols="30" rows="10">${notice.content}</textarea>
                           </td>
                         </tr>
                       </tbody>
                     </table>
+                    <input type="hidden" name="articleNo" value="${notice.articleNo}">
+                    <div class="section_sub">
+                      <input type="submit" value="수정" class="btn_result">
+                      <input type="reset" value="취소" class="btn_result">
                       <input type="button" value="글 목록" class="btn_result" onclick="toList()">
-                      <c:if test="${user_level == 'admin'}">
-                      <input type="button" value="수정" class="btn_result" onclick="fn_modify('${contextPath}/board/modNoticeForm.do', ${article.articleNo})">
-                      <input type="button" value="삭제" class="btn_result" onclick="fn_removeNotice('${contextPath}/board/removeNotice.do', ${article.articleNo})">
-                      </c:if>
+                    </div>
+                    
+                  </form>
                   </div>
                 </div>
               </section>
