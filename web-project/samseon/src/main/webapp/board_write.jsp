@@ -41,25 +41,31 @@
                 </div>
                 <div id="board-list">
                   <div class="container">
+                  <form action="${contextPath}/board/writeNotice.do" method="post">
+                  
                     <table class="board-table write_table">
                       <thead>
                         <tr>
                           <th scope="col" class="th_title_02">제목</th>
-                          <th scope="col" class="th_title_txt"><input type="text" placeholder="제목을 입력하세요" required>
+                          <th scope="col" class="th_title_txt"><input type="text" name="title" placeholder="제목을 입력하세요" required>
                           </th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
                           <td colspan="2" class="th_write" height="300px">
-                            <textarea name="text_write" id="text_write" cols="30" rows="10"></textarea>
+                            <textarea name="content" id="text_write" cols="30" rows="10"></textarea>
                           </td>
                         </tr>
                       </tbody>
                     </table>
+                    
                     <div class="section_sub">
-                      <input type="button" value="제출" class="btn_result">
+                      <input type="submit" value="작성" class="btn_result">
+                      <input type="reset" value="취소" class="btn_result">
                     </div>
+                    
+                  </form>
                   </div>
                 </div>
               </section>
