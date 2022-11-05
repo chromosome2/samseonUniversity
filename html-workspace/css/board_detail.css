@@ -41,3 +41,9 @@
   background: rgb(234, 150, 90);
   border: none;
 }
+
+.title_input {
+  border: 1px solid #ccc;
+  width: 70%;
+  height: 30px;
+}
