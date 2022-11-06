@@ -1,13 +1,13 @@
-.contents_wrapper{
-    text-align: center;
-    margin: auto;
-    display: block;
+.contents_wrapper {
+  text-align: center;
+  margin: auto;
+  display: block;
 }
-table{
-    margin: 50px auto;
-    width: 70%;
-}
-h3{
-    margin: 50px 0;
-    font-size: 2em;
+/* table {
+  margin: 50px auto;
+  width: 70%;
+} */
+h3 {
+  margin: 50px 0;
+  font-size: 2em;
 }
