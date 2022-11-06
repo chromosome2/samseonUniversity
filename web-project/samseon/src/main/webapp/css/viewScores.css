@@ -41,7 +41,7 @@ table {
 
 .tbl_content {
   /* height: 200px; */
-  max-height: 190px;
+  /* max-height: 190px; */
   overflow-x: auto;
   margin-top: 0px;
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -151,3 +151,8 @@ td {
 }
 
 /* result area */
+
+.st_lecture_area {
+  /* margin-top: 50px; */
+  margin-bottom: 100px;
+}

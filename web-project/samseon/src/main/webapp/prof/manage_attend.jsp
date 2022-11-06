@@ -39,6 +39,7 @@
       </div>
       <section class="contents_wrapper">
 				<div class="tbl_area">
+
 					<div class="tbl_header">
 						<table border="0" cellpadding="0" cellspacing="0">
 							<thead>
@@ -93,6 +94,8 @@
 								</c:choose> --%>
 							</tbody>
 						</table>
+						<br>
+					
 					</div>
 				</div>
       </section>

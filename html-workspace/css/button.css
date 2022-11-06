@@ -1,0 +1,19 @@
+.search_btn {
+  height: 27px;
+  line-height: 27px;
+  padding: 0px 20px;
+  border: none;
+  background-color: #ea965a;
+  border-radius: 3px;
+  font-size: 14px;
+  display: block;
+  font-weight: normal;
+}
+
+.apply_btn {
+  background-color: #ea965a;
+  border-radius: 3px;
+  border: none;
+  height: 50px;
+  width: 100px;
+}

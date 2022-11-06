@@ -111,7 +111,6 @@ public class BoardDAO {
 		try {
 			conn=dataFactory.getConnection();
 			String query="select count(n_id) as total from adminnoticetbl";
-//			String query="select count(*) as total from adminnoticetbl";
 			pstmt=conn.prepareStatement(query);
 			ResultSet rs=pstmt.executeQuery();
 			if(rs.next()) {

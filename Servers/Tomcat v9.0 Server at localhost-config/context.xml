@@ -26,6 +26,7 @@
     <!--
     <Manager pathname="" />
     -->
+<<<<<<< HEAD
     <Resource
     	name="jdbc/oracle"
     	auth="Container"
@@ -37,4 +38,6 @@
     	maxActive="50"
     	maxWait="-1"
     />
+=======
+>>>>>>> 0d047973365b9407aa9d455e93d4799a8bd1d294
 </Context>
