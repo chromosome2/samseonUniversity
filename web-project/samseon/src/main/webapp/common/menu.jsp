@@ -27,7 +27,7 @@
                     	<c:choose>
 							<c:when test="${user_level == 'student'}">
 		                        <li class="first_menu_title"><a href="${contextPath}/board/listArticles.do" class="menu_title">공지사항</a></li>
-		                        <li class="second_menu_title"><a href="${contextPath}/student/main_apply_lectures.jsp" class="menu_title">수강신청</a></li>
+		                        <li class="second_menu_title"><a href="${contextPath}/subject/listLectures.do" class="menu_title">수강신청</a></li>
 		                        <li class="third_menu_title my_page">
 		                        	<div class="my_page_click_area"><a href="#" class="menu_title">마이페이지</a></div>
 		                            <ul class="my_page_menu">

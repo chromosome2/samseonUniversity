@@ -73,7 +73,11 @@ header .head1,
   position: relative;
 }
 .black_head1 > a {
+<<<<<<< HEAD
 	z-index: 10;
+=======
+  z-index: 10;
+>>>>>>> 0d047973365b9407aa9d455e93d4799a8bd1d294
 }
 .black_head1 img {
   height: 40px;
@@ -92,7 +96,11 @@ header .head1,
 .header_contents {
   position: relative;
   top: -50px;
+<<<<<<< HEAD
   width : 1045px;
+=======
+  width: 1045px;
+>>>>>>> 0d047973365b9407aa9d455e93d4799a8bd1d294
   left: 235px;
 }
 .white_head1 {
@@ -228,7 +236,7 @@ header .head1,
 #main_menu_back {
   background-color: #ea965a;
   float: left;
-  height: 100%;
+  height: 100vh;
   min-height: 900px;
   width: 235px;
   display: block;
