@@ -47,7 +47,7 @@
                       <thead>
                         <tr>
                           <th scope="col" class="th_title_02">제목</th>
-                          <th scope="col" class="th_title_txt"><input type="text" name="title" placeholder="제목을 입력하세요" required>
+                          <th scope="col" class="th_title_txt"><input type="text" class="title_input" name="title" placeholder="제목을 입력하세요" required>
                           </th>
                         </tr>
                       </thead>
