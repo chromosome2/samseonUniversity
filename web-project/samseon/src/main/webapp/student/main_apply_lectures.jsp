@@ -52,37 +52,49 @@
               <div class="lt_select">
                 <label class="lt_label">학기</label>
                 <div class="lt_inner">
-                  <select name="lt_options" id="lt_options">
+                  <select name="lt_options" id="lt_options" disabled>
                     <option value="1">1학기</option>
-                    <option value="1">2학기</option>
+                    <option value="2">2학기</option>
                   </select>
                 </div>
               </div>
               <div class="lt_select">
                 <label class="lt_label">교과구분</label>
                 <div class="lt_inner">
-                  <select name="lt_options" id="lt_options">
-                    <option value="1">선택</option>
-                    <option value="2">전공과목</option>
-                    <option value="3">교양과목</option>
+                
+                  <select name="cl_mj_t" id="lt_options">
+                    <option value="none">선택</option>
+                    <option value="major">전공과목</option>
+                    <option value="elective">교양과목</option>
                   </select>
+                  
                 </div>
               </div>
               <div class="lt_select">
                 <label class="lt_label">전공</label>
                 <div class="lt_inner">
-                  <select name="lt_options" id="lt_options">
-                    <option value="1">컴퓨터공학과</option>
+                
+                  <select name="m_name" id="lt_options">
+                  
+                  	<c:forEach var="major" items="${majors}">
+                  		<option value="${major}">${major}</option>
+                  	</c:forEach>
+                  
+                    <!-- <option value="1">컴퓨터공학과</option>
                     <option value="2">전기전자공학과</option>
-                    <option value="3">기계공학과</option>
+                    <option value="3">기계공학과</option> -->
+                    
                   </select>
+                  
                 </div>
               </div>
               <div class="lt_input_text">
                 <label class="lt_label">과목명</label>
+                
                 <div>
-                  <input type="text">
+                  <input type="text" name="cl_name">
                 </div>
+                
               </div>
               <div class="lt_search_submit lt_select">
                 <button class="search_btn">검색</button> <!-- ajax : input type button -->
@@ -103,50 +115,26 @@
                 <th>강의실</th>
                 <th>강의 시간</th>
               </tr>
-              <tr>
-                <td><input type="checkbox" name="xxx" checked></td>
-                <td>전공</td>
-                <td>컴퓨터공학과</td>
-                <td>컴퓨터개론및실습</td>
-                <td>3</td>
-                <td>27</td>
-                <td>김선생</td>
-                <td>IT 203호</td>
-                <td>수,금 9시~10시 30분</td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name="xxx"></td>
-                <td>전공</td>
-                <td>컴퓨터공학과</td>
-                <td>C++ 기초</td>
-                <td>3</td>
-                <td>32</td>
-                <td>이이젠</td>
-                <td>IT 304호</td>
-                <td>월,화 9시~10시 30분</td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name="xxx"></td>
-                <td>전공</td>
-                <td>컴퓨터공학과</td>
-                <td>보안 관리 및 실습</td>
-                <td>2</td>
-                <td>18</td>
-                <td>나교수</td>
-                <td>IT 101호</td>
-                <td>금 15시~18시</td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name="xxx"></td>
-                <td>교양</td>
-                <td>인문학부</td>
-                <td>서양미술의 이해</td>
-                <td>2</td>
-                <td>18</td>
-                <td>박화실</td>
-                <td>컨퍼런스 202호</td>
-                <td>목 11시~12시 30분</td>
-              </tr>
+            	            	
+            	<c:choose>
+            		<c:when test="${lectures == null}">
+            			<tr colsapn="9"><td colspan="9">수강 신청할 수 있는 강의가 아직 등록되지 않았습니다.</td></tr>
+            		</c:when>
+            		<c:otherwise>
+            			<tr>
+            				<td><input type="checkbox" name="xxx"></td>
+            				<td>${lectures.cl_mj_t}</td>
+            				<td>${lectures.m_name}</td>
+            				<td>${lectures.cl_name}</td>
+            				<td>${lectures.cl_pt}</td>
+            				<td>${lectures.cl_size}</td>
+            				<td>${lectures.pf_name}</td>
+            				<td>${lectures.cl_room}</td>
+            				<td>${lectures.cl_time}</td>
+            			</tr>
+            		</c:otherwise>
+            	</c:choose>
+            	
             </table>
           </div>
           <div class="st_lecture_list lt_apply">

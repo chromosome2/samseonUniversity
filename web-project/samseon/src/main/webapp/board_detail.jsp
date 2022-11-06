@@ -89,10 +89,7 @@
                         </tr>
                         <tr>
                           <td colspan="2" class="th_write" height="300px">
-                          <!-- white-space: pre 때문에 div 태그 사이에 공백 제거해야 함 -->
-                            <div style="white-space: pre-wrap; text-align: justify !important; width: 800px; padding: 22px;"">
-${article.content}
-                            </div>
+                            <div style="white-space: pre-wrap; text-align: justify !important; width: 800px; padding: 22px;">${article.content}</div>
                           </td>
                         </tr>
                       </tbody>
