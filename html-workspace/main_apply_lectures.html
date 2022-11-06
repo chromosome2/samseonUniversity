@@ -11,8 +11,10 @@
   <link rel="stylesheet" as="style" crossorigin
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
   <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/apply_header.css">
   <link rel="stylesheet" href="css/table.css">
-  <link rel="stylesheet" href="css/main_apply_lectures.css">
+  <link rel="stylesheet" href="css/board_detail.css">
+  <link rel="stylesheet" href="css/viewScores.css">
   <script src="js/jquery-3.6.0.min.js"></script>
   <script src="js/common.js"></script>
   <title>삼선대학교</title>
@@ -127,64 +129,71 @@
               </div>
             </div>
           </div>
-
-          <div class="st_lecture_list">
-            <table border="1">
-              <tr>
-                <th>선택</th>
-                <th>구분</th>
-                <th>학과</th>
-                <th>강좌명</th>
-                <th>학점</th>
-                <th>정원</th>
-                <th>담당 교수</th>
-                <th>강의실</th>
-                <th>강의 시간</th>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name="xxx" checked></td>
-                <td>전공</td>
-                <td>컴퓨터공학과</td>
-                <td>컴퓨터개론및실습</td>
-                <td>3</td>
-                <td>27</td>
-                <td>김선생</td>
-                <td>IT 203호</td>
-                <td>수,금 9시~10시 30분</td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name="xxx"></td>
-                <td>전공</td>
-                <td>컴퓨터공학과</td>
-                <td>C++ 기초</td>
-                <td>3</td>
-                <td>32</td>
-                <td>이이젠</td>
-                <td>IT 304호</td>
-                <td>월,화 9시~10시 30분</td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name="xxx"></td>
-                <td>전공</td>
-                <td>컴퓨터공학과</td>
-                <td>보안 관리 및 실습</td>
-                <td>2</td>
-                <td>18</td>
-                <td>나교수</td>
-                <td>IT 101호</td>
-                <td>금 15시~18시</td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name="xxx"></td>
-                <td>교양</td>
-                <td>인문학부</td>
-                <td>서양미술의 이해</td>
-                <td>2</td>
-                <td>18</td>
-                <td>박화실</td>
-                <td>컨퍼런스 202호</td>
-                <td>목 11시~12시 30분</td>
-              </tr>
+          <div class="tbl_content">
+            <div class="st_lecture_list tbl_header">
+              <table border="0" cellpadding="0" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>선택</th>
+                    <th>구분</th>
+                    <th>학과</th>
+                    <th>강좌명</th>
+                    <th>학점</th>
+                    <th>정원</th>
+                    <th>담당 교수</th>
+                    <th>강의실</th>
+                    <th>강의 시간</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <table border="0" cellpadding="0" cellspacing="0">
+              <tbody>
+                <tr>
+                  <td><input type="checkbox" name="xxx" checked></td>
+                  <td>전공</td>
+                  <td>컴퓨터공학과</td>
+                  <td>컴퓨터개론및실습</td>
+                  <td>3</td>
+                  <td>27</td>
+                  <td>김선생</td>
+                  <td>IT 203호</td>
+                  <td>수,금 9시~10시 30분</td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" name="xxx"></td>
+                  <td>전공</td>
+                  <td>컴퓨터공학과</td>
+                  <td>C++ 기초</td>
+                  <td>3</td>
+                  <td>32</td>
+                  <td>이이젠</td>
+                  <td>IT 304호</td>
+                  <td>월,화 9시~10시 30분</td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" name="xxx"></td>
+                  <td>전공</td>
+                  <td>컴퓨터공학과</td>
+                  <td>보안 관리 및 실습</td>
+                  <td>2</td>
+                  <td>18</td>
+                  <td>나교수</td>
+                  <td>IT 101호</td>
+                  <td>금 15시~18시</td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" name="xxx"></td>
+                  <td>교양</td>
+                  <td>인문학부</td>
+                  <td>서양미술의 이해</td>
+                  <td>2</td>
+                  <td>18</td>
+                  <td>박화실</td>
+                  <td>컨퍼런스 202호</td>
+                  <td>목 11시~12시 30분</td>
+                </tr>
+              </tbody>
             </table>
           </div>
           <div class="st_lecture_list lt_apply">
