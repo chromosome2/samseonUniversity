@@ -138,17 +138,9 @@ changeText(email_change, oldEmailInput, newEmailInput);
 // 예외 1. 우편번호, 도로명 주소
 
 ///////////////////////////////////////////////////////////////////////////////
-// 정규식(작성중)
+// 정규식
 
-///// variables
-const id = document.getElementById('id');
-const pwd = document.getElementById('pwd');
-const pwdCheck = document.querySelector('.pwd_check_change');
-const email = document.getElementById('email');
-const phone = document.getElementById('phone');
-
-// ///// functions
-
+// regExp
 const isEmail = function (asValue) {
   const regExp =
     /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
@@ -168,6 +160,30 @@ const isPhoneNumber = function (asValue) {
   return regExp.test(asValue);
 };
 
+///// variables
+const id = document.getElementById('id');
+const pwd = document.getElementById('pwd');
+const username = document.getElementById('username');
+const pwdCheck = document.querySelector('.pwd_check_change');
+const email = document.getElementById('email');
+const phone = document.getElementById('phone');
+
+const idWarning = $('.idWarning');
+const pwdWarning = $('.pwdWarning');
+const nameWarning = $('.nameWarning');
+const phoneWarning = $('.phoneWarning');
+
+const idQuery = document.querySelector('.idWarning');
+const pwdQuery = document.querySelector('.pwdWarning');
+const nameQuery = document.querySelector('.nameWarning');
+const phoneQuery = document.querySelector('.phoneWarning');
+
+const idText1 = '학번을 입력해주세요.';
+const idText2 = '올바른 학번 형식이 아닙니다.';
+const idText3 = '학번은 8자리 숫자입니다.';
+
+// ///// functions
+
 // 학번이 미리 주어지는 경우, 어떤 형식으로 이루어지는 지 정해야 정규식을 작성 가능
 // 현재는
 $('#submit').on('click', function (e) {
@@ -177,6 +193,9 @@ $('#submit').on('click', function (e) {
   } else if (typeof +id.value !== 'number' || isNaN(id.value)) {
     e.preventDefault();
     alert('올바른 학번 형식이 아닙니다.');
+  } else if (id.value.trim().length !== 8) {
+    e.preventDefault();
+    alert('학번은 8자리 숫자입니다.');
   }
 
   if (pwd.value.trim() === '') {
@@ -193,10 +212,71 @@ $('#submit').on('click', function (e) {
   }
 });
 
-$('.idWarning').hide();
-id.addEventListener('focus', () => {
-  $('.idWarning').show(250);
+const idWarningHandler = function (input, warning, query) {
+  input.addEventListener('focus', () => {
+    if (query.firstElementChild.style.display !== 'none') {
+      warning.show(250);
+    }
+  });
+
+  input.addEventListener('blur', () => {
+    if (input.value.trim() === '') {
+      query.lastElementChild.innerHTML = '학번을 입력해주세요.';
+    } else if (typeof +input.value !== 'number' || isNaN(input.value)) {
+      query.lastElementChild.innerHTML = '올바른 학번 형식이 아닙니다.';
+    } else if (input.value.trim().length !== 8) {
+      query.lastElementChild.innerHTML = '학번은 8자리 숫자입니다.';
+    } else {
+      query.lastElementChild.innerHTML = '';
+      warning.hide(250);
+      query.firstElementChild.style.display = 'none';
+    }
+  });
+};
+
+const pwdWarningHandler = function (input, warning, query) {
+  input.addEventListener('focus', () => {
+    if (query.firstElementChild.style.display !== 'none') {
+      warning.show(250);
+    }
+  });
+
+  input.addEventListener('blur', () => {
+    if (pwd.value.trim() === '') {
+      query.lastElementChild.innerHTML = '비밀번호를 입력하세요.';
+    } else if (pwd.value.length < 8 || pwd.value.length > 16) {
+      query.lastElementChild.innerHTML = '비밀번호는 8~16자리여야 합니다.';
+    } else if (!isPassword(pwd.value)) {
+      query.lastElementChild.innerHTML =
+        '영문,숫자를 최소 한 가지씩 조합하여 8~16자리 비밀번호를 입력하세요.';
+    } else {
+      query.lastElementChild.innerHTML = '';
+      warning.hide(250);
+      query.firstElementChild.style.display = 'none';
+    }
+  });
+};
+
+idWarningHandler(id, idWarning, idQuery);
+pwdWarningHandler(pwd, pwdWarning, pwdQuery);
+
+// id.addEventListener('focus', () => {
+//   if (
+//     document.querySelector('.idWarning').firstElementChild.style.display !==
+//     'none'
+//   ) {
+//     idWarning.show(250);
+//   }
+// });
+
+id.addEventListener('blur', () => {
+  if (id.value.trim().length !== 8) {
+    document.querySelector('.idWarning').firstElementChild.style.display = '';
+    idWarning.show(250);
+  }
 });
+
+// document.querySelector('.idWarning').lastElementChild.innerHTML
 
 // blur될 때마다 경고창을 바꾼다.
 
