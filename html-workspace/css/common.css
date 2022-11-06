@@ -228,7 +228,7 @@ header .head1,
 #main_menu_back {
   background-color: #ea965a;
   float: left;
-  height: 100%;
+  height: 100vh;
   min-height: 900px;
   width: 235px;
   display: block;
