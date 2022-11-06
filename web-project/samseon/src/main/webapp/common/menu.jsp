@@ -4,6 +4,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<%
+  request.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -31,7 +34,7 @@
 		                        <li class="my_page">
 		                        	<div class="my_page_click_area"><a href="#" class="menu_title">마이페이지</a></div>
 		                            <ul class="my_page_menu">
-		                                <li><a href="${contextPath}/student/viewScores.jsp">전체성적 조회</a></li>
+		                                <li><a href="${contextPath}/member/viewScore.do">전체성적 조회</a></li>
 		                                <li><a href="${contextPath}/student/viewMyLectures_ST.jsp">수강중인 과목 조회</a></li>
 		                                <li><a href="${contextPath}/student/privacy_check.jsp">개인정보</a></li>
 		                            </ul>
@@ -57,7 +60,7 @@
 		                        <li class="my_page">
 		                        	<div class="my_page_click_area"><a href="#" class="menu_title">마이페이지</a></div>
 		                            <ul class="my_page_menu">
-		                                <li><a href="${contextPath}/student/viewScores.jsp">전체성적 조회</a></li>
+		                                <li><a href="${contextPath}/member/viewScores.do">전체성적 조회</a></li>
 		                                <li><a href="${contextPath}/student/viewMyLectures_ST.jsp">수강중인 과목 조회</a></li>
 		                                <li><a href="${contextPath}/student/privacy_check.jsp">개인정보</a></li>
 		                            </ul>

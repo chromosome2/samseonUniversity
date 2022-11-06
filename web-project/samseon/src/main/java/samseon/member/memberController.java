@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 @WebServlet("/member/*")
 public class memberController extends HttpServlet {
 	MemberDAO memberDAO;
@@ -32,19 +33,19 @@ public class memberController extends HttpServlet {
 	
 	private void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nextPage=null;
-		String ctx=request.getContextPath();
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter pw;
 		String action=request.getPathInfo();
-		System.out.println("요청매핑이름:"+action);
-		if(action.equals("/login.do")) {  //로그인
+		System.out.println("요청 매핑 이름:"+action);
+		
+		if(action.equals("/login.do")) { 
 			int id=Integer.parseInt(request.getParameter("id"));
 			String pwd=request.getParameter("pwd");
 			memberVO.setId(id);
 			memberVO.setPwd(pwd);
 			Boolean result=memberDAO.memExists(memberVO);
-			if(result) {  //회원정보 존재
+			if(result) {  
 				String user_level=memberDAO.getUserLevel(memberVO);
 				if(user_level.equals("student")) {
 					MemberVO studentInfo=memberDAO.getStudentInfo(id);
@@ -53,6 +54,8 @@ public class memberController extends HttpServlet {
 					session.setAttribute("log_id", id);
 					session.setAttribute("user_level", user_level);
 					session.setAttribute("studentInfo", studentInfo);
+					
+					
 					nextPage="/board.jsp";
 				}else if(user_level.equals("professor")) {
 					MemberVO professorInfo=memberDAO.getProfessorInfo(id);
@@ -65,45 +68,22 @@ public class memberController extends HttpServlet {
 				}else if(user_level.equals("admin")) {
 					
 				}
-			}else {  //회원정보 없음
+			}else {  //�쉶�썝�젙蹂� �뾾�쓬
 				request.setAttribute("msg", "login_failed");
 				nextPage="/index.jsp";
 			}
-		}else if(action.equals("/logout.do")) {  //로그아웃
+		}else if(action.equals("/logout.do")) {  //濡쒓렇�븘�썐
 			HttpSession session=request.getSession(false);
 			session.invalidate();
 			pw=response.getWriter();
 			pw.print("<script>"
-					+ "alert('로그아웃 되었습니다.');"
+					+ "alert('濡쒓렇�븘�썐 �릺�뿀�뒿�땲�떎.');"
 					+ "location.href='" + request.getContextPath() + "/index.jsp';"
 					+ "</script>");
 			return;
 		}
-		/*
-		else if(action.equals("/hakbunCheck.do")) {  //학번이 이미 가입되었는지 혹은 학번이 존재하지 않는지 확인
-			pw=response.getWriter();
-			int id=Integer.parseInt(request.getParameter("id"));
-			//entrancetbl에서 학번 존재 여부 조회
-			boolean usableHakbun=memberDAO.usableHakbun(id);
-			System.out.println("학번 존재:" + usableHakbun);
-			if(usableHakbun==true) {
-				//membertbl에서 id 중복 여부 조회
-				boolean overlappedID=memberDAO.overlappedID(id);
-				System.out.println("가입 여부:" + overlappedID);
-				if(overlappedID==true) {
-					pw.print("not_usable");
-					return;
-				}else {
-					pw.print("usable");
-					return;
-				}
-			}else {
-				pw.print("not_usable");
-				return;
-			}
-		}
-		*/
-		else if(action.equals("/join.do")) {  //가입
+		
+		else if(action.equals("/join.do")) {  //媛��엯
 			int id=Integer.parseInt(request.getParameter("id"));
 			String pwd=request.getParameter("pwd");
 			String name=request.getParameter("name");
@@ -127,28 +107,51 @@ public class memberController extends HttpServlet {
 			memberDAO.join(memberVO);
 			pw=response.getWriter();
 			pw.print("<script>"
-					+ "alert('회원가입 되었습니다.');"
+					+ "alert('회원수정.');"
 					+ "location.href='" + request.getContextPath() + "/index.jsp'"
 					+ "</script>");
 			return;
-		}else if(action.equals("/checkPwd.do")) {  //비밀번호 확인
+		}else if(action.equals("/checkPwd.do")) {  //鍮꾨�踰덊샇 �솗�씤
 			HttpSession session=request.getSession(false);
 			int id=(int) session.getAttribute("log_id");
 			String pwd=request.getParameter("pwd");
 			memberVO.setId(id);
 			memberVO.setPwd(pwd);
 			Boolean result=memberDAO.memExists(memberVO);
-			if(result) {  //비밀번호 일치
+			if(result) {  //鍮꾨�踰덊샇 �씪移�
 				nextPage="/student/privacy.jsp";
-			}else {  //비밀번호 불일치
+			}else {  //鍮꾨�踰덊샇 遺덉씪移�
 				pw=response.getWriter();
 				pw.print("<script>"
-						+ "alert('비밀번호가 일치하지 않습니다.');"
+						+ "alert('鍮꾨�踰덊샇媛� �씪移섑븯吏� �븡�뒿�땲�떎.');"
 						+ "location.href='" + request.getContextPath() + "/student/privacy_check.jsp'"
 						+ "</script>");
 				return;
 			}
-		}else if(action.equals("/modInfo.do")) {  //개인정보 수정
+		}
+		
+		else if(action.equals("/viewScore.do")) {
+			int st_id=memberVO.getId();
+			memberVO.setId(st_id);
+			System.out.println(st_id);
+			memberVO.setId(st_id);
+			MemberVO studentScore=memberDAO.viewAllScores(memberVO);
+			String dan = memberVO.getDan();
+			String st_name = request.getParameter("st_name");
+			String m_name = request.getParameter("m_name");
+			int st_grade = 0;
+			System.out.println(st_id);
+			memberVO.setSt_name(st_name);
+			memberVO.setM_name(m_name);
+			memberVO.setSt_grade(st_grade);
+			memberVO.setDan(dan);
+			memberDAO.join(studentScore);
+			
+			
+			nextPage="/student/viewScores.jsp";
+		}
+		
+		else if(action.equals("/modInfo.do")) {  
 			HttpSession session=request.getSession(false);
 			int id=(int) session.getAttribute("log_id");
 			String user_level=(String) session.getAttribute("user_level");
@@ -169,6 +172,7 @@ public class memberController extends HttpServlet {
 			request.setAttribute("msg", "info_modified");
 			nextPage="/student/privacy.jsp";
 		}
+		
 		RequestDispatcher dispatcher=request.getRequestDispatcher(nextPage);
 		dispatcher.forward(request, response);
 	}

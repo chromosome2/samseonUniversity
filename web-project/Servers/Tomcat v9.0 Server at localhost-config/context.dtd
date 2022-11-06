@@ -1,0 +1,12 @@
+<!ELEMENT Context (WatchedResource+,Resource)>
+<!ELEMENT WatchedResource (#PCDATA)>
+<!ELEMENT Resource EMPTY>
+<!ATTLIST Resource name CDATA #REQUIRED>
+<!ATTLIST Resource auth NMTOKEN #REQUIRED>
+<!ATTLIST Resource type NMTOKEN #REQUIRED>
+<!ATTLIST Resource driverClassName NMTOKEN #REQUIRED>
+<!ATTLIST Resource url CDATA #REQUIRED>
+<!ATTLIST Resource username NMTOKEN #REQUIRED>
+<!ATTLIST Resource password NMTOKEN #REQUIRED>
+<!ATTLIST Resource maxActive NMTOKEN #REQUIRED>
+<!ATTLIST Resource maxWait NMTOKEN #REQUIRED>

@@ -4,6 +4,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<%
+  request.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -59,8 +62,8 @@
                                     <table border="0" cellpadding="0" cellspacing="0">
                                         <tbody>
                                             <tr>
-                                                <td>조수진</td>
-                                                <td>202211111</td>
+                                                <td>${studentInfo.name}</td>
+                                                <td>${studentInfo.st_id}</td>
                                                 <td>컴퓨터공학과</td>
                                                 <td>IT대학</td>
                                                 <td>3/36</td>
