@@ -70,7 +70,7 @@
             							<c:forEach var="" items="${}"> --%>
             								<tr>
 			            						<td>1</td>
-			            						<td>공지사항입니다.</td>
+			            						<td><a href="#">공지사항입니다.</a></td>
 			            						<td>김선생</td>
 			            						<td>2020-02-02</td>
 			            					</tr>
