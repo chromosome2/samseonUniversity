@@ -42,7 +42,7 @@ body {
 }
 
 /*전체 레이아웃*/
-header .header_contents,
+header .head1,
 #middle_area,
 #footerInner {
   min-width: 1280px;
@@ -72,9 +72,14 @@ header .header_contents,
   );
   position: relative;
 }
+.black_head1 > a {
+	z-index: 9999;
+}
 .header_contents {
   position: relative;
   top: -50px;
+  width : 1045px;
+  left: 235px;
 }
 .white_head1 {
   background-image: url(../images/back.png);
@@ -85,7 +90,6 @@ header .header_contents,
   background-size: 300px 50px;
   width: 300px;
   display: inline-block;
-  margin-left: 235px;
 }
 .black_head1 img {
   height: 40px;

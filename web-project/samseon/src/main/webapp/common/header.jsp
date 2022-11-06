@@ -50,6 +50,8 @@
 							<c:when test="${user_level == 'admin'}">
 								<span class="st_name">관리자 ${adminInfo.name}님</span>
 							</c:when>
+							<c:otherwise><span class="st_name">컴퓨터공학과 홍길동님</span>
+							</c:otherwise>
 	                    </c:choose>
                     </div>
                     <ul class="mini_menu">
