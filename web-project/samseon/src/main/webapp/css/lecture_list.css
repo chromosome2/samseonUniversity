@@ -1,0 +1,18 @@
+.addClass_btn_area { 
+  position: relative;
+  height: 50px;
+  right: 5%;
+}
+.addClass_btn_area button {
+  width: 100px;
+  float: right;
+}
+.tbl_area {
+  position: relative;
+  width: 95%;
+  margin: 50px auto;
+}
+
+.tbl_header th{
+  text-align: center;
+}
