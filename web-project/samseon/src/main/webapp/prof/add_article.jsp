@@ -35,22 +35,15 @@
             <div id="contents_area">
             	<section class="contents_wrapper">
             		<div class="table_header">
-            			<h3>수업 공지사항</h3>
+            			<h3>수업 공지사항 등록</h3>
             		</div>
-            		<c:if test="${user_level == 'professor'}">
-	              	 	<a href="${contextPath}/prof/add_article.jsp">글쓰기</a>                  
-	                </c:if>
             		<div class="tbl_header">
             			<table border="0" cellpadding="0" cellspacing="0">
             				<thead>
             					<tr>
-            						<td>(강의이름) 공지사항</td>
-            					<tr>
-            					<tr>
-            						<th>번호</th>
-			                        <th>제목</th>
-			                        <th>등록일</th>
-			                        <th>작성자</th>
+            						<th>ID</th><td>(ID)</td>
+            						<th>작성자</th><td>(작성자)</td>
+            						<th>강의 이름</th><td>(강의 이름)</td>
             					</tr>
             				</thead>
             			</table>
@@ -58,29 +51,18 @@
             		<div class="tbl_content">
             			<table border="0" cellpadding="0" cellspacing="0">
             				<tbody>
-            					<%--<c:choose>
-            						<c:when test="${empty }">
-            							<tr>
-            								<td colspan="4">
-            									공지사항이 없습니다.
-            								</td>
-            							</tr>
-            						</c:when>
-            						<c:when test="${!empty }">
-            							<c:forEach var="" items="${}"> --%>
-            								<tr>
-			            						<td>1</td>
-			            						<td>공지사항입니다.</td>
-			            						<td>김선생</td>
-			            						<td>2020-02-02</td>
-			            					</tr>
-            							<%--</c:forEach>
-            						</c:when>
-            					</c:choose> --%>
+   								<tr>
+	           						<td>제목</td>
+									<td><input type="text" name="nt_title"></td>
+	           					</tr>
+	           					<tr>
+									<td><input type="text" name="nt_content"></td>
+	           					</tr>
             				</tbody>
             			</table>
-            			<%--페이징 기능 추가 --%>
             		</div>
+            		<input class="btn_submit button" type="submit" value="등록하기">
+                    <a href="${contextPath}/prof/lecture_board.jsp" class="btn_cancle button">취소</a>
             	</section>
             </div>
         </div>
