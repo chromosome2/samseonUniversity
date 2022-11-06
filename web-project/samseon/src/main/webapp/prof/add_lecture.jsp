@@ -70,8 +70,8 @@
                                 </td>
                             </tr>
                         </table>
-                        <input type="submit" value="등록하기">
-                        <a href="${contextPath}/prof/add_lecture_list.jsp">취소</a>
+                        <input class="btn_submit button" type="submit" value="등록하기">
+                        <a href="${contextPath}/prof/add_lecture_list.jsp" class="btn_cancle button">취소</a>
                     </form>
             	</div>
             </div>

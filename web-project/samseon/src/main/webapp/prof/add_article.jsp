@@ -19,9 +19,9 @@
     <link rel="stylesheet" href="${contextPath}/css/viewMyLectures_ST.css">
     <script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
     <script src="${contextPath}/js/common.js"></script>
-    <script src="${contextPath}/js/menu_third.js"></script>
-	<script src="${contextPath}/js/pf_menu.js"></script>
+	<script src="${contextPath}/js/menu_second.js"></script>
 	<script src="${contextPath}/js/table.js"></script>
+	<script src="${contextPath}/js/pf_menu.js"></script>
     <title>삼선대학교</title>
 </head>
 <body>
@@ -35,22 +35,15 @@
             <div id="contents_area">
             	<section class="contents_wrapper">
             		<div class="table_header">
-            			<h3>나의 수업</h3>
+            			<h3>수업 공지사항 등록</h3>
             		</div>
             		<div class="tbl_header">
             			<table border="0" cellpadding="0" cellspacing="0">
             				<thead>
             					<tr>
-            						<th>NO</th>
-            						<th>과목 코드</th>
-            						<th>강의 이름</th>
-            						<th>학기</th>
-            						<th>학점</th>
-            						<th>강의 시간</th>
-            						<th>강의실</th>
-            						<th>전공 / 교양</th>
-            						<th><a href="#">학생관리</a></th>
-            						<th><a href="#">공지사항</a>
+            						<th>ID</th><td>(ID)</td>
+            						<th>작성자</th><td>(작성자)</td>
+            						<th>강의 이름</th><td>(강의 이름)</td>
             					</tr>
             				</thead>
             			</table>
@@ -58,34 +51,18 @@
             		<div class="tbl_content">
             			<table border="0" cellpadding="0" cellspacing="0">
             				<tbody>
-            					<%--<c:choose>
-            						<c:when test="${empty}">
-            							<tr>
-            								<td colspan="11">
-            									진행중인 수업이 없습니다.
-            								</td>
-            							</tr>
-            						</c:when>
-            						<c:when test="${!empty  }">
-            							<c:forEach var="" items="${}"> --%>
-            								<tr>
-			            						<td>1</td>
-			            						<td>555555</td>
-			            						<td>컴퓨터개론 및 실습</td>
-			            						<td>1</td>
-			            						<td>3</td>
-			            						<td>수, 금 9시 ~ 10시 30분</td>
-			            						<td>203호</td>
-			            						<td>교양</td>
-			            						<td><button><a href="${contextPath}/prof/lecture_manage.jsp">이동</a></button></td>
-			            						<td><button><a href="${contextPath}/prof/lecture_board.jsp">이동</a></button></td>
-			            					</tr>
-            							<%--</c:forEach>
-            						</c:when>
-            					</c:choose> --%>
+   								<tr>
+	           						<td>제목</td>
+									<td><input type="text" name="nt_title"></td>
+	           					</tr>
+	           					<tr>
+									<td><input type="text" name="nt_content"></td>
+	           					</tr>
             				</tbody>
             			</table>
             		</div>
+            		<input class="btn_submit button" type="submit" value="등록하기">
+                    <a href="${contextPath}/prof/lecture_board.jsp" class="btn_cancle button">취소</a>
             	</section>
             </div>
         </div>
