@@ -42,7 +42,7 @@ body {
 }
 
 /*전체 레이아웃*/
-header .header_contents,
+header .head1,
 #middle_area,
 #footerInner {
   min-width: 1280px;
@@ -72,20 +72,8 @@ header .header_contents,
   );
   position: relative;
 }
-.header_contents {
-  position: relative;
-  top: -50px;
-}
-.white_head1 {
-  background-image: url(../images/back.png);
-  position: relative;
-  z-index: 10;
-  background-repeat: no-repeat;
-  height: 50px;
-  background-size: 300px 50px;
-  width: 300px;
-  display: inline-block;
-  margin-left: 235px;
+.black_head1 > a {
+	z-index: 10;
 }
 .black_head1 img {
   height: 40px;
@@ -100,6 +88,22 @@ header .header_contents,
   right: 62px;
   letter-spacing: 1px;
   color: rgb(231, 231, 231);
+}
+.header_contents {
+  position: relative;
+  top: -50px;
+  width : 1045px;
+  left: 235px;
+}
+.white_head1 {
+  background-image: url(../images/back.png);
+  position: relative;
+  z-index: 10;
+  background-repeat: no-repeat;
+  height: 50px;
+  background-size: 300px 50px;
+  width: 300px;
+  display: inline-block;
 }
 .st_name {
   display: block;
