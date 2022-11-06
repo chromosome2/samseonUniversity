@@ -38,37 +38,37 @@
             </div>
 
             <div id="contents_area">
-            	<section class="contents_wrapper">
-            		<div class="table_header">
-            			<h3>컴퓨터개론 및 실습</h3>
-            		</div>
-            		<form action="${contextPath}/" method="post" id="frm_add_score" name="frm_add_score">
-            			<div class="tbl_header">
-	            			<table border="0" cellpadding="0" cellspacing="0">
-	            				<thead>
-	            					<tr>
-	            						<td colspan="9" class="sub_name">수업 관리(학생, 출석, 성적 관리)</td>
-	            					</tr>
-	            					<tr>
-	            						<th>NO</th>
-	            						<th>학생 이름</th>
-	            						<th>학생 학번</th>
-	            						<th>전화번호</th>
-	            						<th>이메일</th>
-	            						<th>출석관리</th>
-	            						<th>중간 점수</th>
-	            						<th>기말 점수</th>
-	            						<th>최종 성적</th>
-	            					</tr>
-	            				</thead>
-	            			</table>
-	            		</div>
-	            		<div class="tbl_content">
-	            			<table border="0" cellpadding="0" cellspacing="0">
-	            				<tbody>
+       		 <section class="contents_wrapper">
+         		 <div class="table_header">
+        		    <h3>컴퓨터개론 및 실습</h3>
+       	   </div>
+       	   <form action="${contextPath}/" method="post" id="frm_add_score" name="frm_add_score">
+            <div class="tbl_header">
+              <table border="0" cellpadding="0" cellspacing="0">
+                <thead>
+                  <tr class="tr_header">
+                    <td colspan="9" class="3">수업 관리(학생, 출석, 성적 관리)</td>
+                  </tr>
+                  <tr>
+                    <th>NO</th>
+                    <th>학생 이름</th>
+                    <th>학생 학번</th>
+                    <th>전화번호</th>
+                    <th>이메일</th>
+                    <th>출석관리</th>
+                    <th>중간 점수</th>
+                    <th>기말 점수</th>
+                    <th>최종 성적</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <div class="tbl_content">
+              <table border="0" cellpadding="0" cellspacing="0">
+                <tbody>
 	            					<%--<c:choose>
 	            						<c:when test="${empty}">
-	            							<tr>
+	            							<tr class="td_none">
 	            								<td colspan="9">
 	            									수업을 듣는 학생이 없습니다.
 	            								</td>
@@ -82,7 +82,7 @@
 				            						<td>1111</td>
 				            						<td>01011112222</td>
 				            						<td>hong@naver.com</td>
-				            						<td><button><a href="${contextPath}/prof/manage_attend.jsp">이동</a></button></td>
+				            						<td><button class="move_attend"><a href="${contextPath}/prof/manage_attend.jsp">이동</a></button></td>
 				            						<td><input type="number" value="" name="s_first"></td><%-- value값 = 기존 성적값 --%>
 				            						<td><input type="number" value="" name="s_second"></td>
 				            						<td>A+</td><%--최종 성적(s_final)을 사용하여 알바펫점수를 매김. --%>
@@ -91,11 +91,13 @@
 	            						</c:when>
 	            					</c:choose> --%>
 	            				</tbody>
-	            			</table>
-	            			<input class="btn_submit button" type="submit" value="등록하기">
-                        	<a href="${contextPath}/prof/my_lecture.jsp" class="btn_cancle button">취소</a>
-	            		</div>
-            		</form>
+          				    </table>
+         				   </div>
+         				   <div class="class_submit">
+          					    <input class="btn_submit button" type="submit" value="등록하기">
+          					    <button class="btn_submit"><a href="${contextPath} /prof/my_lecture.jsp" class="btn_cancle button">취소</a></button>
+           				 </div>
+         			 </form>
             		
             	</section>
             </div>
