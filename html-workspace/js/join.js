@@ -88,7 +88,7 @@ text.forEach(el => {
   });
 });
 
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 // 인풋 영역 text event #2.
 
 // variables
@@ -100,7 +100,7 @@ const oldPostalInput = '상세주소';
 const oldEmailInput = '이메일';
 
 const newIdInput = '부여받은 학번 8자리 입력';
-const newPwdInput = '8자 이상, 영문/숫자/특수문자 중 2가지 이상 입력';
+const newPwdInput = '8~16자리 영문,숫자 조합';
 const newPwdChkInput = '비밀번호 재입력';
 const newNameInput = '이름 입력';
 const newPostalInput = '상세주소 입력';
@@ -123,7 +123,7 @@ const changeText = function (input, oldTxt, newTxt) {
   input.addEventListener('blur', () => {
     if (input.value.length === 0) {
       targetText.innerText = oldTxt;
-      console.log(oldTxt);
+      // console.log(oldTxt);
     }
   });
 };
@@ -137,30 +137,78 @@ changeText(postal_change, oldPostalInput, newPostalInput);
 changeText(email_change, oldEmailInput, newEmailInput);
 // 예외 1. 우편번호, 도로명 주소
 
-////////////////////////////////////////////////////////////////////////////////
-// 이메일 정규식
+///////////////////////////////////////////////////////////////////////////////
+// 정규식(작성중)
 
 ///// variables
+const id = document.getElementById('id');
+const pwd = document.getElementById('pwd');
+const pwdCheck = document.querySelector('.pwd_check_change');
 const email = document.getElementById('email');
+const phone = document.getElementById('phone');
 
-///// functions
-const mailCheck = function (email) {
-  const emailRegExp = new RegExp(
-    "([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|[[\t -Z^-~]*])",
-  );
-  return emailRegExp.test(email);
+// ///// functions
+
+const isEmail = function (asValue) {
+  const regExp =
+    /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+
+  return regExp.test(asValue);
 };
 
-const mailAlert = function () {
-  if (email.value.trim() !== '' && !mailCheck(email.value)) {
-    alert('이메일 형식에 맞게 입력해주세요');
-    email.value = '';
+const isPassword = function (asValue) {
+  const regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,16}$/;
+
+  return regExp.test(asValue);
+};
+
+const isPhoneNumber = function (asValue) {
+  const regExp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
+
+  return regExp.test(asValue);
+};
+
+// 학번이 미리 주어지는 경우, 어떤 형식으로 이루어지는 지 정해야 정규식을 작성 가능
+// 현재는
+$('#submit').on('click', function (e) {
+  if (id.value.trim() === '') {
+    e.preventDefault();
+    alert('학번을 입력하세요.');
+  } else if (typeof +id.value !== 'number' || isNaN(id.value)) {
+    e.preventDefault();
+    alert('올바른 학번 형식이 아닙니다.');
   }
-};
 
-///// execute
-email.addEventListener('blur', mailAlert);
+  if (pwd.value.trim() === '') {
+    e.preventDefault();
+    alert('비밀번호를 입력하세요.');
+  } else if (pwd.value.length < 8 || pwd.value.length > 16) {
+    e.preventDefault();
+    alert('비밀번호는 8~16자리여야 합니다.');
+  } else if (!isPassword(pwd.value)) {
+    e.preventDefault();
+    alert(
+      '영문,숫자를 최소 한 가지씩 조합하여 8~16자리 비밀번호를 입력하세요.',
+    );
+  }
+});
 
-////////////////////////////////////////////////////////////////////////////////
-// 휴대폰 번호 정규식
-const telRegExp = /\d{3}-\d{4}-\d{4}/;
+$('.idWarning').hide();
+id.addEventListener('focus', () => {
+  $('.idWarning').show(250);
+});
+
+// blur될 때마다 경고창을 바꾼다.
+
+/*
+아이디 정규식: 중복확인
+1) 중복확인 버튼 없이 체크 svg로 대체할 수 있는지 (alert 대신)
+
+비밀번호 정규식: 경우의 수
+1) 아무 것도 입력하지 않았을 때
+=> 비밀번호를 입력해주세요.
+2) 올바르지 않은 형식일 때
+=> '영문,숫자를 최소 한 가지씩 조합하여 8~16자리 비밀번호를 입력하세요.',
+3) 비밀번호 확인과 값이 일치하지 않을 때
+
+*/
