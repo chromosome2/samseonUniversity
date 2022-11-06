@@ -39,7 +39,7 @@
 							</c:when>
 							<c:when test="${user_level == 'professor'}">
 			                    <li class="first_menu_title"><a href="${contextPath}/board/listArticles.do" class="menu_title">공지사항</a></li>
-		                        <li class="second_menu_title"><a href="${contextPath}/prof/add_lecture_list.jsp" class="menu_title">수업 등록</a></li>
+		                        <li class="second_menu_title"><a href="${contextPath}/prof/lecture_list.jsp" class="menu_title">수업 등록</a></li>
 		                        <li class="third_menu_title"><a href="${contextPath}/prof/my_lecture.jsp" class="menu_title">나의 수업</a></li>					
 							</c:when>
 							<c:when test="${user_level == 'admin'}">
@@ -47,6 +47,11 @@
 		                        <li class="second_menu_title"><a href="#" class="menu_title">학생, 교수 관리</a></li>					
 							</c:when>
 							<c:otherwise><%-- 이 부분은 로그인 안했을때 css 수정하기 위해서 넣어놨습니다! 나중에 작업 마치면 삭제하셔도 됩니다. --%>
+<<<<<<< HEAD
+								<li class="first_menu_title"><a href="${contextPath}/board/listArticles.do" class="menu_title">공지사항</a></li>
+		                        <li class="second_menu_title"><a href="${contextPath}/prof/lecture_list.jsp" class="menu_title">수업 등록</a></li>
+		                        <li class="third_menu_title"><a href="${contextPath}/prof/my_lecture.jsp" class="menu_title">나의 수업</a></li>
+=======
 		                        <li class="first_menu_title"><a href="${contextPath}/board/listArticles.do" class="menu_title">공지사항</a></li>
 		                        <li class="second_menu_title"><a href="${contextPath}/student/main_apply_lectures.jsp" class="menu_title">수강신청</a></li>
 		                        <li class="third_menu_title my_page">
@@ -57,6 +62,7 @@
 		                                <li><a href="${contextPath}/student/privacy_check.jsp" class="third_my_page_title">개인정보</a></li>
 		                            </ul>
 		                        </li>	
+>>>>>>> 0d047973365b9407aa9d455e93d4799a8bd1d294
 							</c:otherwise>
 	                    </c:choose>
                         

@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="css/viewScores.css">
   <script src="js/jquery-3.6.0.min.js"></script>
   <script src="js/common.js"></script>
+  <script src="js/menu_second.js"></script>
   <title>삼선대학교</title>
 </head>
 
@@ -24,16 +25,17 @@
   <div id="wrapper">
     <header>
       <div class="head1">
-        <div class="black_head1"></div>
+        <div class="black_head1">
+          <h2 class="hidden">대학교 로고</h2>
+            <a href="board.html">
+                <img src="images/logo_white.png" alt="삼선대학교 로고">
+                <span>삼선대학교</span>
+            </a>
+        </div>
         <div class="header_contents">
           <div class="white_head1">
-            <h2 class="hidden">대학교 로고</h2>
-            <a href="board.html">
-              <img src="images/logo.png" alt="삼선대학교 로고">
-              <span>삼선대학교</span>
-            </a>
+            <span class="st_name">컴퓨터공학과 조수진님</span>
           </div>
-          <span class="st_name">컴퓨터공학과 조수진님</span>
           <ul class="mini_menu">
             <li><a href="#">학교 서비스</a>
               <ul class="service_menu">
@@ -59,14 +61,14 @@
         <nav>
           <h2 class="hidden">메인메뉴</h2>
           <ul class="main_menu">
-            <li><a href="board.html" class="menu_title">공지사항</a></li>
-            <li class="point"><a href="main_apply_lectures.html" class="menu_title">수강신청</a></li>
-            <li class="my_page">
+            <li class="first_menu_title"><a href="board.html" class="menu_title">공지사항</a></li>
+            <li class="second_menu_title"><a href="main_apply_lectures.html" class="menu_title">수강신청</a></li>
+            <li class="third_menu_title my_page">
               <div class="my_page_click_area"><a href="#" class="menu_title">마이페이지</a></div>
               <ul class="my_page_menu">
-                <li><a href="viewScores.html">전체성적 조회</a></li>
-                <li><a href="viewMyLectures_ST.html">수강중인 과목 조회</a></li>
-                <li><a href="privacy_check.html">개인정보</a></li>
+                <li><a href="viewScores.html" class="first_my_page_title">전체성적 조회</a></li>
+                <li><a href="viewMyLectures_ST.html" class="second_my_page_title">수강중인 과목 조회</a></li>
+                <li><a href="privacy_check.html" class="third_my_page_title">개인정보</a></li>
               </ul>
             </li>
           </ul>

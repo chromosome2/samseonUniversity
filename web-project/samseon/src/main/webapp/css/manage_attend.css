@@ -1,0 +1,10 @@
+
+.tbl_area {
+  position: relative;
+  width: 95%;
+  margin: 50px auto;
+}
+
+.tbl_header th{
+  text-align: center;
+}
