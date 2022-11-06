@@ -73,7 +73,21 @@ header .head1,
   position: relative;
 }
 .black_head1 > a {
-	z-index: 9999;
+	z-index: 10;
+}
+.black_head1 img {
+  height: 40px;
+  margin-top: 5px;
+  margin-left: 15px;
+}
+.black_head1 span {
+  font-size: 1.5em;
+  font-weight: 500;
+  position: absolute;
+  top: 9.5px;
+  right: 62px;
+  letter-spacing: 1px;
+  color: rgb(231, 231, 231);
 }
 .header_contents {
   position: relative;
@@ -90,20 +104,6 @@ header .head1,
   background-size: 300px 50px;
   width: 300px;
   display: inline-block;
-}
-.black_head1 img {
-  height: 40px;
-  margin-top: 5px;
-  margin-left: 15px;
-}
-.black_head1 span {
-  font-size: 1.5em;
-  font-weight: 500;
-  position: absolute;
-  top: 9.5px;
-  right: 62px;
-  letter-spacing: 1px;
-  color: rgb(231, 231, 231);
 }
 .st_name {
   display: block;
