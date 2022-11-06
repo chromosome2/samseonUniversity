@@ -1,3 +1,17 @@
+.contents_wrapper {
+  margin: 20px !important;
+  margin-top: 50px !important;
+}
+
+.contents_wrapper > h3 {
+  font-size: 2em;
+}
+
+.st_lecture_area {
+  margin-top: 50px;
+  margin-bottom: 50px !important;
+}
+
 select {
   vertical-align: baseline !important;
   outline: medium;
