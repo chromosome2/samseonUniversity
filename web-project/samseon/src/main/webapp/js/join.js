@@ -188,7 +188,7 @@ $('#submit').on('click', function (e) {
   } else if (!isPassword(pwd.value)) {
     e.preventDefault();
     alert(
-      '영문,숫자를 최소 한 가지씩 조합하여 8~16자리 비밀번호를 입력하세요.'
+      '영문,숫자를 최소 한 가지씩 조합하여 8~16자리 비밀번호를 입력하세요.',
     );
   }
 });
