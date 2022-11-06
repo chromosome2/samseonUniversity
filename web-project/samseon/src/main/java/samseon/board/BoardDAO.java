@@ -100,7 +100,7 @@ public class BoardDAO {
 			pstmt.close();
 			conn.close();
 		} catch (Exception e) {
-			System.out.println("글 목록 페이징 조회 중 에러");
+			System.out.println("글 목록 페이징 조회 중 에러 : "+e);
 		}
 		return articleList;
 	}
