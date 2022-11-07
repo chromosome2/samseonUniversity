@@ -57,17 +57,30 @@
                 <div class="tbl_content">
                     <table border="0" cellpadding="0" cellspacing="0">
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>555555</td>
-                                <td>컴퓨터개론및실습</td>
-                                <td>김선생</td>
-                                <td>3</td>
-                                <td>27</td>
-                                <td></td>
-                                <td>수,금 9시~10시 30분</td>
-                                <td>IT 203호</td>
-                            </tr>
+                            <c:choose>
+                          		<c:when test="${empty lectureList }">
+                          			<tr>
+                          				<td colspan="8">
+                          					<p align="center">수강한 수업이 없습니다.</p>
+                          				</td>
+                          			</tr>
+                          		</c:when>
+                          		<c:when test="${!empty lectureList }">
+                          			<c:forEach var="lect" items="${lectureList }" varStatus="listNum">
+                          				<tr>
+											<td>${listNum.count }</td>
+											<td>${lect.cl_id }</td>
+											<td>${lect.cl_name}</td>
+											<td>${lect.pf_name }</td>
+											<td>${lect.cl_pt }</td>
+											<td>${lect.s_first}</td>
+											<td>${lect.s_second }</td>
+											<td>${lect.cl_time}</td>
+											<td>${lect.cl_room}호</td>
+                          				</tr>
+                          			</c:forEach>
+                          		</c:when>
+                          	</c:choose>
                         </tbody>
                     </table>
                 </div>

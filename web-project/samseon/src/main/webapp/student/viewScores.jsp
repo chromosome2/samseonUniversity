@@ -107,7 +107,7 @@
                                             		<c:when test="${empty scoresList }">
                                             			<tr>
                                             				<td colspan="8">
-                                            					<p align="center">등록된 글이 없습니다.</p>
+                                            					<p align="center">수강한 수업이 없습니다.</p>
                                             				</td>
                                             			</tr>
                                             		</c:when>
@@ -118,7 +118,7 @@
                                             					<td>2022.${score.cl_sem }</td>
                                             					<td>${score.cl_id}</td>
                                             					<td>${score.cl_name }</td>
-			                                                    <td>${score.cl_check }</td>
+			                                                    <td>${score.cl_check }%</td>
 			                                                    <td>${score.cl_pt}</td>
 			                                                    <td>${score.s_final }</td>
 			                                                    <td>${score.comp_subject}</td>

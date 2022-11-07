@@ -108,6 +108,47 @@ public class ViewLectDAO {
 		return scoresList;
 	}
 	
+	//viewMyLecture.jsp 기능 구현 리스트 가져오기
+	public List<ViewLectVO> view_lecture_list(int id){
+		List<ViewLectVO> lectureList=new ArrayList();
+		try {
+			conn=dataFactory.getConnection();
+			String query="select * from scoretbl where st_id=? and s_second is null ORDER BY cl_id";
+			System.out.println(query);
+			pstmt=conn.prepareStatement(query);
+			pstmt.setInt(1, id);
+			ResultSet rs=pstmt.executeQuery();
+			while(rs.next()) {
+				int cl_id=rs.getInt("cl_id");
+				String cl_name=rs.getString("cl_name");
+				String pf_name=rs.getString("pf_name");
+				int cl_pt=get_cl_pt(cl_id);
+				int s_first=rs.getInt("s_first");
+				int s_second=rs.getInt("s_second");
+				String cl_time=get_cl_time(cl_id);
+				int cl_room=get_cl_room(cl_id);
+				
+				ViewLectVO viewlectVO=new ViewLectVO();
+				
+				viewlectVO.setCl_id(cl_id);
+				viewlectVO.setCl_name(cl_name);
+				viewlectVO.setPf_name(pf_name);
+				viewlectVO.setCl_pt(cl_pt);
+				viewlectVO.setS_first(s_first);
+				viewlectVO.setS_second(s_second);
+				viewlectVO.setCl_time(cl_time);
+				viewlectVO.setCl_room(cl_room);
+				lectureList.add(viewlectVO);
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		}catch(Exception e) {
+			System.out.println("수강중인 과목 리스트 에러 : "+e.getMessage());
+		}
+		return lectureList;
+	}
+	
 	//졸업 취득 학점 가져오기
 	public int get_t_pt(int id) {
 		int t_pt=0;
@@ -290,4 +331,47 @@ public class ViewLectDAO {
 			System.out.println("이수학점 계산하기 에러 : "+e.getMessage());
 		}
 	}
+	
+	//강의 시간 가져오는 함수
+	public String get_cl_time(int cl_id) {
+		String cl_time=null;
+		try {
+			conn=dataFactory.getConnection();
+			String query="select cl_time from subjecttbl where cl_id=?";
+			System.out.println(query);
+			pstmt=conn.prepareStatement(query);
+			pstmt.setInt(1, cl_id);
+			ResultSet rs=pstmt.executeQuery();
+			rs.next();
+			cl_time=rs.getString("cl_time");
+			rs.close();
+			pstmt.close();
+			conn.close();
+		}catch(Exception e) {
+			System.out.println("강의시간 가져오기 에러 : "+e.getMessage());
+		}
+		return cl_time;
+	}
+	
+	//강의실 가져오는 함수
+		public int get_cl_room(int cl_id) {
+			int cl_room=0;
+			try {
+				conn=dataFactory.getConnection();
+				String query="select cl_room from subjecttbl where cl_id=?";
+				System.out.println(query);
+				pstmt=conn.prepareStatement(query);
+				pstmt.setInt(1, cl_id);
+				ResultSet rs=pstmt.executeQuery();
+				rs.next();
+				cl_room=rs.getInt("cl_room");
+				rs.close();
+				pstmt.close();
+				conn.close();
+			}catch(Exception e) {
+				System.out.println("강의실 가져오기 에러 : "+e.getMessage());
+			}
+			return cl_room;
+		}
+	
 }
