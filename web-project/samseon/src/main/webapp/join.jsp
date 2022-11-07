@@ -116,7 +116,7 @@
               </div>
               <div class="join_txt_area">
                 <span class="inner_warning btn_addr_txt">가입하기</span>
-                <input type="submit" name="pwd" autocomplete="off" autocorrect="off" autocapitalize="none"
+                <input type="submit" name="pwd" id="submit" autocomplete="off" autocorrect="off" autocapitalize="none"
                   title="비밀번호 입력" class="input_value_none btn_addr" placeholder="">
               </div>
             </form>
