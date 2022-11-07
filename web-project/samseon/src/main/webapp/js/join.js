@@ -213,12 +213,12 @@ $('#submit').on('click', function (e) {
   } else if (!isPassword(pwd.value)) {
     e.preventDefault();
     alert(
-      '영문,숫자를 최소 한 가지씩 조합하여 8~16자리 비밀번호를 입력하세요.'
+      '영문,숫자를 최소 한 가지씩 조합하여 8~16자리 비밀번호를 입력하세요.',
     );
   } else if (username.value.trim() === '') {
     e.preventDefault();
     alert('이름을 입력하세요.');
-  } else if (!isEmail(email.value)) {
+  } else if (email.value.length !== 0 && !isEmail(email.value)) {
     e.preventDefault();
     alert('올바르지 않은 이메일 형식입니다.');
   }
