@@ -77,8 +77,8 @@
 			            						<td>수, 금 9시 ~ 10시 30분</td>
 			            						<td>203호</td>
 			            						<td>교양</td>
-			            						<td><button><a href="${contextPath}/prof/lecture_manage.jsp">이동</a></button></td>
-			            						<td><button><a href="${contextPath}/prof/lecture_board.jsp">이동</a></button></td>
+			            						<td class="btn_td"><button class="btn_move"><a href="${contextPath}/prof/lecture_manage.jsp">이동</a></button></td>
+			            						<td class="btn_td"><button class="btn_move"><a href="${contextPath}/prof/lecture_board.jsp">이동</a></button></td>
 			            					</tr>
             							<%--</c:forEach>
             						</c:when>
