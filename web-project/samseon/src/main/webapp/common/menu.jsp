@@ -31,7 +31,7 @@
 		                        <li class="third_menu_title my_page">
 		                        	<div class="my_page_click_area"><a href="#" class="menu_title">마이페이지</a></div>
 		                            <ul class="my_page_menu">
-		                                <li><a href="${contextPath}/student/viewScores.jsp"  class="first_my_page_title">전체성적 조회</a></li>
+		                                <li><a href="${contextPath}/view/viewScores.do"  class="first_my_page_title">전체성적 조회</a></li>
 		                                <li><a href="${contextPath}/student/viewMyLectures_ST.jsp" class="second_my_page_title">수강중인 과목 조회</a></li>
 		                                <li><a href="${contextPath}/student/privacy_check.jsp" class="third_my_page_title">개인정보</a></li>
 		                            </ul>
