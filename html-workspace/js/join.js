@@ -279,7 +279,7 @@ const pwdWarningHandler = function (input, warning, query) {
     } else {
       query.lastElementChild.innerHTML = '';
       warning.hide(250);
-      query.firstElementChild.style.display = 'none';
+      query.firstElementhild.style.display = 'none';
     }
   });
 
