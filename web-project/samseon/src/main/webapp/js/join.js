@@ -218,6 +218,9 @@ $('#submit').on('click', function (e) {
   } else if (username.value.trim() === '') {
     e.preventDefault();
     alert('이름을 입력하세요.');
+  } else if (!isEmail(email.value)) {
+    e.preventDefault();
+    alert('올바르지 않은 이메일 형식입니다.');
   }
 });
 
@@ -277,6 +280,14 @@ const pwdWarningHandler = function (input, warning, query) {
       query.lastElementChild.innerHTML = '';
       warning.hide(250);
       query.firstElementChild.style.display = 'none';
+    }
+  });
+
+  pwdCheck.addEventListener('blur', () => {
+    if (!(input.value === pwdCheck.value)) {
+      query.firstElementChild.style.display = '';
+      warning.show(250);
+      query.lastElementChild.innerHTML = '비밀번호를 다시 확인해주세요.';
     }
   });
 };
