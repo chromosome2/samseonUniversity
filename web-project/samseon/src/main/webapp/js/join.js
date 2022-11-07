@@ -138,17 +138,9 @@ changeText(email_change, oldEmailInput, newEmailInput);
 // 예외 1. 우편번호, 도로명 주소
 
 ///////////////////////////////////////////////////////////////////////////////
-// 정규식(작성중)
+// 정규식
 
-///// variables
-const id = document.getElementById('id');
-const pwd = document.getElementById('pwd');
-const pwdCheck = document.querySelector('.pwd_check_change');
-const email = document.getElementById('email');
-const phone = document.getElementById('phone');
-
-// ///// functions
-
+// regExp
 const isEmail = function (asValue) {
   const regExp =
     /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
@@ -162,11 +154,40 @@ const isPassword = function (asValue) {
   return regExp.test(asValue);
 };
 
+const isName = function (asValue) {
+  const regExp = /^[가-힣]{2,4}$/;
+  return regExp.test(asValue);
+};
+
 const isPhoneNumber = function (asValue) {
-  const regExp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
+  const regExp = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/;
+  // /(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/g; (숫자인지만 확인)
+  // /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/; (하이픈 포함)
 
   return regExp.test(asValue);
 };
+
+///// variables
+const id = document.getElementById('id');
+const pwd = document.getElementById('pwd');
+const username = document.getElementById('username');
+const pwdCheck = document.querySelector('.pwd_check_change');
+const email = document.getElementById('email');
+const phone = document.getElementById('phone');
+
+const idWarning = $('.idWarning');
+const pwdWarning = $('.pwdWarning');
+const nameWarning = $('.nameWarning');
+const emailWarning = $('.emailWarning');
+const phoneWarning = $('.phoneWarning');
+
+const idQuery = document.querySelector('.idWarning');
+const pwdQuery = document.querySelector('.pwdWarning');
+const nameQuery = document.querySelector('.nameWarning');
+const phoneQuery = document.querySelector('.phoneWarning');
+const emailQuery = document.querySelector('.emailWarning');
+
+// ///// functions
 
 // 학번이 미리 주어지는 경우, 어떤 형식으로 이루어지는 지 정해야 정규식을 작성 가능
 // 현재는
@@ -177,33 +198,176 @@ $('#submit').on('click', function (e) {
   } else if (typeof +id.value !== 'number' || isNaN(id.value)) {
     e.preventDefault();
     alert('올바른 학번 형식이 아닙니다.');
-  }
-
-  if (pwd.value.trim() === '') {
+  } else if (id.value.trim().length !== 8) {
+    e.preventDefault();
+    alert('학번은 8자리 숫자입니다.');
+  } else if (pwd.value.trim() === '') {
     e.preventDefault();
     alert('비밀번호를 입력하세요.');
   } else if (pwd.value.length < 8 || pwd.value.length > 16) {
     e.preventDefault();
     alert('비밀번호는 8~16자리여야 합니다.');
+  } else if (!(pwd.value === pwdCheck.value)) {
+    e.preventDefault();
+    alert('비밀번호를 다시 확인해주세요.');
   } else if (!isPassword(pwd.value)) {
     e.preventDefault();
     alert(
       '영문,숫자를 최소 한 가지씩 조합하여 8~16자리 비밀번호를 입력하세요.'
     );
+  } else if (username.value.trim() === '') {
+    e.preventDefault();
+    alert('이름을 입력하세요.');
+  } else if (!isEmail(email.value)) {
+    e.preventDefault();
+    alert('올바르지 않은 이메일 형식입니다.');
   }
 });
 
-$('.idWarning').hide();
-id.addEventListener('focus', () => {
-  $('.idWarning').show(250);
-});
+const idWarningHandler = function (input, warning, query) {
+  input.addEventListener('focus', () => {
+    if (query.firstElementChild.style.display !== 'none') {
+      warning.show(250);
+    }
+  });
 
-// blur될 때마다 경고창을 바꾼다.
+  input.addEventListener('blur', () => {
+    if (input.value.trim() === '') {
+      query.firstElementChild.style.display = '';
+      warning.show(250);
+      query.lastElementChild.innerHTML = '학번을 입력해주세요.';
+    } else if (typeof +input.value !== 'number' || isNaN(input.value)) {
+      query.firstElementChild.style.display = '';
+      warning.show(250);
+      query.lastElementChild.innerHTML = '올바른 학번 형식이 아닙니다.';
+    } else if (input.value.trim().length !== 8) {
+      query.firstElementChild.style.display = '';
+      warning.show(250);
+      query.lastElementChild.innerHTML = '학번은 8자리 숫자입니다.';
+    } else {
+      query.lastElementChild.innerHTML = '';
+      warning.hide(250);
+      query.firstElementChild.style.display = 'none';
+    }
+  });
+};
+
+const pwdWarningHandler = function (input, warning, query) {
+  input.addEventListener('focus', () => {
+    if (query.firstElementChild.style.display !== 'none') {
+      warning.show(250);
+    }
+  });
+
+  input.addEventListener('blur', () => {
+    if (input.value.trim() === '') {
+      query.firstElementChild.style.display = '';
+      warning.show(250);
+      query.lastElementChild.innerHTML = '비밀번호를 입력하세요.';
+    } else if (!isPassword(input.value)) {
+      query.firstElementChild.style.display = '';
+      warning.show(250);
+      query.lastElementChild.innerHTML =
+        '영문,숫자를 최소 한 가지씩 조합하여 8~16자리 비밀번호를 입력하세요.';
+    } else if (
+      input.value.trim().length < 8 ||
+      input.value.trim().length > 16
+    ) {
+      query.lastElementChild.innerHTML = '비밀번호는 8~16자리여야 합니다.';
+      query.firstElementChild.style.display = '';
+      warning.show(250);
+    } else {
+      query.lastElementChild.innerHTML = '';
+      warning.hide(250);
+      query.firstElementChild.style.display = 'none';
+    }
+  });
+
+  pwdCheck.addEventListener('blur', () => {
+    if (!(input.value === pwdCheck.value)) {
+      query.firstElementChild.style.display = '';
+      warning.show(250);
+      query.lastElementChild.innerHTML = '비밀번호를 다시 확인해주세요.';
+    }
+  });
+};
+
+const nameWarningHandler = function (input, warning, query) {
+  input.addEventListener('focus', () => {
+    if (query.firstElementChild.style.display !== 'none') {
+      warning.show(250);
+    }
+  });
+
+  input.addEventListener('blur', () => {
+    if (input.value.trim() === '') {
+      query.firstElementChild.style.display = '';
+      warning.show(250);
+      query.lastElementChild.innerHTML = '이름을 입력하세요.';
+    } else if (!isName(input.value)) {
+      query.firstElementChild.style.display = '';
+      warning.show(250);
+      query.lastElementChild.innerHTML = '한글 이름을 입력하세요(2~4자).';
+    } else {
+      query.lastElementChild.innerHTML = '';
+      warning.hide(250);
+      query.firstElementChild.style.display = 'none';
+    }
+  });
+};
+
+const emailWarningHandler = function (input, warning, query) {
+  warning.hide();
+
+  input.addEventListener('blur', () => {
+    if (!isEmail(input.value)) {
+      query.firstElementChild.style.display = '';
+      warning.show(250);
+      query.lastElementChild.innerHTML = '올바르지 않은 이메일 형식입니다.';
+    } else {
+      query.lastElementChild.innerHTML = '';
+      warning.hide(250);
+      query.firstElementChild.style.display = 'none';
+    }
+  });
+};
+
+const phoneWarningHandler = function (input, warning, query) {
+  input.addEventListener('focus', () => {
+    if (query.firstElementChild.style.display !== 'none') {
+      warning.show(250);
+    }
+  });
+
+  input.addEventListener('blur', () => {
+    if (input.value.trim() === '') {
+      query.firstElementChild.style.display = '';
+      warning.show(250);
+      query.lastElementChild.innerHTML = '휴대폰번호를 입력하세요.';
+    } else if (
+      // 숫자만 입력받도록
+      !isPhoneNumber(input.value) ||
+      input.value.length < 10 ||
+      input.value.length > 11
+    ) {
+      query.firstElementChild.style.display = '';
+      warning.show(250);
+      query.lastElementChild.innerHTML = '올바르지 않은 형식입니다.';
+    } else {
+      query.lastElementChild.innerHTML = '';
+      warning.hide(250);
+      query.firstElementChild.style.display = 'none';
+    }
+  });
+};
+
+idWarningHandler(id, idWarning, idQuery);
+pwdWarningHandler(pwd, pwdWarning, pwdQuery);
+nameWarningHandler(username, nameWarning, nameQuery);
+emailWarningHandler(email, emailWarning, emailQuery);
+phoneWarningHandler(phone, phoneWarning, phoneQuery);
 
 /*
-아이디 정규식: 중복확인
-1) 중복확인 버튼 없이 체크 svg로 대체할 수 있는지 (alert 대신)
-
 비밀번호 정규식: 경우의 수
 1) 아무 것도 입력하지 않았을 때
 => 비밀번호를 입력해주세요.

@@ -26,10 +26,10 @@
       <div class="head1">
         <div class="black_head1">
           <h2 class="hidden">대학교 로고</h2>
-            <a href="board.html">
-                <img src="images/logo_white.png" alt="삼선대학교 로고">
-                <span>삼선대학교</span>
-            </a>
+          <a href="board.html">
+            <img src="images/logo_white.png" alt="삼선대학교 로고">
+            <span>삼선대학교</span>
+          </a>
         </div>
         <div class="header_contents">
           <div class="white_head1">
@@ -234,6 +234,14 @@
                   </tr>
                 </tbody>
               </table>
+              <div class="btn_result_div">
+                <input type="button" value="글 목록" class="btn_result" onclick="toList()">
+
+                <input type="button" value="수정" class="btn_result"
+                  onclick="fn_modify('${contextPath}/board/modNoticeForm.do', ${article.articleNo})">
+                <input type="button" value="삭제" class="btn_result"
+                  onclick="fn_removeNotice('${contextPath}/board/removeNotice.do', ${article.articleNo})">
+              </div>
             </div>
           </div>
 
