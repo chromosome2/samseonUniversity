@@ -218,7 +218,7 @@ $('#submit').on('click', function (e) {
   } else if (username.value.trim() === '') {
     e.preventDefault();
     alert('이름을 입력하세요.');
-  } else if (!isEmail(email.value)) {
+  } else if (email.value.length !== 0 && !isEmail(email.value)) {
     e.preventDefault();
     alert('올바르지 않은 이메일 형식입니다.');
   }
