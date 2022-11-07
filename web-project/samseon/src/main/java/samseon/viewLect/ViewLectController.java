@@ -48,7 +48,10 @@ public class ViewLectController extends HttpServlet {
 				
 				nextPage="/student/viewScores.jsp";
 			}else if(action.equals("/viewMyLectures.do")) {
+				List<ViewLectVO> lectureList=viewlectDao.view_lecture_list(id);
+				request.setAttribute("lectureList", lectureList);
 				
+				nextPage="/student/viewMyLectures_ST.jsp";
 			}
 			RequestDispatcher dispatcher=request.getRequestDispatcher(nextPage);
 			dispatcher.forward(request, response);
