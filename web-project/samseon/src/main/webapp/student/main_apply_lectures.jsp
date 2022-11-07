@@ -24,20 +24,69 @@
         <script src="${contextPath}/js/menu_second.js"></script>
         <title>삼선대학교</title>
         <script type="text/javascript">
-        	/* fn_check() {
-        		let checkbox=document.getElementByName("addLecture");
-        		for(int i=0; checkbox.length(); i++) {
-        			if(checkbox[i].checked) {
-		        		let pf_id=document.getElementByName("pf_id")[i].value;
-		        		let pf_name=document.getElementByName("pf_name")[i].value;
-		        		let cl_name=document.getElementByName("cl_name")[i].value;
-		        		let cl_id=document.getElementByName("cl_id")[i].value;
-		        		let cl_pt=document.getElementByName("cl_pt")[i].value;
-		        		let cl_sem=document.getElementByName("cl_sem")[i].value;
-		        		
-        			}
-        		}
-        	} */
+        	window.onload = function() {
+        		const search_btn=document.querySelector(".search_btn");
+				//select, input에 입력된 값이 있으면 name과 value를 저장할 배열
+				let names=[];
+				let values=[];
+				let obj={};
+				search_btn.addEventListener("click", search);
+				function search() {
+					let search=document.getElementsByClassName("searchable");
+					for(let i=0; i<search.length; i++) {
+						if(search[i].value != '' && search[i].value != null && search[i].value.length != 0) {
+							names.push(search[i].getAttribute("name"));
+							values.push(search[i].value);
+						}
+					}
+					if(names.length != 0) {
+						//ajax로 names, values 전송하고 json으로 검색된 값 반환받기
+						$.ajax({
+							type:"post",
+							async:"true",
+							traditional: true,
+							url:"${contextPath}/subject/search.do",
+							data:{nameArr:names,
+								  valueArr:values},
+							dataType:"json",
+							success:function (data) {
+								names=[];
+								values.length=0;
+								if(data.searchClass.length != 0) {
+									let searchResult="";
+									for(let i in data.searchClass) {
+										searchResult+="<tr>";
+										searchResult+='<td><input type="checkbox" name="addLecture" value=' + i +'></td>';
+										searchResult+='<td>' + data.searchClass[i].cl_mj_t + '</td>';
+										searchResult+='<td>' + data.searchClass[i].m_name + '</td>';
+										searchResult+='<td>' + data.searchClass[i].cl_name + '</td>';
+										searchResult+='<td>' + data.searchClass[i].cl_pt + '</td>';
+										searchResult+='<td>' + data.searchClass[i].cl_size + '</td>';
+										searchResult+='<td>' + data.searchClass[i].pf_name + '</td>';
+										searchResult+='<td>' + data.searchClass[i].cl_room + '</td>';
+										searchResult+='<td>' + data.searchClass[i].cl_time + '</td>';
+										searchResult+='<input type="hidden" name="pf_id" value="' + data.searchClass[i].pf_id + '">';
+										searchResult+='<input type="hidden" name="pf_name" value="' + data.searchClass[i].pf_name + '">';
+										searchResult+='<input type="hidden" name="cl_name" value="' + data.searchClass[i].cl_name + '">';
+										searchResult+='<input type="hidden" name="cl_id" value="' + data.searchClass[i].cl_id + '">';
+										searchResult+='<input type="hidden" name="cl_pt" value="' + data.searchClass[i].cl_pt + '">';
+										searchResult+='<input type="hidden" name="cl_sem" value="' + data.searchClass[i].cl_sem + '">';
+										searchResult+='</tr>';
+									}
+									document.querySelector('#sugang').innerHTML=searchResult;
+								} else {
+									alert('검색한 조건의 강의가 존재하지 않습니다.');
+									$('.defaultOption').prop('selected', true);
+									$('#cl_nameBox').val('');
+								}
+							},
+							error:function(data) {
+								alert('에러가 발생했습니다.');
+							}
+						});
+					}
+				}
+        	}
         </script>
       </head>
 
@@ -78,17 +127,18 @@
 	                  <div class="lt_select">
 	                    <label class="lt_label">교과구분</label>
 	                    <div class="lt_inner">
-	                      <select name="cl_mj_t" id="lt_options">
-	                        <option value="none">선택</option>
-	                        <option value="major">전공과목</option>
-	                        <option value="elective">교양과목</option>
+	                      <select name="cl_mj_t" id="lt_options" class="searchable">
+	                        <option value="" selected class="defaultOption">선택</option>
+	                        <option value="전공">전공과목</option>
+	                        <option value="교양">교양과목</option>
 	                      </select>
 	                    </div>
 	                  </div>
 	                  <div class="lt_select">
 	                    <label class="lt_label">전공</label>
 	                    <div class="lt_inner">
-	                      <select name="m_name" id="lt_options">
+	                      <select name="m_name" id="lt_options" class="searchable">
+	                      <option value="" selected class="defaultOption">선택</option>
 	                        <c:forEach var="major" items="${majorList}">
 		                  		<option value="${major}">${major}</option>
 		                  	</c:forEach>
@@ -98,7 +148,7 @@
 	                  <div class="lt_input_text">
 	                    <label class="lt_label">과목명</label>
 	                    <div>
-	                      <input type="text" name="cl_name">
+	                      <input type="text" name="cl_name" class="searchable" id="cl_nameBox">
 	                    </div>
 	                  </div>
 	                  <div class="lt_search_submit lt_select">
@@ -133,27 +183,25 @@
 		            			<tr colsapn="9"><td colspan="9">수강 신청할 수 있는 강의가 아직 등록되지 않았습니다.</td></tr>
 		            		</c:when>
 		            		<c:otherwise>
-		            			<tr>
-		            				<c:forEach var="lecture" items="${sugangList}" varStatus="sugang">
-			            				<tr>
-				            				<td><input type="checkbox" name="addLecture" value="${sugang.count}"></td>
-				            				<td>${lecture.cl_mj_t}</td>
-				            				<td>${lecture.m_name}</td>
-				            				<td>${lecture.cl_name}</td>
-				            				<td>${lecture.cl_pt}</td>
-				            				<td>${lecture.cl_size}</td>
-				            				<td>${lecture.pf_name}</td>
-				            				<td>${lecture.cl_room}</td>
-				            				<td>${lecture.cl_time}</td>
-				            				<input type="hidden" name="pf_id" value="${lecture.pf_id}">
-				            				<input type="hidden" name="pf_name" value="${lecture.pf_name}">
-				            				<input type="hidden" name="cl_name" value="${lecture.cl_name}">
-				            				<input type="hidden" name="cl_id" value="${lecture.cl_id}">
-				            				<input type="hidden" name="cl_pt" value="${lecture.cl_pt}">
-				            				<input type="hidden" name="cl_sem" value="${lecture.cl_sem}">
-			            				</tr>
-		            				</c:forEach>
-		            			</tr>
+	            				<c:forEach var="lecture" items="${sugangList}" varStatus="sugang">
+		            				<tr>
+			            				<td><input type="checkbox" name="addLecture" value="${sugang.index}"></td>
+			            				<td>${lecture.cl_mj_t}</td>
+			            				<td>${lecture.m_name}</td>
+			            				<td>${lecture.cl_name}</td>
+			            				<td>${lecture.cl_pt}</td>
+			            				<td>${lecture.cl_size}</td>
+			            				<td>${lecture.pf_name}</td>
+			            				<td>${lecture.cl_room}</td>
+			            				<td>${lecture.cl_time}</td>
+			            				<input type="hidden" name="pf_id" value="${lecture.pf_id}">
+			            				<input type="hidden" name="pf_name" value="${lecture.pf_name}">
+			            				<input type="hidden" name="cl_name" value="${lecture.cl_name}">
+			            				<input type="hidden" name="cl_id" value="${lecture.cl_id}">
+			            				<input type="hidden" name="cl_pt" value="${lecture.cl_pt}">
+			            				<input type="hidden" name="cl_sem" value="${lecture.cl_sem}">
+		            				</tr>
+	            				</c:forEach>
 		            		</c:otherwise>
 		            	</c:choose>
 	                  </tbody>

@@ -24,4 +24,8 @@ public class SugangSubjectService {
 	public boolean isRegistered(int st_id, int cl_id) {
 		return sugangSubjectDAO.idRegistered(st_id, cl_id);
 	}
+
+	public List<SugangSubjectVO> searchClass(String[] names, String[] values) {
+		return sugangSubjectDAO.selectSearchClass(names, values);
+	}
 }
