@@ -1,4 +1,8 @@
 /*초기화*/
+html {
+  height: 100%;
+}
+
 html,
 body,
 div,
@@ -224,11 +228,12 @@ header .head1,
   /* height: 650px; => min-height 900으로 수정 (1105, 영민) */
   min-height: 900px;
   width: 100%;
+  /* max-height: 100vh; */
 }
 #main_menu_back {
   background-color: #ea965a;
   float: left;
-  height: 100vw;
+  height: 100vh;
   min-height: 900px;
   width: 235px;
   display: block;
@@ -349,3 +354,7 @@ header .head1,
 #contents_area {
   overflow: hidden;
 }
+
+/* width: 100vw;
+  height: 56.25vw;
+  max-height: 170vh; */
