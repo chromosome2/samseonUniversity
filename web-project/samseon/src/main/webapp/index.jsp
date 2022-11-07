@@ -26,6 +26,11 @@
 			}
 		</script>
 	</c:if>
+	<c:if test="${isLogin == true && (!empty studentInfo || !empty professorInfo || !empty adminInfo)}">
+		 <script>
+		 	location.href="${contextPath}/board/listArticles.do";
+		 </script>    
+	</c:if>
 </head>
 
 <body>

@@ -3,6 +3,7 @@ package samseon.sugangSubject;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 @WebServlet("/subject/*")
 public class SugangSubjectController extends HttpServlet {
@@ -60,7 +64,7 @@ public class SugangSubjectController extends HttpServlet {
 				String[] cl_pt=request.getParameterValues("cl_pt");
 				String[] cl_sem=request.getParameterValues("cl_sem");
 				for(int i=0; i<addLecture.length; i++) {
-					int idx=Integer.parseInt(addLecture[i])-1;
+					int idx=Integer.parseInt(addLecture[i]);
 					int _pf_id=Integer.parseInt(pf_id[idx]);
 					String _pf_name=pf_name[idx];
 					String _cl_name=cl_name[idx];
@@ -93,6 +97,37 @@ public class SugangSubjectController extends HttpServlet {
 						+ "alert('수강 신청되었습니다.');"
 						+ "location.href='" + request.getContextPath() + "/subject/listLectures.do';"
 						+ "</script>");
+				return;
+			}else if(action.equals("/search.do")) {  //강의 검색하기
+				String[] names=request.getParameterValues("nameArr");
+				String[] values=request.getParameterValues("valueArr");
+				List<SugangSubjectVO> searchList=sugangSubService.searchClass(names, values);
+				pw=response.getWriter();
+				JSONObject gObject=new JSONObject();
+				JSONArray searchArray=new JSONArray();
+				//json 데이터를 ajax로 전송
+				if(searchList.size() != 0) {
+					JSONObject searchInfo;
+					for(int i=0; i<searchList.size(); i++) {
+						searchInfo=new JSONObject();
+						searchInfo.put("cl_mj_t", searchList.get(i).getCl_mj_t());
+						searchInfo.put("m_name", searchList.get(i).getM_name());
+						searchInfo.put("cl_name", searchList.get(i).getCl_name());
+						searchInfo.put("cl_pt", searchList.get(i).getCl_pt());
+						searchInfo.put("cl_size", searchList.get(i).getCl_size());
+						searchInfo.put("pf_name", searchList.get(i).getPf_name());
+						searchInfo.put("cl_room", searchList.get(i).getCl_room());
+						searchInfo.put("cl_time", searchList.get(i).getCl_time());
+						searchInfo.put("pf_id", searchList.get(i).getPf_id());
+						searchInfo.put("cl_id", searchList.get(i).getCl_id());
+						searchInfo.put("cl_sem", searchList.get(i).getCl_sem());
+						searchArray.add(searchInfo);
+					}
+				}
+				gObject.put("searchClass", searchArray);
+				String searchStr=gObject.toJSONString();
+				pw.print(searchStr);
+				pw.flush();
 				return;
 			}
 			RequestDispatcher dispatcher=request.getRequestDispatcher(nextPage);
