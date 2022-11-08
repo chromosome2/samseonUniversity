@@ -35,68 +35,54 @@
 
     <div id="contents_area">
       <div class="table_header">
-        <h3>출석 관리</h3>
+        <h3>강의이름 출석 관리</h3>
       </div>
       <section class="contents_wrapper">
-				<div class="tbl_area">
-
+				<div class="tbl_area">            		
 					<div class="tbl_header">
 						<table border="0" cellpadding="0" cellspacing="0">
 							<thead>
 								<tr>
-									<th colspan="7">출석</th>
+									<th>NO</th>
+									<th>학생이름</th>
+									<th>강의 이름(과목)</th>
+									<th>출석률</th>
+									<th >출석 등록</th>
 								</tr>
 							</thead>
 						</table>
 					</div>
-					<div class="tbl_content">
+					<div class="tbl_content1">
 						<table border="0" cellpadding="0" cellspacing="0">
 							<tbody>
 								<%--<c:choose>
 									<c:when test="${empty}">
 										<form action="">
 											<tr>
-												<td>n주차</td> 
-												<td>월<input type="checkbox" name="day" value="1"></td>
-												<td>화<input type="checkbox" name="day" value="1"></td>
-												<td>수<input type="checkbox" name="day" value="1"></td>
-												<td>목<input type="checkbox" name="day" value="1"></td>
-												<td>금<input type="checkbox" name="day" value="1"></td>
-												<td><button class="apply_btn">제출</button></td>
+												<td colspan="">조회된 학생이 없습니다.</td>
 											</tr>
 										</form>
-									</c:when>
+											</c:when>
 									<c:when test="${!empty  }">
 										<form action="">
-											<c:forEach var="" items="${}"> --%>
-												<tr>
-													<td>n주차</td> 
-													<td>월<input type="checkbox" name="day" value="1"></td>
-													<td>화<input type="checkbox" name="day" value="1"></td>
-													<td>수<input type="checkbox" name="day" value="1"></td>
-													<td>목<input type="checkbox" name="day" value="1"></td>
-													<td>금<input type="checkbox" name="day" value="1"></td>
-												</tr>
-									<%--</c:forEach>
-											<tr>
-												<td>n주차</td> 
-												<td>월<input type="checkbox" name="day" value="1"></td>
-												<td>화<input type="checkbox" name="day" value="1"></td>
-												<td>수<input type="checkbox" name="day" value="1"></td>
-												<td>목<input type="checkbox" name="day" value="1"></td>
-												<td>금<input type="checkbox" name="day" value="1"></td>
-												<td><button class="apply_btn">제출</button></td>
-											</tr>
+											<c:forEach var="" items="${}">--%>
+													<tr>
+														<td>1</td> 
+														<td>유해찬</td>
+														<td>잘학고싶다과</td>
+														<td>10/30[총일수] ?</td>
+														<td><input type="radio" value="1"></td>
+													</tr> 
+											<%--</c:forEach>
 										</form>
-											
-											<!-- 체크시 1 증가 총 수업날짜 ex) 5/30 이런식으로 표기? 수업 기간2달 60일 수업날짜 45일 이런식? -->
 									</c:when>
 								</c:choose> --%>
 							</tbody>
 						</table>
-						<br>
-					
 					</div>
+				</div>
+				<div class="sb_btn">
+						<input type="submit" class="apply_btn">
 				</div>
       </section>
     </div>
