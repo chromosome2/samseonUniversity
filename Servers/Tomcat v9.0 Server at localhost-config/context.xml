@@ -35,5 +35,10 @@
     	username="SAMSEONUNIVERSITY"
     	password="1234"
     	maxActive="50"
+<<<<<<< HEAD
+    	maxWait="-1"
+    />
+=======
     	maxWait="-1"/>
+>>>>>>> 8f405b406fd96c41318d65c0f42704f48b9daf6b
 </Context>

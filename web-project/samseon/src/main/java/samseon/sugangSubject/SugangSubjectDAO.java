@@ -139,4 +139,62 @@ public class SugangSubjectDAO {
 		return result;
 	}
 	
+	//강의 검색
+	public List<SugangSubjectVO> selectSearchClass(String[] names, String[] values) {
+		List<SugangSubjectVO> searchList=new ArrayList<SugangSubjectVO>();
+		try {
+			conn=dataFactory.getConnection();
+//			String query="select * from subjecttbl where " + names[0] + " like '%" + values[0] + "%'";
+//			if(names.length > 1) {
+//				query+=" and " + names[1] + " like '%" + values[1] + "%'";
+//			}
+//			if(names.length > 2) {
+//				query+=" and " + names[2] + " like '%" + values[2] + "%'";
+//			}
+			String query="select * from subjecttbl where " + names[0] + " like '%" + values[0] + "%'";
+			if(names.length > 1) {
+				query+=" and " + names[1] + " like '%" + values[1] + "%'";
+			}
+			if(names.length > 2) {
+				query+=" and " + names[2] + " like '" + values[2] + "%'";
+			}
+			query+=" order by m_name asc, cl_id desc";
+			System.out.println(query);
+			pstmt=conn.prepareStatement(query);
+			ResultSet rs=pstmt.executeQuery();
+			while(rs.next()) {
+				int pf_id=rs.getInt("pf_id");
+				String pf_name=rs.getString("pf_name");
+				String cl_name=rs.getString("cl_name");
+				int cl_id=rs.getInt("cl_id");
+				int cl_pt=rs.getInt("cl_pt");
+				String cl_time=rs.getString("cl_time");
+				String cl_mj_t=rs.getString("cl_mj_t");
+				String m_name=rs.getString("m_name");
+				String cl_room=rs.getString("cl_room");
+				int cl_sem=rs.getInt("cl_sem");
+				int cl_size=rs.getInt("cl_size");
+				SugangSubjectVO searchVO=new SugangSubjectVO();
+				searchVO.setPf_id(pf_id);
+				searchVO.setPf_name(pf_name);
+				searchVO.setCl_name(cl_name);
+				searchVO.setCl_id(cl_id);
+				searchVO.setCl_pt(cl_pt);
+				searchVO.setCl_time(cl_time);
+				searchVO.setCl_mj_t(cl_mj_t);
+				searchVO.setM_name(m_name);
+				searchVO.setCl_room(cl_room);
+				searchVO.setCl_sem(cl_sem);
+				searchVO.setCl_size(cl_size);
+				searchList.add(searchVO);
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			System.out.println("강의 검색 중 에러" + e.getMessage());
+		}
+		return searchList;
+	}
+	
 }
