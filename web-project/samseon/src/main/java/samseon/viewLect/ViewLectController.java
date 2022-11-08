@@ -14,10 +14,10 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/view/*")
 public class ViewLectController extends HttpServlet {
-	ViewLectDAO viewlectDao;
+	ViewLectService viewLectService;
 	
 	public ViewLectController() {
-		viewlectDao=new ViewLectDAO();
+		viewLectService=new ViewLectService();
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -40,15 +40,15 @@ public class ViewLectController extends HttpServlet {
 		try {
 			if(action.equals("/viewScores.do")) {
 				//System.out.println(id);
-				List<ViewLectVO> scoresList=viewlectDao.viewScores(id);
+				List<ViewLectVO> scoresList=viewLectService.viewScores_serv(id);
 				request.setAttribute("scoresList", scoresList);
 				
-				ViewLectVO student_info=viewlectDao.st_info(id);
+				ViewLectVO student_info=viewLectService.st_info_serv(id);
 				request.setAttribute("student_info", student_info);
 				
 				nextPage="/student/viewScores.jsp";
 			}else if(action.equals("/viewMyLectures.do")) {
-				List<ViewLectVO> lectureList=viewlectDao.view_lecture_list(id);
+				List<ViewLectVO> lectureList=viewLectService.view_lecture_list_serv(id);
 				request.setAttribute("lectureList", lectureList);
 				
 				nextPage="/student/viewMyLectures_ST.jsp";
