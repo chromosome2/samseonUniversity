@@ -1,16 +1,8 @@
 package samseon.viewLect;
 
 public class ViewLectVO {
-	private String st_name, m_name, dan, cl_name, s_final, pf_name, cl_time, st_cnd, comp_subject;
-	public String getComp_subject() {
-		return comp_subject;
-	}
-
-	public void setComp_subject(String comp_subject) {
-		this.comp_subject = comp_subject;
-	}
-
-	private int st_id, t_pt, cl_sem, cl_id, cl_check, cl_pt, s_first, s_second, cl_room;
+	private String st_name, m_name, dan, cl_name, s_final, pf_name, cl_time, st_cnd, comp_subject, cl_room;
+	private int st_id, t_pt, cl_sem, cl_id, cl_check, cl_pt, s_first, s_second;
 	
 	public ViewLectVO() {
 		System.out.println("viewLectVO 생성자 호출");
@@ -144,11 +136,20 @@ public class ViewLectVO {
 		this.s_second = s_second;
 	}
 
-	public int getCl_room() {
+	public String getCl_room() {
 		return cl_room;
 	}
 
-	public void setCl_room(int cl_room) {
+	public void setCl_room(String cl_room) {
 		this.cl_room = cl_room;
 	}
+	
+	public String getComp_subject() {
+		return comp_subject;
+	}
+
+	public void setComp_subject(String comp_subject) {
+		this.comp_subject = comp_subject;
+	}
+
 }

@@ -126,7 +126,7 @@ public class ViewLectDAO {
 				int s_first=rs.getInt("s_first");
 				int s_second=rs.getInt("s_second");
 				String cl_time=get_cl_time(cl_id);
-				int cl_room=get_cl_room(cl_id);
+				String cl_room=get_cl_room(cl_id);
 				
 				ViewLectVO viewlectVO=new ViewLectVO();
 				
@@ -354,8 +354,8 @@ public class ViewLectDAO {
 	}
 	
 	//강의실 가져오는 함수
-		public int get_cl_room(int cl_id) {
-			int cl_room=0;
+		public String get_cl_room(int cl_id) {
+			String cl_room=null;
 			try {
 				conn=dataFactory.getConnection();
 				String query="select cl_room from subjecttbl where cl_id=?";
@@ -364,7 +364,7 @@ public class ViewLectDAO {
 				pstmt.setInt(1, cl_id);
 				ResultSet rs=pstmt.executeQuery();
 				rs.next();
-				cl_room=rs.getInt("cl_room");
+				cl_room=rs.getString("cl_room");
 				rs.close();
 				pstmt.close();
 				conn.close();
