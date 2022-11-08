@@ -22,33 +22,33 @@
           <script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
           <script src="${contextPath}/js/common.js"></script>
           <script>
-          	function toList() {  //공지사항 목록 보기
-          		location.href="${contextPath}/board/listArticles.do";
-          	}
-          	function fn_modify(url, articleNo) {  //공지사항 수정
-          		let form=document.createElement("form");
-          		form.setAttribute("method","post");
-          		form.setAttribute("action",url);
-          		let articleNoInput=document.createElement("input");
-          		articleNoInput.setAttribute("type","hidden");
-          		articleNoInput.setAttribute("name","articleNo");
-          		articleNoInput.setAttribute("value",articleNo);
-          		form.appendChild(articleNoInput);
-          		document.body.appendChild(form);
-          		form.submit();
-          	}
-          	function fn_removeNotice(url, articleNo) {  //공지사항 삭제
-          		let form=document.createElement("form");
-          		form.setAttribute("method","post");
-          		form.setAttribute("action",url);
-          		let articleNoInput=document.createElement("input");
-          		articleNoInput.setAttribute("type","hidden");
-          		articleNoInput.setAttribute("name","articleNo");
-          		articleNoInput.setAttribute("value",articleNo);
-          		form.appendChild(articleNoInput);
-          		document.body.appendChild(form);
-          		form.submit();
-          	}
+            function toList() {  //공지사항 목록 보기
+              location.href = "${contextPath}/board/listArticles.do";
+            }
+            function fn_modify(url, articleNo) {  //공지사항 수정
+              let form = document.createElement("form");
+              form.setAttribute("method", "post");
+              form.setAttribute("action", url);
+              let articleNoInput = document.createElement("input");
+              articleNoInput.setAttribute("type", "hidden");
+              articleNoInput.setAttribute("name", "articleNo");
+              articleNoInput.setAttribute("value", articleNo);
+              form.appendChild(articleNoInput);
+              document.body.appendChild(form);
+              form.submit();
+            }
+            function fn_removeNotice(url, articleNo) {  //공지사항 삭제
+              let form = document.createElement("form");
+              form.setAttribute("method", "post");
+              form.setAttribute("action", url);
+              let articleNoInput = document.createElement("input");
+              articleNoInput.setAttribute("type", "hidden");
+              articleNoInput.setAttribute("name", "articleNo");
+              articleNoInput.setAttribute("value", articleNo);
+              form.appendChild(articleNoInput);
+              document.body.appendChild(form);
+              form.submit();
+            }
           </script>
 
           <title>삼선대학교</title>
@@ -89,16 +89,22 @@
                         </tr>
                         <tr>
                           <td colspan="2" class="th_write" height="300px">
-                            <div style="white-space: pre-wrap; text-align: justify !important; width: 800px; padding: 22px;">${article.content}</div>
+                            <div
+                              style="white-space: pre-wrap; text-align: justify !important; width: 800px; padding: 22px;">
+                              ${article.content}</div>
                           </td>
                         </tr>
                       </tbody>
                     </table>
+                    <div class="btn_result_div">
                       <input type="button" value="글 목록" class="btn_result" onclick="toList()">
                       <c:if test="${user_level == 'admin'}">
-                      <input type="button" value="수정" class="btn_result" onclick="fn_modify('${contextPath}/board/modNoticeForm.do', ${article.articleNo})">
-                      <input type="button" value="삭제" class="btn_result" onclick="fn_removeNotice('${contextPath}/board/removeNotice.do', ${article.articleNo})">
+                        <input type="button" value="수정" class="btn_result"
+                          onclick="fn_modify('${contextPath}/board/modNoticeForm.do', ${article.articleNo})">
+                        <input type="button" value="삭제" class="btn_result"
+                          onclick="fn_removeNotice('${contextPath}/board/removeNotice.do', ${article.articleNo})">
                       </c:if>
+                    </div>
                   </div>
                 </div>
               </section>

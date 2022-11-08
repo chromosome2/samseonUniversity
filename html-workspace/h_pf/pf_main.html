@@ -2,87 +2,148 @@
 <html lang="ko">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="images/logo.png">
-    <link rel="stylesheet" as="style" crossorigin
-        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard-dynamic-subset.css" />
-    <link rel="stylesheet" as="style" crossorigin
-        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
-    <link rel="stylesheet" href="../css/common.css">
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <script src="js/common.js"></script>
-    <title>삼선대학교</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="images/logo.png">
+  <link rel="stylesheet" as="style" crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard-dynamic-subset.css" />
+  <link rel="stylesheet" as="style" crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/board.css">
+  <script src="js/jquery-3.6.0.min.js"></script>
+  <script src="js/common.js"></script>
+  <title>삼선대학교</title>
 </head>
 
 <body>
-    <div id="wrapper">
-        <header>
-            <div class="head1">
-                <div class="black_head1"></div>
-                <div class="header_contents">
-                    <div class="white_head1">
-                        <h2 class="hidden">대학교 로고</h2>
-                        <a href="board.html">
-                            <img src="../images/logo.png" alt="삼선대학교 로고">
-                            <span>삼선대학교</span>
-                        </a>
-                    </div>
-                    <span class="st_name">컴퓨터공학과 김선생교수님</span>
-                    <ul class="mini_menu">
-                        <li><a href="#">학교 서비스</a>
-                            <ul class="service_menu">
-                                <li><a href="#">대학홈페이지</a></li>
-                                <li><a href="#">도서관</a></li>
-                                <li><a href="#">총학생회</a></li>
-                                <li><a href="#">학생생활상담소</a></li>
-                                <li><a href="#">취업정보센터</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <button type="button">로그아웃</button>
-                </div>
-            </div>
-            <div class="head2">
-            </div>
-            <div class="head3">
-            </div>
-        </header>
-
-        <div id="middle_area">
-            <div id="main_menu_back">
-                <nav>
-                    <h2 class="hidden">메인메뉴</h2>
-                    <ul class="main_menu">
-                        <li class="point"><a href="board.html" class="menu_title">공지사항</a></li>
-                        <li><a href="#" class="menu_title">수강신청</a></li>
-                        <li class="my_page">
-                            <div class="my_page_click_area"><a href="#" class="menu_title">마이페이지</a></div>
-                            <ul class="my_page_menu">
-                                <li><a href="viewScores.html">전체성적 조회</a></li>
-                                <li><a href="viewMyLectures_ST.html">수강중인 과목 조회</a></li>
-                                <li><a href="privacy_check.html">개인정보</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-
-            <div id="contents_area">
-            </div>
+  <div id="wrapper">
+    <header>
+      <div class="head1">
+        <div class="black_head1">
+          <h2 class="hidden">대학교 로고</h2>
+          <a href="board.html">
+            <img src="images/logo_white.png" alt="삼선대학교 로고">
+            <span>삼선대학교</span>
+          </a>
         </div>
+        <div class="header_contents">
+          <div class="white_head1">
+            <span class="st_name">컴퓨터공학과 조수진님</span>
+          </div>
+          <ul class="mini_menu">
+            <li><a href="#">학교 서비스</a>
+              <ul class="service_menu">
+                <li><a href="#">대학홈페이지</a></li>
+                <li><a href="#">도서관</a></li>
+                <li><a href="#">총학생회</a></li>
+                <li><a href="#">학생생활상담소</a></li>
+                <li><a href="#">취업정보센터</a></li>
+              </ul>
+            </li>
+          </ul>
+          <a href="index.html" class="btn_logout">로그아웃</a>
+        </div>
+      </div>
+      <div class="head2">
+      </div>
+      <div class="head3">
+      </div>
+    </header>
 
-        <footer id="footer">
-            <div id="footerInner">
-                <a href="#" class="privacy_policy">개인정보 처리방침</a>
-                <address>
-                    <span>서울시 종로구 종로동 11-1 삼선대학교</span>
-                    <span>Tel : 02)333-1234</span>
-                </address>
+    <div id="middle_area">
+      <div id="main_menu_back">
+        <nav>
+          <h2 class="hidden">메인메뉴</h2>
+          <ul class="main_menu">
+            <li class="first_menu_title"><a href="board.html" class="menu_title">공지사항</a></li>
+            <li class="second_menu_title"><a href="main_apply_lectures.html" class="menu_title">수강신청</a></li>
+            <li class="third_menu_title my_page">
+              <div class="my_page_click_area"><a href="#" class="menu_title">마이페이지</a></div>
+              <ul class="my_page_menu">
+                <li><a href="viewScores.html">전체성적 조회</a></li>
+                <li><a href="viewMyLectures_ST.html">수강중인 과목 조회</a></li>
+                <li><a href="privacy_check.html">개인정보</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div id="contents_area">
+        <div class="section_overall">
+          <div class="section_01">
+            <div class="section_header">
+              <h3>메뉴</h3>
             </div>
-        </footer>
+            <div class="container">
+              <div class="btn_div">
+                <button class="btn_move"><a href="#">나의 수업</a></button>
+                <button class="btn_move"><a href="#">수업 등록</a></button>
+                <button class="btn_move"><a href="#">마이페이지</a></button>
+                <button class="btn_move"><a href="#">로그아웃</a></button>
+              </div>
+            </div>
+          </div>
+          <div class="section_02">
+            <div class="section_header">
+              <h3>공지사항</h3>
+            </div>
+            <div class="container">
+              <table class="board-table">
+                <thead>
+                  <tr>
+                    <th scope="col" class="th-num">번호</th>
+                    <th scope="col" class="th-title">제목</th>
+                    <th scope="col" class="th-date">담당부서</th>
+                    <th scope="col" class="th-date">등록일</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>3</td>
+                    <th>
+                      <a href="#!">[공지사항] 2023학년도 여름계절학기 수요조사 안내</a>
+                      <p>테스트</p>
+                    </th>
+                    <td>학사팀</td>
+                    <td>2023.03.21</td>
+                  </tr>
+
+                  <tr>
+                    <td>2</td>
+                    <th><a href="#!">[연구지원팀] 2023년도 한국연구재단 과학기술정보통신부 소관 연구사업 공고 안내</a></th>
+                    <td>연구지원팀</td>
+                    <td>2023.03.15</td>
+                  </tr>
+
+                  <tr>
+                    <td>1</td>
+                    <th><a href="#!">[한국소프트웨어산업협회] 2023년 채용확정형 교육과정 상반기 1차 모집</a></th>
+                    <td>커리어센터</td>
+                    <td>2023.02.28</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <footer id="footer">
+      <div id="footerInner">
+        <a href="#" class="privacy_policy">개인정보 처리방침</a>
+        <address>
+          <span>서울시 종로구 종로동 11-1 삼선대학교</span>
+          <span>Tel : 02)333-1234</span>
+        </address>
+      </div>
+    </footer>
+  </div>
 </body>
 
 </html>

@@ -34,61 +34,89 @@
               </div>
               <div class="warningTxtDiv idWarning">
                 <svg viewBox="0 0 49 49" xmlns="http://www.w3.org/2000/svg" class="warningSvg idWarning">
-                  <path
-                    d="M24.1.9C10.9.9.1 11.7.1 24.9s10.8 24 24 24 24-10.8 24-24-10.8-24-24-24zm0 40.5c-2.1 0-3.8-1.7-3.8-3.8 0-2.1 1.7-3.8 3.8-3.8 2.1 0 3.8 1.7 3.8 3.8 0 2-1.7 3.8-3.8 3.8zm3.8-16.5c0 2.1-1.7 3.8-3.8 3.8-2.1 0-3.8-1.7-3.8-3.8V12.3c0-2.1 1.7-3.8 3.8-3.8 2.1 0 3.8 1.7 3.8 3.8v12.6z">
+                  <path d="M24.1.9C10.9.9.1 11.7.1 24.9s10.8 24 24 24 24-10.8 24-24-10.8-24-24-24zm0 40.5c-2.1 0-3.8-1.7-3.8-3.8 0-2.1 1.7-3.8 3.8-3.8 2.1 0 3.8 1.7 3.8 3.8 0 2-1.7 3.8-3.8 3.8zm3.8-16.5c0 2.1-1.7 3.8-3.8 3.8-2.1 0-3.8-1.7-3.8-3.8V12.3c0-2.1 1.7-3.8 3.8-3.8 2.1 0 3.8 1.7 3.8 3.8v12.6z">
                   </path>
                 </svg>
                 <p class="warningTxt">학번을 입력해주세요</p>
               </div>
               <div class="join_txt_area">
                 <span class="inner_warning">비밀번호</span>
-                <input type="text" name="pwd" autocomplete="off" autocorrect="off" autocapitalize="none" title="비밀번호 입력"
-                  class="input_value pwd_change" id="pwd">
+                <input type="password" id="pwd" name="pwd" autocomplete="off" autocorrect="off" autocapitalize="none"
+                  title="비밀번호 입력" class="input_value pwd_change" id="pwd">
               </div>
               <div class="join_txt_area">
                 <span class="inner_warning">비밀번호 확인</span>
-                <input type="text" name="pwd1" autocomplete="off" autocorrect="off" autocapitalize="none"
+                <input type="password" name="pwd1" autocomplete="off" autocorrect="off" autocapitalize="none"
                   title="비밀번호 입력" class="input_value pwd_check_change" id="pwd_check">
+              </div>
+              <div class="warningTxtDiv pwdWarning">
+                <svg viewBox="0 0 49 49" xmlns="http://www.w3.org/2000/svg" class="warningSvg">
+                  <path d="M24.1.9C10.9.9.1 11.7.1 24.9s10.8 24 24 24 24-10.8 24-24-10.8-24-24-24zm0 40.5c-2.1 0-3.8-1.7-3.8-3.8 0-2.1 1.7-3.8 3.8-3.8 2.1 0 3.8 1.7 3.8 3.8 0 2-1.7 3.8-3.8 3.8zm3.8-16.5c0 2.1-1.7 3.8-3.8 3.8-2.1 0-3.8-1.7-3.8-3.8V12.3c0-2.1 1.7-3.8 3.8-3.8 2.1 0 3.8 1.7 3.8 3.8v12.6z">
+                  </path>
+                </svg>
+                <p class="warningTxt">비밀번호를 입력해주세요</p>
               </div>
               <div class="join_txt_area">
                 <span class="inner_warning">이름</span>
-                <input type="text" name="name" autocomplete="off" autocorrect="off" autocapitalize="none" title="이름 입력"
-                  class="input_value name_change">
+                <input type="text" id="username" name="name" autocomplete="off" autocorrect="off" autocapitalize="none"
+                  title="이름 입력" class="input_value name_change">
+              </div>
+              <div class="warningTxtDiv nameWarning">
+                <svg viewBox="0 0 49 49" xmlns="http://www.w3.org/2000/svg" class="warningSvg">
+                  <path d="M24.1.9C10.9.9.1 11.7.1 24.9s10.8 24 24 24 24-10.8 24-24-10.8-24-24-24zm0 40.5c-2.1 0-3.8-1.7-3.8-3.8 0-2.1 1.7-3.8 3.8-3.8 2.1 0 3.8 1.7 3.8 3.8 0 2-1.7 3.8-3.8 3.8zm3.8-16.5c0 2.1-1.7 3.8-3.8 3.8-2.1 0-3.8-1.7-3.8-3.8V12.3c0-2.1 1.7-3.8 3.8-3.8 2.1 0 3.8 1.7 3.8 3.8v12.6z">
+                  </path>
+                </svg>
+                <p class="warningTxt">이름을 입력해주세요</p>
               </div>
               <div class="join_txt_area">
                 <span class="inner_warning">휴대폰 번호 ('-'제외 11자리 입력)</span>
-                <input type="text" name="phone" autocomplete="off" autocorrect="off" autocapitalize="none"
+                <input type="text" id="phone" name="phone" autocomplete="off" autocorrect="off" autocapitalize="none"
                   title="휴대폰 번호 입력" class="input_value">
               </div>
-              <div class="join_txt_area postal_wrap">
-                <div class="join_txt_area postal_input postal_wrap_1st">
-                  <span class="inner_hidden_warning">우편번호</span>
-                  <input class="input_value_none" name="addr" id="sample4_postcode" type="text">
-                </div>
-                <div class="postal_input">
-                  <span class="postal_span inner_warning btn_addr_txt">주소 찾기</span>
-                  <input type="button" onclick="sample4_execDaumPostcode()" class="input_value_none btn_addr">
-                </div>
+              <div class="warningTxtDiv phoneWarning">
+                <svg viewBox="0 0 49 49" xmlns="http://www.w3.org/2000/svg" class="warningSvg">
+                  <path d="M24.1.9C10.9.9.1 11.7.1 24.9s10.8 24 24 24 24-10.8 24-24-10.8-24-24-24zm0 40.5c-2.1 0-3.8-1.7-3.8-3.8 0-2.1 1.7-3.8 3.8-3.8 2.1 0 3.8 1.7 3.8 3.8 0 2-1.7 3.8-3.8 3.8zm3.8-16.5c0 2.1-1.7 3.8-3.8 3.8-2.1 0-3.8-1.7-3.8-3.8V12.3c0-2.1 1.7-3.8 3.8-3.8 2.1 0 3.8 1.7 3.8 3.8v12.6z">
+                  </path>
+                </svg>
+                <p class="warningTxt">휴대폰번호를 입력해주세요</p>
               </div>
-              <div class="join_txt_area">
-                <span class="inner_hidden_warning">도로명주소</span>
-                <input class="input_value_none" name="addr" id="sample4_roadAddress" type="text">
-              </div>
-              <div class="join_txt_area">
-                <span class="inner_warning">상세주소</span>
-                <input class="input_value postal_change" name="addr" id="sample4_detailAddress" type="text">
-              </div>
+
               <div class="optional_area">
                 <p class="optianl_txt">선택입력</p>
+                <div class="join_txt_area postal_wrap">
+                  <div class="join_txt_area postal_input postal_wrap_1st">
+                    <span class="inner_hidden_warning">우편번호</span>
+                    <input class="input_value_none" name="addr" id="sample4_postcode" type="text">
+                  </div>
+                  <div class="postal_input">
+                    <span class="postal_span inner_warning btn_addr_txt">주소 찾기</span>
+                    <input type="button" onclick="sample4_execDaumPostcode()" class="input_value_none btn_addr">
+                  </div>
+                </div>
+                <div class="join_txt_area">
+                  <span class="inner_hidden_warning">도로명주소</span>
+                  <input class="input_value_none" name="addr" id="sample4_roadAddress" type="text">
+                </div>
+                <div class="join_txt_area">
+                  <span class="inner_warning">상세주소</span>
+                  <input class="input_value postal_change" name="addr" id="sample4_detailAddress" type="text">
+                </div>
                 <div class="join_txt_area">
                   <span class="inner_warning">이메일</span>
                   <input id="email" class="input_value email_change" type="text" name="email" autocomplete="off"
                     autocorrect="off" autocapitalize="none" title="이메일 입력" class="input_value" />
                 </div>
+                <div class="warningTxtDiv emailWarning">
+                  <svg viewBox="0 0 49 49" xmlns="http://www.w3.org/2000/svg" class="warningSvg">
+                    <path d="M24.1.9C10.9.9.1 11.7.1 24.9s10.8 24 24 24 24-10.8 24-24-10.8-24-24-24zm0 40.5c-2.1 0-3.8-1.7-3.8-3.8 0-2.1 1.7-3.8 3.8-3.8 2.1 0 3.8 1.7 3.8 3.8 0 2-1.7 3.8-3.8 3.8zm3.8-16.5c0 2.1-1.7 3.8-3.8 3.8-2.1 0-3.8-1.7-3.8-3.8V12.3c0-2.1 1.7-3.8 3.8-3.8 2.1 0 3.8 1.7 3.8 3.8v12.6z">
+                    </path>
+                  </svg>
+                  <p class="warningTxt">이름을 입력해주세요</p>
+                </div>
               </div>
               <div class="join_txt_area">
                 <span class="inner_warning btn_addr_txt">가입하기</span>
-                <input type="submit" name="pwd" autocomplete="off" autocorrect="off" autocapitalize="none"
+                <input type="submit" name="pwd" id="submit" autocomplete="off" autocorrect="off" autocapitalize="none"
                   title="비밀번호 입력" class="input_value_none btn_addr" placeholder="">
               </div>
             </form>

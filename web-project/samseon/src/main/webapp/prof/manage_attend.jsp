@@ -21,7 +21,7 @@
 		<link rel="stylesheet" href="${contextPath}/css/manage_attend.css">
     <script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
     <script src="${contextPath}/js/common.js"></script>
-	<script src="${contextPath}/js/menu_second.js"></script>
+	<script src="${contextPath}/js/menu_third.js"></script>
 	<script src="${contextPath}/js/table.js"></script>
 	<script src="${contextPath}/js/pf_menu.js"></script>
     <title>삼선대학교</title>

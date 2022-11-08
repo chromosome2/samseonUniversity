@@ -60,14 +60,25 @@
                                 <div class="tbl_content">
                                     <table border="0" cellpadding="0" cellspacing="0">
                                         <tbody>
-                                            <tr>
-                                                <td>조수진</td>
-                                                <td>202211111</td>
-                                                <td>컴퓨터공학과</td>
-                                                <td>IT대학</td>
-                                                <td>3/36</td>
-                                                <td>재직</td>
-                                            </tr>
+                                            <c:choose>
+                                           		<c:when test="${empty student_info }">
+                                           			<tr>
+                                           				<td colspan="8">
+                                           					<p align="center">등록된 학생정보가 없습니다.</p>
+                                           				</td>
+                                           			</tr>
+                                           		</c:when>
+                                           		<c:when test="${!empty student_info }">
+                                           			<tr>
+                                       					<td>${student_info.st_name }</td>
+                                       					<td>${student_info.st_id }</td>
+                                       					<td>${student_info.m_name}</td>
+                                       					<td>${student_info.dan }</td>
+	                                                    <td>${student_info.t_pt }/128</td>
+	                                                    <td>${student_info.st_cnd }</td>
+                                       				</tr>
+                                           		</c:when>
+                                           	</c:choose>
                                         </tbody>
                                     </table>
                                 </div>
@@ -92,56 +103,29 @@
                                     <div class="tbl_content">
                                         <table border="0" cellpadding="0" cellspacing="0">
                                             <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>2022.1</td>
-                                                    <td>123456</td>
-                                                    <td>프로그래밍기초</td>
-                                                    <td>90%</td>
-                                                    <td>3</td>
-                                                    <td>A</td>
-                                                    <td>수료</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>2022.1</td>
-                                                    <td>333333</td>
-                                                    <td>자바프로그래밍2</td>
-                                                    <td>50%</td>
-                                                    <td>3</td>
-                                                    <td>F</td>
-                                                    <td>미수료</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>2022.1</td>
-                                                    <td>333333</td>
-                                                    <td>자바프로그래밍2</td>
-                                                    <td>50%</td>
-                                                    <td>3</td>
-                                                    <td>F</td>
-                                                    <td>미수료</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>2022.1</td>
-                                                    <td>333333</td>
-                                                    <td>자바프로그래밍2</td>
-                                                    <td>50%</td>
-                                                    <td>3</td>
-                                                    <td>F</td>
-                                                    <td>미수료</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>2022.1</td>
-                                                    <td>333333</td>
-                                                    <td>자바프로그래밍2</td>
-                                                    <td>50%</td>
-                                                    <td>3</td>
-                                                    <td>F</td>
-                                                    <td>미수료</td>
-                                                </tr>
+                                            	<c:choose>
+                                            		<c:when test="${empty scoresList }">
+                                            			<tr>
+                                            				<td colspan="8">
+                                            					<p align="center">수강한 수업이 없습니다.</p>
+                                            				</td>
+                                            			</tr>
+                                            		</c:when>
+                                            		<c:when test="${!empty scoresList }">
+                                            			<c:forEach var="score" items="${scoresList }" varStatus="scoreNum">
+                                            				<tr>
+                                            					<td>${scoreNum.count }</td>
+                                            					<td>2022.${score.cl_sem }</td>
+                                            					<td>${score.cl_id}</td>
+                                            					<td>${score.cl_name }</td>
+			                                                    <td>${score.cl_check }%</td>
+			                                                    <td>${score.cl_pt}</td>
+			                                                    <td>${score.s_final }</td>
+			                                                    <td>${score.comp_subject}</td>
+                                            				</tr>
+                                            			</c:forEach>
+                                            		</c:when>
+                                            	</c:choose>
 
                                             </tbody>
                                         </table>
@@ -150,7 +134,7 @@
                                 <div class="table_under">
                                     <div class="result_area">
                                         <h3>총 학점: </h3>
-                                        <h3><span>39/128</span></h3>
+                                        <h3><span>${student_info.t_pt}/128</span></h3>
                                     </div>
                                     <div class="search_area">
                                         <select id="search_scores" name="search_scores">
