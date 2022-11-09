@@ -39,34 +39,24 @@
 							</c:when>
 							<c:when test="${user_level == 'professor'}">
 			                    <li class="first_menu_title"><a href="${contextPath}/board/listArticles.do" class="menu_title">공지사항</a></li>
-		                        <li class="second_menu_title"><a href="${contextPath}/prof/lecture_list.jsp" class="menu_title">수업 등록</a></li>
-		                        <li class="third_menu_title"><a href="${contextPath}/professor/listLectures.do" class="menu_title">나의 수업</a></li>					
+		                        <li class="second_menu_title"><a href="${contextPath}/view/pf_lectureList.do" class="menu_title">수업 등록</a></li>
+		                        <li class="third_menu_title"><a href="${contextPath}/professor/listLectures.do" class="menu_title">나의 수업</a></li>
 							</c:when>
 							<c:when test="${user_level == 'admin'}">
 			                    <li class="first_menu_title"><a href="${contextPath}/board/listArticles.do" class="menu_title">공지사항 관리</a></li>
 		                        <li class="second_menu_title"><a href="#" class="menu_title">학생, 교수 관리</a></li>					
 							</c:when>
 							<c:otherwise><%-- 이 부분은 로그인 안했을때 css 수정하기 위해서 넣어놨습니다! 나중에 작업 마치면 삭제하셔도 됩니다. --%>
-<<<<<<< HEAD
-
 								<li class="first_menu_title"><a href="${contextPath}/board/listArticles.do" class="menu_title">공지사항</a></li>
-		                        <li class="second_menu_title"><a href="${contextPath}/prof/lecture_list.jsp" class="menu_title">수업 등록</a></li>
-		                        <li class="third_menu_title"><a href="${contextPath}/prof/my_lecture.jsp" class="menu_title">나의 수업</a></li>
-		                        <li class="first_menu_title"><a href="${contextPath}/board/listArticles.do" class="menu_title">공지사항</a></li>
-		                        <li class="second_menu_title"><a href="${contextPath}/student/main_apply_lectures.jsp" class="menu_title">수강신청</a></li>
+		                        <li class="second_menu_title"><a href="${contextPath}/subject/listLectures.do" class="menu_title">수강신청</a></li>
 		                        <li class="third_menu_title my_page">
 		                        	<div class="my_page_click_area"><a href="#" class="menu_title">마이페이지</a></div>
 		                            <ul class="my_page_menu">
-		                                <li><a href="${contextPath}/student/viewScores.jsp"  class="first_my_page_title">전체성적 조회</a></li>
-		                                <li><a href="${contextPath}/student/viewMyLectures_ST.jsp" class="second_my_page_title">수강중인 과목 조회</a></li>
+		                                <li><a href="${contextPath}/view/viewScores.do"  class="first_my_page_title">전체성적 조회</a></li>
+		                                <li><a href="${contextPath}/view/viewMyLectures.do" class="second_my_page_title">수강중인 과목 조회</a></li>
 		                                <li><a href="${contextPath}/student/privacy_check.jsp" class="third_my_page_title">개인정보</a></li>
 		                            </ul>
-		                        </li>	
-=======
-								<li class="first_menu_title"><a href="${contextPath}/board/listArticles.do" class="menu_title">공지사항</a></li>
-		                        <li class="second_menu_title"><a href="${contextPath}/prof/lecture_list.jsp" class="menu_title">수업 등록</a></li>
-		                        <li class="third_menu_title"><a href="${contextPath}/prof/my_lecture.jsp" class="menu_title">나의 수업</a></li>
->>>>>>> 8f405b406fd96c41318d65c0f42704f48b9daf6b
+		                        </li>
 							</c:otherwise>
 	                    </c:choose>
                         

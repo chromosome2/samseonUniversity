@@ -52,6 +52,33 @@ public class ViewLectController extends HttpServlet {
 				request.setAttribute("lectureList", lectureList);
 				
 				nextPage="/student/viewMyLectures_ST.jsp";
+			}else if(action.equals("/pf_lectureList.do")) {
+				List<ViewLectVO> pf_LectureList=viewLectService.view_pf_lecture_list_serv(id);
+				request.setAttribute("pf_LectureList", pf_LectureList);
+				
+				nextPage="/prof/lecture_list.jsp";
+			}else if(action.equals("/add_lecture.do")) {
+				int pf_id=id;
+				int cl_id=Integer.parseInt(request.getParameter("cl_id"));
+				String cl_name=request.getParameter("cl_name");
+				int cl_pt=Integer.parseInt(request.getParameter("cl_pt"));
+				String cl_time=request.getParameter("cl_time");
+				String cl_room=request.getParameter("cl_room");
+				String cl_mj_t=request.getParameter("cl_mj_t");
+				System.out.println(pf_id+","+cl_id+","+cl_name+","+cl_pt+","+cl_time+","+cl_room+","+cl_mj_t);
+				
+				ViewLectVO viewlectVO=new ViewLectVO();
+				viewlectVO.setPf_id(pf_id);
+				viewlectVO.setCl_id(cl_id);
+				viewlectVO.setCl_name(cl_name);
+				viewlectVO.setCl_pt(cl_pt);
+				viewlectVO.setCl_time(cl_time);
+				viewlectVO.setCl_room(cl_room);
+				viewlectVO.setCl_mj_t(cl_mj_t);
+				
+				viewLectService.add_lecture_serv(viewlectVO);
+				request.setAttribute("lect_msg", "addLect");
+				nextPage="/view/pf_lectureList.do";
 			}
 			RequestDispatcher dispatcher=request.getRequestDispatcher(nextPage);
 			dispatcher.forward(request, response);

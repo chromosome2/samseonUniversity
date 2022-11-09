@@ -1,5 +1,6 @@
 package samseon.viewLect;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ViewLectService {
@@ -25,5 +26,16 @@ public class ViewLectService {
 	public List<ViewLectVO> view_lecture_list_serv(int id){
 		List<ViewLectVO> lectureList=viewLectDAO.view_lecture_list(id);
 		return lectureList;
+	}
+	
+	//교수의 등록 완료된 강의 보기
+	public List<ViewLectVO> view_pf_lecture_list_serv(int id){
+		List<ViewLectVO> pf_LectureList=viewLectDAO.view_pf_lecture_list(id);
+		return pf_LectureList;
+	}
+	
+	//교수 강의 등록
+	public void add_lecture_serv(ViewLectVO viewlectVO) {
+		viewLectDAO.add_lecture(viewlectVO);
 	}
 }

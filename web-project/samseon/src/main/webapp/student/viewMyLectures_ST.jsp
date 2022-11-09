@@ -76,7 +76,7 @@
 											<td>${lect.s_first}</td>
 											<td>${lect.s_second }</td>
 											<td>${lect.cl_time}</td>
-											<td>${lect.cl_room}호</td>
+											<td>${lect.cl_room}</td>
                           				</tr>
                           			</c:forEach>
                           		</c:when>
