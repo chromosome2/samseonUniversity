@@ -128,10 +128,12 @@ tr {
   border: none;
   background-color: #ea965a;
   border-radius: 3px;
-  font-size: 14px;
+  font-size: 13px;
   width: 70px;
   /* display: block; */
   font-weight: normal;
+  color: #fff;
+  letter-spacing: -0.02em;
 }
 
 .btn_cancle {
@@ -146,3 +148,71 @@ tr {
 }
 
 /* privacy submit */
+
+/* radion button */
+
+.td_radio {
+  text-align: left;
+  width: 220px;
+}
+
+.label_div {
+  display: flex;
+  padding-left: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  height: 42px;
+  width: 210px;
+  border: none;
+  border-right: 1px solid #ccc;
+  z-index: -1;
+}
+
+.tbl_input_radio {
+  margin: 0;
+  margin-right: 5px;
+}
+
+.idt_label:first-of-type {
+  border-right: none;
+}
+
+.idt_label > input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+}
+
+.idt_label {
+  border: 1px solid #ccc;
+  /* padding: -3px; */
+  cursor: default;
+}
+
+.idt_label input[type='radio'] + span {
+  width: 110px;
+  height: 42px;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: #fff; */
+  font-weight: 600;
+  z-index: 0;
+}
+
+.idt_label input[type='radio']:checked + span {
+  background-color: #ea965a !important;
+  border-color: #ccc;
+  z-index: 2;
+}
+
+[type='radio'] {
+  box-sizing: border-box;
+}
