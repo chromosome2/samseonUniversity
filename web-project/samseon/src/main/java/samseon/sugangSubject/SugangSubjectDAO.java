@@ -161,19 +161,12 @@ public class SugangSubjectDAO {
 		List<SugangSubjectVO> searchList=new ArrayList<SugangSubjectVO>();
 		try {
 			conn=dataFactory.getConnection();
-//			String query="select * from subjecttbl where " + names[0] + " like '%" + values[0] + "%'";
-//			if(names.length > 1) {
-//				query+=" and " + names[1] + " like '%" + values[1] + "%'";
-//			}
-//			if(names.length > 2) {
-//				query+=" and " + names[2] + " like '%" + values[2] + "%'";
-//			}
 			String query="select * from subjecttbl where " + names[0] + " like '%" + values[0] + "%'";
 			if(names.length > 1) {
 				query+=" and " + names[1] + " like '%" + values[1] + "%'";
 			}
 			if(names.length > 2) {
-				query+=" and " + names[2] + " like '" + values[2] + "%'";
+				query+=" and " + names[2] + " like '%" + values[2] + "%'";
 			}
 			query+=" order by m_name asc, cl_id desc";
 			System.out.println(query);
