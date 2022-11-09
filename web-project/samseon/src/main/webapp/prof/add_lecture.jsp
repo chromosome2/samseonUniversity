@@ -36,7 +36,7 @@
                         <section class="form_section">
                             <div class="contents_wrapper">
                                 <h3>수업 등록하기</h3>
-                                <form action="${contextPath}/" method="post" id="frm_add_lecture"
+                                <form action="${contextPath}/view/add_lecture.do" method="post" id="frm_add_lecture"
                                     name="frm_add_lecture">
                                     <table border="0" cellpadding="0" cellspacing="0" id="main_table">
                                         <tbody>
@@ -64,12 +64,12 @@
                                                 <th>강의 유형</th>
                                                 <td colspan="2">
                                                     <p>
-                                                        <input type="radio" id="major" value="0" name="cl_mj_t"
+                                                        <input type="radio" id="major" value="전공" name="cl_mj_t"
                                                             checked="checked">
                                                         <label for="major">전공</label>
                                                     </p>
                                                     <p>
-                                                        <input type="radio" id="GE" value="1" name="cl_mj_t">
+                                                        <input type="radio" id="GE" value="교양" name="cl_mj_t">
                                                         <label for="GE">교양</label>
                                                     </p>
                                                 </td>
@@ -78,7 +78,7 @@
                                     </table>
                                     <div class="input_submit">
                                         <input class="btn_submit button" type="submit" value="등록하기">
-                                        <a href="${contextPath}/prof/add_lecture_list.jsp"
+                                        <a href="${contextPath}/view/pf_lectureList.do"
                                             class="btn_cancle button">취소</a>
                                     </div>
                                 </form>

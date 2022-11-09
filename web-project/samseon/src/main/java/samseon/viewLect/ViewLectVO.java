@@ -1,11 +1,20 @@
 package samseon.viewLect;
 
 public class ViewLectVO {
-	private String st_name, m_name, dan, cl_name, s_final, pf_name, cl_time, st_cnd, comp_subject, cl_room;
-	private int st_id, t_pt, cl_sem, cl_id, cl_check, cl_pt, s_first, s_second;
+	private String st_name, m_name, dan, cl_name, s_final, pf_name, cl_time, st_cnd, comp_subject, cl_room, cl_mj_t;
+	private int st_id, t_pt, cl_sem, cl_id, cl_check, cl_pt, s_first, s_second, pf_id;
 	
 	public ViewLectVO() {
 		System.out.println("viewLectVO 생성자 호출");
+	}
+	
+	public ViewLectVO(int cl_id, String cl_name, int cl_pt, String cl_time, String cl_room, String cl_mj_t) {
+		this.cl_id=cl_id;
+		this.cl_name=cl_name;
+		this.cl_pt=cl_pt;
+		this.cl_time=cl_time;
+		this.cl_room=cl_room;
+		this.cl_mj_t=cl_mj_t;
 	}
 
 	public String getSt_name() {
@@ -151,5 +160,22 @@ public class ViewLectVO {
 	public void setComp_subject(String comp_subject) {
 		this.comp_subject = comp_subject;
 	}
+	
+	public String getCl_mj_t() {
+		return cl_mj_t;
+	}
 
+	public void setCl_mj_t(String cl_mj_t) {
+		this.cl_mj_t = cl_mj_t;
+	}
+
+	public int getPf_id() {
+		return pf_id;
+	}
+
+	public void setPf_id(int pf_id) {
+		this.pf_id = pf_id;
+	}
+
+	
 }
