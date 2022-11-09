@@ -26,7 +26,7 @@
     <!--
     <Manager pathname="" />
     -->
-    <Resource
+        <Resource
     	name="jdbc/oracle"
     	auth="Container"
     	type="javax.sql.DataSource"
@@ -34,7 +34,7 @@
     	url="jdbc:oracle:thin:@localhost:1521:XE"
     	username="SAMSEONDB"
     	password="0000"
-    	maxActive="50"
-
+        maxActive="50"
+        maxWait="-1"
     />
 </Context>
