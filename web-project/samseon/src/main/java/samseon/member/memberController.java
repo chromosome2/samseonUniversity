@@ -111,32 +111,50 @@ public class memberController extends HttpServlet {
 		*/
 		else if(action.equals("/join.do")) {  //가입
 			int id=Integer.parseInt(request.getParameter("id"));
-			String pwd=request.getParameter("pwd");
-			String name=request.getParameter("name");
-			String phone=request.getParameter("phone");
-			String email=request.getParameter("email");
-			String[] addr=request.getParameterValues("addr");
-			String address="";
-			for(int i=0; i<addr.length; i++) {
-				if(addr[i] != null && addr[i].length() != 0) {
-					address+=addr[i]+" ";
-				}
-			}
-			address=address.trim();
-			System.out.println(address);
-			memberVO.setId(id);
-			memberVO.setPwd(pwd);
-			memberVO.setName(name);
-			memberVO.setPhone(phone);
-			memberVO.setEmail(email);
-			memberVO.setAddr(address);
-			memberDAO.join(memberVO);
+			boolean usable=memberDAO.usableHakbun(id);
+			boolean overlappedID=memberDAO.overlappedID(id);
 			pw=response.getWriter();
-			pw.print("<script>"
-					+ "alert('회원가입 되었습니다.');"
-					+ "location.href='" + request.getContextPath() + "/index.jsp'"
-					+ "</script>");
-			return;
+			if(usable) {  //유효한 학번인지 확인
+				if(!overlappedID) {  //중복 가입 여부 확인
+					String pwd=request.getParameter("pwd");
+					String name=request.getParameter("name");
+					String phone=request.getParameter("phone");
+					String email=request.getParameter("email");
+					String[] addr=request.getParameterValues("addr");
+					String address="";
+					for(int i=0; i<addr.length; i++) {
+						if(addr[i] != null && addr[i].length() != 0) {
+							address+=addr[i]+" ";
+						}
+					}
+					address=address.trim();
+					System.out.println(address);
+					memberVO.setId(id);
+					memberVO.setPwd(pwd);
+					memberVO.setName(name);
+					memberVO.setPhone(phone);
+					memberVO.setEmail(email);
+					memberVO.setAddr(address);
+					memberDAO.join(memberVO);
+					pw.print("<script>"
+							+ "alert('회원가입 되었습니다.');"
+							+ "location.href='" + request.getContextPath() + "/index.jsp';"
+							+ "</script>");
+					return;
+				}else {
+					pw.print("<script>"
+							+ "alert('이미 가입되어 있는 학번입니다.');"
+							+ "location.href='" + request.getContextPath() + "/join.jsp';"
+							+ "</script>");
+					return;
+				}
+			}else {
+				pw.print("<script>"
+						+ "alert('학번이 유효하지 않습니다.');"
+						+ "location.href='" + request.getContextPath() + "/join.jsp';"
+						+ "</script>");
+				return;
+			}
 		}else if(action.equals("/checkPwd.do")) {  //비밀번호 확인
 			HttpSession session=request.getSession(false);
 			int id=(int) session.getAttribute("log_id");

@@ -46,7 +46,7 @@ public class SugangSubjectController extends HttpServlet {
 		try {
 			List<SugangSubjectVO> sugangList=new ArrayList<SugangSubjectVO>();
 			List<String> majorList=new ArrayList<String>();
-			if(action.equals("/listLectures.do")) {  //수강신청 전체 과목 조회
+			if(action.equals("/listLectures.do")) {  //수강신청 가능한 전체 과목 조회
 				sugangList=sugangSubService.listLectures();
 				majorList=sugangSubService.listMajors();
 				request.setAttribute("sugangList", sugangList);

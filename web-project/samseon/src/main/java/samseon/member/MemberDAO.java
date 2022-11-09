@@ -160,7 +160,7 @@ public class MemberDAO {
 		return adminInfo;
 	}
 	
-	/*
+	
 	//entrancetbl에서 학번 정보 존재하는지 확인
 	public boolean usableHakbun(int id) {
 		boolean result=false;
@@ -200,7 +200,6 @@ public class MemberDAO {
 		}
 		return result;
 	}
-	*/
 	
 	//회원 가입 시 유저레벨 확인
 	public String confirmUserLevel(MemberVO memberVO) {
