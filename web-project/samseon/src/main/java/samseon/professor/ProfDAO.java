@@ -72,9 +72,9 @@ public class ProfDAO {
 		ViewLectDAO viewLectDAO=new ViewLectDAO();
 		try {
 			conn=dataFactory.getConnection();
-			String query="SELECT c.st_id as st_id, s.st_name as st_name, s.st_ph as st_ph, s.st_email as st_email, s.m_name as m_name"
-					+ " FROM COURSEREGITBL c, STUDENTTBL s"
-					+ " WHERE CL_NAME = ? AND c.st_id = s.st_id "
+			String query="SELECT c.st_id as st_id, s.st_name as st_name, s.st_ph as st_ph, s.st_email as st_email, s.m_name as m_name, a.cl_check as cl_check "
+					+ " FROM COURSEREGITBL c, STUDENTTBL s, ATTENDANCETBL a "
+					+ " WHERE c.CL_NAME = ? AND c.st_id = s.st_id AND c.st_id=a.st_id AND c.cl_id=a.cl_id "
 					+ " order by st_id";
 			System.out.println(query);
 			pstmt=conn.prepareStatement(query);
@@ -87,6 +87,7 @@ public class ProfDAO {
 				String st_ph=rs.getString("st_ph");
 				String st_email=rs.getString("st_email");
 				String m_name=rs.getString("m_name");
+				int cl_check=rs.getInt("cl_check");
 				int s_first=getFirstScore(st_id, cl_name);
 				int s_second=getSecondScore(st_id, cl_name);
 				if(s_first != -1 && s_second != -1) {
@@ -100,6 +101,7 @@ public class ProfDAO {
 				vo.setSt_ph(st_ph);
 				vo.setSt_email(st_email);
 				vo.setM_name(m_name);
+				vo.setCl_check(cl_check);
 				studentList.add(vo);
 			}
 			rs.close();
