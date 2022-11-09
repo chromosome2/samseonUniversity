@@ -196,7 +196,7 @@ public class ViewLectDAO {
 	public void add_lecture(ViewLectVO viewlectVO) {
 		try {
 			conn=dataFactory.getConnection();
-			System.out.println(conn);
+			//System.out.println(conn);
 			int pf_id=viewlectVO.getPf_id();
 			String pf_name=get_pf_name(pf_id);
 			int cl_id=viewlectVO.getCl_id();
@@ -211,7 +211,7 @@ public class ViewLectDAO {
 			
 			String query="insert into subjecttbl (pf_id, pf_name, cl_name, cl_id, cl_pt, cl_time, cl_mj_t, m_name, cl_room, cl_sem) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			System.out.println(query);
-			pstmt=conn.prepareStatement(query);//에러
+			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, pf_id);
 			pstmt.setString(2, pf_name);
 			pstmt.setString(3,cl_name);
@@ -228,13 +228,114 @@ public class ViewLectDAO {
 			conn.close();
 		}catch(Exception e) {
 			e.printStackTrace();
-			System.out.println("교수 강의 등록 에러 : "+e.getMessage());
-			
-		}
-		finally {
-			
+			System.out.println("교수 강의 등록 에러 : "+e.getMessage());	
 		}
 	}
+	
+	//교수 수정강의 값 가져오기
+	public ViewLectVO find_mod_lect(int cl_id) {
+		ViewLectVO find_lect=new ViewLectVO();
+		try {
+			conn=dataFactory.getConnection();
+			String query="select cl_name, cl_pt, cl_time, cl_room, cl_mj_t from subjecttbl where cl_id=?";
+			System.out.println(query);
+			pstmt=conn.prepareStatement(query);
+			pstmt.setInt(1, cl_id);
+			ResultSet rs=pstmt.executeQuery();
+			rs.next();
+			String cl_name=rs.getString("cl_name");
+			int cl_pt=rs.getInt("cl_pt");
+			String cl_time=rs.getString("cl_time");
+			String cl_room=rs.getString("cl_room");
+			String cl_mj_t=rs.getString("cl_mj_t");
+			
+			find_lect.setCl_id(cl_id);
+			find_lect.setCl_name(cl_name);
+			find_lect.setCl_pt(cl_pt);
+			find_lect.setCl_time(cl_time);
+			find_lect.setCl_room(cl_room);
+			find_lect.setCl_mj_t(cl_mj_t);
+			rs.close();
+			pstmt.close();
+			conn.close();
+		}catch(Exception e) {
+			System.out.println("수정강의 값 가져오기 에러 : "+e.getMessage());
+		}
+		return find_lect;
+	}
+	
+	//교수 강의 수정
+	public void mod_lecture(ViewLectVO viewlectVO) {
+		int cl_id=viewlectVO.getCl_id();
+		int cl_pt=viewlectVO.getCl_pt();
+		String cl_time=viewlectVO.getCl_time();
+		String cl_room=viewlectVO.getCl_room();
+		String cl_mj_t=viewlectVO.getCl_mj_t();
+		try {
+			conn=dataFactory.getConnection();
+			String query="update subjecttbl set cl_pt=?, cl_time=?, cl_room=?, cl_mj_t=? where cl_id=?";
+			System.out.println(query);
+			
+			pstmt=conn.prepareStatement(query);
+			pstmt.setInt(1, cl_pt);
+			pstmt.setString(2,cl_time);
+			pstmt.setString(3, cl_room);
+			pstmt.setString(4, cl_mj_t);
+			pstmt.setInt(5, cl_id);
+			
+			pstmt.executeUpdate();
+			
+			query="update courseregitbl set cl_pt=? where cl_id=?";
+			System.out.println(query);
+			
+			pstmt=conn.prepareStatement(query);
+			pstmt.setInt(1, cl_pt);
+			pstmt.setInt(2,cl_id);
+			
+			pstmt.close();
+			conn.close();
+		}catch(Exception e) {
+			System.out.println("교수 강의 수정 에러 : "+e.getMessage());
+		}
+	}
+	
+	//강의 삭제
+	public void del_lect(int cl_id) {
+		try {
+			conn=dataFactory.getConnection();
+			String query="delete from subjecttbl where cl_id=?";
+			System.out.println(query);
+			pstmt=conn.prepareStatement(query);
+			pstmt.setInt(1, cl_id);
+			pstmt.executeUpdate();
+			pstmt.close();
+			conn.close();
+		}catch(Exception e) {
+			System.out.println("강의 삭제 에러 : "+e.getMessage());
+		}
+	}
+	
+	//강의 코드 중복 확인
+	public boolean check_cl_id(int cl_id) {
+		boolean result=false;
+		try {
+			conn=dataFactory.getConnection();
+			String query="select decode(count(*), 1, 'true', 'false') as result from subjecttbl where cl_id=?";
+			System.out.println(query);
+			pstmt=conn.prepareStatement(query);
+			pstmt.setInt(1, cl_id);
+			ResultSet rs=pstmt.executeQuery();
+			rs.next();
+			result=Boolean.parseBoolean(rs.getString("result"));
+			rs.close();
+			pstmt.close();
+			conn.close();
+		}catch(Exception e) {
+			System.out.println("강의 코드 중복 확인 에러 : "+e.getMessage());
+		}
+		return result;
+	}
+	
 	
 	//졸업 취득 학점 가져오기
 	public int get_t_pt(int id) {

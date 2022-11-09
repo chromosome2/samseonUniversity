@@ -21,7 +21,6 @@
                 <script src="${contextPath}/js/common.js"></script>
                 <script src="${contextPath}/js/menu_second.js"></script>
                 <script src="${contextPath}/js/pf_menu.js"></script>
-                <script src="${contextPath}/js/add_lecture.js"></script>
                 <title>삼선대학교</title>
             </head>
 
@@ -36,44 +35,61 @@
                     <div id="contents_area">
                         <section class="form_section">
                             <div class="contents_wrapper">
-                                <h3>수업 등록하기</h3>
-                                <form action="${contextPath}/view/add_lecture.do" method="post" id="frm_add_lecture"
+                                <h3>수업 수정하기</h3>
+                                <form action="${contextPath}/view/mod_lecture.do" method="post" id="frm_add_lecture"
                                     name="frm_add_lecture">
                                     <table border="0" cellpadding="0" cellspacing="0" id="main_table">
                                         <tbody>
                                             <tr>
                                                 <th>과목 코드</th>
-                                                <td><input id="cl_id" class="tbl_input" type="number" name="cl_id" required></td>
+                                                <td><input class="tbl_input" type="number" name="cl_id" value="${find_lect.cl_id }" readonly></td>
                                             </tr>
                                             <tr>
                                                 <th>강의 이름</th>
-                                                <td><input class="tbl_input" type="text" name="cl_name" required></td>
+                                                <td><input class="tbl_input" type="text" name="cl_name" value="${find_lect.cl_name }" disabled></td>
                                             </tr>
                                             <tr>
                                                 <th>학점</th>
-                                                <td><input class="tbl_input" type="number" name="cl_pt" required></td>
+                                                <td><input class="tbl_input" type="number" name="cl_pt" value="${find_lect.cl_pt }"></td>
                                             </tr>
                                             <tr>
                                                 <th>강의 시간</th>
-                                                <td><input class="tbl_input" type="text" name="cl_time" required></td>
+                                                <td><input class="tbl_input" type="text" name="cl_time" value="${find_lect.cl_time }"></td>
                                             </tr>
                                             <tr>
                                                 <th>강의실</th>
-                                                <td><input class="tbl_input" type="text" name="cl_room" required></td>
+                                                <td><input class="tbl_input" type="text" name="cl_room" value="${find_lect.cl_room }"></td>
                                             </tr>
                                             <tr class="radio_btns">
                                                 <th>강의 유형</th>
-                                                <td colspan="2">
-                                                    <p>
-                                                        <input type="radio" id="major" value="전공" name="cl_mj_t"
-                                                            checked="checked">
-                                                        <label for="major">전공</label>
-                                                    </p>
-                                                    <p>
-                                                        <input type="radio" id="GE" value="교양" name="cl_mj_t">
-                                                        <label for="GE">교양</label>
-                                                    </p>
-                                                </td>
+                                                <c:choose>
+                                                	<c:when test="${find_lect.cl_mj_t eq '전공' }">
+                                                		<td colspan="2">
+		                                                    <p>
+		                                                        <input type="radio" id="major" value="전공" name="cl_mj_t"
+		                                                            checked="checked">
+		                                                        <label for="major">전공</label>
+		                                                    </p>
+		                                                    <p>
+		                                                        <input type="radio" id="GE" value="교양" name="cl_mj_t">
+		                                                        <label for="GE">교양</label>
+		                                                    </p>
+		                                                </td>
+                                                	</c:when>
+                                                	<c:when test="${find_lect.cl_mj_t eq '교양' }">
+                                                		<td colspan="2">
+		                                                    <p>
+		                                                        <input type="radio" id="major" value="전공" name="cl_mj_t">
+		                                                        <label for="major">전공</label>
+		                                                    </p>
+		                                                    <p>
+		                                                        <input type="radio" id="GE" value="교양" name="cl_mj_t" checked="checked">
+		                                                        <label for="GE">교양</label>
+		                                                    </p>
+		                                                </td>
+                                                	</c:when>
+                                                </c:choose>
+                                                
                                             </tr>
                                         </tbody>
                                     </table>
