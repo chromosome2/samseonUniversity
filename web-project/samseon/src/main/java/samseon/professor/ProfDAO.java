@@ -74,12 +74,11 @@ public class ProfDAO {
 			conn=dataFactory.getConnection();
 			String query="SELECT c.st_id as st_id, s.st_name as st_name, s.st_ph as st_ph, s.st_email as st_email, s.m_name as m_name"
 					+ " FROM COURSEREGITBL c, STUDENTTBL s"
-					+ " WHERE CL_NAME = ? AND c.st_id = s.st_id and c.st_id in (select s.st_id from scoretbl s where s.s_second is null and s.cl_name=?)"
+					+ " WHERE CL_NAME = ? AND c.st_id = s.st_id "
 					+ " order by st_id";
 			System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			pstmt.setString(1, cl_name);
-			pstmt.setString(2, cl_name);
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
 				ProfVO vo=new ProfVO();
@@ -116,7 +115,6 @@ public class ProfDAO {
 	private int getFirstScore(int st_id, String cl_name) {
 		int s_first=-1;
 		try {
-//			conn=dataFactory.getConnection();
 			String query="select s_first from scoretbl where st_id=? and cl_name=? and s_first is not null";
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, st_id);
@@ -126,8 +124,6 @@ public class ProfDAO {
 				s_first=rs2.getInt("s_first");
 			}
 			rs2.close();
-//			pstmt.close();
-//			conn.close();
 		} catch (Exception e) {
 			System.out.println();
 		}
@@ -139,7 +135,6 @@ public class ProfDAO {
 	private int getSecondScore(int st_id, String cl_name) {
 		int s_second=-1;
 		try {
-//			conn=dataFactory.getConnection();
 			String query="select s_second from scoretbl where st_id=? and cl_name=? and s_second is not null";
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, st_id);
@@ -149,8 +144,6 @@ public class ProfDAO {
 				s_second=rs3.getInt("s_second");
 			}
 			rs3.close();
-//			pstmt.close();
-//			conn.close();
 		} catch (Exception e) {
 			System.out.println();
 		}
