@@ -101,6 +101,7 @@ public class SugangSubjectDAO {
 		int cl_sem=sugangSubVO.getCl_sem();
 		try {
 			conn=dataFactory.getConnection();
+			//courseregitbl(수강신청)에 insert
 			String query="insert into courseregitbl values(?,?,?,?,?,?,?)";
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, st_id);
@@ -110,6 +111,22 @@ public class SugangSubjectDAO {
 			pstmt.setInt(5, cl_id);
 			pstmt.setInt(6, cl_pt);
 			pstmt.setInt(7, cl_sem);
+			pstmt.executeUpdate();
+			//scoretbl(성적)에 insert
+			query="insert into scoretbl(pf_id, pf_name, st_id, cl_id, cl_name) values(?,?,?,?,?)";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setInt(1, pf_id);
+			pstmt.setString(2, pf_name);
+			pstmt.setInt(3, st_id);
+			pstmt.setInt(4, cl_id);
+			pstmt.setString(5, cl_name);
+			pstmt.executeUpdate();
+			//attendancetbl(출석체크)에 insert
+			query="insert into attendancetbl(st_id, pf_id, cl_id) values(?,?,?)";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setInt(1, st_id);
+			pstmt.setInt(2, pf_id);
+			pstmt.setInt(3, cl_id);
 			pstmt.executeUpdate();
 			pstmt.close();
 			conn.close();
