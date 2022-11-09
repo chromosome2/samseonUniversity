@@ -82,7 +82,7 @@
 			            						<td>${student.st_id}</td>
 			            						<td>${student.st_ph}</td>
 			            						<td>${student.st_email}</td>
-			            						<td>${student.cl_check/32}%</td>
+			            						<td><fmt:formatNumber value="${student.cl_check/30}" pattern="0.0%"/></td>
 			            						
 			            						<c:choose>
 				            						<c:when test="${student.s_first != -1 && student.s_second != -1}">
@@ -114,7 +114,7 @@
        				    </table>
        				   </div>
        				   <div class="class_submit">
-    				  		<button class="move_attend"><a href="${contextPath}/professor/chulcheckForm.do?cl_name=${cl_name}">이동</a></button>
+    				  		<button class="move_attend"><a href="${contextPath}/professor/chulcheckForm.do?cl_name=${cl_name}">출석체크</a></button>
        					    <input class="btn_submit button" type="submit" value="등록">
        					    <button class="btn_submit"><a href="${contextPath} /prof/my_lecture.jsp" class="btn_cancle button">취소</a></button>
           				</div>

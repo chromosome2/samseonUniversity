@@ -2,6 +2,7 @@ package samseon.professor;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,11 +57,24 @@ public class ProfController extends HttpServlet {
 			nextPage="/prof/lecture_manage.jsp";
 		}else if(action.equals("/chulcheckForm.do")) {  //출석체크폼으로 이동
 			String cl_name=request.getParameter("cl_name");
-			//강의이름으로 수강생 정보와 출석일수를 조회한다
-			List<ProfVO> studentsChul=profDAO.selectMyStudentsChul(cl_name);
+			List<ProfVO> studentsChul=profDAO.selectMyStudents(cl_name);
 			request.setAttribute("cl_name", cl_name);
 			request.setAttribute("chulcheck", studentsChul);
 			nextPage="/prof/manage_attend.jsp";
+		}else if(action.equals("/chul_check.do")) {  //출석체크 등록
+			String cl_name=request.getParameter("cl_name");
+			System.out.println(cl_name);
+			String[] st_id_arr=request.getParameterValues("chul_Ck");
+			int cl_id=profDAO.getCl_id(cl_name);  //과목코드 리턴
+			//출석체크테이블에 출석일수 +1
+			for(int i=0; i<st_id_arr.length; i++) {
+				int st_id=Integer.parseInt(st_id_arr[i]);
+				profDAO.updateChul(st_id, cl_id);
+			}
+			HttpSession session=request.getSession(false);
+			session.setAttribute("chul_done/"+cl_name, cl_name);
+			request.setAttribute("cl_name", cl_name);
+			nextPage="/professor/chulcheckForm.do";
 		}
 		RequestDispatcher dispatcher=request.getRequestDispatcher(nextPage);
 		dispatcher.forward(request, response);

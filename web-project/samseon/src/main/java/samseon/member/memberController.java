@@ -78,6 +78,13 @@ public class memberController extends HttpServlet {
 		}else if(action.equals("/logout.do")) {  //로그아웃
 			HttpSession session=request.getSession(false);
 			session.invalidate();
+//			session.removeAttribute("isLogin");
+//			session.removeAttribute("log_id");
+//			String user_level=(String) session.getAttribute("user_level");
+//			if(user_level.equals("student")) session.removeAttribute("studentInfo");
+//			else if(user_level.equals("professor")) session.removeAttribute("professorInfo");
+//			else if(user_level.equals("admin")) session.removeAttribute("adminInfo");
+//			session.removeAttribute("user_level");
 			pw=response.getWriter();
 			pw.print("<script>"
 					+ "alert('로그아웃 되었습니다.');"
