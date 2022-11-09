@@ -152,41 +152,26 @@ public class ProfDAO {
 		System.out.println(s_second);
 		return s_second;
 	}
-
-	//수강생의 학과와 출석일수를 반환하는 메서드
-	public List<ProfVO> selectMyStudentsChul(String cl_name) {
-		//수강생 이름, 학과, 출석일수
-		List<ProfVO> list=new ArrayList<ProfVO>();
-		List<ProfVO> studentInfo=selectMyStudents(cl_name);
-		for(int i=0; i<studentInfo.size(); i++) {
-			String st_name=studentInfo.get(i).getSt_name();
-			String m_name=studentInfo.get(i).getM_name();
-			int st_id=studentInfo.get(i).getSt_id();
-			int cl_id=getCl_id(cl_name);
-			ProfVO chulInfo=new ProfVO();
-			try {
-				conn=dataFactory.getConnection();
-				String query="select cl_check from attendancetbl where st_id=? and cl_id=?";
-				pstmt=conn.prepareStatement(query);
-				pstmt.setInt(1, st_id);
-				pstmt.setInt(2, cl_id);
-				ResultSet rs=pstmt.executeQuery();
-				if(rs.next()) {						
-					int accChul=rs.getInt(1);
-					chulInfo.setCl_check(accChul);
-				}
-				chulInfo.setSt_id(st_id);
-				chulInfo.setSt_name(st_name);
-				chulInfo.setM_name(m_name);
-				list.add(chulInfo);
-				rs.close();
-				pstmt.close();
-				conn.close();
-			} catch (Exception e) {
-				System.out.println("수강생 출석일수 조회 중 에러");
-			}				
+	
+	//출석체크 등록
+	public void updateChul(int st_id, int cl_id) {
+		try {
+			conn=dataFactory.getConnection();
+			String query="UPDATE ATTENDANCETBL"
+					+ " SET CL_CHECK=(SELECT CL_CHECK+1 FROM ATTENDANCETBL WHERE ST_ID=? AND CL_ID=?)"
+					+ " WHERE ST_ID=? AND CL_ID=?";
+			System.out.println(query);
+			pstmt=conn.prepareStatement(query);
+			pstmt.setInt(1, st_id);
+			pstmt.setInt(2, cl_id);
+			pstmt.setInt(3, st_id);
+			pstmt.setInt(4, cl_id);
+			pstmt.executeUpdate();
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			System.out.println("출석체크 등록 중 에러");
 		}
-		return list;
 	}
 	
 	//과목코드 반환
