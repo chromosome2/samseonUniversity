@@ -35,7 +35,7 @@
 
     <div id="contents_area">
       <div class="table_header">
-        <h3>강의이름 출석 관리</h3>
+        <h3>${cl_name} 출석 관리</h3>
       </div>
       <section class="contents_wrapper">
 				<div class="tbl_area">            		
@@ -45,9 +45,9 @@
 								<tr>
 									<th>NO</th>
 									<th>학생이름</th>
-									<th>강의 이름(과목)</th>
+									<th>소속 학과</th>
 									<th>출석률</th>
-									<th >출석 등록</th>
+									<th>출석 등록</th>
 								</tr>
 							</thead>
 						</table>
@@ -55,28 +55,28 @@
 					<div class="tbl_content1">
 						<table border="0" cellpadding="0" cellspacing="0">
 							<tbody>
-								<%--<c:choose>
-									<c:when test="${empty}">
+								<c:choose>
+									<c:when test="${empty chulcheck}">
 										<form action="">
 											<tr>
 												<td colspan="">조회된 학생이 없습니다.</td>
 											</tr>
 										</form>
 											</c:when>
-									<c:when test="${!empty  }">
+									<c:when test="${!empty chulcheck}">
 										<form action="">
-											<c:forEach var="" items="${}">--%>
+											<c:forEach var="chul" items="${chulcheck}" varStatus="chulNum">
 													<tr>
-														<td>1</td> 
-														<td>유해찬</td>
-														<td>잘학고싶다과</td>
-														<td>10/30[총일수] ?</td>
+														<td>${chulNum.count}</td> 
+														<td>${chul.st_name}</td>
+														<td>${chul.m_name}</td>
+														<td>${chul.cl_check/30*100}%</td>
 														<td><input type="radio" value="1"></td>
 													</tr> 
-											<%--</c:forEach>
+											</c:forEach>
 										</form>
 									</c:when>
-								</c:choose> --%>
+								</c:choose>
 							</tbody>
 						</table>
 					</div>
