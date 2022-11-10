@@ -31,6 +31,7 @@ public class ViewLectController extends HttpServlet {
 	private void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out=response.getWriter();
 		String nextPage=null;
 		String action=request.getPathInfo();
 		System.out.println("요청매핑이름 : "+action);
@@ -79,10 +80,48 @@ public class ViewLectController extends HttpServlet {
 				viewLectService.add_lecture_serv(viewlectVO);
 				request.setAttribute("lect_msg", "addLect");
 				nextPage="/view/pf_lectureList.do";
+			}else if(action.equals("/check_cl_id.do")){
+				int cl_id=Integer.parseInt(request.getParameter("cl_id"));
+				System.out.println("cl_id");
+				boolean check_cl_id=viewLectService.check_cl_id_serv(cl_id);
+				if(check_cl_id==true) {
+					out.print("not_usable");
+				}else {
+					out.print("usable");
+				}
+			}else if (action.equals("/mod_lecture_form.do")) {
+				int cl_id=Integer.parseInt(request.getParameter("cl_id"));
+				ViewLectVO find_lect=viewLectService.find_mod_lect_serv(cl_id);
+				request.setAttribute("find_lect", find_lect);
+				nextPage="/prof/mod_lecture.jsp";
+			}else if (action.equals("/mod_lecture.do")){
+				int cl_id=Integer.parseInt(request.getParameter("cl_id"));
+				int cl_pt=Integer.parseInt(request.getParameter("cl_pt"));
+				String cl_time=request.getParameter("cl_time");
+				String cl_room=request.getParameter("cl_room");
+				String cl_mj_t=request.getParameter("cl_mj_t");
+				System.out.println(cl_id+","+cl_pt+","+cl_time+","+cl_room+","+cl_mj_t);
+				
+				ViewLectVO viewlectVO=new ViewLectVO();
+				viewlectVO.setCl_id(cl_id);
+				viewlectVO.setCl_pt(cl_pt);
+				viewlectVO.setCl_time(cl_time);
+				viewlectVO.setCl_room(cl_room);
+				viewlectVO.setCl_mj_t(cl_mj_t);
+				
+				viewLectService.mod_lecture_serv(viewlectVO);
+				request.setAttribute("lect_msg", "modLect");
+				nextPage="/view/pf_lectureList.do";
+			}else if(action.equals("/del_lecture.do")) {
+				int cl_id=Integer.parseInt(request.getParameter("cl_id"));
+				viewLectService.del_lect_serv(cl_id);
+				request.setAttribute("lect_msg","delLect");
+				nextPage="/view/pf_lectureList.do";
 			}
 			RequestDispatcher dispatcher=request.getRequestDispatcher(nextPage);
 			dispatcher.forward(request, response);
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("요청 처리 중 에러 : "+ e.getMessage());
 		}
 		

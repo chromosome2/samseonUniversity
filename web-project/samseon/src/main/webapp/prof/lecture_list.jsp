@@ -33,6 +33,20 @@
     			}
     		</script>
     	</c:when>
+    	<c:when test='${lect_msg=="modLect" }'>
+    		<script>
+    			window.onload=function(){
+    				alert("강의를 수정하였습니다.");
+    			}
+    		</script>
+    	</c:when>
+    	<c:when test='${lect_msg=="delLect" }'>
+    		<script>
+    			window.onload=function(){
+    				alert("강의를 삭제하였습니다.");
+    			}
+    		</script>
+    	</c:when>
     </c:choose>
 </head>
 <body>
@@ -96,8 +110,8 @@
 												<td>${lect.cl_room}</td>
 												<td>${lect.cl_mj_t}</td>
 												<td>${lect.dan}</td>
-												<td><button class="apply_btn"><a href="${contextPath}/prof/add_lecture.jsp">수정</a></button></td>
-												<td><button class="apply_btn"><a href="${contextPath}/prof/">삭제</a></button></td>
+												<td><button class="apply_btn"><a href="${contextPath}/view/mod_lecture_form.do?cl_id=${lect.cl_id}">수정</a></button></td>
+												<td><button class="apply_btn"><a href="${contextPath}/view/del_lecture.do?cl_id=${lect.cl_id}">삭제</a></button></td>
 											</tr>
 										</c:forEach>
 									</c:when>
