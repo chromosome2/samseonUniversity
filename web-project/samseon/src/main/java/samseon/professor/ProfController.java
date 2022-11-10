@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import samseon.member.MemberVO;
+
 @WebServlet("/professor/*")
 public class ProfController extends HttpServlet {
 	ProfDAO profDAO;
@@ -103,14 +105,55 @@ public class ProfController extends HttpServlet {
 			request.setAttribute("pageNum", pageNum);
 			request.setAttribute("total", total);
 			nextPage="/prof/lecture_board.jsp";
-		}else if(action.equals("/noticeForm.do")) {
+		}else if(action.equals("/noticeForm.do")) {  //공지사항 작성폼으로 이동
 			int cl_id=Integer.parseInt(request.getParameter("cl_id"));
-			System.out.println(cl_id);
 			String cl_name=request.getParameter("cl_name");
-			System.out.println(cl_name);
 			request.setAttribute("cl_id", cl_id);
 			request.setAttribute("cl_name", cl_name);
 			nextPage="/prof/add_article.jsp";
+		}else if(action.equals("/writeNotice.do")) {  //공지사항 작성
+			HttpSession session=request.getSession(false);
+			MemberVO professorInfo=(MemberVO) session.getAttribute("professorInfo");
+			String pf_name=professorInfo.getName();
+			int pf_id=(int) session.getAttribute("log_id");
+			int cl_id=Integer.parseInt(request.getParameter("cl_id"));
+			String cl_name=request.getParameter("cl_name");
+			String title=request.getParameter("title");
+			String content=request.getParameter("content");
+			profVO.setPf_name(pf_name);
+			profVO.setPf_id(pf_id);
+			profVO.setCl_name(cl_name);
+			profVO.setCl_id(cl_id);
+			profVO.setNt_title(title);
+			profVO.setNt_content(content);
+			int nt_id=profDAO.insertNotice(profVO);
+			request.setAttribute("msg", "write");
+			nextPage="/professor/viewNotice.do?nt_id="+nt_id;
+		}else if(action.equals("/viewNotice.do")) {  //공지 상세보기
+			int nt_id=Integer.parseInt(request.getParameter("nt_id"));
+			profVO=profDAO.selectNotice(nt_id);
+			request.setAttribute("notice", profVO);
+			nextPage="/prof/board_detail.jsp";
+		}else if(action.equals("/modNoticeForm.do")) {  //공지 수정폼 이동
+			int nt_id=Integer.parseInt(request.getParameter("nt_id"));
+			profVO=profDAO.selectNotice(nt_id);
+			request.setAttribute("notice", profVO);
+			nextPage="/prof/board_modForm.jsp";
+		}else if(action.equals("/modNotice.do")) {  //공지 수정
+			int nt_id=Integer.parseInt(request.getParameter("nt_id"));
+			String nt_title=request.getParameter("title");
+			String nt_content=request.getParameter("content");
+			profDAO.updateNotice(nt_id, nt_title, nt_content);
+			profVO=profDAO.selectNotice(nt_id);
+			request.setAttribute("msg", "modified");
+			request.setAttribute("notice", profVO);
+			nextPage="/professor/viewNotice.do?nt_id="+nt_id;
+		}else if(action.equals("/removeNotice.do")) {  //공지 삭제
+			int cl_id=Integer.parseInt(request.getParameter("cl_id"));
+			int nt_id=Integer.parseInt(request.getParameter("nt_id"));
+			profDAO.deleteNotice(nt_id);
+			request.setAttribute("msg", "deleted");
+			nextPage="/professor/lecture_board_list.do?cl_id="+cl_id;
 		}
 		RequestDispatcher dispatcher=request.getRequestDispatcher(nextPage);
 		dispatcher.forward(request, response);

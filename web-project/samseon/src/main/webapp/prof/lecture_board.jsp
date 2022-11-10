@@ -30,6 +30,11 @@
 	<script src="${contextPath}/js/menu_third.js"></script>
 	<script src="${contextPath}/js/table.js"></script>
     <title>삼선대학교</title>
+    <c:if test="${msg == 'deleted'}">
+		<script type="text/javascript">
+			alert('공지가 삭제되었습니다.');
+		</script>
+	</c:if>
 </head>
 <body>
     <jsp:include page="../common/header.jsp"/>
@@ -75,7 +80,7 @@
             							<c:forEach var="notice" items="${lessonNotice}" varStatus="noticeNum">
             								<tr>
 			            						<td>${noticeNum.count}</td>
-			            						<td><a href="#">${notice.nt_title}</a></td>
+			            						<td><a href="${contextPath}/professor/viewNotice.do?nt_id=${notice.nt_id}">${notice.nt_title}</a></td>
 			            						<td>${noticeInfo.pf_name}</td>
 			            						<td>${notice.nt_date}</td>
 			            					</tr>
