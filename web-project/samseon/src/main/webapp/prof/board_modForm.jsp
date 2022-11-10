@@ -25,6 +25,11 @@
 	<script src="${contextPath}/js/menu_second.js"></script>
 	<script src="${contextPath}/js/table.js"></script>
     <title>삼선대학교</title>
+    <c:if test="${msg == 'modified'}">
+    	<script type="text/javascript">
+    		alert('공지가 수정되었습니다.');
+    	</script>
+    </c:if>
 </head>
 <body>
     <jsp:include page="../common/header.jsp"/>
@@ -38,33 +43,32 @@
           <section class="notice contents_wrapper">
             <div class="page-title">
               <div class="container">
-                <h3>${cl_name} 공지사항</h3>
+                <h3>${notice.cl_name} 공지사항</h3>
               </div>
             </div>
             <div id="board-list">
               <div class="container">
-              <form action="${contextPath}/professor/writeNotice.do" method="post">
+              <form action="${contextPath}/professor/modNotice.do" method="post">
               
                 <table class="board-table write_table">
                   <thead>
                     <tr>
                       <th scope="col" class="th_title_02">제목</th>
-                      <th scope="col" class="th_title_txt"><input type="text" class="title_input" name="title" placeholder="제목을 입력하세요" required>
+                      <th scope="col" class="th_title_txt"><input type="text" class="title_input" name="title" value="${notice.nt_title }" required>
                       </th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td colspan="2" class="th_write" height="300px">
-                        <textarea name="content" id="text_write" cols="30" rows="10"></textarea>
+                        <textarea name="content" id="text_write" cols="30" rows="10">${notice.nt_content}</textarea>
                       </td>
                     </tr>
                   </tbody>
                 </table>
                 
                 <div class="section_sub">
-                	<input type="hidden" name="cl_id" value="${cl_id}">
-                	<input type="hidden" name="cl_name" value="${cl_name}">
+                	<input type="hidden" name="nt_id" value="${notice.nt_id}">
                   <input type="submit" value="작성" class="btn_result">
                   <input type="reset" value="취소" class="btn_result">
                 </div>
@@ -75,47 +79,6 @@
           </section>
         </div>
       </div>
-
-
-        <%-- <div id="middle_area">
-            <div id="main_menu_back">
-				<jsp:include page="../common/menu.jsp"/>
-            </div>
-
-            <div id="contents_area">
-            	<section class="contents_wrapper">
-            		<div class="table_header">
-            			<h3>수업 공지사항 등록</h3>
-            		</div>
-            		<div class="tbl_header">
-            			<table border="0" cellpadding="0" cellspacing="0">
-            				<thead>
-            					<tr>
-            						<th>ID</th><td>(ID)</td>
-            						<th>작성자</th><td>(작성자)</td>
-            						<th>강의 이름</th><td>(강의 이름)</td>
-            					</tr>
-            				</thead>
-            			</table>
-            		</div>
-            		<div class="tbl_content">
-            			<table border="0" cellpadding="0" cellspacing="0">
-            				<tbody>
-   								<tr>
-	           						<td>제목</td>
-									<td><input type="text" name="nt_title"></td>
-	           					</tr>
-	           					<tr>
-									<td><input type="text" name="nt_content"></td>
-	           					</tr>
-            				</tbody>
-            			</table>
-            		</div>
-            		<input class="btn_submit button" type="submit" value="등록하기">
-                    <a href="${contextPath}/prof/lecture_board.jsp" class="btn_cancle button">취소</a>
-            	</section>
-            </div>
-        </div> --%>
 
 	<jsp:include page="../common/footer.jsp"/>
 </body>

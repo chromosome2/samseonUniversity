@@ -133,7 +133,6 @@ public class ProfDAO {
 		} catch (Exception e) {
 			System.out.println();
 		}
-//		System.out.println(s_first);
 		return s_first;
 	}
 	
@@ -153,7 +152,6 @@ public class ProfDAO {
 		} catch (Exception e) {
 			System.out.println();
 		}
-//		System.out.println(s_second);
 		return s_second;
 	}
 	
@@ -272,6 +270,117 @@ public class ProfDAO {
 			System.out.println("전체글 개수 조회 중 에러");
 		}
 		return total;
+	}
+
+	//공지사항 작성
+	public int insertNotice(ProfVO profVO) {
+		int pf_id=profVO.getPf_id();
+		String pf_name=profVO.getPf_name();
+		int cl_id=profVO.getCl_id();
+		String cl_name=profVO.getCl_name();
+		String nt_title=profVO.getNt_title();
+		String nt_content=profVO.getNt_content();
+		int nt_id=getNt_id();
+		try {
+			conn=dataFactory.getConnection();
+			String query="INSERT INTO LESSONNOTICETBL values(?,?,?,?,?,sysdate,?,?)";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setInt(1, cl_id);
+			pstmt.setString(2, cl_name);
+			pstmt.setInt(3, nt_id);
+			pstmt.setString(4, nt_title);
+			pstmt.setString(5, nt_content);
+			pstmt.setInt(6, pf_id);
+			pstmt.setString(7, pf_name);
+			pstmt.executeUpdate();
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			System.out.println("강의 공지사항 등록 중 에러" + e.getMessage());
+		}
+		return nt_id;
+	}
+	
+	//글번호 반환
+	private int getNt_id() {
+		int nt_id=1;
+		try {
+			conn=dataFactory.getConnection();
+			String query="select max(nt_id) from lessonnoticetbl";
+			pstmt=conn.prepareStatement(query);
+			ResultSet rs=pstmt.executeQuery();
+			if(rs.next()) {
+				nt_id=rs.getInt(1)+1;
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			System.out.println("글번호 반환 중 에러");
+		}
+		return nt_id;
+	}
+
+	//공지 상세보기
+	public ProfVO selectNotice(int nt_id) {
+		ProfVO notice=new ProfVO();
+		try {
+			conn=dataFactory.getConnection();
+			String query="select * from lessonnoticetbl where nt_id=?";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setInt(1, nt_id);
+			ResultSet rs=pstmt.executeQuery();
+			rs.next();
+			String cl_name=rs.getString("cl_name");
+			int cl_id=rs.getInt("cl_id");
+			String nt_title=rs.getString("nt_title");
+			String nt_content=rs.getString("nt_content");
+			Date nt_date=rs.getDate("nt_date");
+			notice.setCl_id(cl_id);
+			notice.setCl_name(cl_name);
+			notice.setNt_id(nt_id);
+			notice.setNt_content(nt_content);
+			notice.setNt_title(nt_title);
+			notice.setNt_date(nt_date);
+			notice.setNt_id(nt_id);
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			System.out.println("공지사항 불러오는 중 에러");
+		}
+		return notice;
+	}
+	
+	//공지사항 수정
+	public void updateNotice(int nt_id, String nt_title, String nt_content) {
+		try {
+			conn=dataFactory.getConnection();
+			String query="update lessonnoticetbl set nt_title=?, nt_content=? where nt_id=?";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1, nt_title);
+			pstmt.setString(2, nt_content);
+			pstmt.setInt(3, nt_id);
+			pstmt.executeUpdate();
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			System.out.println("공지사항 수정 중 에러");
+		}
+	}
+
+	public void deleteNotice(int nt_id) {
+		try {
+			conn=dataFactory.getConnection();
+			String query="delete from lessonnoticetbl where nt_id=?";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setInt(1, nt_id);
+			pstmt.executeUpdate();
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			System.out.println("공지사항 삭제 중 에러");
+		}
 	}
 	
 }
