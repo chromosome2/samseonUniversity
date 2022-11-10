@@ -35,6 +35,6 @@
     	username="SAMSEONDB"
     	password="0000"
     	maxActive="50"
-
+        maxWait="-1"
     />
 </Context>
