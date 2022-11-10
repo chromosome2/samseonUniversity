@@ -136,6 +136,8 @@ td {
 .btn_result:hover,
 .btn_submit:hover {
   background: #ff8e00;
+  transition: all 0.2s;
+  border: 1px solid #ff8e00;
 }
 
 #search_scores {
@@ -253,6 +255,7 @@ td {
 
 .btn_move_b a, .btn_move a, .apply_btn a {
 	color: #fff !important;
+	display: block;
 }
 
 .btn_td {

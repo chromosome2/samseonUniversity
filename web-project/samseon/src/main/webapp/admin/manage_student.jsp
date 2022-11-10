@@ -213,8 +213,8 @@
                             </div>
                             <div class="st_lecture_list lt_apply">
                                 <button class="apply_btn"><a href="${contextPath }/admin/add_member.jsp">등록</a></button>
-                                <button class="apply_btn">수정</button>
-                                <button class="apply_btn">삭제</button>
+                                <button class="apply_btn"><a href="">수정</a></button>
+                                <button class="apply_btn"><a href="">삭제</a></button>
                             </div>
                         </div>
                     </div>

@@ -131,7 +131,8 @@ select {
 }
 
 .apply_btn:hover,
-.btn_move:hover {
+.btn_move:hover,
+.search_btn:hover {
   background: #ff8e00;
   transition: all 0.2s;
   border: 1px solid #ff8e00;
