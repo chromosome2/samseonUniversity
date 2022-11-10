@@ -64,7 +64,7 @@ public class SugangSubjectDAO {
 			pstmt.close();
 			conn.close();
 		} catch (Exception e) {
-			System.out.println("전체 강의 조회 중 에러");
+			System.out.println("전체 강의 조회 중 에러"+e.getMessage());
 		}
 		return sugangList;
 	}
