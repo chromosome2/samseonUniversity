@@ -117,6 +117,36 @@ public class ViewLectController extends HttpServlet {
 				viewLectService.del_lect_serv(cl_id);
 				request.setAttribute("lect_msg","delLect");
 				nextPage="/view/pf_lectureList.do";
+			}else if(action.equals("/add_score.do")) {
+				int count=Integer.parseInt(request.getParameter("count"));
+				String cl_name=request.getParameter("cl_name");
+				String[] st_id=request.getParameterValues("st_id");
+				if(count==1) {
+					String[] s_first_list=request.getParameterValues("s_first");
+					System.out.println(s_first_list.length);
+					for(int i=0; i<st_id.length; i++) {
+						System.out.print(s_first_list[i]+" / "+st_id[i]);
+						ViewLectVO viewlectVO=new ViewLectVO();
+						viewlectVO.setS_first(Integer.parseInt(s_first_list[i]));
+						viewlectVO.setSt_id(Integer.parseInt(st_id[i]));
+						viewlectVO.setCl_name(cl_name);
+						viewLectService.add_score_serv(viewlectVO,count);
+					}
+					request.setAttribute("lect_msg", "add_first_score");
+				}else {
+					String[] s_second_list=request.getParameterValues("s_second");
+					System.out.println(s_second_list.length);
+					for(int i=0; i<st_id.length; i++) {
+						System.out.print(s_second_list[i]+" / "+st_id[i]);
+						ViewLectVO viewlectVO=new ViewLectVO();
+						viewlectVO.setS_second(Integer.parseInt(s_second_list[i]));
+						viewlectVO.setSt_id(Integer.parseInt(st_id[i]));
+						viewlectVO.setCl_name(cl_name);
+						viewLectService.add_score_serv(viewlectVO,count);
+					}
+					request.setAttribute("lect_msg", "add_second_score");
+				}
+				nextPage="/professor/lectureManageForm.do?cl_name="+cl_name;
 			}
 			RequestDispatcher dispatcher=request.getRequestDispatcher(nextPage);
 			dispatcher.forward(request, response);
