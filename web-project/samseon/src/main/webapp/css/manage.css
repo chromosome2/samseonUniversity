@@ -138,6 +138,11 @@ select {
   cursor: pointer;
 }
 
+.apply_btn a {
+	display: block;
+	line-height: 40px;
+}
+
 /* 
 
   padding: 0 30px 1px 7px;
