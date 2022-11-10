@@ -35,7 +35,7 @@
             <div id="contents_area">
             	<section class="contents_wrapper">
             		<div class="table_header">
-            			<h3>수업 공지사항</h3>
+            			<h3>&lt;${noticeInfo.cl_name}&gt; 수업 공지사항</h3>
             		</div>
             		<c:if test="${user_level == 'professor'}">
 	              	 	<a href="${contextPath}/prof/add_article.jsp">글쓰기</a>                  
@@ -44,13 +44,13 @@
             			<table border="0" cellpadding="0" cellspacing="0">
             				<thead>
             					<tr>
-            						<td>(강의이름) 공지사항</td>
+            						<td>${noticeInfo.cl_name} 공지사항</td>
             					<tr>
             					<tr>
             						<th>번호</th>
 			                        <th>제목</th>
-			                        <th>등록일</th>
 			                        <th>작성자</th>
+			                        <th>작성일</th>
             					</tr>
             				</thead>
             			</table>
@@ -58,25 +58,25 @@
             		<div class="tbl_content">
             			<table border="0" cellpadding="0" cellspacing="0">
             				<tbody>
-            					<%--<c:choose>
-            						<c:when test="${empty }">
+            					<c:choose>
+            						<c:when test="${empty lessonNotice}">
             							<tr>
             								<td colspan="4">
             									공지사항이 없습니다.
             								</td>
             							</tr>
             						</c:when>
-            						<c:when test="${!empty }">
-            							<c:forEach var="" items="${}"> --%>
+            						<c:when test="${!empty lessonNotice}">
+            							<c:forEach var="notice" items="${lessonNotice}" varStatus="noticeNum">
             								<tr>
-			            						<td>1</td>
-			            						<td><a href="#">공지사항입니다.</a></td>
-			            						<td>김선생</td>
-			            						<td>2020-02-02</td>
+			            						<td>${noticeNum.count}</td>
+			            						<td><a href="#">${notice.nt_title}</a></td>
+			            						<td>${noticeInfo.pf_name}</td>
+			            						<td>${notice.nt_date}</td>
 			            					</tr>
-            							<%--</c:forEach>
+            							</c:forEach>
             						</c:when>
-            					</c:choose> --%>
+            					</c:choose>
             				</tbody>
             			</table>
             			<%--페이징 기능 추가 --%>

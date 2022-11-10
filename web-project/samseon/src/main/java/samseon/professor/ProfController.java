@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -82,6 +83,18 @@ public class ProfController extends HttpServlet {
 			session.setAttribute(chul_cl_name, "done");
 			request.setAttribute("cl_name", cl_name);
 			nextPage="/professor/chulcheckForm.do";
+		}else if(action.equals("/lecture_board_list.do")) {  //강의 공지사항 게시판 불러오기
+			HttpSession session=request.getSession(false);
+			int cl_id=Integer.parseInt(request.getParameter("cl_id"));
+			System.out.println(cl_id);
+//			String cl_name=request.getParameter("cl_name");
+			//공지사항테이블에서 과목코드로 모든 공지사항 조회해서 가져옴
+			Map lesson_notice_map=profDAO.selectLessonNotice(cl_id);
+			List<ProfVO> lesson_notice_list=(List<ProfVO>) lesson_notice_map.get("lessonNotice");
+			ProfVO noticeInfo=(ProfVO) lesson_notice_map.get("noticeInfo");
+			request.setAttribute("lessonNotice", lesson_notice_list);
+			request.setAttribute("noticeInfo", noticeInfo);
+			nextPage="/prof/lecture_board.jsp";
 		}
 		RequestDispatcher dispatcher=request.getRequestDispatcher(nextPage);
 		dispatcher.forward(request, response);

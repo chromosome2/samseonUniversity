@@ -70,7 +70,7 @@
                           				<tr>
 											<td>${listNum.count }</td>
 											<td>${lect.cl_id }</td>
-											<td>${lect.cl_name}</td>
+											<td><a href="${contextPath}/professor/lecture_board_list.do?cl_id=${lect.cl_id}">${lect.cl_name}</a></td>
 											<td>${lect.pf_name }</td>
 											<td>${lect.cl_pt }</td>
 											<td>${lect.s_first}</td>

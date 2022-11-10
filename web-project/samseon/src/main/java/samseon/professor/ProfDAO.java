@@ -1,13 +1,17 @@
 package samseon.professor;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import samseon.viewLect.ViewLectDAO;
@@ -192,5 +196,50 @@ public class ProfDAO {
 			System.out.println("과목코드 반환 중 에러 : " + e.getMessage());
 		}
 		return cl_id;
+	}
+
+	//강의 공지 모두 불러오기
+	public Map selectLessonNotice(int cl_id) {
+		Map lesson_notice_map=new HashMap();
+		List<ProfVO> lessonNotice=new ArrayList<ProfVO>();
+		try {
+			conn=dataFactory.getConnection();
+			String query="SELECT nt_id, nt_title, nt_date FROM LESSONNOTICETBL WHERE cl_id=?";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setInt(1, cl_id);
+			ResultSet rs=pstmt.executeQuery();
+			while(rs.next()) {
+				int nt_id=rs.getInt("nt_id");
+				String nt_title=rs.getString("nt_title");
+				Date nt_date=rs.getDate("nt_date");
+				ProfVO noticeVO=new ProfVO();
+				noticeVO.setNt_id(nt_id);
+				noticeVO.setNt_title(nt_title);
+				noticeVO.setNt_date(nt_date);
+				lessonNotice.add(noticeVO);
+			}
+			lesson_notice_map.put("lessonNotice", lessonNotice);
+			query="SELECT cl_name, pf_id, pf_name FROM SUBJECTTBL WHERE cl_id=?";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setInt(1, cl_id);
+			rs=pstmt.executeQuery();
+			ProfVO noticeInfo=new ProfVO();
+			if(rs.next()) {
+				String cl_name=rs.getString("cl_name");
+				int pf_id=rs.getInt("pf_id");
+				String pf_name=rs.getString("pf_name");
+				noticeInfo.setCl_name(cl_name);
+				noticeInfo.setPf_name(pf_name);
+				noticeInfo.setPf_id(pf_id);
+			}
+			noticeInfo.setCl_id(cl_id);
+			lesson_notice_map.put("noticeInfo", noticeInfo);
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			System.out.println("강의 전체 공지 불러오는 중 에러");
+		}
+		return lesson_notice_map;
 	}
 }
