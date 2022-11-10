@@ -20,7 +20,6 @@
     <script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
     <script src="${contextPath}/js/common.js"></script>
     <script src="${contextPath}/js/menu_third.js"></script>
-	<script src="${contextPath}/js/pf_menu.js"></script>
 	<script src="${contextPath}/js/table.js"></script>
     <title>삼선대학교</title>
     <style>
@@ -29,6 +28,12 @@
     	}
     </style>
     <script type="text/javascript">
+	    window.onload=function(){//중간고사와 기말고사가 다 입력되면 등록하기버튼과 입력취소 버튼 hidden
+	    	if($('.finish').attr('disabled')=='disabled'){
+				$('.submit').attr('type','hidden');
+				$('.reset').attr('type','hidden');
+	    	}
+		}
     	function fn_chulcheck(cl_name, url) {  //출석체크폼으로 이동
     		let form=document.createElement("form");
     		form.setAttribute('action', url);
@@ -42,6 +47,24 @@
 			form.submit();
     	}
     </script>
+    <c:choose>
+    	<c:when test='${lect_msg=="add_first_score" }'>
+    		<script>
+	    		window.onload=function(){
+					alert("중간고사 점수입력에 성공하였습니다.");
+				}
+    		</script>
+    	</c:when>
+    	<c:when test='${lect_msg=="add_second_score" }'>
+    		<script>
+	    		window.onload=function(){
+					alert("기말고사 점수입력에 성공하였습니다.");
+					$('.submit').attr('type','hidden');
+					$('.reset').attr('type','hidden');
+				}
+    		</script>
+    	</c:when>
+    </c:choose>
 </head>
 <body>
     <jsp:include page="../common/header.jsp"/>
@@ -56,7 +79,7 @@
          		 <div class="table_header">
         		    <h3>${cl_name}</h3>
        	   </div>
-       	   <form action="${contextPath}/" method="post" id="frm_add_score" name="frm_add_score">
+       	   <form action="${contextPath}/view/add_score.do" method="post" id="frm_add_score" name="frm_add_score">
             <div class="tbl_header">
               <table border="0" cellpadding="0" cellspacing="0">
                 <thead>
@@ -99,26 +122,26 @@
 			            						<td><fmt:formatNumber value="${student.cl_check/30}" pattern="0.0%"/></td>
 			            						
 			            						<c:choose>
+			            							<c:when test="${student.s_first eq -1 }" >
+			            								<td><input type="number" name="s_first" required></td>
+				            							<td><input type="number" name="s_second" disabled></td>
+				            							<td></td>
+				            							<input type="hidden" name="st_id" value="${student.st_id }">
+				            							<input type="hidden" name="count" value="1">
+				            						</c:when>
+				            						<c:when test="${student.s_second eq -1 }" >
+			            								<td><input type="number" value="${student.s_first}" name="s_first" disabled></td>
+				            							<td><input type="number" name="s_second" required></td>
+				            							<td></td>
+				            							<input type="hidden" name="st_id" value="${student.st_id }">
+				            							<input type="hidden" name="count" value="2">
+				            						</c:when>
 				            						<c:when test="${student.s_first != -1 && student.s_second != -1}">
-					            						<td><input type="number" value="${student.s_first}" name="s_first" disabled></td>
-					            						<td><input type="number" value="${student.s_second}" name="s_second" disabled></td>
-					            						<td>${student.hakjum}</td><!-- 최종 성적(s_final)을 사용하여 알바펫점수를 매김. -->            						
+					            						<td><input type="number" value="${student.s_first}" name="s_first"disabled></td>
+					            						<td><input type="number" value="${student.s_second}" name="s_second" class="finish" disabled></td>
+					            						<td>${student.hakjum}</td>    						
 				            						</c:when>
-				            						<c:when test="${student.s_first != -1}">
-				            							<td><input type="number" value="${student.s_first}" name="s_first" disabled></td>
-				            							<td><input type="number" name="s_second"></td>
-				            							<td></td>
-				            						</c:when>
-				            						<c:when test="${student.s_second != -1}">
-				            							<td><input type="number" name="s_first"></td>
-				            							<td><input type="number" value="${student.s_second}" name="s_second" disabled></td>
-				            							<td></td>
-				            						</c:when>
-				            						<c:otherwise>
-				            							<td><input type="number" name="s_first"></td>
-				            							<td><input type="number" name="s_second"></td>
-				            							<td></td>
-				            						</c:otherwise>
+				            						
 			            						</c:choose>
 			            					</tr>
             							</c:forEach>
@@ -130,10 +153,11 @@
        				   <div class="class_submit">
        				  		<%-- <button class="move_attend"><a href="${contextPath}/professor/chulcheckForm.do?cl_name=${cl_name}">출석체크</a></button> --%>
     				  		<input type="button" class="btn_submit button" value="출석체크" onclick="fn_chulcheck('${cl_name}', '${contextPath}/professor/chulcheckForm.do')">
-       					    <input type="submit"class="btn_submit button" value="등록">
-       					    <input type="reset" class="btn_submit button" value="취소">
+       					    <input type="submit"class="btn_submit button submit" value="등록">
+       					    <input type="reset" class="btn_submit button reset" value="입력취소">
        					    <%-- <button class="btn_submit"><a href="${contextPath} /prof/my_lecture.jsp" class="btn_cancle button">취소</a></button> --%>
           				</div>
+          				<input type="hidden" name="cl_name" value="${cl_name }">
          			 </form>
             		
             	</section>

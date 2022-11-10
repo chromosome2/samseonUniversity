@@ -38,4 +38,31 @@ public class ViewLectService {
 	public void add_lecture_serv(ViewLectVO viewlectVO) {
 		viewLectDAO.add_lecture(viewlectVO);
 	}
+	
+	//수정강의 값 찾아오기
+	public ViewLectVO find_mod_lect_serv(int cl_id) {
+		ViewLectVO find_lect=viewLectDAO.find_mod_lect(cl_id);
+		return find_lect;
+	}
+	
+	//강의 값 수정
+	public void mod_lecture_serv(ViewLectVO viewlectVO) {
+		viewLectDAO.mod_lecture(viewlectVO);
+	}
+	
+	//강의 삭제
+	public void del_lect_serv(int cl_id) {
+		viewLectDAO.del_lect(cl_id);
+	}
+	
+	//강의 번호 중복 체크
+	public boolean check_cl_id_serv(int cl_id) {
+		boolean result=viewLectDAO.check_cl_id(cl_id);
+		return result;
+	}
+	
+	//성적 추가
+	public void add_score_serv(ViewLectVO viewlectVO, int count) {
+		viewLectDAO.add_score(viewlectVO,count);
+	}
 }
