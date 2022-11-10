@@ -29,7 +29,6 @@
     <script src="${contextPath}/js/common.js"></script>
 	<script src="${contextPath}/js/menu_third.js"></script>
 	<script src="${contextPath}/js/table.js"></script>
-	<script src="${contextPath}/js/pf_menu.js"></script>
     <title>삼선대학교</title>
     <script type="text/javascript">
     	function fn_lec_manage(url, cl_name) {
