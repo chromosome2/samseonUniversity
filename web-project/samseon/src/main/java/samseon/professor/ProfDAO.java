@@ -1,13 +1,17 @@
 package samseon.professor;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import samseon.viewLect.ViewLectDAO;
@@ -193,4 +197,81 @@ public class ProfDAO {
 		}
 		return cl_id;
 	}
+
+	//강의 공지 모두 불러오기 + 페이지로 나눠서 보기
+	public Map selectLessonNotice(int cl_id, Map<String, Integer> pagingMap) {
+		Map lesson_notice_map=new HashMap();
+		List<ProfVO> lessonNotice=new ArrayList<ProfVO>();
+		int section=pagingMap.get("section");
+		int pageNum=pagingMap.get("pageNum");
+		int startRow=(pageNum-1)*5+1;
+		try {
+			conn=dataFactory.getConnection();
+			//공지사항 정보 객체 리스트에 저장
+			String query="SELECT * FROM"
+					+ " (SELECT rownum AS recNum, nt_id, nt_title, nt_date from"
+					+ " (SELECT nt_id, nt_title, nt_date FROM LESSONNOTICETBL WHERE cl_id=? ORDER BY nt_id DESC))"
+					+ " WHERE recNum BETWEEN ? AND ?";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setInt(1, cl_id);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, startRow+4);
+			ResultSet rs=pstmt.executeQuery();
+			while(rs.next()) {
+				int nt_id=rs.getInt("nt_id");
+				String nt_title=rs.getString("nt_title");
+				Date nt_date=rs.getDate("nt_date");
+				ProfVO noticeVO=new ProfVO();
+				noticeVO.setNt_id(nt_id);
+				noticeVO.setNt_title(nt_title);
+				noticeVO.setNt_date(nt_date);
+				lessonNotice.add(noticeVO);
+			}
+			lesson_notice_map.put("lessonNotice", lessonNotice);
+			//강의, 교수 관련 정보 객체 생성
+			query="SELECT cl_name, pf_id, pf_name FROM SUBJECTTBL WHERE cl_id=?";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setInt(1, cl_id);
+			rs=pstmt.executeQuery();
+			ProfVO noticeInfo=new ProfVO();
+			if(rs.next()) {
+				String cl_name=rs.getString("cl_name");
+				int pf_id=rs.getInt("pf_id");
+				String pf_name=rs.getString("pf_name");
+				noticeInfo.setCl_name(cl_name);
+				noticeInfo.setPf_name(pf_name);
+				noticeInfo.setPf_id(pf_id);
+			}
+			noticeInfo.setCl_id(cl_id);
+			lesson_notice_map.put("noticeInfo", noticeInfo);
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			System.out.println("강의 전체 공지 불러오는 중 에러");
+		}
+		return lesson_notice_map;
+	}
+	
+	//전체 글 개수 조회
+	public int selectTotalNotice(int cl_id) {
+		int total=0;
+		try {
+			conn=dataFactory.getConnection();
+			String query="SELECT COUNT(nt_id) FROM LESSONNOTICETBL WHERE CL_ID = ?";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setInt(1, cl_id);
+			ResultSet rs=pstmt.executeQuery();
+			if(rs.next()) {
+				total=rs.getInt(1);
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			System.out.println("전체글 개수 조회 중 에러");
+		}
+		return total;
+	}
+	
 }

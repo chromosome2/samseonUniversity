@@ -109,72 +109,24 @@
                  	<c:if test="${endPage > pageCount}">
                  		<c:set var="endPage" value="${pageCount}"/>
                  	</c:if>
+	                 <c:if test="${startPage > pageBlock}">
+	                 	<a href="${contextPath}/board/listArticles.do?section=${section-1}&pageNum=${startPage-pageBlock}">prev</a>
+	                 </c:if>
+	                 
+	                 <c:forEach var="page" begin="${startPage}" end="${endPage}" step="1">
+	                 	<c:if test="${page == currentPage}">
+	                 		<a style="color:orangered;" href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${page}</a>
+	                 	</c:if>
+	                 	<c:if test="${page != currentPage}">
+	                 		<a href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${page}</a>
+	                 	</c:if>
+	                 </c:forEach>
+	                 
+	                 <c:if test="${endPage < pageCount}">
+	                 	<a href="${contextPath}/board/listArticles.do?section=${section+1}&pageNum=${startPage+pageBlock}">next</a>
+	                 </c:if>
                  </c:if>
                  
-                 <c:if test="${startPage > pageBlock}">
-                 	<a href="${contextPath}/board/listArticles.do?section=${section-1}&pageNum=${startPage-pageBlock}">prev</a>
-                 </c:if>
-                 
-                 <c:forEach var="page" begin="${startPage}" end="${endPage}" step="1">
-                 	<c:if test="${page == currentPage}">
-                 		<a style="color:orangered;" href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${page}</a>
-                 	</c:if>
-                 	<c:if test="${page != currentPage}">
-                 		<a href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${page}</a>
-                 	</c:if>
-                 </c:forEach>
-                 
-                 <c:if test="${endPage < pageCount}">
-                 	<a href="${contextPath}/board/listArticles.do?section=${section+1}&pageNum=${startPage+pageBlock}">next</a>
-                 </c:if>
-                 
-                	<%-- <c:if test="${totalArticles != 0}">
-                		<c:choose>
-		                	<c:when test="${totalArticles > 25}">
-		                		<c:forEach var="page" begin="1" end="5" step="1">
-		                			<c:if test="${section > 1 && page == 1}">
-		                				<a href="${contextPath}/board/listArticles.do?section=${section-1}&pageNum=1"> prev</a>
-		                			</c:if>
-		                			<a href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${(section-1)*5+page}</a>
-		                			<c:choose>
-										<c:when test="${page==pageNum}">
-											<a class="selectedPage" href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${(section-1)*10+page}</a>
-										</c:when>
-										<c:otherwise>
-											<a class="notSelectedPage" href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${page}</a>
-										</c:otherwise>
-									</c:choose>
-		                			<c:if test="${page == 5}">
-		                				<a href="${contextPath}/board/listArticles.do?section=${section+1}&pageNum=1"> next</a>
-		                			</c:if>
-		                		</c:forEach>
-		                	</c:when>
-		                	<c:when test="${totalArticles == 25}">
-		                		<c:forEach var="page" begin="1" end="5" step="1">
-		                			<c:choose>
-										<c:when test="${page==pageNum}">
-											<a class="selectedPage" href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${page}</a>
-										</c:when>
-										<c:otherwise>
-											<a class="notSelectedPage" href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${page}</a>
-										</c:otherwise>
-									</c:choose>
-		                		</c:forEach>
-		                	</c:when>
-							<c:when test="${totalArticles < 25}">
-								<c:forEach var="page" begin="1" end="${totalArticles/5 + 1}" step="1">
-									<c:choose>
-										<c:when test="${page==pageNum}">
-											<a class="selectedPage" href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${page}</a>
-										</c:when>
-										<c:otherwise>
-											<a class="notSelectedPage" href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${page}</a>
-										</c:otherwise>
-									</c:choose>
-								</c:forEach>
-							</c:when>                		
-                		</c:choose>
-                	</c:if> --%>
                 </div>
                  
                  <!-- 새 글 작성 : 관리자에게만 보임 -->

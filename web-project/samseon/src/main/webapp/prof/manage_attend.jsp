@@ -31,6 +31,20 @@
 	<script src="${contextPath}/js/table.js"></script>
 	<script src="${contextPath}/js/pf_menu.js"></script>
     <title>삼선대학교</title>
+    <script type="text/javascript">
+    	function fn_lec_manage(url, cl_name) {
+    		let form=document.createElement("form");
+    		form.setAttribute('method', 'post');
+    		form.setAttribute('action', url);
+    		let cl_name_input=document.createElement("input");
+    		cl_name_input.setAttribute('type', 'hidden');
+    		cl_name_input.setAttribute('name', 'cl_name');
+    		cl_name_input.setAttribute('value', cl_name);
+    		form.appendChild(cl_name_input);
+    		document.body.appendChild(form);
+    		form.submit();
+    	}
+    </script>
 </head>
 <body>
 <jsp:include page="../common/header.jsp"/>
@@ -123,12 +137,12 @@
 			<div class="sb_btn">
 				<c:choose>
 					<c:when test="${isDone == 'done'}">
-						<button class="apply_btn"><a href="${contextPath}/professor/lectureManageForm.do?cl_name=${cl_name}">수업관리</a></button>
+						<input type="button" class="apply_btn" value="수업관리" onclick="fn_lec_manage('${contextPath}/professor/lectureManageForm.do','${cl_name}')">
 					</c:when>
 					<c:otherwise>
 						<input type="hidden" name="cl_name" value="${cl_name}">
-						<input type="submit" class="apply_btn">	
-						<button class="apply_btn"><a href="${contextPath}/professor/lectureManageForm.do?cl_name=${cl_name}">수업관리</a></button>				
+						<input type="submit" class="apply_btn">
+						<input type="button" class="apply_btn" value="수업관리" onclick="fn_lec_manage('${contextPath}/professor/lectureManageForm.do','${cl_name}')">	
 					</c:otherwise>
 				</c:choose>
 			</div>
