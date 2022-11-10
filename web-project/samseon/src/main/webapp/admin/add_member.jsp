@@ -19,8 +19,12 @@
                 <link rel="stylesheet" href="${contextPath}/css/add_lecture2.css">
                 <script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
                 <script src="${contextPath}/js/common.js"></script>
-                <script src="${contextPath}/js/menu_third.js"></script>
-                <script src="${contextPath}/js/mypage_third.js"></script>
+                <script src="${contextPath}/js/menu_second.js"></script>
+                <script>
+                	$(function () {
+                		$('.my_page_menu').css('display','inline-block');
+                	});
+                </script>
                 <title>삼선대학교</title>
             </head>
 
