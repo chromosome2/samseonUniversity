@@ -5,10 +5,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%
-	String cl_name=request.getParameter("cl_name");
-	HttpSession session2=request.getSession(false);
-	String chul_done=(String)session2.getAttribute("chul_done/"+cl_name);
+	String cl_name=(String) request.getAttribute("cl_name");
+	String chul_cl_name="chul_"+cl_name;
+	String isDone=(String) session.getAttribute(chul_cl_name);
 %>
+<c:set var="isDone" value="<%=isDone %>"/>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -61,7 +62,8 @@
 						<table border="0" cellpadding="0" cellspacing="0">
 							<tbody>
 							<form action="${contextPath}/professor/chul_check.do" method="post">
-								<c:choose>
+								
+								<%-- <c:choose>
 									<c:when test="${empty chulcheck}">
 										<tr>
 											<td colspan="5">조회된 학생이 없습니다.</td>
@@ -87,8 +89,9 @@
 						<input type="hidden" name="cl_name" value="${cl_name}">
 						<input type="submit" class="apply_btn">
 						<button class="apply_btn"><a href="${contextPath}/professor/lectureManageForm.do?cl_name=${cl_name}">수업관리</a></button>
-					</div>
-						<%-- <c:choose>
+					</div> --%>
+					
+						<c:choose>
 							<c:when test="${empty chulcheck}">
 								<tr>
 									<td colspan="5">조회된 학생이 없습니다.</td>
@@ -103,7 +106,7 @@
 										<td>${chul.m_name}</td>
 										<td><fmt:formatNumber value="${chul.cl_check/30}" pattern="0.0%"/></td>
 										<c:choose>
-											<c:when test="${!empty chul_done and chul_done == cl_name}">
+											<c:when test="${isDone == 'done'}">
 												<td><input type="checkbox" name="chul_Ck" value="${chul.st_id}" disabled></td>
 											</c:when>
 											<c:otherwise>
@@ -119,7 +122,7 @@
 			</div>
 			<div class="sb_btn">
 				<c:choose>
-					<c:when test="${!empty chul_done and chul_done == cl_name}">
+					<c:when test="${isDone == 'done'}">
 						<button class="apply_btn"><a href="${contextPath}/professor/lectureManageForm.do?cl_name=${cl_name}">수업관리</a></button>
 					</c:when>
 					<c:otherwise>
@@ -128,7 +131,8 @@
 						<button class="apply_btn"><a href="${contextPath}/professor/lectureManageForm.do?cl_name=${cl_name}">수업관리</a></button>				
 					</c:otherwise>
 				</c:choose>
-			</div> --%>
+			</div>
+			
 		  </form>
 		</div>
       </section>

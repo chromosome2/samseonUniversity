@@ -28,6 +28,20 @@
     		width : 50px;
     	}
     </style>
+    <script type="text/javascript">
+    	function fn_chulcheck(cl_name, url) {  //출석체크폼으로 이동
+    		let form=document.createElement("form");
+    		form.setAttribute('action', url);
+    		form.setAttribute('method','post');
+			let cl_name_input=document.createElement("input");
+			cl_name_input.setAttribute('type','hidden');
+			cl_name_input.setAttribute('name','cl_name');
+			cl_name_input.setAttribute('value', cl_name);
+			form.appendChild(cl_name_input);
+			document.body.appendChild(form);
+			form.submit();
+    	}
+    </script>
 </head>
 <body>
     <jsp:include page="../common/header.jsp"/>
@@ -114,9 +128,11 @@
        				    </table>
        				   </div>
        				   <div class="class_submit">
-    				  		<button class="move_attend"><a href="${contextPath}/professor/chulcheckForm.do?cl_name=${cl_name}">출석체크</a></button>
-       					    <input class="btn_submit button" type="submit" value="등록">
-       					    <button class="btn_submit"><a href="${contextPath} /prof/my_lecture.jsp" class="btn_cancle button">취소</a></button>
+       				  		<%-- <button class="move_attend"><a href="${contextPath}/professor/chulcheckForm.do?cl_name=${cl_name}">출석체크</a></button> --%>
+    				  		<input type="button" class="btn_submit button" value="출석체크" onclick="fn_chulcheck('${cl_name}', '${contextPath}/professor/chulcheckForm.do')">
+       					    <input type="submit"class="btn_submit button" value="등록">
+       					    <input type="reset" class="btn_submit button" value="취소">
+       					    <%-- <button class="btn_submit"><a href="${contextPath} /prof/my_lecture.jsp" class="btn_cancle button">취소</a></button> --%>
           				</div>
          			 </form>
             		
