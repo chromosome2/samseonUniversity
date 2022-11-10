@@ -130,7 +130,7 @@
        				   <div class="class_submit">
        				  		<%-- <button class="move_attend"><a href="${contextPath}/professor/chulcheckForm.do?cl_name=${cl_name}">출석체크</a></button> --%>
     				  		<input type="button" class="btn_submit button" value="출석체크" onclick="fn_chulcheck('${cl_name}', '${contextPath}/professor/chulcheckForm.do')">
-       					    <input type="submit" class="btn_submit button" value="등록">
+       					    <input type="submit"class="btn_submit button" value="등록">
        					    <input type="reset" class="btn_submit button" value="취소">
        					    <%-- <button class="btn_submit"><a href="${contextPath} /prof/my_lecture.jsp" class="btn_cancle button">취소</a></button> --%>
           				</div>
