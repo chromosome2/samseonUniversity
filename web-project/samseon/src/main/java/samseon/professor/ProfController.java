@@ -50,6 +50,11 @@ public class ProfController extends HttpServlet {
 			nextPage="/prof/my_lecture.jsp";
 		}else if(action.equals("/lectureManageForm.do")) {  //수업관리 페이지로 이동
 			String cl_name=request.getParameter("cl_name");
+			
+			HttpSession session=request.getSession(false);
+			String chul_cl_name="chul_"+cl_name;
+			System.out.println("체크된 과목 - " + chul_cl_name + " : " + session.getAttribute(chul_cl_name));
+			
 			//강의이름으로 수강신청테이블에서 수강생정보 얻어오고, 수강생학번으로 성적테이블에서 수강생성적 조회해서 폼에 전달
 			List<ProfVO> students=profDAO.selectMyStudents(cl_name);
 			request.setAttribute("cl_name", cl_name);
@@ -63,7 +68,7 @@ public class ProfController extends HttpServlet {
 			nextPage="/prof/manage_attend.jsp";
 		}else if(action.equals("/chul_check.do")) {  //출석체크 등록
 			String cl_name=request.getParameter("cl_name");
-			System.out.println(cl_name);
+//			System.out.println(cl_name);
 			String[] st_id_arr=request.getParameterValues("chul_Ck");
 			int cl_id=profDAO.getCl_id(cl_name);  //과목코드 리턴
 			//출석체크테이블에 출석일수 +1
@@ -72,7 +77,9 @@ public class ProfController extends HttpServlet {
 				profDAO.updateChul(st_id, cl_id);
 			}
 			HttpSession session=request.getSession(false);
-			session.setAttribute("chul_done/"+cl_name, cl_name);
+			String chul_cl_name="chul_"+cl_name;
+//			System.out.println(chul_cl_name);
+			session.setAttribute(chul_cl_name, "done");
 			request.setAttribute("cl_name", cl_name);
 			nextPage="/professor/chulcheckForm.do";
 		}

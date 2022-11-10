@@ -129,7 +129,7 @@ public class ProfDAO {
 		} catch (Exception e) {
 			System.out.println();
 		}
-		System.out.println(s_first);
+//		System.out.println(s_first);
 		return s_first;
 	}
 	
@@ -149,7 +149,7 @@ public class ProfDAO {
 		} catch (Exception e) {
 			System.out.println();
 		}
-		System.out.println(s_second);
+//		System.out.println(s_second);
 		return s_second;
 	}
 	
