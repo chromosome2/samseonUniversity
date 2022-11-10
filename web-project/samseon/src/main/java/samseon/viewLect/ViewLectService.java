@@ -60,4 +60,9 @@ public class ViewLectService {
 		boolean result=viewLectDAO.check_cl_id(cl_id);
 		return result;
 	}
+	
+	//성적 추가
+	public void add_score_serv(ViewLectVO viewlectVO, int count) {
+		viewLectDAO.add_score(viewlectVO,count);
+	}
 }
