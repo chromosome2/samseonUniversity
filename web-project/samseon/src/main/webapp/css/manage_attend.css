@@ -3,10 +3,11 @@
   width: 5%;
 }
 .t2 {
-  width: 10%;
+  width: 15%;
+  text-align: center;
 }
 .t3 {
-  width: 50%;
+  width: 45%;
 }
 .t4 {
   width: 20%;
@@ -27,10 +28,6 @@
   width: 180px;
   margin: 10px auto;
   display: flex;
-}
-.sb_btn input {
-  width: 80px;
-  height: 30px;
 }
 .tbl_content1 {
   height: 100%; 

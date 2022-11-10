@@ -39,7 +39,6 @@
 
     <div id="contents_area">
       <div class="table_header">
-        <h3>강의이름 출석</h3>
         <h3>${cl_name} 출석 관리</h3>
       </div>
       <section class="contents_wrapper">

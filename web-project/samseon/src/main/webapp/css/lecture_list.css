@@ -12,6 +12,6 @@
   margin: 50px auto;
 }
 
-.tbl_header th{
+.tbl_header tr , .tbl_content tr {
   text-align: center;
 }
