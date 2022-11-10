@@ -13,7 +13,11 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="C:/tomcat9/lib/servlet-api.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/ojdbc8.jar"/>
+=======
+	<classpathentry kind="lib" path="/opt/homebrew/Cellar/apache-tomcat-9.0.55/lib/servlet-api.jar"/>
+>>>>>>> 1110850b0038733b2fd673185ab2b1ed8ba17e17
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

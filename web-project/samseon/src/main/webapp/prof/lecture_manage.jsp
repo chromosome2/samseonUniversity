@@ -55,7 +55,7 @@
                     <th>학생 학번</th>
                     <th>전화번호</th>
                     <th>이메일</th>
-                    <th>출석관리</th>
+                    <th>출석률</th>
                     <th>중간 점수</th>
                     <th>기말 점수</th>
                     <th>최종 성적</th>
@@ -66,57 +66,58 @@
             <div class="tbl_content">
               <table border="0" cellpadding="0" cellspacing="0">
                 <tbody>
-	            					<c:choose>
-	            						<c:when test="${empty studentList}">
-	            							<tr class="td_none">
-	            								<td colspan="9">
-	            									수업을 듣는 학생이 없습니다.
-	            								</td>
-	            							</tr>
-	            						</c:when>
-	            						<c:when test="${!empty studentList}">
-	            							<c:forEach var="student" items="${studentList}" varStatus="stuNum">
-	            								<tr>
-				            						<td>${stuNum.count}</td>
-				            						<td>${student.st_name }</td>
-				            						<td>${student.st_id }</td>
-				            						<td>${student.st_ph }</td>
-				            						<td>${student.st_email }</td>
-				            						<td><button class="move_attend"><a href="${contextPath}/professor/chulcheckForm.do?st_name=${student.st_name}&cl_name=${cl_name}">이동</a></button></td>
-				            						
-				            						<c:choose>
-					            						<c:when test="${student.s_first != -1 && student.s_second != -1}">
-						            						<td><input type="number" value="${student.s_first}" name="s_first" disabled></td>
-						            						<td><input type="number" value="${student.s_second}" name="s_second" disabled></td>
-						            						<td>${student.hakjum}</td><!-- 최종 성적(s_final)을 사용하여 알바펫점수를 매김. -->            						
-					            						</c:when>
-					            						<c:when test="${student.s_first != -1}">
-					            							<td><input type="number" value="${student.s_first}" name="s_first" disabled></td>
-					            							<td><input type="number" name="s_second"></td>
-					            							<td></td>
-					            						</c:when>
-					            						<c:when test="${student.s_second != -1}">
-					            							<td><input type="number" name="s_first"></td>
-					            							<td><input type="number" value="${student.s_second}" name="s_second" disabled></td>
-					            							<td></td>
-					            						</c:when>
-					            						<c:otherwise>
-					            							<td><input type="number" name="s_first"></td>
-					            							<td><input type="number" name="s_second"></td>
-					            							<td></td>
-					            						</c:otherwise>
-				            						</c:choose>
-				            					</tr>
-	            							</c:forEach>
-	            						</c:when>
-	            					</c:choose>
-	            				</tbody>
-          				    </table>
-         				   </div>
-         				   <div class="class_submit">
-          					    <input class="btn_submit button" type="submit" value="등록">
-          					    <button class="btn_submit"><a href="${contextPath} /prof/my_lecture.jsp" class="btn_cancle button">취소</a></button>
-           				 </div>
+            					<c:choose>
+            						<c:when test="${empty studentList}">
+            							<tr class="td_none">
+            								<td colspan="9">
+            									수업을 듣는 학생이 없습니다.
+            								</td>
+            							</tr>
+            						</c:when>
+            						<c:when test="${!empty studentList}">
+            							<c:forEach var="student" items="${studentList}" varStatus="stuNum">
+            								<tr>
+			            						<td>${stuNum.count}</td>
+			            						<td>${student.st_name}</td>
+			            						<td>${student.st_id}</td>
+			            						<td>${student.st_ph}</td>
+			            						<td>${student.st_email}</td>
+			            						<td>${student.cl_check/32}%</td>
+			            						
+			            						<c:choose>
+				            						<c:when test="${student.s_first != -1 && student.s_second != -1}">
+					            						<td><input type="number" value="${student.s_first}" name="s_first" disabled></td>
+					            						<td><input type="number" value="${student.s_second}" name="s_second" disabled></td>
+					            						<td>${student.hakjum}</td><!-- 최종 성적(s_final)을 사용하여 알바펫점수를 매김. -->            						
+				            						</c:when>
+				            						<c:when test="${student.s_first != -1}">
+				            							<td><input type="number" value="${student.s_first}" name="s_first" disabled></td>
+				            							<td><input type="number" name="s_second"></td>
+				            							<td></td>
+				            						</c:when>
+				            						<c:when test="${student.s_second != -1}">
+				            							<td><input type="number" name="s_first"></td>
+				            							<td><input type="number" value="${student.s_second}" name="s_second" disabled></td>
+				            							<td></td>
+				            						</c:when>
+				            						<c:otherwise>
+				            							<td><input type="number" name="s_first"></td>
+				            							<td><input type="number" name="s_second"></td>
+				            							<td></td>
+				            						</c:otherwise>
+			            						</c:choose>
+			            					</tr>
+            							</c:forEach>
+            						</c:when>
+            					</c:choose>
+            				</tbody>
+       				    </table>
+       				   </div>
+       				   <div class="class_submit">
+    				  		<button class="move_attend"><a href="${contextPath}/professor/chulcheckForm.do?cl_name=${cl_name}">이동</a></button>
+       					    <input class="btn_submit button" type="submit" value="등록">
+       					    <button class="btn_submit"><a href="${contextPath} /prof/my_lecture.jsp" class="btn_cancle button">취소</a></button>
+          				</div>
          			 </form>
             		
             	</section>
