@@ -25,6 +25,15 @@
 	<script src="${contextPath}/js/table.js"></script>
 	<script src="${contextPath}/js/pf_menu.js"></script>
     <title>삼선대학교</title>
+    <c:choose>
+    	<c:when test='${lect_msg=="addLect" }'>
+    		<script>
+    			window.onload=function(){
+    				alert("강의를 등록하였습니다.");
+    			}
+    		</script>
+    	</c:when>
+    </c:choose>
 </head>
 <body>
 <jsp:include page="../common/header.jsp"/>
@@ -47,6 +56,7 @@
 						<table border="0" cellpadding="0" cellspacing="0">
 							<thead>
 								<tr>
+									<th>NO</th>
 									<th>과목 코드</th>
 									<th>강의 이름</th>
 									<th>교수 이름</th>
@@ -65,32 +75,33 @@
 					<div class="tbl_content">
 						<table border="0" cellpadding="0" cellspacing="0">
 							<tbody>
-								<%--<c:choose>
-									<c:when test="${empty}">
+								<c:choose>
+									<c:when test="${empty pf_LectureList}">
 										<tr>
 											<td colspan="11">
-												등록된 수업이 없습니다.
+												<p align="center">등록된 수업이 없습니다.</p>
 											</td>
 										</tr>
 									</c:when>
-									<c:when test="${!empty  }">
-										<c:forEach var="" items="${}"> --%>
+									<c:when test="${!empty pf_LectureList}">
+										<c:forEach var="lect" items="${pf_LectureList}" varStatus="lectNum">
 											<tr>
-												<td>555555</td>
-												<td>컴퓨터개론 및 실습</td>
-												<td>김선생</td>
-												<td>1</td>
-												<td>3</td>
-												<td>수, 금 9시 ~ 10시 30분</td>
-												<td>203호</td>
-												<td>교양</td>
-												<td>IT 대학</td>
-												<td><button class="apply_btn"><a href="${contextPath}/prof/">수정</a></button></td>
+												<td>${lectNum.count }</td>
+												<td>${lect.cl_id }</td>
+												<td>${lect.cl_name}</td>
+												<td>${lect.pf_name}</td>
+												<td>${lect.cl_sem}</td>
+												<td>${lect.cl_pt}</td>
+												<td>${lect.cl_time}</td>
+												<td>${lect.cl_room}</td>
+												<td>${lect.cl_mj_t}</td>
+												<td>${lect.dan}</td>
+												<td><button class="apply_btn"><a href="${contextPath}/prof/add_lecture.jsp">수정</a></button></td>
 												<td><button class="apply_btn"><a href="${contextPath}/prof/">삭제</a></button></td>
 											</tr>
-										<%--</c:forEach>
+										</c:forEach>
 									</c:when>
-								</c:choose> --%>
+								</c:choose>
 							</tbody>
 						</table>
 					</div>

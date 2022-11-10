@@ -4,6 +4,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<%
+	String cl_name=(String) request.getAttribute("cl_name");
+	String chul_cl_name="chul_"+cl_name;
+	String isDone=(String) session.getAttribute(chul_cl_name);
+%>
+<c:set var="isDone" value="<%=isDone %>"/>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -33,7 +39,11 @@
 
     <div id="contents_area">
       <div class="table_header">
+<<<<<<< HEAD
         <h3>강의이름 출석</h3>
+=======
+        <h3>${cl_name} 출석 관리</h3>
+>>>>>>> 14ccd8e085778b2cff5cbf08d15b5241cb156706
       </div>
       <section class="contents_wrapper">
 				<div class="tbl_area">            		
@@ -41,10 +51,18 @@
 						<table >
 							<thead>
 								<tr>
+<<<<<<< HEAD
 									<th class="t1">NO</th>
 									<th class="t2">학생이름</th>
 									<th class="t3">강의 이름(과목)</th>
 									<th class="t4">출석 등록</th>
+=======
+									<th>NO</th>
+									<th>학생이름</th>
+									<th>소속 학과</th>
+									<th>출석률</th>
+									<th>출석 등록</th>
+>>>>>>> 14ccd8e085778b2cff5cbf08d15b5241cb156706
 								</tr>
 							</thead>
 						</table>
@@ -52,6 +70,7 @@
 					<div class="tbl_content1">
 						<table>
 							<tbody>
+<<<<<<< HEAD
 								<%--<c:choose>
 									<c:when test="${empty}">
 										<form action="">
@@ -71,15 +90,89 @@
 													</tr> 
 											<%--</c:forEach>
 										</form>
+=======
+							<form action="${contextPath}/professor/chul_check.do" method="post">
+								
+								<%-- <c:choose>
+									<c:when test="${empty chulcheck}">
+										<tr>
+											<td colspan="5">조회된 학생이 없습니다.</td>
+										</tr>
+>>>>>>> 14ccd8e085778b2cff5cbf08d15b5241cb156706
 									</c:when>
-								</c:choose> --%>
+									<c:when test="${!empty chulcheck}">
+										<c:set var="chul_done" value="${chul_done}"/>
+										<c:forEach var="chul" items="${chulcheck}" varStatus="chulNum">
+											<tr>
+												<td>${chulNum.count}</td> 
+												<td>${chul.st_name}</td>
+												<td>${chul.m_name}</td>
+												<td><fmt:formatNumber value="${chul.cl_check/30}" pattern="0.0%"/></td>
+												<td><input type="checkbox" name="chul_Ck" value="${chul.st_id}"></td>
+											</tr> 
+										</c:forEach>
+									</c:when>
+								</c:choose>
 							</tbody>
 						</table>
 					</div>
+<<<<<<< HEAD
 				</div>
 				<div class="sb_btn">
 						<input type="submit" class="apply_btn" value="등록">
 				</div>
+=======
+					<div class="sb_btn">
+						<input type="hidden" name="cl_name" value="${cl_name}">
+						<input type="submit" class="apply_btn">
+						<button class="apply_btn"><a href="${contextPath}/professor/lectureManageForm.do?cl_name=${cl_name}">수업관리</a></button>
+					</div> --%>
+					
+						<c:choose>
+							<c:when test="${empty chulcheck}">
+								<tr>
+									<td colspan="5">조회된 학생이 없습니다.</td>
+								</tr>
+							</c:when>
+							<c:when test="${!empty chulcheck}">
+								<c:set var="chul_done" value="${chul_done}"/>
+								<c:forEach var="chul" items="${chulcheck}" varStatus="chulNum">
+									<tr>
+										<td>${chulNum.count}</td> 
+										<td>${chul.st_name}</td>
+										<td>${chul.m_name}</td>
+										<td><fmt:formatNumber value="${chul.cl_check/30}" pattern="0.0%"/></td>
+										<c:choose>
+											<c:when test="${isDone == 'done'}">
+												<td><input type="checkbox" name="chul_Ck" value="${chul.st_id}" disabled></td>
+											</c:when>
+											<c:otherwise>
+												<td><input type="checkbox" name="chul_Ck" value="${chul.st_id}"></td>											
+											</c:otherwise>
+										</c:choose>
+									</tr> 
+								</c:forEach>
+							</c:when>
+						</c:choose>
+					</tbody>
+				</table>
+			</div>
+			<div class="sb_btn">
+				<c:choose>
+					<c:when test="${isDone == 'done'}">
+						<button class="apply_btn"><a href="${contextPath}/professor/lectureManageForm.do?cl_name=${cl_name}">수업관리</a></button>
+					</c:when>
+					<c:otherwise>
+						<input type="hidden" name="cl_name" value="${cl_name}">
+						<input type="submit" class="apply_btn">	
+						<button class="apply_btn"><a href="${contextPath}/professor/lectureManageForm.do?cl_name=${cl_name}">수업관리</a></button>				
+					</c:otherwise>
+				</c:choose>
+			</div>
+			
+		  </form>
+		</div>
+>>>>>>> 14ccd8e085778b2cff5cbf08d15b5241cb156706
       </section>
     </div>
   </div>

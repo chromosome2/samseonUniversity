@@ -58,31 +58,31 @@
             		<div class="tbl_content">
             			<table border="0" cellpadding="0" cellspacing="0">
             				<tbody>
-            					<%--<c:choose>
-            						<c:when test="${empty}">
+            					<c:choose>
+            						<c:when test="${empty lectureList}">
             							<tr>
             								<td colspan="11">
             									진행중인 수업이 없습니다.
             								</td>
             							</tr>
             						</c:when>
-            						<c:when test="${!empty  }">
-            							<c:forEach var="" items="${}"> --%>
+            						<c:when test="${!empty lectureList}">
+            							<c:forEach var="lecture" items="${lectureList}" varStatus="lecNum">
             								<tr>
-			            						<td>1</td>
-			            						<td>555555</td>
-			            						<td>컴퓨터개론 및 실습</td>
-			            						<td>1</td>
-			            						<td>3</td>
-			            						<td>수, 금 9시 ~ 10시 30분</td>
-			            						<td>203호</td>
-			            						<td>교양</td>
-			            						<td class="btn_td"><button class="btn_move"><a href="${contextPath}/prof/lecture_manage.jsp">이동</a></button></td>
+			            						<td>${lecNum.count}</td>
+			            						<td>${lecture.cl_id}</td>
+			            						<td>${lecture.cl_name}</td>
+			            						<td>${lecture.cl_sem}</td>
+			            						<td>${lecture.cl_pt}</td>
+			            						<td>${lecture.cl_time}</td>
+			            						<td>${lecture.cl_room}</td>
+			            						<td>${lecture.cl_mj_t}</td>
+			            						<td class="btn_td"><button class="btn_move"><a href="${contextPath}/professor/lectureManageForm.do?cl_name=${lecture.cl_name}">이동</a></button></td>
 			            						<td class="btn_td"><button class="btn_move"><a href="${contextPath}/prof/lecture_board.jsp">이동</a></button></td>
 			            					</tr>
-            							<%--</c:forEach>
+            							</c:forEach>
             						</c:when>
-            					</c:choose> --%>
+            					</c:choose>
             				</tbody>
             			</table>
             		</div>

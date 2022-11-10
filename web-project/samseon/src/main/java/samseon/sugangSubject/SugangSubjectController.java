@@ -46,7 +46,7 @@ public class SugangSubjectController extends HttpServlet {
 		try {
 			List<SugangSubjectVO> sugangList=new ArrayList<SugangSubjectVO>();
 			List<String> majorList=new ArrayList<String>();
-			if(action.equals("/listLectures.do")) {  //수강신청 전체 과목 조회
+			if(action.equals("/listLectures.do")) {  //수강신청 가능한 전체 과목 조회
 				sugangList=sugangSubService.listLectures();
 				majorList=sugangSubService.listMajors();
 				request.setAttribute("sugangList", sugangList);
@@ -56,7 +56,7 @@ public class SugangSubjectController extends HttpServlet {
 				session=request.getSession(false);
 				pw=response.getWriter();
 				int st_id=(int) session.getAttribute("log_id");
-				String[] addLecture=request.getParameterValues("addLecture");
+				String[] addLecture=request.getParameterValues("addLecture");  //체크된 체크박스의 값만 배열로 가져옴
 				String[] pf_id=request.getParameterValues("pf_id");
 				String[] pf_name=request.getParameterValues("pf_name");
 				String[] cl_name=request.getParameterValues("cl_name");
@@ -64,7 +64,7 @@ public class SugangSubjectController extends HttpServlet {
 				String[] cl_pt=request.getParameterValues("cl_pt");
 				String[] cl_sem=request.getParameterValues("cl_sem");
 				for(int i=0; i<addLecture.length; i++) {
-					int idx=Integer.parseInt(addLecture[i]);
+					int idx=Integer.parseInt(addLecture[i]);  //체크박스의 값=배열의 요소=인덱스
 					int _pf_id=Integer.parseInt(pf_id[idx]);
 					String _pf_name=pf_name[idx];
 					String _cl_name=cl_name[idx];
@@ -81,10 +81,10 @@ public class SugangSubjectController extends HttpServlet {
 					vo.setCl_id(_cl_id);
 					vo.setCl_pt(_cl_pt);
 					vo.setCl_sem(_cl_sem);
-					boolean result=sugangSubService.isRegistered(st_id, _cl_id);
+					boolean result=sugangSubService.isRegistered(st_id, _cl_id);  //중복 신청 여부 확인
 					System.out.println(result);
 					if(result==false) {
-						sugangSubService.addSugang(vo);						
+						sugangSubService.addSugang(vo);  //중복 아닐 시 수강신청 진행		
 					}else {
 						pw.print("<script>"
 								+ "alert('이미 수강 신청된 강의입니다.');"

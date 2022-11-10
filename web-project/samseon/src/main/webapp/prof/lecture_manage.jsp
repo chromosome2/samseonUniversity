@@ -29,6 +29,20 @@
     		width : 50px;
     	}
     </style>
+    <script type="text/javascript">
+    	function fn_chulcheck(cl_name, url) {  //출석체크폼으로 이동
+    		let form=document.createElement("form");
+    		form.setAttribute('action', url);
+    		form.setAttribute('method','post');
+			let cl_name_input=document.createElement("input");
+			cl_name_input.setAttribute('type','hidden');
+			cl_name_input.setAttribute('name','cl_name');
+			cl_name_input.setAttribute('value', cl_name);
+			form.appendChild(cl_name_input);
+			document.body.appendChild(form);
+			form.submit();
+    	}
+    </script>
 </head>
 <body>
     <jsp:include page="../common/header.jsp"/>
@@ -41,7 +55,7 @@
             <div id="contents_area">
        		 <section class="contents_wrapper">
          		 <div class="table_header">
-        		    <h3>컴퓨터개론 및 실습</h3>
+        		    <h3>${cl_name}</h3>
        	   </div>
            <div class="MA_btn_area">
             <button class="move_attend"><a href="${contextPath}/prof/manage_attend.jsp">출석등록</a>
@@ -70,6 +84,7 @@
             <div class="tbl_content">
               <table border="0" cellpadding="0" cellspacing="0">
                 <tbody>
+<<<<<<< HEAD
 	            					<%--<c:choose>
 	            						<c:when test="${empty}">
 	            							<tr class="td_none">
@@ -101,6 +116,62 @@
           					    <input class="btn_submit button" type="submit" value="등록(완료)하기">
           					    <button class="btn_submit"><a href="${contextPath} /prof/my_lecture.jsp" class="btn_cancle button">취소</a></button>
            				 </div>
+=======
+            					<c:choose>
+            						<c:when test="${empty studentList}">
+            							<tr class="td_none">
+            								<td colspan="9">
+            									수업을 듣는 학생이 없습니다.
+            								</td>
+            							</tr>
+            						</c:when>
+            						<c:when test="${!empty studentList}">
+            							<c:forEach var="student" items="${studentList}" varStatus="stuNum">
+            								<tr>
+			            						<td>${stuNum.count}</td>
+			            						<td>${student.st_name}</td>
+			            						<td>${student.st_id}</td>
+			            						<td>${student.st_ph}</td>
+			            						<td>${student.st_email}</td>
+			            						<td><fmt:formatNumber value="${student.cl_check/30}" pattern="0.0%"/></td>
+			            						
+			            						<c:choose>
+				            						<c:when test="${student.s_first != -1 && student.s_second != -1}">
+					            						<td><input type="number" value="${student.s_first}" name="s_first" disabled></td>
+					            						<td><input type="number" value="${student.s_second}" name="s_second" disabled></td>
+					            						<td>${student.hakjum}</td><!-- 최종 성적(s_final)을 사용하여 알바펫점수를 매김. -->            						
+				            						</c:when>
+				            						<c:when test="${student.s_first != -1}">
+				            							<td><input type="number" value="${student.s_first}" name="s_first" disabled></td>
+				            							<td><input type="number" name="s_second"></td>
+				            							<td></td>
+				            						</c:when>
+				            						<c:when test="${student.s_second != -1}">
+				            							<td><input type="number" name="s_first"></td>
+				            							<td><input type="number" value="${student.s_second}" name="s_second" disabled></td>
+				            							<td></td>
+				            						</c:when>
+				            						<c:otherwise>
+				            							<td><input type="number" name="s_first"></td>
+				            							<td><input type="number" name="s_second"></td>
+				            							<td></td>
+				            						</c:otherwise>
+			            						</c:choose>
+			            					</tr>
+            							</c:forEach>
+            						</c:when>
+            					</c:choose>
+            				</tbody>
+       				    </table>
+       				   </div>
+       				   <div class="class_submit">
+       				  		<%-- <button class="move_attend"><a href="${contextPath}/professor/chulcheckForm.do?cl_name=${cl_name}">출석체크</a></button> --%>
+    				  		<input type="button" class="btn_submit button" value="출석체크" onclick="fn_chulcheck('${cl_name}', '${contextPath}/professor/chulcheckForm.do')">
+       					    <input type="submit"class="btn_submit button" value="등록">
+       					    <input type="reset" class="btn_submit button" value="취소">
+       					    <%-- <button class="btn_submit"><a href="${contextPath} /prof/my_lecture.jsp" class="btn_cancle button">취소</a></button> --%>
+          				</div>
+>>>>>>> 14ccd8e085778b2cff5cbf08d15b5241cb156706
          			 </form>
             		
             	</section>

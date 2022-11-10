@@ -88,10 +88,9 @@
                           <td class="th_title_txt">${article.adminDepartment}</td>
                         </tr>
                         <tr>
-                          <td colspan="2" class="th_write" height="300px">
-                            <div
-                              style="white-space: pre-wrap; text-align: justify !important; width: 800px; padding: 22px;">
-                              ${article.content}</div>
+                          <td colspan="2" class="th_write">
+                            <!-- white-space: pre-wrap 때문에 본문 부분 div와 ${article.content} 사이에 space 들어가면 안됨 - 공백 출력되는 오류 발생 -->
+                            <div class="th_wrap">${article.content}</div>
                           </td>
                         </tr>
                       </tbody>
