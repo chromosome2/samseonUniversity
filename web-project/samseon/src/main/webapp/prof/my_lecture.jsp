@@ -70,7 +70,7 @@
             								<tr>
 			            						<td>${lecNum.count}</td>
 			            						<td>${lecture.cl_id}</td>
-			            						<td>${lecture.cl_name}</td>
+			            						<td><a href="${contextPath}/professor/lecture_board_list.do?cl_id=${lecture.cl_id}">${lecture.cl_name}</a></td>
 			            						<td>${lecture.cl_sem}</td>
 			            						<td>${lecture.cl_pt}</td>
 			            						<td>${lecture.cl_time}</td>
