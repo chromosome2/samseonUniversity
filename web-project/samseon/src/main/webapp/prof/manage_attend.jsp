@@ -13,9 +13,10 @@
     <link rel="shortcut icon" href="${contextPath}/images/logo.png">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard-dynamic-subset.css" />
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
-    <link rel="stylesheet" href="${contextPath}/css/common.css" />
-	<link rel="stylesheet" href="${contextPath}/css/apply_header.css" />
-	<link rel="stylesheet"  href="${contextPath}/css/manage_attend.css" />
+    <link rel="stylesheet" href="${contextPath}/css/common.css" > 
+	<link rel="stylesheet" href="${contextPath}/css/apply_header.css" >
+	<link rel="stylesheet" href="${contextPath}/css/viewMyLectures_ST.css">
+	<link rel="stylesheet"  href="${contextPath}/css/manage_attend.css">
     <script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
     <script src="${contextPath}/js/common.js"></script>
 	<script src="${contextPath}/js/menu_third.js"></script>
@@ -77,7 +78,7 @@
 					</div>
 				</div>
 				<div class="sb_btn">
-						<input type="submit" class="apply_btn">
+						<input type="submit" class="apply_btn" value="등록">
 				</div>
       </section>
     </div>

@@ -35,7 +35,7 @@
             <div id="contents_area">
             	<section class="contents_wrapper">
             		<div class="table_header">
-            			<h3>수업 공지사항</h3>
+            			<h3>(강의이름) (수업) 공지사항</h3>
             		</div>
             		<c:if test="${user_level == 'professor'}">
 	              	 	<a href="${contextPath}/prof/add_article.jsp">글쓰기</a>                  
@@ -43,9 +43,6 @@
             		<div class="tbl_header">
             			<table border="0" cellpadding="0" cellspacing="0">
             				<thead>
-            					<tr>
-            						<td>(강의이름) 공지사항</td>
-            					<tr>
             					<tr>
             						<th>번호</th>
 			                        <th>제목</th>

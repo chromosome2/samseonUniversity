@@ -17,6 +17,7 @@
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
     <link rel="stylesheet" href="${contextPath}/css/common.css">
     <link rel="stylesheet" href="${contextPath}/css/viewMyLectures_ST.css">
+
     <script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
     <script src="${contextPath}/js/common.js"></script>
     <script src="${contextPath}/js/menu_third.js"></script>
@@ -42,7 +43,7 @@
          		 <div class="table_header">
         		    <h3>컴퓨터개론 및 실습</h3>
        	   </div>
-           <div>
+           <div class="MA_btn_area">
             <button class="move_attend"><a href="${contextPath}/prof/manage_attend.jsp">출석등록</a>
            </div>
        	   <form action="${contextPath}/" method="post" id="frm_add_score" name="frm_add_score">
@@ -97,7 +98,7 @@
           				    </table>
          				   </div>
          				   <div class="class_submit">
-          					    <input class="btn_submit button" type="submit" value="등록하기">
+          					    <input class="btn_submit button" type="submit" value="등록(완료)하기">
           					    <button class="btn_submit"><a href="${contextPath} /prof/my_lecture.jsp" class="btn_cancle button">취소</a></button>
            				 </div>
          			 </form>
