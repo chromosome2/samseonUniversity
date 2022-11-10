@@ -21,6 +21,7 @@
                 <script src="${contextPath}/js/common.js"></script>
                 <script src="${contextPath}/js/menu_second.js"></script>
                 <script src="${contextPath}/js/pf_menu.js"></script>
+                <script src="${contextPath}/js/add_lecture.js"></script>
                 <title>삼선대학교</title>
             </head>
 
@@ -42,23 +43,23 @@
                                         <tbody>
                                             <tr>
                                                 <th>과목 코드</th>
-                                                <td><input class="tbl_input" type="number" name="cl_id"></td>
+                                                <td><input id="cl_id" class="tbl_input" type="number" name="cl_id" required></td>
                                             </tr>
                                             <tr>
                                                 <th>강의 이름</th>
-                                                <td><input class="tbl_input" type="text" name="cl_name"></td>
+                                                <td><input class="tbl_input" type="text" name="cl_name" required></td>
                                             </tr>
                                             <tr>
                                                 <th>학점</th>
-                                                <td><input class="tbl_input" type="number" name="cl_pt"></td>
+                                                <td><input class="tbl_input" type="number" name="cl_pt" required></td>
                                             </tr>
                                             <tr>
                                                 <th>강의 시간</th>
-                                                <td><input class="tbl_input" type="text" name="cl_time"></td>
+                                                <td><input class="tbl_input" type="text" name="cl_time" required></td>
                                             </tr>
                                             <tr>
                                                 <th>강의실</th>
-                                                <td><input class="tbl_input" type="num" name="cl_room"></td>
+                                                <td><input class="tbl_input" type="text" name="cl_room" required></td>
                                             </tr>
                                             <tr class="radio_btns">
                                                 <th>강의 유형</th>
