@@ -135,6 +135,7 @@ select {
   height: 45px;
   width: 90px;
   margin: 0 5px;
+  cursor: pointer;
 }
 
 /* 

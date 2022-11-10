@@ -15,7 +15,7 @@
                 <link rel="stylesheet" as="style" crossorigin
                     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
                 <link rel="stylesheet" href="${contextPath}/css/common.css">
-                <link rel="stylesheet" href="${contextPath}/css/manage_student.css">
+                <link rel="stylesheet" href="${contextPath}/css/manage.css">
                 <link rel="stylesheet" href="${contextPath}/css/table.css">
                 <link rel="stylesheet" href="${contextPath}/css/viewMyLectures_ST.css">
                 <script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
@@ -23,9 +23,9 @@
                 <script src="${contextPath}/js/menu_second.js"></script>
                 <script src="${contextPath}/js/mypage_second.js"></script>
                 <script>
-                	$(function () {
-                		$('.my_page_menu').css('display','inline-block');
-                	});
+                    $(function () {
+                        $('.my_page_menu').css('display', 'inline-block');
+                    });
                 </script>
                 <title>삼선대학교</title>
             </head>
