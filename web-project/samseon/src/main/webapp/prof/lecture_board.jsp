@@ -119,7 +119,9 @@
             	</section>
         		<!-- 새 글 작성 : 교수에게만 보임 -->
         		<c:if test="${user_level == 'professor'}">
-            	 	<a href="${contextPath}/professor/noticeForm.do">글쓰기</a>                  
+        			<div style="text-align:center;">
+	            	 	<a href="${contextPath}/professor/noticeForm.do?cl_id=${noticeInfo.cl_id}&cl_name=${noticeInfo.cl_name}">글쓰기</a>                  
+        			</div>
                 </c:if>
             </div>
         </div>

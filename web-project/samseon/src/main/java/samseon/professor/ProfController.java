@@ -103,6 +103,14 @@ public class ProfController extends HttpServlet {
 			request.setAttribute("pageNum", pageNum);
 			request.setAttribute("total", total);
 			nextPage="/prof/lecture_board.jsp";
+		}else if(action.equals("/noticeForm.do")) {
+			int cl_id=Integer.parseInt(request.getParameter("cl_id"));
+			System.out.println(cl_id);
+			String cl_name=request.getParameter("cl_name");
+			System.out.println(cl_name);
+			request.setAttribute("cl_id", cl_id);
+			request.setAttribute("cl_name", cl_name);
+			nextPage="/prof/add_article.jsp";
 		}
 		RequestDispatcher dispatcher=request.getRequestDispatcher(nextPage);
 		dispatcher.forward(request, response);

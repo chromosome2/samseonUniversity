@@ -274,4 +274,7 @@ public class ProfDAO {
 		return total;
 	}
 	
+	//공지사항 작성
+	
+	
 }
