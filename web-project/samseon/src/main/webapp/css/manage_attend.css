@@ -1,9 +1,9 @@
 
-table .t1 {
+.t1 {
   width: 5%;
 }
-table .t2 {
-  width: 25%;
+.t2 {
+  width: 10%;
 }
 .t3 {
   width: 50%;
@@ -24,8 +24,9 @@ table .t2 {
   height: 100%;
 }
 .sb_btn{
-  width: 80px;
+  width: 180px;
   margin: 10px auto;
+  display: flex;
 }
 .sb_btn input {
   width: 80px;
@@ -37,4 +38,7 @@ table .t2 {
   margin-top: 0px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   margin-bottom: 50px;
+}
+.emp_content {
+  text-align: center;
 }
