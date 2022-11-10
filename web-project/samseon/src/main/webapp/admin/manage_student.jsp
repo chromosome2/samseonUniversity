@@ -21,6 +21,12 @@
                 <script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
                 <script src="${contextPath}/js/common.js"></script>
                 <script src="${contextPath}/js/menu_second.js"></script>
+                <script src="${contextPath}/js/mypage_second.js"></script>
+                <script>
+                	$(function () {
+                		$('.my_page_menu').css('display','inline-block');
+                	});
+                </script>
                 <title>삼선대학교</title>
             </head>
 
@@ -206,7 +212,7 @@
                                 </table>
                             </div>
                             <div class="st_lecture_list lt_apply">
-                                <button class="apply_btn">등록</button>
+                                <button class="apply_btn"><a href="${contextPath }/admin/add_member.jsp">등록</a></button>
                                 <button class="apply_btn">수정</button>
                                 <button class="apply_btn">삭제</button>
                             </div>
