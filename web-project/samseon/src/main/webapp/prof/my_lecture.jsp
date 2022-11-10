@@ -76,8 +76,8 @@
 			            						<td>${lecture.cl_time}</td>
 			            						<td>${lecture.cl_room}</td>
 			            						<td>${lecture.cl_mj_t}</td>
-			            						<td class="btn_td"><button class="btn_move"><a href="${contextPath}/professor/lectureManageForm.do?cl_name=${lecture.cl_name}">이동</a></button></td>
-			            						<td class="btn_td"><button class="btn_move"><a href="${contextPath}/professor/lecture_board_list.do?cl_id=${lecture.cl_id}">이동</a></button></td>
+			            						<td class="btn_td"><button class="btn_move_b"><a href="${contextPath}/professor/lectureManageForm.do?cl_name=${lecture.cl_name}">이동</a></button></td>
+			            						<td class="btn_td"><button class="btn_move_b"><a href="${contextPath}/professor/lecture_board_list.do?cl_id=${lecture.cl_id}">이동</a></button></td>
 			            					</tr>
             							</c:forEach>
             						</c:when>
