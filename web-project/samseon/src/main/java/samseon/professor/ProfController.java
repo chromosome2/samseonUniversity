@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -68,7 +70,6 @@ public class ProfController extends HttpServlet {
 			nextPage="/prof/manage_attend.jsp";
 		}else if(action.equals("/chul_check.do")) {  //출석체크 등록
 			String cl_name=request.getParameter("cl_name");
-//			System.out.println(cl_name);
 			String[] st_id_arr=request.getParameterValues("chul_Ck");
 			int cl_id=profDAO.getCl_id(cl_name);  //과목코드 리턴
 			//출석체크테이블에 출석일수 +1
@@ -78,10 +79,30 @@ public class ProfController extends HttpServlet {
 			}
 			HttpSession session=request.getSession(false);
 			String chul_cl_name="chul_"+cl_name;
-//			System.out.println(chul_cl_name);
 			session.setAttribute(chul_cl_name, "done");
 			request.setAttribute("cl_name", cl_name);
 			nextPage="/professor/chulcheckForm.do";
+		}else if(action.equals("/lecture_board_list.do")) {  //강의 공지사항 게시판 불러오기
+			int cl_id=Integer.parseInt(request.getParameter("cl_id"));
+			String _section=request.getParameter("section");
+			String _pageNum=request.getParameter("pageNum");
+			int section=Integer.parseInt((_section == null)?"1":_section);
+			int pageNum=Integer.parseInt((_pageNum == null)?"1":_pageNum);
+			Map<String, Integer> pagingMap=new HashMap<String, Integer>();
+			pagingMap.put("section", section);
+			pagingMap.put("pageNum", pageNum);
+			//전체글 개수
+			int total=profDAO.selectTotalNotice(cl_id);
+			//공지사항테이블에서 과목코드로 모든 공지사항 조회해서 가져옴
+			Map lesson_notice_map=profDAO.selectLessonNotice(cl_id, pagingMap);
+			List<ProfVO> lesson_notice_list=(List<ProfVO>) lesson_notice_map.get("lessonNotice");
+			ProfVO noticeInfo=(ProfVO) lesson_notice_map.get("noticeInfo");
+			request.setAttribute("lessonNotice", lesson_notice_list);
+			request.setAttribute("noticeInfo", noticeInfo);
+			request.setAttribute("section", section);
+			request.setAttribute("pageNum", pageNum);
+			request.setAttribute("total", total);
+			nextPage="/prof/lecture_board.jsp";
 		}
 		RequestDispatcher dispatcher=request.getRequestDispatcher(nextPage);
 		dispatcher.forward(request, response);

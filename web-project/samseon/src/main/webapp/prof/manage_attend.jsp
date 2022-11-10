@@ -138,13 +138,11 @@
 				<c:choose>
 					<c:when test="${isDone == 'done'}">
 						<input type="button" class="apply_btn" value="수업관리" onclick="fn_lec_manage('${contextPath}/professor/lectureManageForm.do','${cl_name}')">
-						<%-- <button class="apply_btn"><a href="${contextPath}/professor/lectureManageForm.do?cl_name=${cl_name}">수업관리</a></button> --%>
 					</c:when>
 					<c:otherwise>
 						<input type="hidden" name="cl_name" value="${cl_name}">
 						<input type="submit" class="apply_btn">
-						<input type="button" class="apply_btn" value="수업관리" onclick="fn_lec_manage('${contextPath}/professor/lectureManageForm.do','${cl_name}')">
-						<%-- <button class="apply_btn"><a href="${contextPath}/professor/lectureManageForm.do?cl_name=${cl_name}">수업관리</a></button> --%>		
+						<input type="button" class="apply_btn" value="수업관리" onclick="fn_lec_manage('${contextPath}/professor/lectureManageForm.do','${cl_name}')">	
 					</c:otherwise>
 				</c:choose>
 			</div>
