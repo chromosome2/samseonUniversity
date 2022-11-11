@@ -130,9 +130,10 @@
                                 </div>
                               </c:if>
                               <!-- 검색 후 전체글 목록으로 돌아가기 -->
+                            </form>
+                              <!-- 목록 버튼 form 밖에 위치해야 search.do가 아닌 listArticles.do가 수행됨 -->
                               <a href="${contextPath}/board/listArticles.do"><button type="submit"
                                   class="btn btn-dark btn-list">목록</button></a>
-                            </form>
                           </div>
                         </div>
                       </div>
