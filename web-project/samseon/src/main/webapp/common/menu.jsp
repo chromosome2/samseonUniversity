@@ -48,8 +48,8 @@
 		                        <li class="second_menu_title my_page">
 		                        	<div class="my_page_click_area"><a href="#" class="menu_title">교수, 학생 관리</a></div>
 		                            <ul class="my_page_menu">
-		                                <li><a href="${contextPath}/admin/manage_professor.jsp"  class="first_my_page_title">교수 관리</a></li>
-		                                <li><a href="${contextPath}/admin/manage_student.jsp" class="second_my_page_title">학생 관리</a></li>
+		                                <li><a href="${contextPath}/manage/manage_prof.do"  class="first_my_page_title">교수 관리</a></li>
+		                                <li><a href="${contextPath}/manage/manage_st.do" class="second_my_page_title">학생 관리</a></li>
 		                            </ul>
 		                        </li>					
 							</c:when>

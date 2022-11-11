@@ -66,7 +66,7 @@ public class ViewLectController extends HttpServlet {
 				String cl_time=request.getParameter("cl_time");
 				String cl_room=request.getParameter("cl_room");
 				String cl_mj_t=request.getParameter("cl_mj_t");
-				System.out.println(pf_id+","+cl_id+","+cl_name+","+cl_pt+","+cl_time+","+cl_room+","+cl_mj_t);
+				//System.out.println(pf_id+","+cl_id+","+cl_name+","+cl_pt+","+cl_time+","+cl_room+","+cl_mj_t);
 				
 				ViewLectVO viewlectVO=new ViewLectVO();
 				viewlectVO.setPf_id(pf_id);
@@ -82,7 +82,7 @@ public class ViewLectController extends HttpServlet {
 				nextPage="/view/pf_lectureList.do";
 			}else if(action.equals("/check_cl_id.do")){
 				int cl_id=Integer.parseInt(request.getParameter("cl_id"));
-				System.out.println("cl_id");
+				//System.out.println("cl_id");
 				boolean check_cl_id=viewLectService.check_cl_id_serv(cl_id);
 				if(check_cl_id==true) {
 					out.print("not_usable");
@@ -100,7 +100,7 @@ public class ViewLectController extends HttpServlet {
 				String cl_time=request.getParameter("cl_time");
 				String cl_room=request.getParameter("cl_room");
 				String cl_mj_t=request.getParameter("cl_mj_t");
-				System.out.println(cl_id+","+cl_pt+","+cl_time+","+cl_room+","+cl_mj_t);
+				//System.out.println(cl_id+","+cl_pt+","+cl_time+","+cl_room+","+cl_mj_t);
 				
 				ViewLectVO viewlectVO=new ViewLectVO();
 				viewlectVO.setCl_id(cl_id);
@@ -123,9 +123,9 @@ public class ViewLectController extends HttpServlet {
 				String[] st_id=request.getParameterValues("st_id");
 				if(count==1) {
 					String[] s_first_list=request.getParameterValues("s_first");
-					System.out.println(s_first_list.length);
+					//System.out.println(s_first_list.length);
 					for(int i=0; i<st_id.length; i++) {
-						System.out.print(s_first_list[i]+" / "+st_id[i]);
+						//System.out.print(s_first_list[i]+" / "+st_id[i]);
 						ViewLectVO viewlectVO=new ViewLectVO();
 						viewlectVO.setS_first(Integer.parseInt(s_first_list[i]));
 						viewlectVO.setSt_id(Integer.parseInt(st_id[i]));
@@ -135,9 +135,9 @@ public class ViewLectController extends HttpServlet {
 					request.setAttribute("lect_msg", "add_first_score");
 				}else {
 					String[] s_second_list=request.getParameterValues("s_second");
-					System.out.println(s_second_list.length);
+					//System.out.println(s_second_list.length);
 					for(int i=0; i<st_id.length; i++) {
-						System.out.print(s_second_list[i]+" / "+st_id[i]);
+						//System.out.print(s_second_list[i]+" / "+st_id[i]);
 						ViewLectVO viewlectVO=new ViewLectVO();
 						viewlectVO.setS_second(Integer.parseInt(s_second_list[i]));
 						viewlectVO.setSt_id(Integer.parseInt(st_id[i]));
