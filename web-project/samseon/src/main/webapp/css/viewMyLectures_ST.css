@@ -249,9 +249,6 @@ td {
   float: right;
   padding-right: 30px;
 }
-.tc {
-  text-align: center;
-}
-.th_btn {
+.tc, .th_btn  {
   text-align: center;
 }

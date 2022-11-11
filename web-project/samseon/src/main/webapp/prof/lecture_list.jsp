@@ -96,8 +96,8 @@
 												<td>${lect.cl_room}</td>
 												<td>${lect.cl_mj_t}</td>
 												<td>${lect.dan}</td>
-												<td><button class="btn_move"><a href="${contextPath}/prof/add_lecture.jsp">수정</a></button></td>
-												<td><button class="btn_move"><a href="${contextPath}/prof/">삭제</a></button></td>
+												<td class="th_btn"><button class="btn_move"><a href="${contextPath}/prof/add_lecture.jsp">수정</a></button></td>
+												<td class="th_btn"><button class="btn_move"><a href="${contextPath}/prof/">삭제</a></button></td>
 											</tr>
 										</c:forEach>
 									</c:when>
