@@ -244,3 +244,14 @@ td {
 }
 
 /* lecture_manage.html */
+
+.MA_btn_area {
+  float: right;
+  padding-right: 30px;
+}
+.tc {
+  text-align: center;
+}
+.th_btn {
+  text-align: center;
+}

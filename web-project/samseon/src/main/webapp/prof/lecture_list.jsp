@@ -66,8 +66,8 @@
 									<th>강의실</th>
 									<th>전공 / 교양</th>
 									<th>단과 대학</th>
-									<th>수정</th>
-									<th>삭제</th>
+									<th class="th_btn">수정</th>
+									<th class="th_btn">삭제</th>
 								</tr>
 							</thead>
 						</table>

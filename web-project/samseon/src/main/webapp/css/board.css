@@ -182,3 +182,10 @@ section.notice {
   width: 1px;
   height: 1px;
 }
+.page_area {
+  margin: 20px auto;
+}
+
+.page_area a {
+  margin: 5px;
+}

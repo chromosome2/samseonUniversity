@@ -98,6 +98,7 @@
                   </table>
                  
                  <!-- 페이징 -->
+                 <div class="page_area">
                  <c:if test="${cnt != 0}">
                  	<c:set var="pageCount" value="${cnt / pageSize + (cnt%pageSize==0?0:1)}"/>
                  	<c:set var="pageBlock" value="10"/>
@@ -175,6 +176,7 @@
 							</c:when>                		
                 		</c:choose>
                 	</c:if> --%>
+                  </div><!--페이징-->
                 </div>
                  
                  <!-- 새 글 작성 : 관리자에게만 보임 -->
