@@ -110,7 +110,7 @@
           	<input class="btn_submit button" type="submit" value="등록(완료)하기">
           	<button class="btn_submit"><a href="${contextPath} /prof/my_lecture.jsp" class="btn_cancle button">취소</a></button>
           </div>
-          <c:choose>
+          <%--<c:choose>
             <c:when test="${empty studentList}">
             	<tr class="td_none">
             		<td colspan="9">수업을 듣는 학생이 없습니다.</td>
@@ -150,8 +150,8 @@
 			        </tr>
           	</c:forEach>
   				</c:when>
-  			  </c:choose><!--?-->
-  		    </tbody><!--?-->
+  			  </c:choose>--%>
+  		    </tbody>
             </table>
           </div>
           <div class="class_submit">

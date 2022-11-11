@@ -48,7 +48,7 @@
       </div>
       <section class="contents_wrapper">
 				<div class="addClass_btn_area">
-          <button class="apply_btn"><a href="${contextPath}/prof/add_lecture.jsp">수업 등록</a></button>
+          <button class="btn_move"><a href="${contextPath}/prof/add_lecture.jsp">수업 등록</a></button>
 				</div>
 				<div class="tbl_area">
 					<div class="tbl_header">
@@ -96,8 +96,8 @@
 												<td>${lect.cl_room}</td>
 												<td>${lect.cl_mj_t}</td>
 												<td>${lect.dan}</td>
-												<td><button class="apply_btn"><a href="${contextPath}/prof/add_lecture.jsp">수정</a></button></td>
-												<td><button class="apply_btn"><a href="${contextPath}/prof/">삭제</a></button></td>
+												<td><button class="btn_move"><a href="${contextPath}/prof/add_lecture.jsp">수정</a></button></td>
+												<td><button class="btn_move"><a href="${contextPath}/prof/">삭제</a></button></td>
 											</tr>
 										</c:forEach>
 									</c:when>
