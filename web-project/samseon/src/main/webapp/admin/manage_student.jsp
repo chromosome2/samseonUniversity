@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
         <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
             <c:set var="contextPath" value="${pageContext.request.contextPath}" />
             <!DOCTYPE html>
@@ -114,7 +115,7 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>아이디</th>
+                                                <th>학번</th>
                                                 <th>이름</th>
                                                 <th>전화번호</th>
                                                 <th>이메일</th>
@@ -128,86 +129,42 @@
                                 </div>
                                 <table border="0" cellpadding="0" cellspacing="0">
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>102030</td>
-                                            <td>김학생</td>
-                                            <td>010-1234-5678</td>
-                                            <td>qwer0101@naver.com</td>
-                                            <td>정보대학</td>
-                                            <td>컴퓨터공학과</td>
-                                            <td><input type="radio" name="check_stu"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>102030</td>
-                                            <td>김학생</td>
-                                            <td>010-1234-5678</td>
-                                            <td>qwer0101@naver.com</td>
-                                            <td>정보대학</td>
-                                            <td>컴퓨터공학과</td>
-                                            <td><input type="radio" name="check_stu"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>102030</td>
-                                            <td>김학생</td>
-                                            <td>010-1234-5678</td>
-                                            <td>qwer0101@naver.com</td>
-                                            <td>정보대학</td>
-                                            <td>컴퓨터공학과</td>
-                                            <td><input type="radio" name="check_stu"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>102030</td>
-                                            <td>김학생</td>
-                                            <td>010-1234-5678</td>
-                                            <td>qwer0101@naver.com</td>
-                                            <td>정보대학</td>
-                                            <td>컴퓨터공학과</td>
-                                            <td><input type="radio" name="check_stu"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>102030</td>
-                                            <td>김학생</td>
-                                            <td>010-1234-5678</td>
-                                            <td>qwer0101@naver.com</td>
-                                            <td>정보대학</td>
-                                            <td>컴퓨터공학과</td>
-                                            <td><input type="radio" name="check_stu"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>102030</td>
-                                            <td>김학생</td>
-                                            <td>010-1234-5678</td>
-                                            <td>qwer0101@naver.com</td>
-                                            <td>정보대학</td>
-                                            <td>컴퓨터공학과</td>
-                                            <td><input type="radio" name="check_stu"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>102030</td>
-                                            <td>김학생</td>
-                                            <td>010-1234-5678</td>
-                                            <td>qwer0101@naver.com</td>
-                                            <td>정보대학</td>
-                                            <td>컴퓨터공학과</td>
-                                            <td><input type="radio" name="check_stu"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>102030</td>
-                                            <td>김학생</td>
-                                            <td>010-1234-5678</td>
-                                            <td>qwer0101@naver.com</td>
-                                            <td>정보대학</td>
-                                            <td>컴퓨터공학과</td>
-                                            <td><input type="radio" name="check_stu"></td>
-                                        </tr>
+                                    	<c:choose>
+                                       		<c:when test="${empty st_list }">
+                                       			<tr>
+                                       				<td colspan="8">
+                                       					<p align="center">등록된 학생 정보가 없습니다.</p>
+                                       				</td>
+                                       			</tr>
+                                       		</c:when>
+                                       		<c:when test="${!empty st_list }">
+                                       			<c:forEach var="st" items="${st_list }" varStatus="listNum">
+                                       				<tr>
+                                       					<td>${listNum.count }</td>
+                                       			<c:if test="${st.check_sign eq -1 }">
+                                       					<td>${st.st_id }</td>
+                                       					<td></td>
+                                       					<td></td>
+														<td></td>
+														<td>${st.dan}</td>
+														<td>${st.m_name}</td>
+														<td><input type="radio" name="check_prof"></td>
+                                       				</tr>
+                                       			</c:if>
+                                       			<c:if test="${st.check_sign eq 0 }">
+                                       					<td>${st.st_id }</td>
+                                       					<td>${st.st_name}</td>
+                                       					<td>${fn:substring(st.st_ph,0,3)}-${fn:substring(st.st_ph,3,7)}-${fn:substring(st.st_ph,7,11)}</td>
+														<td>${st.st_email}</td>
+														<td>${st.dan}</td>
+														<td>${st.m_name}</td>
+														<td><input type="radio" name="check_prof"></td>
+                                       				</tr>
+                                       			</c:if>
+                                       				
+                                       			</c:forEach>
+                                       		</c:when>
+                                       	</c:choose>
                                     </tbody>
                                 </table>
                             </div>
