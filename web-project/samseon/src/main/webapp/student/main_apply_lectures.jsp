@@ -29,7 +29,7 @@
 				//select, input에 입력된 값이 있으면 name과 value를 저장할 배열
 				let names=[];
 				let values=[];
-				let obj={};
+				/* let obj={}; */
 				search_btn.addEventListener("click", search);
 				function search() {
 					let search=document.getElementsByClassName("searchable");

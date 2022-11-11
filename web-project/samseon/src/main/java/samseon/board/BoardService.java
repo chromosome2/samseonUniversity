@@ -48,4 +48,14 @@ public class BoardService {
 	public void modNotice(ArticleVO articleVO) {
 		boardDAO.updateArticle(articleVO);
 	}
+
+	public Map listSearch(Map<String, Integer> pagingMap, String searchKey) {
+		Map articleMap=new HashMap();
+		List<ArticleVO> searchList=boardDAO.selectSearchArticles(pagingMap, searchKey);
+		int totalSearchArticles=boardDAO.selectTotalSearchArticles(searchKey);
+		articleMap.put("articleList", searchList);
+		articleMap.put("totalArticles", totalSearchArticles);
+		return articleMap;
+	}
+
 }
