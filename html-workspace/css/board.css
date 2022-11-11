@@ -20,17 +20,19 @@ section.notice {
 
 #board-search .search-window {
   padding: 15px 0;
-  background-color: #f9f7f9;
+  width: 80%;
+  margin: 0 auto;
+  /* background-color: #f9f7f9; */
 }
 #board-search .search-window .search-wrap {
   position: relative;
   /*   padding-right: 124px; */
   margin: 0 auto;
-  width: 80%;
-  max-width: 564px;
+  width: 50%;
+  max-width: 400px;
 }
 #board-search .search-window .search-wrap input {
-  height: 40px;
+  height: 30px;
   width: 100%;
   font-size: 14px;
   padding: 7px 14px;
@@ -170,6 +172,7 @@ section.notice {
   clear: both;
 }
 .container {
+  position: relative;
   width: 100%;
   margin: 0 auto;
   text-align: center;
@@ -262,3 +265,36 @@ section.notice {
 }
 
 /* board_detail.css */
+
+.search-form {
+  position: relative;
+}
+
+.btn-write {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 105px;
+  height: 100%;
+  float: left;
+}
+
+.btn-list {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 90px;
+}
+
+.btn-search {
+  width: 90px !important;
+}
+
+.btn-write,
+.btn-list,
+.btn-search {
+  width: 95px;
+
+  font-size: 14px !important;
+}
