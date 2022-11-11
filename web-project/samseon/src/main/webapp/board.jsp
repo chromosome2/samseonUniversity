@@ -7,12 +7,12 @@
         <c:set var="cnt" value="${articleMap.totalArticles}" />
         <c:set var="pageSize" value="10" />
         <c:set var="currentPage" value="${articleMap.pageNum}" />
-        <% Map articleMap=(Map)request.getAttribute("articleMap");
-        int currentPage=Integer.parseInt(articleMap.get("pageNum").toString()); %>
-        <c:set var="section" value="${articleMap.section}" />
-        <c:set var="pageNum" value="${articleMap.pageNum}" />
-        <!DOCTYPE html>
-        <html lang="ko">
+        <% Map articleMap=(Map)request.getAttribute("articleMap"); int
+          currentPage=Integer.parseInt(articleMap.get("pageNum").toString()); %>
+          <c:set var="section" value="${articleMap.section}" />
+          <c:set var="pageNum" value="${articleMap.pageNum}" />
+          <!DOCTYPE html>
+          <html lang="ko">
 
           <head>
             <meta charset="UTF-8">
@@ -75,20 +75,7 @@
                     </div>
                   </div>
 
-                <!-- board search area -->
-                <div id="board-search">
-                  <div class="container">
-                    <div class="search-window">
-                      <form action="${contextPath}/board/search.do" name="searchForm">
-                        <div class="search-wrap">
-                          <label for="search" class="blind">공지사항 내용 검색</label>
-                          <input id="search" type="search" name="search" placeholder="검색어를 입력해주세요." value="${articleMap.searchKey}">
-                          <button type="submit" class="btn btn-dark" id="search-btn">검색</button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
+
 
                   <!-- board list area -->
                   <div id="board-list">
@@ -124,12 +111,38 @@
 
                         </tbody>
                       </table>
+                      <!-- board search area -->
+                      <div id="board-search">
+                        <div class="container">
+                          <div class="search-window">
+                            <form action="${contextPath}/board/search.do" name="searchForm" class="search-form">
+                              <div class="search-wrap">
+                                <label for="search" class="blind">공지사항 내용 검색</label>
+                                <input id="search" type="search" name="search" placeholder="검색어를 입력해주세요."
+                                  value="${articleMap.searchKey}">
+                                <button type="submit" class="btn btn-dark btn-search" id="search-btn">검색</button>
+                              </div>
+                              <!-- 새 글 작성 : 관리자에게만 보임 -->
+                              <c:if test="${user_level == 'admin'}">
+                                <div class="section_write">
+                                  <a href="${contextPath}/board/articleForm.do"><input class="btn btn-dark btn-write"
+                                      type="button" value="글쓰기"></a>
+                                </div>
+                              </c:if>
+                              <!-- 검색 후 전체글 목록으로 돌아가기 -->
+                              <a href="${contextPath}/board/listArticles.do"><button type="submit"
+                                  class="btn btn-dark btn-list">목록</button></a>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+
                       <div class="pagination">
                         <ul class="pagination_modal">
-                        
-                        <!-- 검색 후 전체글 목록으로 돌아가기 -->
-                        <a href="${contextPath}/board/listArticles.do">목록</a>
-                        
+
+
+
+
                           <!-- 페이징 -->
                           <c:if test="${cnt != 0}">
                             <c:set var="pageCount" value="${cnt / pageSize + (cnt%pageSize==0?0:1)}" />
@@ -171,12 +184,7 @@
                     </div>
                   </div>
 
-                  <!-- 새 글 작성 : 관리자에게만 보임 -->
-                  <c:if test="${user_level == 'admin'}">
-                    <div class="section_write">
-                      <a href="${contextPath}/board/articleForm.do"><input class="btn_write" type="button" value="글쓰기"></a>
-                    </div>
-                  </c:if>
+
 
               </div>
             </div>
