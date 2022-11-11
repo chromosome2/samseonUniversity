@@ -43,10 +43,10 @@
     </div>
 
     <div id="contents_area">
-      <div class="table_header">
-        <h3>등록된 수업 목록</h3>
-      </div>
       <section class="contents_wrapper">
+				<div class="table_header">
+        	<h3>등록된 수업 목록</h3>
+        </div>
 				<div class="addClass_btn_area">
           <button class="btn_move"><a href="${contextPath}/prof/add_lecture.jsp">수업 등록</a></button>
 				</div>

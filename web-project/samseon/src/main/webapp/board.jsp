@@ -36,6 +36,7 @@
 
       <body>
         <jsp:include page="common/header.jsp" />
+        
         <div id="middle_area">
           <div id="main_menu_back">
             <jsp:include page="common/menu.jsp" />
