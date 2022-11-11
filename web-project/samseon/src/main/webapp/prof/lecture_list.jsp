@@ -60,9 +60,6 @@
 							<h3>등록된 수업 목록</h3>
 						</div>
 						<section class="contents_wrapper">
-							<div class="addClass_btn_area">
-								<button class="apply_btn"><a href="${contextPath}/prof/add_lecture.jsp">수업 등록</a></button>
-							</div>
 							<div class="tbl_area">
 								<div class="tbl_header">
 
@@ -121,6 +118,9 @@
 										</tbody>
 									</table>
 								</div>
+							</div>
+							<div class="addClass_btn_area">
+								<button class="apply_btn"><a href="${contextPath}/prof/add_lecture.jsp">수업 등록</a></button>
 							</div>
 						</section>
 					</div>

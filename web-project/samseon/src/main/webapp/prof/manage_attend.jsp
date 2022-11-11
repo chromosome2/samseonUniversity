@@ -133,15 +133,15 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="sb_btn">
+			<div class="class_submit">
 				<c:choose>
 					<c:when test="${isDone == 'done'}">
 						<input type="button" class="apply_btn" value="수업관리" onclick="fn_lec_manage('${contextPath}/professor/lectureManageForm.do','${cl_name}')">
 					</c:when>
 					<c:otherwise>
 						<input type="hidden" name="cl_name" value="${cl_name}">
-						<input type="submit" class="apply_btn">
-						<input type="button" class="apply_btn" value="수업관리" onclick="fn_lec_manage('${contextPath}/professor/lectureManageForm.do','${cl_name}')">	
+						<input type="submit" class="btn_submit">
+						<input type="button" class="btn_submit" value="수업관리" onclick="fn_lec_manage('${contextPath}/professor/lectureManageForm.do','${cl_name}')">	
 					</c:otherwise>
 				</c:choose>
 			</div>
