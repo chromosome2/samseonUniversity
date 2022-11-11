@@ -288,13 +288,13 @@ section.notice {
 }
 
 .btn-search {
-  width: 90px !important;
+  width: 70px !important;
 }
 
 .btn-write,
 .btn-list,
 .btn-search {
-  width: 95px;
-
+  width: 70px;
+  padding: 0;
   font-size: 14px !important;
 }
