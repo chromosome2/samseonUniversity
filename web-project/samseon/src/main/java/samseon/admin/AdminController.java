@@ -51,6 +51,11 @@ AdminDAO adminDAO;
 				nextPage="/admin/manage_professor.jsp";
 			}else if(action.equals("/manage_st.do")) {
 				List<AdminVO> st_list=adminDAO.list_st();
+				SugangSubjectDAO sugangDAO=new SugangSubjectDAO();
+				List<String> danlist=sugangDAO.selectAllDans();
+				request.setAttribute("danList", danlist);
+				List<String> majorList=sugangDAO.selectAllMajors();
+				request.setAttribute("majorList", majorList);
 				request.setAttribute("st_list", st_list);
 				nextPage="/admin/manage_student.jsp";
 			}else if(action.equals("/pf_search.do")) {  //교수 검색
@@ -75,6 +80,35 @@ AdminDAO adminDAO;
 					}
 				}
 				gObject.put("searchPf", pf_searchArray);
+				String searchStr=gObject.toJSONString();
+				pw.print(searchStr);
+				pw.flush();
+				return;
+			}else if(action.equals("/st_search.do")) {  //학생 검색
+				String[] names=request.getParameterValues("nameArr");
+				String[] values=request.getParameterValues("valueArr");
+				String id_value=request.getParameter("id_value");
+				System.out.println("아이디:" +id_value);
+				String st_cnd_value=request.getParameter("st_cnd_value");
+				System.out.println("학적상태:"+st_cnd_value);
+				List<AdminVO> st_searchList=adminDAO.searchSt(names, values, id_value, st_cnd_value);
+				PrintWriter pw=response.getWriter();
+				JSONObject gObject=new JSONObject();
+				JSONArray st_searchArray=new JSONArray();
+				if(st_searchList.size() != 0) {
+					JSONObject searchSt;
+					for(int i=0; i<st_searchList.size(); i++) {
+						searchSt=new JSONObject();
+						searchSt.put("st_id", st_searchList.get(i).getSt_id());
+						searchSt.put("st_name", st_searchList.get(i).getSt_name());
+						searchSt.put("st_ph", st_searchList.get(i).getSt_ph());
+						searchSt.put("st_email", st_searchList.get(i).getSt_email());
+						searchSt.put("dan", st_searchList.get(i).getDan());
+						searchSt.put("m_name", st_searchList.get(i).getM_name());
+						st_searchArray.add(searchSt);
+					}
+				}
+				gObject.put("searchSt", st_searchArray);
 				String searchStr=gObject.toJSONString();
 				pw.print(searchStr);
 				pw.flush();
