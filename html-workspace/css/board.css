@@ -298,3 +298,18 @@ section.notice {
   padding: 0;
   font-size: 14px !important;
 }
+
+/* 수정 */
+#board-search .search-window {
+  position: relative;
+}
+
+#board-search {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.btn-list {
+  height: 30px;
+  top: 15px;
+}
