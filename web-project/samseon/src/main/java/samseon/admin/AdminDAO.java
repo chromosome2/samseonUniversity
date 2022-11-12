@@ -209,4 +209,51 @@ public class AdminDAO {
 		}
 		return result;
 	}
+	
+	
+	//교수 정보 검색
+	public List<AdminVO> searchPf(String[] names, String[] values, String id_value) {
+		List<AdminVO> pf_searchList=new ArrayList<AdminVO>();
+		try {
+			conn=dataFactory.getConnection();
+			String query="SELECT * FROM PROFESSORTBL WHERE " + names[0] + " like '%" + values[0] + "%'";
+			if(names.length > 1) {
+				query+=" and " + names[1] + " like '%" + values[1] + "%'";
+			}
+			if(names.length > 2) {
+				query+=" and " + names[2] + " like '%" + values[2] + "%'";
+			}
+			if(id_value.length() != 0 && id_value != null) {
+				query+=" and pf_id like '%" + id_value + "%'";
+			}
+			query+=" order by pf_name";
+			System.out.println(query);
+			pstmt=conn.prepareStatement(query);
+			ResultSet rs=pstmt.executeQuery();
+			while(rs.next()) {
+				int pf_id=rs.getInt("pf_id");
+				String pf_name=rs.getString("pf_name");
+				String pf_ph=rs.getString("pf_ph");
+				String pf_email=rs.getString("pf_email");
+				String dan=rs.getString("dan");
+				String m_name=rs.getString("m_name");
+				
+				AdminVO adminVO=new AdminVO();
+				adminVO.setPf_id(pf_id);
+				adminVO.setPf_name(pf_name);
+				adminVO.setPf_ph(pf_ph);
+				adminVO.setPf_email(pf_email);
+				adminVO.setDan(dan);
+				adminVO.setM_name(m_name);
+//				adminVO.setCheck_sign(0);
+				pf_searchList.add(adminVO);
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			System.out.println("교수 검색 중 에러" + e.getMessage());
+		}
+		return pf_searchList;
+	}
 }
