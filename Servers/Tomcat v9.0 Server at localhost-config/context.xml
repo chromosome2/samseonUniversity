@@ -26,9 +26,7 @@
     <!--
     <Manager pathname="" />
     -->
-    <!-- username="bomnoldadb" -->
-     <!-- -->
-         <Resource
+     <Resource
     	name="jdbc/oracle"
     	auth="Container"
     	type="javax.sql.DataSource"
