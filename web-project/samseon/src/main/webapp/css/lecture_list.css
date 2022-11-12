@@ -1,7 +1,10 @@
 .addClass_btn_area { 
   position: relative;
   height: 50px;
-  right: 5%;
+/*   right: 5%; */
+	width: 95%;
+	display: flex;
+	justify-content: center;
 }
 .addClass_btn_area button {
   width: 100px;

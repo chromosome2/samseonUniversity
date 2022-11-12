@@ -53,32 +53,43 @@ public class BoardController extends HttpServlet {
 		System.out.println("요청 이름 : " + action);
 		try {
 			List<ArticleVO> articleList=new ArrayList<ArticleVO>();
-			if(action == null) {  //공지사항 클릭 시 게시판 글 목록 보기
-				String _section=request.getParameter("section");
-				String _pageNum=request.getParameter("pageNum");
-				int section=Integer.parseInt((_section == null)?"1":_section);
-				int pageNum=Integer.parseInt((_pageNum == null)?"1":_pageNum);
-				Map<String, Integer> pagingMap=new HashMap<String, Integer>();
-				pagingMap.put("section", section);
-				pagingMap.put("pageNum", pageNum);
-				Map articleMap=boardService.listArticles(pagingMap);
-				articleMap.put("section", section);
-				articleMap.put("pageNum", pageNum);
-				request.setAttribute("articleMap", articleMap);
-				nextPage="/board.jsp";
-			}else if(action.equals("/listArticles.do")) {
-				String _section=request.getParameter("section");
-				String _pageNum=request.getParameter("pageNum");
-				int section=Integer.parseInt((_section == null)?"1":_section);
-				int pageNum=Integer.parseInt((_pageNum == null)?"1":_pageNum);
-				Map<String, Integer> pagingMap=new HashMap<String, Integer>();
-				pagingMap.put("section", section);
-				pagingMap.put("pageNum", pageNum);
-				Map articleMap=boardService.listArticles(pagingMap);
-				articleMap.put("section", section);
-				articleMap.put("pageNum", pageNum);
-				request.setAttribute("articleMap", articleMap);
-				nextPage="/board.jsp";
+			if(action.equals("/search.do")) {  //공지사항 검색
+				String searchKey=request.getParameter("search");  //검색할 키워드
+				if(searchKey != null && searchKey.length() != 0) {
+					String _section=request.getParameter("section");
+					String _pageNum=request.getParameter("pageNum");
+					int section=Integer.parseInt((_section == null)?"1":_section);
+					int pageNum=Integer.parseInt((_pageNum == null)?"1":_pageNum);
+					Map<String, Integer> pagingMap=new HashMap<String, Integer>();
+					pagingMap.put("section", section);
+					pagingMap.put("pageNum", pageNum);  //페이징 관련
+					Map articleMap=boardService.listSearch(pagingMap, searchKey);
+					articleMap.put("section", section);
+					articleMap.put("pageNum", pageNum);
+					articleMap.put("searchKey", searchKey);
+					request.setAttribute("articleMap", articleMap);
+					nextPage="/board.jsp";					
+				}else {
+					nextPage="/board/listArticles.do";
+				}
+			}else if(action.equals("/listArticles.do")) {  //공지사항 클릭 시 게시판 글 목록 보기
+				String searchKey=request.getParameter("search");
+				if(searchKey == null || searchKey.length() == 0) {
+					String _section=request.getParameter("section");
+					String _pageNum=request.getParameter("pageNum");
+					int section=Integer.parseInt((_section == null)?"1":_section);
+					int pageNum=Integer.parseInt((_pageNum == null)?"1":_pageNum);
+					Map<String, Integer> pagingMap=new HashMap<String, Integer>();
+					pagingMap.put("section", section);
+					pagingMap.put("pageNum", pageNum);
+					Map articleMap=boardService.listArticles(pagingMap);
+					articleMap.put("section", section);
+					articleMap.put("pageNum", pageNum);
+					request.setAttribute("articleMap", articleMap);
+					nextPage="/board.jsp";					
+				}else {
+					nextPage="/board/search.do";
+				}
 			}else if(action.equals("/articleForm.do")) {  //글쓰기 클릭 시 공지사항 작성 화면으로 이동
 				nextPage="/board_write.jsp";
 			}else if(action.equals("/viewArticle.do")) {  //글제목 클릭 시 공지사항 상세 보기

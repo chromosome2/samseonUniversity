@@ -21,6 +21,10 @@ ul {
 	outline: none;
 }*/
 
+input, button {
+	cursor: pointer;
+}
+
 /*숨김*/
 .hidden {
   position: absolute;

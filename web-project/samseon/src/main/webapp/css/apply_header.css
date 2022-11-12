@@ -116,6 +116,28 @@ select {
   width: 65px;
 }
 
+.btn_move {
+  /* width: 70px; */
+  width: 50px;
+  padding: 0;
+  /* margin-left: 10px; */
+  text-align: center;
+  height: 30.5px;
+  color: #fff;
+  border-radius: 5px;
+  transition: all 0.2s;
+  background: rgb(234, 150, 90);
+  border: none;
+}
+
+.apply_btn:hover,
+.btn_move:hover,
+.search_btn:hover {
+  background: #ff8e00;
+  transition: all 0.2s;
+  border: 1px solid #ff8e00;
+}
+
 /* 
 
   padding: 0 30px 1px 7px;

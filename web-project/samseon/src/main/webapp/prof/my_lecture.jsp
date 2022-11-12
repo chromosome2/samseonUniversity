@@ -20,7 +20,6 @@
     <script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
     <script src="${contextPath}/js/common.js"></script>
     <script src="${contextPath}/js/menu_third.js"></script>
-	<script src="${contextPath}/js/pf_menu.js"></script>
 	<script src="${contextPath}/js/table.js"></script>
     <title>삼선대학교</title>
 </head>
@@ -71,14 +70,14 @@
             								<tr>
 			            						<td>${lecNum.count}</td>
 			            						<td>${lecture.cl_id}</td>
-			            						<td>${lecture.cl_name}</td>
+			            						<td><a href="${contextPath}/professor/lecture_board_list.do?cl_id=${lecture.cl_id}">${lecture.cl_name}</a></td>
 			            						<td>${lecture.cl_sem}</td>
 			            						<td>${lecture.cl_pt}</td>
 			            						<td>${lecture.cl_time}</td>
 			            						<td>${lecture.cl_room}</td>
 			            						<td>${lecture.cl_mj_t}</td>
-			            						<td class="btn_td"><button class="btn_move"><a href="${contextPath}/professor/lectureManageForm.do?cl_name=${lecture.cl_name}">이동</a></button></td>
-			            						<td class="btn_td"><button class="btn_move"><a href="${contextPath}/prof/lecture_board.jsp">이동</a></button></td>
+			            						<td class="btn_td"><button class="btn_move_b"><a href="${contextPath}/professor/lectureManageForm.do?cl_name=${lecture.cl_name}">이동</a></button></td>
+			            						<td class="btn_td"><button class="btn_move_b"><a href="${contextPath}/professor/lecture_board_list.do?cl_id=${lecture.cl_id}">이동</a></button></td>
 			            					</tr>
             							</c:forEach>
             						</c:when>

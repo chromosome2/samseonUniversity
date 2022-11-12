@@ -27,8 +27,21 @@
     <script src="${contextPath}/js/common.js"></script>
 	<script src="${contextPath}/js/menu_third.js"></script>
 	<script src="${contextPath}/js/table.js"></script>
-	<script src="${contextPath}/js/pf_menu.js"></script>
     <title>삼선대학교</title>
+    <script type="text/javascript">
+    	function fn_lec_manage(url, cl_name) {
+    		let form=document.createElement("form");
+    		form.setAttribute('method', 'post');
+    		form.setAttribute('action', url);
+    		let cl_name_input=document.createElement("input");
+    		cl_name_input.setAttribute('type', 'hidden');
+    		cl_name_input.setAttribute('name', 'cl_name');
+    		cl_name_input.setAttribute('value', cl_name);
+    		form.appendChild(cl_name_input);
+    		document.body.appendChild(form);
+    		form.submit();
+    	}
+    </script>
 </head>
 <body>
 <jsp:include page="../common/header.jsp"/>
@@ -112,6 +125,7 @@
 					<button class="apply_btn"><a href="${contextPath}/professor/lectureManageForm.do?cl_name=${cl_name}">수업관리</a></button>
 				</div> --%>
 					
+<<<<<<< HEAD
 	<%--<c:choose>
 					<c:when test="${empty chulcheck}">
 						<tr>
@@ -153,6 +167,49 @@
 			</c:otherwise>
 		</c:choose>
 	</div>
+=======
+						<c:choose>
+							<c:when test="${empty chulcheck}">
+								<tr>
+									<td colspan="5">조회된 학생이 없습니다.</td>
+								</tr>
+							</c:when>
+							<c:when test="${!empty chulcheck}">
+								<c:set var="chul_done" value="${chul_done}"/>
+								<c:forEach var="chul" items="${chulcheck}" varStatus="chulNum">
+									<tr>
+										<td>${chulNum.count}</td> 
+										<td>${chul.st_name}</td>
+										<td>${chul.m_name}</td>
+										<td><fmt:formatNumber value="${chul.cl_check/30}" pattern="0.0%"/></td>
+										<c:choose>
+											<c:when test="${isDone == 'done'}">
+												<td><input type="checkbox" name="chul_Ck" value="${chul.st_id}" disabled></td>
+											</c:when>
+											<c:otherwise>
+												<td><input type="checkbox" name="chul_Ck" value="${chul.st_id}"></td>											
+											</c:otherwise>
+										</c:choose>
+									</tr> 
+								</c:forEach>
+							</c:when>
+						</c:choose>
+					</tbody>
+				</table>
+			</div>
+			<div class="class_submit">
+				<c:choose>
+					<c:when test="${isDone == 'done'}">
+						<input type="button" class="apply_btn" value="수업관리" onclick="fn_lec_manage('${contextPath}/professor/lectureManageForm.do','${cl_name}')">
+					</c:when>
+					<c:otherwise>
+						<input type="hidden" name="cl_name" value="${cl_name}">
+						<input type="submit" class="btn_submit">
+						<input type="button" class="btn_submit" value="수업관리" onclick="fn_lec_manage('${contextPath}/professor/lectureManageForm.do','${cl_name}')">	
+					</c:otherwise>
+				</c:choose>
+			</div>
+>>>>>>> e357fbfa86207005d98d666bae70bf03679f78fa
 			
 </form>
 	</div>

@@ -43,8 +43,15 @@
 		                        <li class="third_menu_title"><a href="${contextPath}/professor/listLectures.do" class="menu_title">나의 수업</a></li>
 							</c:when>
 							<c:when test="${user_level == 'admin'}">
+								<script src="${contextPath}/js/ad_menu.js"></script><%--관리자 서브메뉴길이가 학생 서브메뉴길이보다 짧아서 길이 수정 --%>
 			                    <li class="first_menu_title"><a href="${contextPath}/board/listArticles.do" class="menu_title">공지사항 관리</a></li>
-		                        <li class="second_menu_title"><a href="#" class="menu_title">학생, 교수 관리</a></li>					
+		                        <li class="second_menu_title my_page">
+		                        	<div class="my_page_click_area"><a href="#" class="menu_title">교수, 학생 관리</a></div>
+		                            <ul class="my_page_menu">
+		                                <li><a href="${contextPath}/manage/manage_prof.do"  class="first_my_page_title">교수 관리</a></li>
+		                                <li><a href="${contextPath}/manage/manage_st.do" class="second_my_page_title">학생 관리</a></li>
+		                            </ul>
+		                        </li>					
 							</c:when>
 							<c:otherwise><%-- 이 부분은 로그인 안했을때 css 수정하기 위해서 넣어놨습니다! 나중에 작업 마치면 삭제하셔도 됩니다. --%>
 								<li class="first_menu_title"><a href="${contextPath}/board/listArticles.do" class="menu_title">공지사항</a></li>
