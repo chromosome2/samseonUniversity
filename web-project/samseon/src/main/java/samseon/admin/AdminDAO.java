@@ -216,15 +216,32 @@ public class AdminDAO {
 		List<AdminVO> pf_searchList=new ArrayList<AdminVO>();
 		try {
 			conn=dataFactory.getConnection();
-			String query="SELECT * FROM PROFESSORTBL WHERE " + names[0] + " like '%" + values[0] + "%'";
-			if(names.length > 1) {
-				query+=" and " + names[1] + " like '%" + values[1] + "%'";
-			}
-			if(names.length > 2) {
-				query+=" and " + names[2] + " like '%" + values[2] + "%'";
-			}
-			if(id_value.length() != 0 && id_value != null) {
-				query+=" and pf_id like '%" + id_value + "%'";
+//			String query="SELECT * FROM PROFESSORTBL WHERE " + names[0] + " like '%" + values[0] + "%'";
+//			if(names.length > 1) {
+//				query+=" and " + names[1] + " like '%" + values[1] + "%'";
+//			}
+//			if(names.length > 2) {
+//				query+=" and " + names[2] + " like '%" + values[2] + "%'";
+//			}
+//			if(id_value.length() != 0 && id_value != null) {
+//				query+=" and pf_id like '%" + id_value + "%'";
+//			}
+			String query="SELECT * FROM PROFESSORTBL WHERE ";
+			if(names != null) {
+				if(names.length > 0) {
+					query+= names[0] + " like '%" + values[0] + "%'";
+				}
+				if(names.length > 1) {
+					query+=" and " + names[1] + " like '%" + values[1] + "%'";
+				}
+				if(names.length > 2) {
+					query+=" and " + names[2] + " like '%" + values[2] + "%'";
+				}				
+				if(id_value.length() != 0 && id_value != null) {
+					query+=" and st_id like '%" + id_value + "%'";
+				}
+			}else {
+				query+=" st_id like '%" + id_value + "%'";
 			}
 			query+=" order by pf_name";
 			System.out.println(query);
@@ -245,7 +262,6 @@ public class AdminDAO {
 				adminVO.setPf_email(pf_email);
 				adminVO.setDan(dan);
 				adminVO.setM_name(m_name);
-//				adminVO.setCheck_sign(0);
 				pf_searchList.add(adminVO);
 			}
 			rs.close();
@@ -255,5 +271,65 @@ public class AdminDAO {
 			System.out.println("교수 검색 중 에러" + e.getMessage());
 		}
 		return pf_searchList;
+	}
+
+	//학생 정보 검색
+	public List<AdminVO> searchSt(String[] names, String[] values, String id_value, String st_cnd_value) {
+		List<AdminVO> st_searchList=new ArrayList<AdminVO>();
+		try {
+			conn=dataFactory.getConnection();
+			String query="SELECT * FROM STUDENTTBL WHERE ";
+			if(names != null) {
+				if(names.length > 0) {
+					query+= names[0] + " like '%" + values[0] + "%'";
+				}
+				if(names.length > 1) {
+					query+=" and " + names[1] + " like '%" + values[1] + "%'";
+				}
+				if(names.length > 2) {
+					query+=" and " + names[2] + " like '%" + values[2] + "%'";
+				}				
+				if(id_value.length() != 0 && id_value != null) {
+					query+=" and st_id like '%" + id_value + "%'";
+				}
+				if(st_cnd_value.length() != 0 && st_cnd_value != null) {
+					query+=" and st_cnd=" + st_cnd_value;
+				}
+			}else if(id_value.length() != 0 && id_value != null) {
+				query+=" st_id like '%" + id_value + "%'";
+				if(st_cnd_value.length() != 0 && st_cnd_value != null) {
+						query+=" and st_cnd=" + st_cnd_value;
+				}
+			}else {
+				query+=" st_cnd=" + st_cnd_value;
+			}
+			query+=" order by st_id";
+			System.out.println(query);
+			pstmt=conn.prepareStatement(query);
+			ResultSet rs=pstmt.executeQuery();
+			while(rs.next()) {
+				int st_id=rs.getInt("st_id");
+				String st_name=rs.getString("st_name");
+				String st_ph=rs.getString("st_ph");
+				String st_email=rs.getString("st_email");
+				String dan=rs.getString("dan");
+				String m_name=rs.getString("m_name");
+				
+				AdminVO adminVO=new AdminVO();
+				adminVO.setSt_id(st_id);
+				adminVO.setSt_name(st_name);
+				adminVO.setSt_ph(st_ph);
+				adminVO.setSt_email(st_email);
+				adminVO.setDan(dan);
+				adminVO.setM_name(m_name);
+				st_searchList.add(adminVO);
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			System.out.println("학생 검색 중 에러" + e.getMessage());
+		}
+		return st_searchList;
 	}
 }

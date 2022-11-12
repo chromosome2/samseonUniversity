@@ -60,7 +60,7 @@
                 					}
                 				}
                 			}
-                			if(names.length != 0 || id.length != 0) {
+                			if(names.length != 0 || id_value != null) {
                 				$.ajax({
                 					type:"post",
                 					async:"true",
@@ -71,13 +71,13 @@
                 						  id_value:id_value},
                 					dataType:"json",
                 					success:function(data) {
-                						/* names=[];
-                						values=[]; */
                 						if(data.searchPf.length != 0) {
                 							let searchResult="";
+                							let idx=0;
                 							for(let i in data.searchPf) {
+                								idx=parseInt(i)+1;
                 								searchResult+="<tr>";
-        										searchResult+='<td>'+(i+1)+'</td>';
+        										searchResult+='<td>'+idx+'</td>';
         										searchResult+='<td>' + data.searchPf[i].pf_id + '</td>';
         										searchResult+='<td>' + data.searchPf[i].pf_name + '</td>';
         										searchResult+='<td>' + data.searchPf[i].pf_ph.substring(0,3) + '-' + data.searchPf[i].pf_ph.substring(3,7) + '-' + data.searchPf[i].pf_ph.substring(7,11) + '</td>';
