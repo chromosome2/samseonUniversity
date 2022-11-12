@@ -5,6 +5,37 @@
 			<!DOCTYPE html>
 			<html lang="ko">
 
+<<<<<<< HEAD
+    <div id="contents_area">
+      <section class="contents_wrapper">
+				<div class="table_header">
+        	<h3>등록된 수업 목록</h3>
+        </div>
+				<div class="addClass_btn_area">
+          <button class="btn_move"><a href="${contextPath}/prof/add_lecture.jsp">수업 등록</a></button>
+				</div>
+				<div class="tbl_area">
+					<div class="tbl_header">
+									
+						<table border="0" cellpadding="0" cellspacing="0">
+							<thead>
+								<tr>
+									<th>NO</th>
+									<th>과목 코드</th>
+									<th>강의 이름</th>
+									<th>교수 이름</th>
+									<th>학기</th>
+									<th>학점</th>
+									<th>강의 시간</th>
+									<th>강의실</th>
+									<th>전공 / 교양</th>
+									<th>단과 대학</th>
+									<th class="th_btn">수정</th>
+									<th class="th_btn">삭제</th>
+								</tr>
+							</thead>
+						</table>
+=======
 			<head>
 				<meta charset="UTF-8">
 				<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,6 +84,7 @@
 				<div id="middle_area">
 					<div id="main_menu_back">
 						<jsp:include page="../common/menu.jsp" />
+>>>>>>> e357fbfa86207005d98d666bae70bf03679f78fa
 					</div>
 
 					<div id="contents_area">
@@ -66,6 +98,20 @@
 									<table border="0" cellpadding="0" cellspacing="0">
 										<thead>
 											<tr>
+<<<<<<< HEAD
+												<td>${lectNum.count }</td>
+												<td>${lect.cl_id }</td>
+												<td>${lect.cl_name}</td>
+												<td>${lect.pf_name}</td>
+												<td>${lect.cl_sem}</td>
+												<td>${lect.cl_pt}</td>
+												<td>${lect.cl_time}</td>
+												<td>${lect.cl_room}</td>
+												<td>${lect.cl_mj_t}</td>
+												<td>${lect.dan}</td>
+												<td class="th_btn"><button class="btn_move"><a href="${contextPath}/prof/add_lecture.jsp">수정</a></button></td>
+												<td class="th_btn"><button class="btn_move"><a href="${contextPath}/prof/">삭제</a></button></td>
+=======
 												<th>NO</th>
 												<th>과목 코드</th>
 												<th>강의 이름</th>
@@ -78,6 +124,7 @@
 												<th>단과 대학</th>
 												<th>수정</th>
 												<th>삭제</th>
+>>>>>>> e357fbfa86207005d98d666bae70bf03679f78fa
 											</tr>
 										</thead>
 									</table>

@@ -60,11 +60,28 @@
             </script> -->
           </head>
 
+<<<<<<< HEAD
+      <body>
+        <jsp:include page="common/header.jsp" />
+        
+        <div id="middle_area">
+          <div id="main_menu_back">
+            <jsp:include page="common/menu.jsp" />
+          </div>
+
+          <div id="contents_area">
+            <section class="notice contents_wrapper">
+              <div class="page-title">
+                <div class="container">
+                  <h3>공지사항</h3>
+                </div>
+=======
           <body>
             <jsp:include page="common/header.jsp" />
             <div id="middle_area">
               <div id="main_menu_back">
                 <jsp:include page="common/menu.jsp" />
+>>>>>>> e357fbfa86207005d98d666bae70bf03679f78fa
               </div>
 
               <div id="contents_area">
@@ -75,6 +92,129 @@
                     </div>
                   </div>
 
+<<<<<<< HEAD
+              <!-- board list area -->
+              <div id="board-list">
+                <div class="container">
+                  <table class="board-table">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="th-num">번호</th>
+                        <th scope="col" class="th-title">제목</th>
+                        <th scope="col" class="th-date">담당부서</th>
+                        <th scope="col" class="th-date">등록일</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    
+                    <c:if test="${empty articleList}">
+                    	<tr>
+                    		<td colspan="4">공지사항이 없습니다.</td>
+                    	</tr>
+                    </c:if>
+                    <c:if test="${!empty articleList}">
+                    	<c:forEach var="article" items="${articleList}" varStatus="articleNum">
+                    		<tr>
+                    			<td>${articleNum.count}</td>
+                    			<th><a href="${contextPath}/board/viewArticle.do?articleNo=${article.articleNo}">${article.title}</a></th>
+                    			<td>${article.adminDepartment}</td>
+                    			<td>${article.writeDate}</td>
+                    		</tr>
+                    	</c:forEach>
+                    </c:if>
+                    
+                    </tbody>
+                  </table>
+                 
+                 <!-- 페이징 -->
+                 <div class="page_area">
+                 <c:if test="${cnt != 0}">
+                 	<c:set var="pageCount" value="${cnt / pageSize + (cnt%pageSize==0?0:1)}"/>
+                 	<c:set var="pageBlock" value="10"/>
+                 	<%
+                 		int startPage = (currentPage-1)/10*10 + 1;
+                 	%>
+                 	<c:set var="startPage" value="<%=startPage%>"/>
+                 	<c:set var="endPage" value="${startPage + pageBlock - 1}"/>
+                 	<c:if test="${endPage > pageCount}">
+                 		<c:set var="endPage" value="${pageCount}"/>
+                 	</c:if>
+                 </c:if>
+                 
+                 <c:if test="${startPage > pageBlock}">
+                 	<a href="${contextPath}/board/listArticles.do?section=${section-1}&pageNum=${startPage-pageBlock}">prev</a>
+                 </c:if>
+                 
+                 <c:forEach var="page" begin="${startPage}" end="${endPage}" step="1">
+                 	<c:if test="${page == currentPage}">
+                 		<a style="color:orangered;" href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${page}</a>
+                 	</c:if>
+                 	<c:if test="${page != currentPage}">
+                 		<a href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${page}</a>
+                 	</c:if>
+                 </c:forEach>
+                 
+                 <c:if test="${endPage < pageCount}">
+                 	<a href="${contextPath}/board/listArticles.do?section=${section+1}&pageNum=${startPage+pageBlock}">next</a>
+                 </c:if>
+                 
+                	<%-- <c:if test="${totalArticles != 0}">
+                		<c:choose>
+		                	<c:when test="${totalArticles > 25}">
+		                		<c:forEach var="page" begin="1" end="5" step="1">
+		                			<c:if test="${section > 1 && page == 1}">
+		                				<a href="${contextPath}/board/listArticles.do?section=${section-1}&pageNum=1"> prev</a>
+		                			</c:if>
+		                			<a href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${(section-1)*5+page}</a>
+		                			<c:choose>
+										<c:when test="${page==pageNum}">
+											<a class="selectedPage" href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${(section-1)*10+page}</a>
+										</c:when>
+										<c:otherwise>
+											<a class="notSelectedPage" href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${page}</a>
+										</c:otherwise>
+									</c:choose>
+		                			<c:if test="${page == 5}">
+		                				<a href="${contextPath}/board/listArticles.do?section=${section+1}&pageNum=1"> next</a>
+		                			</c:if>
+		                		</c:forEach>
+		                	</c:when>
+		                	<c:when test="${totalArticles == 25}">
+		                		<c:forEach var="page" begin="1" end="5" step="1">
+		                			<c:choose>
+										<c:when test="${page==pageNum}">
+											<a class="selectedPage" href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${page}</a>
+										</c:when>
+										<c:otherwise>
+											<a class="notSelectedPage" href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${page}</a>
+										</c:otherwise>
+									</c:choose>
+		                		</c:forEach>
+		                	</c:when>
+							<c:when test="${totalArticles < 25}">
+								<c:forEach var="page" begin="1" end="${totalArticles/5 + 1}" step="1">
+									<c:choose>
+										<c:when test="${page==pageNum}">
+											<a class="selectedPage" href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${page}</a>
+										</c:when>
+										<c:otherwise>
+											<a class="notSelectedPage" href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${page}</a>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</c:when>                		
+                		</c:choose>
+                	</c:if> --%>
+                  </div><!--페이징-->
+                </div>
+                 
+                 <!-- 새 글 작성 : 관리자에게만 보임 -->
+                 <c:if test="${user_level == 'admin'}">
+                 	<a href="${contextPath}/board/articleForm.do">글쓰기</a>                  
+                 </c:if>
+                  
+                </div>
+=======
 
 
                   <!-- board list area -->
@@ -187,6 +327,7 @@
 
 
 
+>>>>>>> e357fbfa86207005d98d666bae70bf03679f78fa
               </div>
             </div>
 

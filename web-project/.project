@@ -3,6 +3,8 @@
 	<name>web-project</name>
 	<comment></comment>
 	<projects>
+		<project>samseon</project>
+		<project>Servers</project>
 	</projects>
 	<buildSpec>
 	</buildSpec>
