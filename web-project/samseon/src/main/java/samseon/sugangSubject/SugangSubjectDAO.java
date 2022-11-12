@@ -74,7 +74,7 @@ public class SugangSubjectDAO {
 		List<String> majorList=new ArrayList<String>();
 		try {
 			conn=dataFactory.getConnection();
-			String query="select distinct m_name from collegetbl";
+			String query="select distinct m_name from collegetbl order by m_name";
 			pstmt=conn.prepareStatement(query);
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
@@ -95,7 +95,7 @@ public class SugangSubjectDAO {
 		List<String> danList=new ArrayList<String>();
 		try {
 			conn=dataFactory.getConnection();
-			String query="select distinct dan from collegetbl";
+			String query="select distinct dan from collegetbl order by dan";
 			pstmt=conn.prepareStatement(query);
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
