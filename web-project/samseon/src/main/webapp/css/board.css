@@ -371,4 +371,22 @@ section.notice {
   padding: 0;
   font-size: 14px !important;
 }
+<<<<<<< HEAD
 >>>>>>> e357fbfa86207005d98d666bae70bf03679f78fa
+=======
+
+/* 목록 버튼 수정 */
+#board-search .search-window {
+  position: relative;
+}
+
+#board-search {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.btn-list {
+  height: 30px;
+  top: 15px;
+}
+>>>>>>> 816cb299728c145f535c9a63a849bea04ad5d0a0
