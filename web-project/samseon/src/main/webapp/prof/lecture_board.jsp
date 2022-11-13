@@ -47,7 +47,6 @@
 		<jsp:include page="../common/menu.jsp"/>
     </div>
 
-<<<<<<< HEAD
     <div id="contents_area">
       <section class="contents_wrapper">
 				<div class="table_header">
@@ -106,7 +105,6 @@
 			</section>
 		</div>
 	</div>
-=======
             <div id="contents_area">
             	<section class="contents_wrapper">
             		<div class="table_header">
@@ -192,7 +190,6 @@
                 </c:if>
             </div>
         </div>
->>>>>>> e357fbfa86207005d98d666bae70bf03679f78fa
 
 	<jsp:include page="../common/footer.jsp"/>
 </body>

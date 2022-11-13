@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<<<<<<< HEAD
+
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,7 +42,6 @@
     form.submit();
   }
 </script>
-=======
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -101,12 +100,11 @@
     		</script>
     	</c:when>
     </c:choose>
->>>>>>> e357fbfa86207005d98d666bae70bf03679f78fa
 </head>
 <body>
   <jsp:include page="../common/header.jsp"/>
 
-<<<<<<< HEAD
+
   <div id="middle_area">
     <div id="main_menu_back">
 			<jsp:include page="../common/menu.jsp"/>
@@ -115,7 +113,6 @@
       <section class="contents_wrapper">
         <div class="table_header">
           <h3>${cl_name}</h3>
-=======
         <div id="middle_area">
             <div id="main_menu_back">
 				<jsp:include page="../common/menu.jsp"/>
@@ -207,7 +204,6 @@
             		
             	</section>
             </div>
->>>>>>> e357fbfa86207005d98d666bae70bf03679f78fa
         </div>
         <div class="MA_btn_area">
           <button class="move_attend"><a href="${contextPath}/prof/manage_attend.jsp">출석등록</a>

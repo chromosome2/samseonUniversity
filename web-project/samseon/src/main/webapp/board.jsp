@@ -60,7 +60,6 @@
             </script> -->
           </head>
 
-<<<<<<< HEAD
       <body>
         <jsp:include page="common/header.jsp" />
         
@@ -75,13 +74,11 @@
                 <div class="container">
                   <h3>공지사항</h3>
                 </div>
-=======
           <body>
             <jsp:include page="common/header.jsp" />
             <div id="middle_area">
               <div id="main_menu_back">
                 <jsp:include page="common/menu.jsp" />
->>>>>>> e357fbfa86207005d98d666bae70bf03679f78fa
               </div>
 
               <div id="contents_area">
@@ -92,7 +89,6 @@
                     </div>
                   </div>
 
-<<<<<<< HEAD
               <!-- board list area -->
               <div id="board-list">
                 <div class="container">
@@ -214,7 +210,6 @@
                  </c:if>
                   
                 </div>
-=======
 
 
                   <!-- board list area -->
@@ -327,7 +322,6 @@
 
 
 
->>>>>>> e357fbfa86207005d98d666bae70bf03679f78fa
               </div>
             </div>
 

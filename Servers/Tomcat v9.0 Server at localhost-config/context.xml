@@ -26,25 +26,14 @@
     <!--
     <Manager pathname="" />
     -->
-<<<<<<< HEAD
-    <Resource
-=======
-    <!-- username="bomnoldadb" -->
-     <!-- -->
-         <Resource
->>>>>>> e357fbfa86207005d98d666bae70bf03679f78fa
+ 
+     <Resource
     	name="jdbc/oracle"
     	auth="Container"
     	type="javax.sql.DataSource"
     	driverClassName="oracle.jdbc.OracleDriver"
-    	url="jdbc:oracle:thin:@localhost:1521:XE"
-<<<<<<< HEAD
     	username="SAMSEONDB"
     	password="0000"
-=======
-   		username="SAMSEONDB"
-    	password="1234"
->>>>>>> e357fbfa86207005d98d666bae70bf03679f78fa
     	maxActive="50"
         maxWait="-1"
     />

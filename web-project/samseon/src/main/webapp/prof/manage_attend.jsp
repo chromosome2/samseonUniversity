@@ -125,7 +125,6 @@
 					<button class="apply_btn"><a href="${contextPath}/professor/lectureManageForm.do?cl_name=${cl_name}">수업관리</a></button>
 				</div> --%>
 					
-<<<<<<< HEAD
 	<%--<c:choose>
 					<c:when test="${empty chulcheck}">
 						<tr>
@@ -167,7 +166,6 @@
 			</c:otherwise>
 		</c:choose>
 	</div>
-=======
 						<c:choose>
 							<c:when test="${empty chulcheck}">
 								<tr>
@@ -209,7 +207,6 @@
 					</c:otherwise>
 				</c:choose>
 			</div>
->>>>>>> e357fbfa86207005d98d666bae70bf03679f78fa
 			
 </form>
 	</div>
