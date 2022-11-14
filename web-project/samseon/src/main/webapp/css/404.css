@@ -19,16 +19,18 @@ body, html {
 
 .text_area {
   text-align: center;
-  margin: auto;
 }
 .text_area a {
-  padding: 10px;
+  padding: 5px;
 }
 .home_area {
   padding: 10px;
 }
 .text1 {
   margin: 10px auto;
+}
+.tex1 p {
+  color: rgb(135, 135, 135);
 }
 .text2 {
   font-weight: bold;

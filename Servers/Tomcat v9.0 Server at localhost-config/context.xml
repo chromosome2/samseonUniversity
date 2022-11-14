@@ -33,7 +33,7 @@
     	driverClassName="oracle.jdbc.OracleDriver"
     	url="jdbc:oracle:thin:@localhost:1521:XE"
     	username="samseondb"
-    	password="1234"
+    	password="0000"
     	maxActive="50"
     	maxWait="-1"
     />
