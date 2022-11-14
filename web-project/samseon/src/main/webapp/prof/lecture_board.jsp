@@ -94,9 +94,7 @@
 	            			<c:if test="${cnt != 0}">
 	            				<c:set var="pageCount" value="${cnt / pageSize + (cnt % pageSize == 0 ? 0:1)}"/>
 	            				<c:set var="pageBlock" value="5"/>
-	            				<%
-			                 		int startPage = (currentPage-1)/10*10 + 1;
-			                 	%>
+	            				<% int startPage = (currentPage-1)/5*5 + 1; %>
 			                 	<c:set var="startPage" value="<%=startPage%>"/>
 	            				<c:set var="endPage" value="${startPage + pageBlock - 1}"/>
 	            				<c:if test="${endPage > pageCount}">
