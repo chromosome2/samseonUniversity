@@ -22,6 +22,7 @@
                 <script src="${contextPath}/js/common.js"></script>
                 <script src="${contextPath}/js/menu_third.js"></script>
                 <script src="${contextPath}/js/mypage_third.js"></script>
+                <script defer src="${contextPath}/js/privacy.js"></script>
                 <title>삼선대학교</title>
                 <c:if test="${msg=='info_modified'}">
                     <script type="text/javascript">
@@ -55,7 +56,7 @@
                                             </tr>
                                             <tr>
                                                 <th>비밀번호</th>
-                                                <td><input class="tbl_input" type="password" name="pwd"></td>
+                                                <td><input id="pwd" class="tbl_input" type="password" name="pwd"></td>
                                             </tr>
                                             <tr>
                                                 <th>이름</th>
@@ -64,13 +65,13 @@
                                             </tr>
                                             <tr>
                                                 <th>전화번호</th>
-                                                <td><input class="tbl_input" type="tel" value="${studentInfo.phone}"
-                                                        name="tel"></td>
+                                                <td><input id="phone" class="tbl_input" type="tel"
+                                                        value="${studentInfo.phone}" name="tel"></td>
                                             </tr>
                                             <tr>
                                                 <th>이메일</th>
-                                                <td><input class="tbl_input" type="text" value="${studentInfo.email}"
-                                                        name="email"></td>
+                                                <td><input id="email" class="tbl_input" type="text"
+                                                        value="${studentInfo.email}" name="email"></td>
                                             </tr>
                                             <tr>
                                                 <th>주소</th>
