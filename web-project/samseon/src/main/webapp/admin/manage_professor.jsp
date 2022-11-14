@@ -28,6 +28,29 @@
                         $('.my_page_menu').css('display', 'inline-block');
                     });
                 </script>
+                <c:choose>
+                	<c:when test='${admin_msg=="add_member" }'>
+						<script>
+							window.onload = function () {
+								alert("정보를 등록하였습니다.");
+							}
+						</script>
+					</c:when>
+					<c:when test='${admin_msg=="modified" }'>
+						<script>
+							window.onload = function () {
+								alert("정보를 수정하였습니다.");
+							}
+						</script>
+					</c:when>
+					<c:when test='${admin_msg=="deleted" }'>
+						<script>
+							window.onload = function () {
+								alert("정보를 삭제하였습니다.");
+							}
+						</script>
+					</c:when>
+                </c:choose>
                 <script type="text/javascript">
                 	window.onload = function() {
                 		const search_btn=document.querySelector(".search_btn");
@@ -100,6 +123,23 @@
                 					}
                 				});
                 			}
+                		}
+                	}
+                	function mod_prof() {
+                		let checked=$("input[name='check_prof']:checked").val();
+                		if(checked==undefined){
+                			alert("수정할 교수를 선택해주세요.");
+                		}else{
+                			$('.mod_btn').attr('href','${contextPath }/manage/mod_prof_form.do?pf_id='+checked);
+                		}
+                	}
+                	function del_prof() {
+                		let checked=$("input[name='check_prof']:checked").val();
+                		let check_sign=$("input[name='check_prof']:checked").next().val();
+                		if(checked==undefined){
+                			alert("삭제할 교수를 선택해주세요.");
+                		}else{
+                			$('.del_btn').attr('href','${contextPath}/manage/del_prof.do?pf_id='+checked+'&&check_sign='+check_sign);
                 		}
                 	}
                 </script>
@@ -201,7 +241,11 @@
 														<td></td>
 														<td>${prof.dan}</td>
 														<td>${prof.m_name}</td>
-														<td><input type="radio" name="check_prof"></td>
+														<td>
+															<input type="radio" name="check_prof" value="${prof.pf_id }">
+															<input type="hidden" name="check_sign" value="${prof.check_sign}">
+														</td>
+														
                                        				</tr>
                                        			</c:if>
                                        			<c:if test="${prof.check_sign eq 0 }">
@@ -211,7 +255,11 @@
 														<td>${prof.pf_email}</td>
 														<td>${prof.dan}</td>
 														<td>${prof.m_name}</td>
-														<td><input type="radio" name="check_prof"></td>
+														<td>
+															<input type="radio" name="check_prof" value="${prof.pf_id }">
+															<input type="hidden" name="check_sign" value="${prof.check_sign}">
+														</td>
+														
                                        				</tr>
                                        			</c:if>
                                        				
@@ -223,8 +271,8 @@
                             </div>
                             <div class="st_lecture_list lt_apply">
                                 <button class="apply_btn"><a href="${contextPath }/admin/add_member.jsp">등록</a></button>
-                                <button class="apply_btn"><a href="">수정</a></button>
-                                <button class="apply_btn"><a href="">삭제</a></button>
+                                <button class="apply_btn"><a href="#" class="mod_btn" onclick="mod_prof()">수정</a></button>
+                                <button class="apply_btn"><a href="#" class="del_btn" onclick="del_prof()">삭제</a></button>
                             </div>
                         </div>
                     </div>

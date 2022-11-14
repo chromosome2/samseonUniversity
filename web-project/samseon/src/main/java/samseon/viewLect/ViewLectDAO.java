@@ -624,6 +624,9 @@ public class ViewLectDAO {
 			ResultSet rs=pstmt.executeQuery();
 			rs.next();
 			dan=rs.getString("dan");
+			if (dan.equals("") || dan.length()==0) {
+				dan="정보없음";
+			}
 		}catch(Exception e) {
 			System.out.println("단과대학 가져오기 에러 : "+e.getMessage());
 		}
