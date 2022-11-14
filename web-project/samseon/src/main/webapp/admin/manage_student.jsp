@@ -28,6 +28,29 @@
                         $('.my_page_menu').css('display', 'inline-block');
                     });
                 </script>
+                <c:choose>
+                	<c:when test='${admin_msg=="add_member" }'>
+						<script>
+							window.onload = function () {
+								alert("정보를 등록하였습니다.");
+							}
+						</script>
+					</c:when>
+					<c:when test='${admin_msg=="modified" }'>
+						<script>
+							window.onload = function () {
+								alert("정보를 수정하였습니다.");
+							}
+						</script>
+					</c:when>
+					<c:when test='${admin_msg=="deleted" }'>
+						<script>
+							window.onload = function () {
+								alert("정보를 삭제하였습니다.");
+							}
+						</script>
+					</c:when>
+                </c:choose>
                 <script type="text/javascript">
                 	window.onload = function() {
                 		const search_btn=document.querySelector(".search_btn");
@@ -106,6 +129,23 @@
                 					}
                 				});
                 			}
+                		}
+                	}
+                	function mod_st() {
+                		let checked=$("input[name='check_st']:checked").val();
+                		if(checked==undefined){
+                			alert("수정할 학생을 선택해주세요.");
+                		}else{
+                			$('.mod_btn').attr('href','${contextPath }/manage/mod_st_form.do?st_id='+checked);
+                		}
+                	}
+                	function del_st() {
+                		let checked=$("input[name='check_st']:checked").val();
+                		let check_sign=$("input[name='check_st']:checked").next().val();
+                		if(checked==undefined){
+                			alert("삭제할 학생을 선택해주세요.");
+                		}else{
+                			$('.del_btn').attr('href','${contextPath}/manage/del_st.do?st_id='+checked+'&&check_sign='+check_sign);
                 		}
                 	}
                 </script>
@@ -229,7 +269,10 @@
 														<td></td>
 														<td>${st.dan}</td>
 														<td>${st.m_name}</td>
-														<td><input type="radio" name="check_prof" value="${st.st_id }"></td>
+														<td>
+															<input type="radio" name="check_st" value="${st.st_id }">
+															<input type="hidden" name="check_sign" value="${st.check_sign}">
+														</td>
                                        				</tr>
                                        			</c:if>
                                        			<c:if test="${st.check_sign eq 0 }">
@@ -239,7 +282,10 @@
 														<td>${st.st_email}</td>
 														<td>${st.dan}</td>
 														<td>${st.m_name}</td>
-														<td><input type="radio" name="check_prof" value="${st.st_id }"></td>
+														<td>
+															<input type="radio" name="check_st" value="${st.st_id }">
+															<input type="hidden" name="check_sign" value="${st.check_sign}">
+														</td>
                                        				</tr>
                                        			</c:if>
                                        				
@@ -251,8 +297,8 @@
                             </div>
                             <div class="st_lecture_list lt_apply">
                                 <button class="apply_btn"><a href="${contextPath }/admin/add_member.jsp">등록</a></button>
-                                <button class="apply_btn"><a href="${contextPath }/admin/mod_st.jsp">수정</a></button>
-                                <button class="apply_btn"><a href="">삭제</a></button>
+                                <button class="apply_btn"><a href="#" class="mod_btn" onclick="mod_st()">수정</a></button>
+                                <button class="apply_btn"><a href="#" class="del_btn" onclick="del_st()">삭제</a></button>
                             </div>
                         </div>
                     </div>

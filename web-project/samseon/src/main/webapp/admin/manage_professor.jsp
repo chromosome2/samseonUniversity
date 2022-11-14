@@ -28,6 +28,29 @@
                         $('.my_page_menu').css('display', 'inline-block');
                     });
                 </script>
+                <c:choose>
+                	<c:when test='${admin_msg=="add_member" }'>
+						<script>
+							window.onload = function () {
+								alert("정보를 등록하였습니다.");
+							}
+						</script>
+					</c:when>
+					<c:when test='${admin_msg=="modified" }'>
+						<script>
+							window.onload = function () {
+								alert("정보를 수정하였습니다.");
+							}
+						</script>
+					</c:when>
+					<c:when test='${admin_msg=="deleted" }'>
+						<script>
+							window.onload = function () {
+								alert("정보를 삭제하였습니다.");
+							}
+						</script>
+					</c:when>
+                </c:choose>
                 <script type="text/javascript">
                 	window.onload = function() {
                 		const search_btn=document.querySelector(".search_btn");
@@ -113,7 +136,6 @@
                 	function del_prof() {
                 		let checked=$("input[name='check_prof']:checked").val();
                 		let check_sign=$("input[name='check_prof']:checked").next().val();
-                		alert(checked+" / "+check_sign);
                 		if(checked==undefined){
                 			alert("삭제할 교수를 선택해주세요.");
                 		}else{

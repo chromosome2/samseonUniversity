@@ -38,7 +38,7 @@ public class AdminDAO {
 				//System.out.println(id);
 				boolean result=check_sign(id, "professor");//가져온 id가 professortbl에 있는지 확인
 				if(result) {
-					String query="select pf_id, pf_name, pf_ph, pf_email, dan, m_name from professortbl where pf_id=? order by pf_name";
+					String query="select pf_id, pf_name, pf_ph, pf_email, dan, m_name from professortbl where pf_id=?";
 					//System.out.println(query);
 					pstmt=conn.prepareStatement(query);
 					pstmt.setInt(1, id);
@@ -105,7 +105,7 @@ public class AdminDAO {
 				//System.out.println(id);
 				boolean result=check_sign(id, "student");//가져온 id가 professortbl에 있는지 확인
 				if(result) {
-					String query="select st_id, st_name, st_ph, st_email, dan, m_name from studenttbl where st_id=? order by st_name";
+					String query="select st_id, st_name, st_ph, st_email, dan, m_name from studenttbl where st_id=?";
 					//System.out.println(query);
 					pstmt=conn.prepareStatement(query);
 					pstmt.setInt(1, id);
@@ -588,4 +588,177 @@ public class AdminDAO {
 			System.out.println("교수 정보 삭제 에러 : " + e.getMessage());
 		}
 	}
+	
+	
+	//학생 수정 정보 불러오기
+		public AdminVO find_st(int st_id) {
+			AdminVO st_info=null;
+			try {
+				conn=dataFactory.getConnection();
+				boolean result=check_sign(st_id, "student");
+				if(result) {
+					String query="select st_name, st_ph, st_email, dan, m_name from studenttbl where st_id=?";
+					pstmt=conn.prepareStatement(query);
+					pstmt.setInt(1, st_id);
+					ResultSet rs=pstmt.executeQuery();
+					rs.next();
+					String st_name=rs.getString("st_name");
+					String st_ph=rs.getString("st_ph");
+					String st_email=rs.getString("st_email");
+					String dan=rs.getString("dan");
+					String m_name=rs.getString("m_name");
+					
+					st_info=new AdminVO();
+					st_info.setSt_id(st_id);
+					st_info.setSt_name(st_name);
+					st_info.setSt_ph(st_ph);
+					st_info.setSt_email(st_email);
+					st_info.setDan(dan);
+					st_info.setM_name(m_name);
+					st_info.setCheck_sign(0);
+					
+					rs.close();
+				}else {
+					conn=dataFactory.getConnection();
+					String query="select m_name, dan from entrancetbl where id=?";
+					pstmt=conn.prepareStatement(query);
+					pstmt.setInt(1, st_id);
+					ResultSet rs=pstmt.executeQuery();
+					rs.next();
+					String dan=rs.getString("dan");
+					String m_name=rs.getString("m_name");
+					
+					st_info=new AdminVO();
+					st_info.setSt_id(st_id);
+					st_info.setDan(dan);
+					st_info.setM_name(m_name);
+					st_info.setCheck_sign(-1);
+					
+					rs.close();
+				}
+				pstmt.close();
+				conn.close();
+			}catch(Exception e) {
+				System.out.println("학생 수정 정보 불러오기 에러 : "+e.getMessage());
+			}
+			return st_info;
+		}
+		
+		//학생 정보 수정
+		public void mod_st(AdminVO adminVO) {
+			int check_sign=adminVO.getCheck_sign();
+			int st_id=adminVO.getSt_id();
+			String dan=adminVO.getDan();
+			String m_name=adminVO.getM_name();
+			if(check_sign==-1) {
+				try {
+					conn=dataFactory.getConnection();
+					String query="update entrancetbl set dan=?, m_name=? where id=?";
+					System.out.println(query);
+					pstmt=conn.prepareStatement(query);
+					pstmt.setString(1, dan);
+					pstmt.setString(2, m_name);
+					pstmt.setInt(3, st_id);
+					pstmt.executeUpdate();
+					pstmt.close();
+					conn.close();
+				}catch(Exception e) {
+					System.out.println("학생 정보 수정 에러 : "+e.getMessage());
+				}
+			}else {
+				String st_name=adminVO.getSt_name();
+				String st_ph=adminVO.getSt_ph();
+				String st_email=adminVO.getSt_email();
+				try {
+					conn=dataFactory.getConnection();
+					//studenttbl
+					String query="update studenttbl set st_name=?, st_ph=?, st_email=?, dan=?, m_name=? where st_id=?";
+					System.out.println(query);
+					pstmt=conn.prepareStatement(query);
+					pstmt.setString(1, st_name);
+					pstmt.setString(2, st_ph);
+					pstmt.setString(3, st_email);
+					pstmt.setString(4, dan);
+					pstmt.setString(5, m_name);
+					pstmt.setInt(6, st_id);
+					pstmt.executeUpdate();
+					
+					//entrancetbl
+					query="update entrancetbl set dan=?, m_name=? where id=?";
+					System.out.println(query);
+					pstmt=conn.prepareStatement(query);
+					pstmt.setString(1, dan);
+					pstmt.setString(2, m_name);
+					pstmt.setInt(3, st_id);
+					pstmt.executeUpdate();
+					
+					pstmt.close();
+					conn.close();
+				}catch(Exception e) {
+					System.out.println("학생 정보 수정 에러 : "+e.getMessage());
+				}
+			}
+		}
+		
+		//학생 정보 삭제
+		public void del_st(int st_id, int check_sign) {
+			try {
+				conn=dataFactory.getConnection();
+				String query;
+				if(check_sign==0) {//회원가입했을시
+					//graduatetbl
+					query="delete from graduatetbl where st_id=?";
+					System.out.println(query);
+					pstmt=conn.prepareStatement(query);
+					pstmt.setInt(1, st_id);
+					pstmt.executeUpdate();
+					
+					//attendancetbl
+					query="delete from attendancetbl where st_id=?";
+					System.out.println(query);
+					pstmt=conn.prepareStatement(query);
+					pstmt.setInt(1, st_id);
+					pstmt.executeUpdate();
+					
+					//scoretbl
+					query="delete from scoretbl where st_id=?";
+					System.out.println(query);
+					pstmt=conn.prepareStatement(query);
+					pstmt.setInt(1, st_id);
+					pstmt.executeUpdate();
+					
+					//courseregitbl
+					query="delete from courseregitbl where st_id=?";
+					System.out.println(query);
+					pstmt=conn.prepareStatement(query);
+					pstmt.setInt(1, st_id);
+					pstmt.executeUpdate();
+					
+					//studenttbl
+					query="delete from studenttbl where st_id=?";
+					System.out.println(query);
+					pstmt=conn.prepareStatement(query);
+					pstmt.setInt(1, st_id);
+					pstmt.executeUpdate();
+					
+					//membertbl
+					query="delete from membertbl where id=?";
+					System.out.println(query);
+					pstmt=conn.prepareStatement(query);
+					pstmt.setInt(1, st_id);
+					pstmt.executeUpdate();
+				}
+				//entrancetbl
+				query="delete from entrancetbl where id=?";
+				System.out.println(query);
+				pstmt=conn.prepareStatement(query);
+				pstmt.setInt(1, st_id);
+				pstmt.executeUpdate();
+				
+				pstmt.close();
+				conn.close();
+			}catch(Exception e) {
+				System.out.println("학생 정보 삭제 에러 : " + e.getMessage());
+			}
+		}
 }

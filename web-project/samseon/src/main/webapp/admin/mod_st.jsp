@@ -40,7 +40,7 @@
                         <section class="form_section">
                             <div class="contents_wrapper">
                                 <h3>학생 정보 수정</h3>
-                                <form action="" method="post" id="privacy_modForm" name="privacy_modForm">
+                                <form action="${contextPath }/manage/mod_st.do" method="post" id="privacy_modForm" name="privacy_modForm">
                                     <table border="0" cellpadding="0" cellspacing="0" id="main_table">
                                         <tbody>
                                             <tr>
@@ -49,7 +49,7 @@
                                                     <div class="tbl_input label_div">
                                                         <label for="user_identity1" class="idt_label">
                                                             <input type="radio" name="user_identity"
-                                                                id="user_identity1">
+                                                                id="user_identity1" checked>
                                                             <span class="choose_span" checked>학생</span>
                                                         </label>
                                                         <label for="user_identity2" class="idt_label">
@@ -60,48 +60,50 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <C:choose>
+                                            <c:choose>
                                             	<c:when test="${st_info.check_sign eq -1 }">
                                             		<tr>
 		                                                <th>학번(아이디)</th>
-		                                                <td><input class="tbl_input" type="number" value="${st_info.st_id}" disabled></td>
+		                                                <td><input name="st_id" class="tbl_input" type="number" value="${st_info.st_id}" readonly></td>
 		                                            </tr>
 		                                            <tr>
 		                                                <th>단과 대학</th>
-		                                                <td><input class="tbl_input" type="text" value="${st_info.dan}" ></td>
+		                                                <td><input name="dan" class="tbl_input" type="text" value="${st_info.dan}" ></td>
 		                                            </tr>
 		                                            <tr>
 		                                                <th>학과 명</th>
-		                                                <td><input class="tbl_input" type="text" value="${st_info.m_name}" ></td>
+		                                                <td><input name="m_name" class="tbl_input" type="text" value="${st_info.m_name}" ></td>
 		                                            </tr>
+		                                            <input type="hidden" name="check_sign" value="-1">
                                             	</c:when>
                                             	<c:when test="${st_info.check_sign eq 0 }">
                                             		<tr>
 		                                                <th>학번(아이디)</th>
-		                                                <td><input class="tbl_input" type="number" value="${st_info.st_id}" disabled></td>
+		                                                <td><input name="st_id" class="tbl_input" type="number" value="${st_info.st_id}" readonly></td>
 		                                            </tr>
 		                                            <tr>
 		                                                <th>이름</th>
-		                                                <td><input class="tbl_input" type="text" value="${st_info.st_name}"></td>
+		                                                <td><input name="st_name" class="tbl_input" type="text" value="${st_info.st_name}"></td>
 		                                            </tr>
 		                                            <tr>
 		                                                <th>전화번호</th>
-		                                                <td><input class="tbl_input" type="text" value="${st_info.st_ph}"></td>
+		                                                <td><input name="st_ph" class="tbl_input" type="text" value="${st_info.st_ph}"></td>
 		                                            </tr>
 		                                            <tr>
 		                                                <th>이메일</th>
-		                                                <td><input class="tbl_input" type="text" value="${st_info.st_email}"></td>
+		                                                <td><input name="st_email" class="tbl_input" type="text" value="${st_info.st_email}"></td>
 		                                            </tr>
 		                                            <tr>
 		                                                <th>단과 대학</th>
-		                                                <td><input class="tbl_input" type="text" value="${st_info.dan}" ></td>
+		                                                <td><input name="dan" class="tbl_input" type="text" value="${st_info.dan}" ></td>
 		                                            </tr>
 		                                            <tr>
 		                                                <th>학과 명</th>
-		                                                <td><input class="tbl_input" type="text" value="${st_info.m_name}" ></td>
+		                                                <td><input name="m_name" class="tbl_input" type="text" value="${st_info.m_name}" ></td>
 		                                            </tr>
+		                                            <input type="hidden" name="check_sign" value="0">
                                             	</c:when>
-                                            </C:choose>
+                                            </c:choose>
                                         </tbody>
                                     </table>
                                     <div class="input_submit privacy_submit">
