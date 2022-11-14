@@ -1,8 +1,8 @@
 package samseon.admin;
 
 public class AdminVO {
-	String dan, m_name, st_name, pf_name, pf_ph, st_ph, pf_email, st_email;
-	int pf_id, st_id, st_grade, st_cnd, check_sign;
+	String dan, m_name, st_name, pf_name, pf_ph, st_ph, pf_email, st_email, user_level;
+	int pf_id, st_id, st_grade, st_cnd, check_sign, id;
 	
 	public String getDan() {
 		return dan;
@@ -81,6 +81,18 @@ public class AdminVO {
 	}
 	public void setCheck_sign(int check_sign) {
 		this.check_sign = check_sign;
+	}
+	public String getUser_level() {
+		return user_level;
+	}
+	public void setUser_level(String user_level) {
+		this.user_level = user_level;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }

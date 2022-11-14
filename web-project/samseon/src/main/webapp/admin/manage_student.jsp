@@ -228,7 +228,7 @@
 														<td></td>
 														<td>${st.dan}</td>
 														<td>${st.m_name}</td>
-														<td><input type="radio" name="check_prof"></td>
+														<td><input type="radio" name="check_prof" value="${st.st_id }"></td>
                                        				</tr>
                                        			</c:if>
                                        			<c:if test="${st.check_sign eq 0 }">
@@ -238,7 +238,7 @@
 														<td>${st.st_email}</td>
 														<td>${st.dan}</td>
 														<td>${st.m_name}</td>
-														<td><input type="radio" name="check_prof"></td>
+														<td><input type="radio" name="check_prof" value="${st.st_id }"></td>
                                        				</tr>
                                        			</c:if>
                                        				
@@ -250,7 +250,7 @@
                             </div>
                             <div class="st_lecture_list lt_apply">
                                 <button class="apply_btn"><a href="${contextPath }/admin/add_member.jsp">등록</a></button>
-                                <button class="apply_btn"><a href="">수정</a></button>
+                                <button class="apply_btn"><a href="${contextPath }/admin/mod_st.jsp">수정</a></button>
                                 <button class="apply_btn"><a href="">삭제</a></button>
                             </div>
                         </div>

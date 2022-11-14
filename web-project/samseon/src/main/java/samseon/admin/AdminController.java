@@ -15,10 +15,11 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import samseon.sugangSubject.SugangSubjectDAO;
+import samseon.viewLect.ViewLectVO;
 
 @WebServlet("/manage/*")
 public class AdminController extends HttpServlet {
-AdminDAO adminDAO;
+	AdminDAO adminDAO;
 	
 	@Override
 	public void init() throws ServletException {
@@ -113,6 +114,67 @@ AdminDAO adminDAO;
 				pw.print(searchStr);
 				pw.flush();
 				return;
+			}else if(action.equals("/add_member.do")) {//교수와 학생정보 등록
+				String user_level=request.getParameter("user_level");
+				int id=Integer.parseInt(request.getParameter("id"));
+				String dan=request.getParameter("dan");
+				String m_name=request.getParameter("m_name");
+				System.out.println(user_level+"/"+id+"/"+dan+"/"+m_name);
+				
+				AdminVO adminVO=new AdminVO();
+				adminVO.setUser_level(user_level);
+				adminVO.setId(id);
+				adminVO.setDan(dan);
+				adminVO.setM_name(m_name);
+				
+				adminDAO.add_member(adminVO);
+				request.setAttribute("member_msg", "add_member");
+				if(user_level.equals("student")) {
+					nextPage="/manage/manage_st.do";
+				}else {
+					nextPage="/manage/manage_prof.do";
+				}
+			}else if(action.equals("/mod_prof_form.do")) {//교수 정보 보기
+				int pf_id=Integer.parseInt(request.getParameter("pf_id"));
+				System.out.println(pf_id);
+				AdminVO prof_info=adminDAO.find_prof(pf_id);
+				request.setAttribute("prof_info", prof_info);
+				nextPage="/admin/mod_prof.jsp";
+			}else if(action.equals("/mod_prof.do")) {//교수 정보 수정
+				int check_sign=Integer.parseInt(request.getParameter("check_sign"));
+				AdminVO adminVO=new AdminVO();
+				if(check_sign== -1) {
+					int pf_id=Integer.parseInt(request.getParameter("pf_id"));
+					String dan=request.getParameter("dan");
+					String m_name=request.getParameter("m_name");
+					adminVO.setPf_id(pf_id);
+					adminVO.setDan(dan);
+					adminVO.setM_name(m_name);
+					adminVO.setCheck_sign(-1);
+				}else {
+					int pf_id=Integer.parseInt(request.getParameter("pf_id"));
+					String pf_name=request.getParameter("pf_name");
+					String pf_ph=request.getParameter("pf_ph");
+					String pf_email=request.getParameter("pf_email");
+					String dan=request.getParameter("dan");
+					String m_name=request.getParameter("m_name");
+					adminVO.setPf_id(pf_id);
+					adminVO.setPf_name(pf_name);
+					adminVO.setPf_ph(pf_ph);
+					adminVO.setPf_email(pf_email);
+					adminVO.setDan(dan);
+					adminVO.setM_name(m_name);
+					adminVO.setCheck_sign(0);
+				}
+				adminDAO.mod_prof(adminVO);
+				request.setAttribute("admin_msg", "modified");
+				nextPage="/manage/manage_prof.do";
+			}else if(action.equals("/del_prof.do")) {//교수 정보 삭제
+				int pf_id=Integer.parseInt(request.getParameter("pf_id"));
+				int check_sign=Integer.parseInt(request.getParameter("check_sign"));
+				adminDAO.del_prof(pf_id,check_sign);
+				request.setAttribute("admin_msg", "deleted");
+				nextPage="/manage/manage_prof.do";
 			}
 			RequestDispatcher dispatcher=request.getRequestDispatcher(nextPage);
 			dispatcher.forward(request, response);

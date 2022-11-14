@@ -35,11 +35,11 @@ public class AdminDAO {
 			id_list=get_id_list("professor");
 			for(int i=0; i<id_list.size(); i++) {
 				int id=id_list.get(i);
-				System.out.println(id);
+				//System.out.println(id);
 				boolean result=check_sign(id, "professor");//가져온 id가 professortbl에 있는지 확인
 				if(result) {
 					String query="select pf_id, pf_name, pf_ph, pf_email, dan, m_name from professortbl where pf_id=? order by pf_name";
-					System.out.println(query);
+					//System.out.println(query);
 					pstmt=conn.prepareStatement(query);
 					pstmt.setInt(1, id);
 					ResultSet rs=pstmt.executeQuery();
@@ -64,7 +64,7 @@ public class AdminDAO {
 					rs.close();
 				}else {
 					String query="select id, m_name, dan from entrancetbl where id=? order by id";
-					System.out.println(query);
+					//System.out.println(query);
 					pstmt=conn.prepareStatement(query);
 					pstmt.setInt(1, id);
 					ResultSet rs=pstmt.executeQuery();
@@ -82,7 +82,7 @@ public class AdminDAO {
 					}
 					rs.close();
 				}
-				System.out.println(id+" / "+result+" / "+prof_list.get(i).getCheck_sign());
+				//System.out.println(id+" / "+result+" / "+prof_list.get(i).getCheck_sign());
 			}
 			pstmt.close();
 			conn.close();
@@ -102,11 +102,11 @@ public class AdminDAO {
 			id_list=get_id_list("student");
 			for(int i=0; i<id_list.size(); i++) {
 				int id=id_list.get(i);
-				System.out.println(id);
+				//System.out.println(id);
 				boolean result=check_sign(id, "student");//가져온 id가 professortbl에 있는지 확인
 				if(result) {
 					String query="select st_id, st_name, st_ph, st_email, dan, m_name from studenttbl where st_id=? order by st_name";
-					System.out.println(query);
+					//System.out.println(query);
 					pstmt=conn.prepareStatement(query);
 					pstmt.setInt(1, id);
 					ResultSet rs=pstmt.executeQuery();
@@ -131,7 +131,7 @@ public class AdminDAO {
 					rs.close();
 				}else {
 					String query="select id, m_name, dan from entrancetbl where id=?";
-					System.out.println(query);
+					//System.out.println(query);
 					pstmt=conn.prepareStatement(query);
 					pstmt.setInt(1, id);
 					ResultSet rs=pstmt.executeQuery();
@@ -149,7 +149,7 @@ public class AdminDAO {
 					}
 					rs.close();
 				}
-				System.out.println(id+" / "+result+" / "+st_list.get(i).getCheck_sign());
+				//System.out.println(id+" / "+result+" / "+st_list.get(i).getCheck_sign());
 			}
 			pstmt.close();
 			conn.close();
@@ -187,7 +187,7 @@ public class AdminDAO {
 		try {
 			if(user_level.equals("professor")) {
 				String query="select decode(count(*), 1, 'true', 'false') as result from professortbl where pf_id=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setInt(1, id);
 				ResultSet rs=pstmt.executeQuery();
@@ -196,7 +196,7 @@ public class AdminDAO {
 				result=Boolean.parseBoolean(rs.getString("result"));
 			}else if(user_level.equals("student")) {
 				String query="select decode(count(*), 1, 'true', 'false') as result from studenttbl where st_id=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setInt(1, id);
 				ResultSet rs=pstmt.executeQuery();
@@ -331,5 +331,261 @@ public class AdminDAO {
 			System.out.println("학생 검색 중 에러" + e.getMessage());
 		}
 		return st_searchList;
+	}
+	
+	//교수, 학생 등록
+	public void add_member(AdminVO adminVO) {
+		try {
+			conn=dataFactory.getConnection();
+			String user_level=adminVO.getUser_level();
+			int id=adminVO.getId();
+			String dan=adminVO.getDan();
+			String m_name=adminVO.getM_name();
+			int m_num=get_m_num(m_name);//학과번호룰 collegetbl에서 가져옴. collegetbl에 정보가 있어야함!
+			
+			String query="insert into entrancetbl values(?,?,?,?,?)";
+			//System.out.println(query);
+			pstmt=conn.prepareStatement(query);
+			pstmt.setInt(1, id);
+			pstmt.setInt(2, m_num);
+			pstmt.setString(3, m_name);
+			pstmt.setString(4, dan);
+			pstmt.setString(5, user_level);
+			
+			pstmt.executeUpdate();
+			pstmt.close();
+			conn.close();
+		}catch(Exception e) {
+			System.out.println("entrance 등록 에러 : "+e.getMessage());
+		}
+	}
+	
+	//학과 번호 가져오기
+	public int get_m_num(String m_name) {
+		int m_num=0;
+		try {
+			String query="select m_num from collegetbl where m_name=?";
+			//System.out.println(query);
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1, m_name);
+			ResultSet rs=pstmt.executeQuery();
+			rs.next();
+			m_num=rs.getInt("m_num");
+		}catch(Exception e) {
+			System.out.println("학과 번호 가져오기 에러 : "+e.getMessage());
+		}
+		return m_num;
+	}
+	
+	//교수 수정 정보 불러오기
+	public AdminVO find_prof(int pf_id) {
+		AdminVO prof_info=null;
+		try {
+			conn=dataFactory.getConnection();
+			boolean result=check_sign(pf_id, "professor");
+			if(result) {
+				String query="select pf_name, pf_ph, pf_email, dan, m_name from professortbl where pf_id=?";
+				pstmt=conn.prepareStatement(query);
+				pstmt.setInt(1, pf_id);
+				ResultSet rs=pstmt.executeQuery();
+				rs.next();
+				String pf_name=rs.getString("pf_name");
+				String pf_ph=rs.getString("pf_ph");
+				String pf_email=rs.getString("pf_email");
+				String dan=rs.getString("dan");
+				String m_name=rs.getString("m_name");
+				
+				prof_info=new AdminVO();
+				prof_info.setPf_id(pf_id);
+				prof_info.setPf_name(pf_name);
+				prof_info.setPf_ph(pf_ph);
+				prof_info.setPf_email(pf_email);
+				prof_info.setDan(dan);
+				prof_info.setM_name(m_name);
+				prof_info.setCheck_sign(0);
+				
+				rs.close();
+			}else {
+				conn=dataFactory.getConnection();
+				String query="select m_name, dan from entrancetbl where id=?";
+				pstmt=conn.prepareStatement(query);
+				pstmt.setInt(1, pf_id);
+				ResultSet rs=pstmt.executeQuery();
+				rs.next();
+				String dan=rs.getString("dan");
+				String m_name=rs.getString("m_name");
+				
+				prof_info=new AdminVO();
+				prof_info.setPf_id(pf_id);
+				prof_info.setDan(dan);
+				prof_info.setM_name(m_name);
+				prof_info.setCheck_sign(-1);
+				
+				rs.close();
+			}
+			pstmt.close();
+			conn.close();
+		}catch(Exception e) {
+			System.out.println("교수 수정 정보 불러오기 에러 : "+e.getMessage());
+		}
+		return prof_info;
+	}
+	
+	//교수 정보 수정
+	public void mod_prof(AdminVO adminVO) {
+		int check_sign=adminVO.getCheck_sign();
+		int pf_id=adminVO.getPf_id();
+		String dan=adminVO.getDan();
+		String m_name=adminVO.getM_name();
+		if(check_sign==-1) {
+			try {
+				conn=dataFactory.getConnection();
+				String query="update entrancetbl set dan=?, m_name=? where id=?";
+				System.out.println(query);
+				pstmt=conn.prepareStatement(query);
+				pstmt.setString(1, dan);
+				pstmt.setString(2, m_name);
+				pstmt.setInt(3, pf_id);
+				pstmt.executeUpdate();
+				pstmt.close();
+				conn.close();
+			}catch(Exception e) {
+				System.out.println("교수 정보 수정 에러 : "+e.getMessage());
+			}
+		}else {
+			String pf_name=adminVO.getPf_name();
+			String pf_ph=adminVO.getPf_ph();
+			String pf_email=adminVO.getPf_email();
+			try {
+				conn=dataFactory.getConnection();
+				//professortbl
+				String query="update professortbl set pf_name=?, pf_ph=?, pf_email=?, dan=?, m_name=? where pf_id=?";
+				System.out.println(query);
+				pstmt=conn.prepareStatement(query);
+				pstmt.setString(1, pf_name);
+				pstmt.setString(2, pf_ph);
+				pstmt.setString(3, pf_email);
+				pstmt.setString(4, dan);
+				pstmt.setString(5, m_name);
+				pstmt.setInt(6, pf_id);
+				pstmt.executeUpdate();
+				
+				//entrancetbl
+				query="update entrancetbl set dan=?, m_name=? where id=?";
+				System.out.println(query);
+				pstmt=conn.prepareStatement(query);
+				pstmt.setString(1, dan);
+				pstmt.setString(2, m_name);
+				pstmt.setInt(3, pf_id);
+				pstmt.executeUpdate();
+				
+				//courseregitbl
+				query="update courseregitbl set pf_name=? where pf_id=?";
+				System.out.println(query);
+				pstmt=conn.prepareStatement(query);
+				pstmt.setString(1, pf_name);
+				pstmt.setInt(2, pf_id);
+				pstmt.executeUpdate();
+				
+				//subjecttbl
+				query="update subjecttbl set pf_name=?, m_name=? where pf_id=?";
+				System.out.println(query);
+				pstmt=conn.prepareStatement(query);
+				pstmt.setString(1, pf_name);
+				pstmt.setString(2, m_name);
+				pstmt.setInt(3, pf_id);
+				pstmt.executeUpdate();
+				
+				//lessonnoticetbl
+				query="update lessonnoticetbl set pf_name=? where pf_id=?";
+				System.out.println(query);
+				pstmt=conn.prepareStatement(query);
+				pstmt.setString(1, pf_name);
+				pstmt.setInt(2, pf_id);
+				pstmt.executeUpdate();
+				
+				//scoretbl
+				query="update scoretbl set pf_name=? where pf_id=?";
+				System.out.println(query);
+				pstmt=conn.prepareStatement(query);
+				pstmt.setString(1, pf_name);
+				pstmt.setInt(2, pf_id);
+				pstmt.executeUpdate();
+				
+				pstmt.close();
+				conn.close();
+			}catch(Exception e) {
+				System.out.println("교수 정보 수정 에러 : "+e.getMessage());
+			}
+		}
+	}
+	
+	//교수 정보 삭제
+	public void del_prof(int pf_id, int check_sign) {
+		try {
+			conn=dataFactory.getConnection();
+			String query;
+			if(check_sign==0) {//회원가입했을시
+				//attendancetbl
+				query="delete from attendancetbl where pf_id=?";
+				System.out.println(query);
+				pstmt=conn.prepareStatement(query);
+				pstmt.setInt(1, pf_id);
+				pstmt.executeUpdate();
+				
+				//lessonnoticetbl
+				query="delete from lessonnoticetbl where pf_id=?";
+				System.out.println(query);
+				pstmt=conn.prepareStatement(query);
+				pstmt.setInt(1, pf_id);
+				pstmt.executeUpdate();
+				
+				//scoretbl
+				query="delete from scoretbl where pf_id=?";
+				System.out.println(query);
+				pstmt=conn.prepareStatement(query);
+				pstmt.setInt(1, pf_id);
+				pstmt.executeUpdate();
+				
+				//courseregitbl
+				query="delete from courseregitbl where pf_id=?";
+				System.out.println(query);
+				pstmt=conn.prepareStatement(query);
+				pstmt.setInt(1, pf_id);
+				pstmt.executeUpdate();
+				
+				//subjecttbl
+				query="delete from subjecttbl where pf_id=?";
+				System.out.println(query);
+				pstmt=conn.prepareStatement(query);
+				pstmt.setInt(1, pf_id);
+				pstmt.executeUpdate();
+				
+				//professortbl
+				query="delete from professortbl where pf_id=?";
+				System.out.println(query);
+				pstmt=conn.prepareStatement(query);
+				pstmt.setInt(1, pf_id);
+				pstmt.executeUpdate();
+				
+				//membertbl
+				query="delete from membertbl where id=?";
+				System.out.println(query);
+				pstmt=conn.prepareStatement(query);
+				pstmt.setInt(1, pf_id);
+				pstmt.executeUpdate();
+			}
+			//entrancetbl
+			query="delete from entrancetbl where id=?";
+			System.out.println(query);
+			pstmt=conn.prepareStatement(query);
+			pstmt.setInt(1, pf_id);
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			conn.close();
+		}catch(Exception e) {
+			System.out.println("교수 정보 삭제 에러 : " + e.getMessage());
+		}
 	}
 }
