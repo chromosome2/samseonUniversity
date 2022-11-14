@@ -103,7 +103,7 @@
                                         </tbody>
                                     </table>
                                     <div class="input_submit privacy_submit">
-                                        <input class="btn_submit button" type="submit" value="수정하기">
+                                        <input class="btn_submit button btn_privacy" type="submit" value="수정하기">
                                         <input class="btn_cancle button" type="reset" value="취소">
                                     </div>
                                 </form>
