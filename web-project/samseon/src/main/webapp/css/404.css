@@ -1,0 +1,36 @@
+body, html {
+  background-color: rgb(234, 150, 90);
+}
+.content{
+  margin: 200px;
+  display: flex;
+  padding: 100px;
+  border: 1px solid rgb(117, 117, 117);
+  border-radius: 25px;
+  background-color: whitesmoke;
+}
+
+.logo_area {
+  margin: auto;
+}
+.logo_area img {
+  width: 150px;
+}
+
+.text_area {
+  text-align: center;
+  margin: auto;
+}
+.text_area a {
+  padding: 10px;
+}
+.home_area {
+  padding: 10px;
+}
+.text1 {
+  margin: 10px auto;
+}
+.text2 {
+  font-weight: bold;
+  margin: 10px auto;
+}
