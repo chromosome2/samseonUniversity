@@ -82,15 +82,16 @@
                 							let idx=0;
                 							for(let i in data.searchSt) {
                 								idx=parseInt(i)+1;
+                								if(data.searchSt[i].st_email == null) data.searchSt[i].st_email="";
                 								searchResult+="<tr>";
         										searchResult+='<td>'+idx+'</td>';
         										searchResult+='<td>' + data.searchSt[i].st_id + '</td>';
         										searchResult+='<td>' + data.searchSt[i].st_name + '</td>';
         										searchResult+='<td>' + data.searchSt[i].st_ph.substring(0,3) + '-' + data.searchSt[i].st_ph.substring(3,7) + '-' + data.searchSt[i].st_ph.substring(7,11) + '</td>';
-        										searchResult+='<td>' + data.searchSt[i].pf_email + '</td>';
+        										searchResult+='<td>' + data.searchSt[i].st_email + '</td>';
         										searchResult+='<td>' + data.searchSt[i].dan + '</td>';
         										searchResult+='<td>' + data.searchSt[i].m_name + '</td>';
-        										searchResult+='<td><input type="radio" name="check_prof"></td>';
+        										searchResult+='<td><input type="radio" name="check_prof" value="st_id"></td>';
         										searchResult+='</tr>';
                 							}
                 							document.querySelector('#stuDent').innerHTML=searchResult;
