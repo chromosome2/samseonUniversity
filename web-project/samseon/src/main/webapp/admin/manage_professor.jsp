@@ -76,6 +76,7 @@
                 							let idx=0;
                 							for(let i in data.searchPf) {
                 								idx=parseInt(i)+1;
+                								if(data.searchPf[i].pf_email == null) data.searchPf[i].pf_email="";
                 								searchResult+="<tr>";
         										searchResult+='<td>'+idx+'</td>';
         										searchResult+='<td>' + data.searchPf[i].pf_id + '</td>';
@@ -84,7 +85,7 @@
         										searchResult+='<td>' + data.searchPf[i].pf_email + '</td>';
         										searchResult+='<td>' + data.searchPf[i].dan + '</td>';
         										searchResult+='<td>' + data.searchPf[i].m_name + '</td>';
-        										searchResult+='<td><input type="radio" name="check_prof"></td>';
+        										searchResult+='<td><input type="radio" name="check_prof" value="pf_id"></td>';
         										searchResult+='</tr>';
                 							}
                 							document.querySelector('#proFessor').innerHTML=searchResult;
