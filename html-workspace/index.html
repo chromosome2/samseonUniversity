@@ -12,6 +12,7 @@
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/index.css">
+  <script defer src="js/index.js"></script>
   <title>삼선대학교 포털</title>
 </head>
 
@@ -52,6 +53,7 @@
               <a href="#" class="txt2"> 아이디/비밀번호 찾기&nbsp;&nbsp; </a>
               <a class="dummy_txt">|&nbsp;&nbsp;</a><a href="#" class="txt2">회원가입<i class="fa fa_long_arrow_right "
                   aria-hidden="true"></i></a>
+              <a class="show-modal">회원가입</a>
             </div>
             <div class="text_center p_t_2">
 
@@ -83,6 +85,14 @@
       </div>
     </div>
   </div>
+  <div class="modal hidden">
+    <button class="close-modal">&times;</button>
+    <div class="btns_join">
+      <button class="join_btn">학생 회원가입</button>
+      <button class="join_btn">교수 회원가입</button>
+    </div>
+  </div>
+  <div class="overlay hidden"></div>
 </body>
 
 </html>

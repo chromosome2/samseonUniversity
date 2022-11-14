@@ -28,7 +28,7 @@ const pwd = document.getElementById('pwd');
 const email = document.getElementById('email');
 const phone = document.getElementById('phone');
 
-$('.btn_submit').on('click', function (e) {
+$('.btn_privacy').on('click', function (e) {
   if (pwd.value.trim() !== '') {
     if (pwd.value.length < 8 || pwd.value.length > 16) {
       e.preventDefault();
@@ -45,11 +45,6 @@ $('.btn_submit').on('click', function (e) {
     }
   }
 
-  if (email.value.length !== 0 && !isEmail(email.value)) {
-    e.preventDefault();
-    alert('올바르지 않은 이메일 형식입니다.');
-  }
-
   if (
     !isPhoneNumber(phone.value) ||
     phone.value.length < 10 ||
@@ -57,5 +52,26 @@ $('.btn_submit').on('click', function (e) {
   ) {
     e.preventDefault();
     alert('하이픈(-)을 제외한 휴대폰번호 10~11자리를 입력해주세요.');
+  }
+
+  if (email.value.length !== 0 && !isEmail(email.value)) {
+    e.preventDefault();
+    alert('올바르지 않은 이메일 형식입니다.');
+  }
+});
+
+$('.btn_modify').on('click', e => {
+  if (
+    !isPhoneNumber(phone.value) ||
+    phone.value.length < 10 ||
+    phone.value.length > 11
+  ) {
+    e.preventDefault();
+    alert('하이픈(-)을 제외한 휴대폰번호 10~11자리를 입력해주세요.');
+  }
+
+  if (email.value.length !== 0 && !isEmail(email.value)) {
+    e.preventDefault();
+    alert('올바르지 않은 이메일 형식입니다.');
   }
 });
