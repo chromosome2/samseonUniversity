@@ -114,8 +114,12 @@ public class ViewLectController extends HttpServlet {
 				nextPage="/view/pf_lectureList.do";
 			}else if(action.equals("/del_lecture.do")) {
 				int cl_id=Integer.parseInt(request.getParameter("cl_id"));
-				viewLectService.del_lect_serv(cl_id);
-				request.setAttribute("lect_msg","delLect");
+				String result=viewLectService.del_lect_serv(cl_id);
+				if(result.equals("delLect")) {
+					request.setAttribute("lect_msg","delLect");					
+				}else {
+					request.setAttribute("lect_msg","fail");
+				}
 				nextPage="/view/pf_lectureList.do";
 			}else if(action.equals("/add_score.do")) {
 				int count=Integer.parseInt(request.getParameter("count"));
