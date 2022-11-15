@@ -21,7 +21,7 @@
   <div class="content">
 
     <div class="logo_area">
-        <a href=""><img src="images/logo.png" alt="대학교 이미지"></a>
+        <a href="samseon/board/listArticles.do"><img src="images/logo.png" alt="대학교 이미지"></a>
     </div>
     <div class="text_area">
       <div class="text1">
@@ -29,7 +29,7 @@
         <p>This page is missing.</p>
       </div>
       <div class="text2">
-        <p ><a href=""> 홈으로 돌아가기 </a></p> 
+        <p ><a href="samseon/board/listArticles.do"> 홈으로 돌아가기 </a></p> 
       </div>
     </div>
   </div>
