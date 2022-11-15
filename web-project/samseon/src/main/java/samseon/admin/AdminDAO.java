@@ -4,7 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -96,6 +100,7 @@ public class AdminDAO {
 	public List<AdminVO> list_st() {
 		List<AdminVO> st_list=new ArrayList();
 		List<Integer> id_list;
+		List<Integer> false_id_list=new ArrayList();
 		try {
 			conn=dataFactory.getConnection();
 			//소속 정보에서 학생의 id를 가져옴
@@ -127,29 +132,36 @@ public class AdminDAO {
 						adminVO.setM_name(m_name);
 						adminVO.setCheck_sign(0);
 						st_list.add(adminVO);
+						st_list = st_list.stream().sorted(Comparator.comparing(AdminVO::getSt_name)).collect(Collectors.toList());
 					}
 					rs.close();
 				}else {
-					String query="select id, m_name, dan from entrancetbl where id=?";
-					//System.out.println(query);
-					pstmt=conn.prepareStatement(query);
-					pstmt.setInt(1, id);
-					ResultSet rs=pstmt.executeQuery();
-					while(rs.next()) {
-						int st_id=rs.getInt("id");
-						String m_name=rs.getString("m_name");
-						String dan=rs.getString("dan");
-						
-						AdminVO adminVO=new AdminVO();
-						adminVO.setSt_id(st_id);
-						adminVO.setDan(dan);
-						adminVO.setM_name(m_name);
-						adminVO.setCheck_sign(-1);
-						st_list.add(adminVO);
-					}
-					rs.close();
+					false_id_list.add(id);
+					Collections.sort(false_id_list);
 				}
 				//System.out.println(id+" / "+result+" / "+st_list.get(i).getCheck_sign());
+			}
+			System.out.println(false_id_list);
+			for(int false_id:false_id_list) {
+				System.out.println(false_id);
+				String query="select id, m_name, dan from entrancetbl where id=?";
+				//System.out.println(query);
+				pstmt=conn.prepareStatement(query);
+				pstmt.setInt(1, false_id);
+				ResultSet rs=pstmt.executeQuery();
+				while(rs.next()) {
+					int st_id=rs.getInt("id");
+					String m_name=rs.getString("m_name");
+					String dan=rs.getString("dan");
+					
+					AdminVO adminVO=new AdminVO();
+					adminVO.setSt_id(st_id);
+					adminVO.setDan(dan);
+					adminVO.setM_name(m_name);
+					adminVO.setCheck_sign(-1);
+					st_list.add(adminVO);
+				}
+				rs.close();
 			}
 			pstmt.close();
 			conn.close();
