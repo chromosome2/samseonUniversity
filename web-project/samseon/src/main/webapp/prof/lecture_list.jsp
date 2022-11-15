@@ -45,6 +45,13 @@
 							}
 						</script>
 					</c:when>
+					<c:when test='${lect_msg=="fail" }'>
+						<script>
+							window.onload = function () {
+								alert("강의를 삭제할 수 없습니다.");
+							}
+						</script>
+					</c:when>
 				</c:choose>
 			</head>
 
@@ -82,6 +89,7 @@
 										</thead>
 									</table>
 								</div>
+								
 								<div class="tbl_content">
 									<table border="0" cellpadding="0" cellspacing="0">
 										<tbody>

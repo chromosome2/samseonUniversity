@@ -300,7 +300,8 @@ public class ViewLectDAO {
 	}
 	
 	//강의 삭제
-	public void del_lect(int cl_id) {
+	public String del_lect(int cl_id) {
+		String result="fail";
 		try {
 			conn=dataFactory.getConnection();
 			String query="delete from subjecttbl where cl_id=?";
@@ -310,9 +311,11 @@ public class ViewLectDAO {
 			pstmt.executeUpdate();
 			pstmt.close();
 			conn.close();
+			result="delLect";
 		}catch(Exception e) {
 			System.out.println("강의 삭제 에러 : "+e.getMessage());
 		}
+		return result;
 	}
 	
 	//강의 코드 중복 확인

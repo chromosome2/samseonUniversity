@@ -53,13 +53,13 @@
 
 
 								<!-- board list area -->
-								<div id="board-list" style="margin-top: 200px">
+								<div id="board-list">
 									<div class="container">
 										<table class="board-table">
 											<thead>
-												<%-- <tr>
+												<tr>
 													<td>${noticeInfo.cl_name} 공지사항</td>
-												<tr> --%>
+												<tr>
 												<tr>
 													<th scope="col" class="th-num">번호</th>
 													<th scope="col" class="th-title">제목</th>
@@ -102,7 +102,7 @@
 															<div class="section_write">
 																<a
 																	href="${contextPath}/professor/noticeForm.do?cl_id=${noticeInfo.cl_id}&cl_name=${noticeInfo.cl_name}"><input
-																		class="btn btn-dark btn-write" type="button" style="height: 30px" value="글쓰기"></a>
+																		class="btn btn-dark btn-write" type="button" value="글쓰기"></a>
 															</div>
 														</c:if>
 													</form>

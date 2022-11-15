@@ -51,8 +51,8 @@ public class ViewLectService {
 	}
 	
 	//강의 삭제
-	public void del_lect_serv(int cl_id) {
-		viewLectDAO.del_lect(cl_id);
+	public String del_lect_serv(int cl_id) {
+		return viewLectDAO.del_lect(cl_id);
 	}
 	
 	//강의 번호 중복 체크
