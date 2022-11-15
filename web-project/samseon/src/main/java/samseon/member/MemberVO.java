@@ -14,6 +14,10 @@ public class MemberVO {
 	private int st_cnd;
 	private int st_grade;
 	private String department;
+
+	public MemberVO() {
+//		System.out.println("MemberVO 생성");
+	}
 	
 	public String getDepartment() {
 		return department;
@@ -45,10 +49,6 @@ public class MemberVO {
 
 	public void setSt_cnd(int st_cnd) {
 		this.st_cnd = st_cnd;
-	}
-
-	public MemberVO() {
-		System.out.println("MemberVO 생성");
 	}
 	
 	public MemberVO(int id, String pwd, String user_level) {
