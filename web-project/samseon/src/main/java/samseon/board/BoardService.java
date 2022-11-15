@@ -35,7 +35,7 @@ public class BoardService {
 		int noticeNo=boardDAO.insertNewNotice(articleVO);
 		return noticeNo;
 	}
-
+	
 	public void removeNotice(int noticeNo) {
 		boardDAO.deleteNotice(noticeNo);
 	}

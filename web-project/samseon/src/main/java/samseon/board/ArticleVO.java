@@ -15,7 +15,7 @@ public class ArticleVO {
 	
 	//생성자
 	public ArticleVO() {
-
+		
 	}
 	
 	public ArticleVO(int articleNo, String title, String content, String imageFileName, String adminDepartment) {

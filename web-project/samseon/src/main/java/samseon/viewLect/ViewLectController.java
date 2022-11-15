@@ -155,10 +155,10 @@ public class ViewLectController extends HttpServlet {
 			RequestDispatcher dispatcher=request.getRequestDispatcher(nextPage);
 			dispatcher.forward(request, response);
 		}catch(Exception e) {
-			e.printStackTrace();
-			System.out.println("요청 처리 중 에러 : "+ e.getMessage());
+			System.out.println("요청 처리 중 에러" + e.getMessage());
+			RequestDispatcher dispatcher=request.getRequestDispatcher("/404.jsp");
+			dispatcher.forward(request, response);
 		}
-		
 		
 	}
 

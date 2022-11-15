@@ -9,7 +9,7 @@ public class ViewLectService {
 	public ViewLectService() {
 		viewLectDAO=new ViewLectDAO();
 	}
-	
+
 	//전체 성적 조회
 	public List<ViewLectVO> viewScores_serv(int id) {
 		List<ViewLectVO> scoresList=viewLectDAO.viewScores(id);
