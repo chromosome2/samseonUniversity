@@ -64,7 +64,7 @@
                                             	<c:when test="${prof_info.check_sign eq -1 }">
                                             		<tr>
 		                                                <th>학번(아이디)</th>
-		                                                <td><input name="pf_id" class="tbl_input" type="number" value="${prof_info.pf_id}" readonly></td>
+		                                                <td><input name="pf_id" class="tbl_input readonly" type="number" value="${prof_info.pf_id}" readonly></td>
 		                                            </tr>
 		                                            <tr>
 		                                                <th>단과 대학</th>
