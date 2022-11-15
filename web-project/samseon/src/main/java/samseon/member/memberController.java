@@ -163,7 +163,7 @@ public class memberController extends HttpServlet {
 							+ "</script>");
 					return;
 				}
-			}else if(action.equals("/checkPwd.do")) {  //비밀번호 확인
+			} else if(action.equals("/checkPwd.do")) {  //비밀번호 확인
 				HttpSession session=request.getSession(false);
 				int id=(int) session.getAttribute("log_id");
 				String pwd=request.getParameter("pwd");
