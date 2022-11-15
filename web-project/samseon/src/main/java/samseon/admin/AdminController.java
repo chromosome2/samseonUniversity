@@ -221,6 +221,8 @@ public class AdminController extends HttpServlet {
 			dispatcher.forward(request, response);
 		}catch (Exception e) {
 			System.out.println("요청 처리 중 에러 : "+e.getMessage());
+			RequestDispatcher dispatcher=request.getRequestDispatcher("/404.jsp");
+			dispatcher.forward(request, response);
 		}
 	}
 	

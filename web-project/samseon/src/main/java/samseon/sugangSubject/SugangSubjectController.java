@@ -21,7 +21,7 @@ import org.json.simple.JSONObject;
 public class SugangSubjectController extends HttpServlet {
 	SugangSubjectService sugangSubService;
 	SugangSubjectVO sugangSubVO;
-	
+
 	public void init() throws ServletException {
 		sugangSubService=new SugangSubjectService();
 		sugangSubVO=new SugangSubjectVO();
@@ -134,6 +134,8 @@ public class SugangSubjectController extends HttpServlet {
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
 			System.out.println("요청 처리 중 에러" + e.getMessage());
+			RequestDispatcher dispatcher=request.getRequestDispatcher("/404.jsp");
+			dispatcher.forward(request, response);
 		}
 	}//doHandle 끝
 

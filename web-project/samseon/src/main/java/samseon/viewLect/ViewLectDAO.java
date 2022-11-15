@@ -59,7 +59,7 @@ public class ViewLectDAO {
 		return student_info;
 	}
 	
-	//viewScores.jsp 모든성적 리스트
+	//viewScores.jsp 모든 성적 리스트
 	public List<ViewLectVO> viewScores(int id) {
 		List<ViewLectVO> scoresList=new ArrayList();
 		//System.out.println("viewScores :"+id);

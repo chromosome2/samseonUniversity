@@ -28,7 +28,7 @@ public class AdminDAO {
 			System.out.println("DB 연결 오류");
 		}
 	}
-	
+
 	//교수리스트 불러오기
 	public List<AdminVO> list_prof() {
 		List<AdminVO> prof_list=new ArrayList();

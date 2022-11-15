@@ -77,5 +77,5 @@ public class SugangSubjectVO {
 	public void setM_name(String m_name) {
 		this.m_name = m_name;
 	}
-	
+
 }
