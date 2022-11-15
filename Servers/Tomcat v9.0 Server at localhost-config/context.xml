@@ -26,15 +26,12 @@
     <!--
     <Manager pathname="" />
     -->
-<<<<<<< HEAD
- 
-=======
->>>>>>> 816cb299728c145f535c9a63a849bea04ad5d0a0
      <Resource
     	name="jdbc/oracle"
     	auth="Container"
     	type="javax.sql.DataSource"
     	driverClassName="oracle.jdbc.OracleDriver"
+    	url="jdbc:oracle:thin:@localhost:1521:XE"
     	username="SAMSEONDB"
     	password="0000"
     	maxActive="50"
