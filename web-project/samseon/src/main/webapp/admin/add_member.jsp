@@ -22,7 +22,71 @@
                 <script src="${contextPath}/js/menu_second.js"></script>
                 <script>
                 	$(function () {
+                		//서브 메뉴 보이게 설정
                 		$('.my_page_menu').css('display','inline-block');
+                		
+                		//교수, 학생 코드 중복체크
+                		let id_input=document.getElementById("id");
+	                	let id_check=false;
+	                	
+	                	id_input.onblur = function(e){
+	                		let id=$('#id').val();
+	                		$.ajax({
+	                			type:"post",
+	                			async:true,
+	                			dataType:"text",
+	                			url:"${contextPath}/manage/check_id.do",
+	                			data:{id:id},
+	                			success:function(data,textStatus){
+	                				if(data=='usable'){
+	                					id_check=true;
+	                				}else{
+	                					alert("사용 불가능한 학번(ID)입니다.");
+	                					id_check=false;
+	                				}
+	                			},
+	                			error:function(data, textStatus){
+	                				alert("에러발생~!");
+	                			}
+	                		})
+	                	};
+	                	
+	                	//학과명이 collegetbl에 존재하는지
+	                	let m_name_input=document.getElementById("m_name");
+	                	let m_name_check=false;
+	                	
+	                	m_name_input.onblur = function(e){
+	                		let m_name=$('#m_name').val();
+	                		$.ajax({
+	                			type:"post",
+	                			async:true,
+	                			dataType:"text",
+	                			url:"${contextPath}/manage/check_m_name.do",
+	                			data:{m_name:m_name},
+	                			success:function(data,textStatus){
+	                				if(data=='usable'){
+	                					m_name_check=true;
+	                				}else{
+	                					alert("사용 불가능한 학과명입니다.");
+	                					m_name_check=false;
+	                				}
+	                			},
+	                			error:function(data, textStatus){
+	                				alert("에러발생~!");
+	                			}
+	                		})
+	                	};
+	                	
+	                	$('.btn_submit').on('click',function (e){
+	                		if(id_check==false){
+	                			e.preventDefault();
+	                			alert('학번을 변경해주세요.');
+	                		}
+	                		if(m_name_check==false){
+	                			e.preventDefault();
+	                			alert('학과 명을 변경해주세요.');
+	                		}
+	                	});
                 	});
                 </script>
                 <title>삼선대학교</title>
@@ -62,7 +126,7 @@
                                             </tr>
                                             <tr>
                                                 <th>학번(아이디)</th>
-                                                <td><input class="tbl_input" type="number" name="id" required></td>
+                                                <td><input id="id" class="tbl_input" type="number" name="id" required></td>
                                             </tr>
                                             <tr>
                                                 <th>단과 대학</th>
@@ -70,7 +134,7 @@
                                             </tr>
                                             <tr>
                                                 <th>학과 명</th>
-                                                <td><input class="tbl_input" type="text"  name="m_name" required></td>
+                                                <td><input id="m_name" class="tbl_input" type="text"  name="m_name" required></td>
                                             </tr>
                                         </tbody>
                                     </table>

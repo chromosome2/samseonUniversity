@@ -38,6 +38,7 @@ public class AdminController extends HttpServlet {
 		String nextPage=null;
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out=response.getWriter();
 		String action=request.getPathInfo();
 		System.out.println("요청이름 : "+action);
 		try {
@@ -216,6 +217,26 @@ public class AdminController extends HttpServlet {
 				adminDAO.del_st(st_id,check_sign);
 				request.setAttribute("admin_msg", "deleted");
 				nextPage="/manage/manage_st.do";
+			}else if(action.equals("/check_id.do")) {//학생,교수 학번 중복 체크
+				int id=Integer.parseInt(request.getParameter("id"));
+				System.out.println("아이디 중복 체크 : " + id);
+				boolean check_id=adminDAO.check_id(id);
+				if(check_id) {
+					out.print("not_usable");
+				}else {
+					out.print("usable");
+				}
+				return;
+			}else if(action.equals("/check_m_name.do")) {
+				String m_name=request.getParameter("m_name");
+				System.out.println("학과 명 존재 체크 : "+m_name);
+				boolean check_m_name=adminDAO.check_m_name(m_name);
+				if(check_m_name) {
+					out.print("usable");
+				}else {
+					out.print("not_usable");
+				}
+				return;
 			}
 			RequestDispatcher dispatcher=request.getRequestDispatcher(nextPage);
 			dispatcher.forward(request, response);
