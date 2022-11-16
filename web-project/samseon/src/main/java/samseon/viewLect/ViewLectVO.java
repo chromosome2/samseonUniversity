@@ -5,7 +5,7 @@ public class ViewLectVO {
 	private int st_id, t_pt, cl_sem, cl_id, cl_check, cl_pt, s_first, s_second, pf_id;
 	
 	public ViewLectVO() {
-		System.out.println("viewLectVO 생성자 호출");
+//		System.out.println("viewLectVO 생성자 호출");
 	}
 	
 	public ViewLectVO(int cl_id, String cl_name, int cl_pt, String cl_time, String cl_room, String cl_mj_t) {
@@ -177,5 +177,4 @@ public class ViewLectVO {
 		this.pf_id = pf_id;
 	}
 
-	
 }

@@ -25,7 +25,7 @@ public class SugangSubjectDAO {
 			System.out.println("DB 연결 에러");
 		}
 	}
-	
+
 	//전체 강의 보기
 	public List<SugangSubjectVO> selectAllLectures() {
 		List<SugangSubjectVO> sugangList=new ArrayList<SugangSubjectVO>();

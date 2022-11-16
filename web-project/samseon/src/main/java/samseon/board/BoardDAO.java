@@ -232,7 +232,7 @@ public class BoardDAO {
 			System.out.println("공지사항 수정 중 에러");
 		}
 	}
-
+	
 	//공지사항 검색
 	public List<ArticleVO> selectSearchArticles(Map<String, Integer> pagingMap, String searchKey) {
 		List<ArticleVO> searchList=new ArrayList<ArticleVO>();

@@ -1,5 +1,6 @@
 <%@page import="java.util.Map" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" isErrorPage="true" %>
+<% response.setStatus(200); %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
@@ -16,22 +17,22 @@
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
   <link rel="stylesheet" href="${contextPath}/css/common.css">
   <link rel="stylesheet" href="${contextPath}/css/404.css">
-  <title>404 오류. 페이지를 찾을수 없습니다.</title>
+  <title>404 오류. 페이지를 찾을 수 없습니다.</title>
 </head>
 <body>
 
   <div class="content">
 
     <div class="logo_area">
-        <a href="${contextPath}/board/listArticles.do"><img src="images/logo.png" alt="대학교 이미지"></a>
+        <a href="${contextPath}/board/listArticles.do"><img src="${contextPath}/images/logo.png" alt="대학교 이미지"></a>
     </div>
     <div class="text_area">
       <div class="text1">
-        <h3> 죄송합니다. 페이지를 찾을수 없습니다.</h3>
+        <h3> 죄송합니다. 페이지를 찾을 수 없습니다.</h3>
         <p>This page is missing.</p>
       </div>
       <div class="text2">
-        <p ><a href="${contextPath}/board/listArticles.do"> 홈으로 돌아가기 </a></p> 
+        <p><a href="${contextPath}/board/listArticles.do"> 홈으로 돌아가기 </a></p> 
       </div>
     </div>
   </div>

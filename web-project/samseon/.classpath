@@ -13,7 +13,12 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="src/main/webapp/WEB-INF/lib/ojdbc8.jar"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="C:/tomcat9/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/ojdbc8.jar"/>
+=======
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/ojdbc8.jar"/>
+	<classpathentry kind="lib" path="/opt/homebrew/Cellar/apache-tomcat-9.0.55/lib/servlet-api.jar"/>
+>>>>>>> 7fb3fa360751b337d19a57c7934de7584ee55c42
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
