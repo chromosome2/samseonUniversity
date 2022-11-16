@@ -22,7 +22,9 @@
                 <script src="${contextPath}/js/menu_second.js"></script>
                 <script>
                 	$(function () {
+                		//서브메뉴 작업
                 		$('.my_page_menu').css('display','inline-block');
+                		
                 	});
                 </script>
                 <title>삼선대학교</title>
