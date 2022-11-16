@@ -45,6 +45,13 @@
 							}
 						</script>
 					</c:when>
+					<c:when test='${lect_msg=="fail" }'>
+						<script>
+							window.onload = function () {
+								alert("강의를 삭제할 수 없습니다.");
+							}
+						</script>
+					</c:when>
 				</c:choose>
 			</head>
 
@@ -60,9 +67,6 @@
 							<h3>등록된 수업 목록</h3>
 						</div>
 						<section class="contents_wrapper">
-							<div class="addClass_btn_area">
-								<button class="apply_btn"><a href="${contextPath}/prof/add_lecture.jsp">수업 등록</a></button>
-							</div>
 							<div class="tbl_area">
 								<div class="tbl_header">
 
@@ -85,6 +89,7 @@
 										</thead>
 									</table>
 								</div>
+								
 								<div class="tbl_content">
 									<table border="0" cellpadding="0" cellspacing="0">
 										<tbody>
@@ -121,6 +126,9 @@
 										</tbody>
 									</table>
 								</div>
+							</div>
+							<div class="addClass_btn_area">
+								<button class="apply_btn"><a href="${contextPath}/prof/add_lecture.jsp">수업 등록</a></button>
 							</div>
 						</section>
 					</div>

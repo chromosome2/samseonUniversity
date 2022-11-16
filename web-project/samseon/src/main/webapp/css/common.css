@@ -353,3 +353,9 @@ header .head1,
 #contents_area {
   overflow: hidden;
 }
+
+/*read-only 버튼*/
+input:read-only:not([type=button]):not([type=submit]){
+	background-color: #E7E7E7;
+	color:#5D5D5D;
+}

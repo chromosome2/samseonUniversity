@@ -30,6 +30,34 @@
             <script src="${contextPath}/js/common.js"></script>
             <script src="${contextPath}/js/menu_first.js"></script>
             <title>삼선대학교</title>
+            <!-- <script type="text/javascript">
+            	window.onload = function() {
+            		const search_btn=document.querySelector("#search-btn");
+                    search_btn.addEventListener("click", search);
+                    function search() {
+                        let search_key=document.searchForm.search.value;
+                        if(search_key != null || search_key != '' || search_key.length != 0) {
+                            $.ajax({
+                                type:"post",
+                                async:"true",
+                                url:"${contextPath}/board/search.do",
+                                data:{search:search_key},
+                                dataType:"json",
+                                success:function(data) {
+                                    if(data.searchNotice.length != 0) {
+                                        
+                                    }else {
+                                        alert("검색결과가 없습니다.");
+                                    }
+                                },
+                                error:function(data) {
+                                    alert("에러가 발생했습니다.");
+                                }
+                            });
+                        }
+                    }
+            	}
+            </script> -->
           </head>
 
           <body>
@@ -47,20 +75,7 @@
                     </div>
                   </div>
 
-                  <!-- board seach area -->
-                  <!-- <div id="board-search">
-                  <div class="container">
-                    <div class="search-window">
-                      <form action="">
-                        <div class="search-wrap">
-                          <label for="search" class="blind">공지사항 내용 검색</label>
-                          <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
-                          <button type="submit" class="btn btn-dark">검색</button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div> -->
+
 
                   <!-- board list area -->
                   <div id="board-list">
@@ -96,8 +111,39 @@
 
                         </tbody>
                       </table>
+                      <!-- board search area -->
+                      <div id="board-search">
+                        <div class="container">
+                          <div class="search-window">
+                            <form action="${contextPath}/board/search.do" name="searchForm" class="search-form">
+                              <div class="search-wrap">
+                                <label for="search" class="blind">공지사항 내용 검색</label>
+                                <input id="search" type="search" name="search" placeholder="검색어를 입력해주세요."
+                                  value="${articleMap.searchKey}">
+                                <button type="submit" class="btn btn-dark btn-search" id="search-btn">검색</button>
+                              </div>
+                              <!-- 새 글 작성 : 관리자에게만 보임 -->
+                              <c:if test="${user_level == 'admin'}">
+                                <div class="section_write">
+                                  <a href="${contextPath}/board/articleForm.do"><input class="btn btn-dark btn-write"
+                                      type="button" value="글쓰기"></a>
+                                </div>
+                              </c:if>
+                              <!-- 검색 후 전체글 목록으로 돌아가기 -->
+                            </form>
+                              <!-- 목록 버튼 form 밖에 위치해야 search.do가 아닌 listArticles.do가 수행됨 -->
+                              <a href="${contextPath}/board/listArticles.do"><button type="submit"
+                                  class="btn btn-dark btn-list">목록</button></a>
+                          </div>
+                        </div>
+                      </div>
+
                       <div class="pagination">
                         <ul class="pagination_modal">
+
+
+
+
                           <!-- 페이징 -->
                           <c:if test="${cnt != 0}">
                             <c:set var="pageCount" value="${cnt / pageSize + (cnt%pageSize==0?0:1)}" />
@@ -110,27 +156,27 @@
                               </c:if>
                               <c:if test="${startPage > pageBlock}">
                                 <li class="paging_first"><a class="paging_arrow"
-                                    href="${contextPath}/board/listArticles.do?section=${section-1}&pageNum=${startPage-pageBlock}">
-                                    <<< /a>
+                                    href="${contextPath}/board/listArticles.do?section=${section-1}&pageNum=${startPage-pageBlock}&search=${articleMap.searchKey}">
+                                    << </a>
                                 </li>
                               </c:if>
 
                               <c:forEach var="page" begin="${startPage}" end="${endPage}" step="1">
                                 <c:if test="${page == currentPage}">
                                   <li class="paging_num paging_active"><a class="num_active"
-                                      href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${page}</a>
+                                      href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}&search=${articleMap.searchKey}">${page}</a>
                                   </li>
                                 </c:if>
                                 <c:if test="${page != currentPage}">
                                   <li class="paging_num"><a
-                                      href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}">${page}</a>
+                                      href="${contextPath}/board/listArticles.do?section=${section}&pageNum=${page}&search=${articleMap.searchKey}">${page}</a>
                                   </li>
                                 </c:if>
                               </c:forEach>
 
                               <c:if test="${endPage < pageCount}">
                                 <li class="paging_last"><a class="paging_arrow"
-                                    href="${contextPath}/board/listArticles.do?section=${section+1}&pageNum=${startPage+pageBlock}">>></a>
+                                    href="${contextPath}/board/listArticles.do?section=${section+1}&pageNum=${startPage+pageBlock}&search=${articleMap.searchKey}">>></a>
                                 </li>
                               </c:if>
                           </c:if>
@@ -139,12 +185,7 @@
                     </div>
                   </div>
 
-                  <!-- 새 글 작성 : 관리자에게만 보임 -->
-                  <c:if test="${user_level == 'admin'}">
-                    <div class="section_write">
-                      <a href="${contextPath}/board/articleForm.do"><input class="btn_write" type="button" value="글쓰기"></a>
-                    </div>
-                  </c:if>
+
 
               </div>
             </div>

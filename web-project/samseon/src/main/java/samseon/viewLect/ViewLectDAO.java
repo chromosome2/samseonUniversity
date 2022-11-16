@@ -32,7 +32,7 @@ public class ViewLectDAO {
 		try {
 			conn=dataFactory.getConnection();
 			String query="select st_name, st_id, m_name, dan, st_cnd from studenttbl where st_id=?";
-			System.out.println(query);
+			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, id);
 			ResultSet rs=pstmt.executeQuery();
@@ -59,14 +59,14 @@ public class ViewLectDAO {
 		return student_info;
 	}
 	
-	//viewScores.jsp 모든성적 리스트
+	//viewScores.jsp 모든 성적 리스트
 	public List<ViewLectVO> viewScores(int id) {
 		List<ViewLectVO> scoresList=new ArrayList();
 		//System.out.println("viewScores :"+id);
 		try {
 			conn=dataFactory.getConnection();
 			String query="select * from scoretbl where st_id=? and not s_second is null order by cl_name";
-			System.out.println(query);
+			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, id);
 			ResultSet rs=pstmt.executeQuery();
@@ -114,7 +114,7 @@ public class ViewLectDAO {
 		try {
 			conn=dataFactory.getConnection();
 			String query="select * from courseregitbl where st_id=? and cl_id in (select cl_id from scoretbl where st_id=? and s_second is null) order by cl_name";
-			System.out.println(query);
+			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, id);
 			pstmt.setInt(2, id);
@@ -156,7 +156,7 @@ public class ViewLectDAO {
 		try {
 			conn=dataFactory.getConnection();
 			String query="select cl_id, cl_name, pf_name, cl_sem, cl_pt, cl_time, cl_room, cl_mj_t from subjecttbl where pf_id=? ORDER BY cl_name";
-			System.out.println(query);
+			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, id);
 			ResultSet rs=pstmt.executeQuery();
@@ -207,10 +207,10 @@ public class ViewLectDAO {
 			String cl_mj_t=viewlectVO.getCl_mj_t();
 			String m_name=get_m_name(pf_id);
 			int cl_sem=1;
-			System.out.println(pf_id+","+pf_name+","+cl_id+","+cl_name+","+cl_pt+","+cl_time+","+cl_room+","+cl_mj_t+","+m_name+","+cl_sem);
+			//System.out.println(pf_id+","+pf_name+","+cl_id+","+cl_name+","+cl_pt+","+cl_time+","+cl_room+","+cl_mj_t+","+m_name+","+cl_sem);
 			
 			String query="insert into subjecttbl (pf_id, pf_name, cl_name, cl_id, cl_pt, cl_time, cl_mj_t, m_name, cl_room, cl_sem) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-			System.out.println(query);
+			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, pf_id);
 			pstmt.setString(2, pf_name);
@@ -238,7 +238,7 @@ public class ViewLectDAO {
 		try {
 			conn=dataFactory.getConnection();
 			String query="select cl_name, cl_pt, cl_time, cl_room, cl_mj_t from subjecttbl where cl_id=?";
-			System.out.println(query);
+			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, cl_id);
 			ResultSet rs=pstmt.executeQuery();
@@ -274,7 +274,7 @@ public class ViewLectDAO {
 		try {
 			conn=dataFactory.getConnection();
 			String query="update subjecttbl set cl_pt=?, cl_time=?, cl_room=?, cl_mj_t=? where cl_id=?";
-			System.out.println(query);
+			//System.out.println(query);
 			
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, cl_pt);
@@ -286,7 +286,7 @@ public class ViewLectDAO {
 			pstmt.executeUpdate();
 			
 			query="update courseregitbl set cl_pt=? where cl_id=?";
-			System.out.println(query);
+			//System.out.println(query);
 			
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, cl_pt);
@@ -300,19 +300,22 @@ public class ViewLectDAO {
 	}
 	
 	//강의 삭제
-	public void del_lect(int cl_id) {
+	public String del_lect(int cl_id) {
+		String result="fail";
 		try {
 			conn=dataFactory.getConnection();
 			String query="delete from subjecttbl where cl_id=?";
-			System.out.println(query);
+			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, cl_id);
 			pstmt.executeUpdate();
 			pstmt.close();
 			conn.close();
+			result="delLect";
 		}catch(Exception e) {
 			System.out.println("강의 삭제 에러 : "+e.getMessage());
 		}
+		return result;
 	}
 	
 	//강의 코드 중복 확인
@@ -321,7 +324,7 @@ public class ViewLectDAO {
 		try {
 			conn=dataFactory.getConnection();
 			String query="select decode(count(*), 1, 'true', 'false') as result from subjecttbl where cl_id=?";
-			System.out.println(query);
+			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, cl_id);
 			ResultSet rs=pstmt.executeQuery();
@@ -345,7 +348,7 @@ public class ViewLectDAO {
 			if(count==1) {
 				int s_first=viewlectVO.getS_first();
 				String query="update scoretbl set s_first=? where st_id=? and cl_name=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setInt(1, s_first);
 				pstmt.setInt(2, st_id);
@@ -355,7 +358,7 @@ public class ViewLectDAO {
 			}else {
 				int s_second=viewlectVO.getS_second();
 				String query="update scoretbl set s_second=? where st_id=? and cl_name=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setInt(1, s_second);
 				pstmt.setInt(2, st_id);
@@ -377,7 +380,7 @@ public class ViewLectDAO {
 		//System.out.println("get_t_pt : "+id);
 		try {
 			String query="select t_pt from graduatetbl where st_id=?";
-			System.out.println(query);
+			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, id);
 			ResultSet rs=pstmt.executeQuery();
@@ -403,7 +406,7 @@ public class ViewLectDAO {
 		int cl_pt=0;
 		try {
 			String query="select cl_pt from subjecttbl where cl_id=?";
-			System.out.println(query);
+			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, cl_id);
 			ResultSet rs=pstmt.executeQuery();
@@ -420,7 +423,7 @@ public class ViewLectDAO {
 		int cl_check=0;
 		try {
 			String query="select cl_check from attendancetbl where cl_id=? and st_id=?";
-			System.out.println(query);
+			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, cl_id);
 			pstmt.setInt(2, st_id);
@@ -445,10 +448,10 @@ public class ViewLectDAO {
 			ResultSet rs=pstmt.executeQuery();
 			rs.next();
 			String temp_s_final=rs.getString("s_final");
-			System.out.println(temp_s_final);
+			//System.out.println(temp_s_final);
 			
 			query="update scoretbl set s_final=? where st_id=? and cl_id=?";
-			System.out.println(query);
+			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			pstmt.setString(1, s_final);
 			pstmt.setInt(2, st_id);
@@ -508,7 +511,7 @@ public class ViewLectDAO {
 		int t_pt=0;
 		try {
 			String query="select sum(cl_pt) as tot_t_pt from courseregitbl where st_id=? and cl_id in (select cl_id from scoretbl where st_id=? and not s_final='F')";
-			System.out.println(query);
+			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, st_id);
 			pstmt.setInt(2, st_id);
@@ -517,7 +520,7 @@ public class ViewLectDAO {
 			t_pt=rs.getInt("tot_t_pt");
 			
 			query="select decode(count(*), 1, 'true', 'false') as result from graduatetbl where st_id=?";
-			System.out.println(query);
+			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, st_id);
 			rs=pstmt.executeQuery();
@@ -525,14 +528,14 @@ public class ViewLectDAO {
 			boolean result=Boolean.parseBoolean(rs.getString("result"));
 			if(result) {
 				query="update graduatetbl set t_pt=? where st_id=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setInt(1, t_pt);
 				pstmt.setInt(2, st_id);
 				pstmt.executeUpdate();
 			}else {
 				query="insert into graduatetbl (st_id,t_pt) values(?,?)";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setInt(1, st_id);
 				pstmt.setInt(2, t_pt);
@@ -548,7 +551,7 @@ public class ViewLectDAO {
 		int s_first=0;
 		try {
 			String query="select s_first from scoretbl where cl_id=? and st_id=?";
-			System.out.println(query);
+			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, cl_id);
 			pstmt.setInt(2, st_id);
@@ -566,7 +569,7 @@ public class ViewLectDAO {
 			int s_second=0;
 			try {
 				String query="select s_second from scoretbl where cl_id=? and st_id=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setInt(1, cl_id);
 				pstmt.setInt(2, st_id);
@@ -584,7 +587,7 @@ public class ViewLectDAO {
 		String cl_time=null;
 		try {
 			String query="select cl_time from subjecttbl where cl_id=?";
-			System.out.println(query);
+			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, cl_id);
 			ResultSet rs=pstmt.executeQuery();
@@ -601,7 +604,7 @@ public class ViewLectDAO {
 		String cl_room=null;
 		try {
 			String query="select cl_room from subjecttbl where cl_id=?";
-			System.out.println(query);
+			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, cl_id);
 			ResultSet rs=pstmt.executeQuery();
@@ -618,12 +621,15 @@ public class ViewLectDAO {
 		String dan=null;
 		try {
 			String query="select dan from professortbl where pf_name=?";
-			System.out.println(query);
+			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			pstmt.setString(1, pf_name);
 			ResultSet rs=pstmt.executeQuery();
 			rs.next();
 			dan=rs.getString("dan");
+			if (dan.equals("") || dan.length()==0) {
+				dan="정보없음";
+			}
 		}catch(Exception e) {
 			System.out.println("단과대학 가져오기 에러 : "+e.getMessage());
 		}
@@ -635,7 +641,7 @@ public class ViewLectDAO {
 		String pf_name=null;
 		try {
 			String query="select pf_name from professortbl where pf_id=?";
-			System.out.println(query);
+			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, id);
 			ResultSet rs=pstmt.executeQuery();
@@ -652,7 +658,7 @@ public class ViewLectDAO {
 		String m_name=null;
 		try {
 			String query="select m_name from professortbl where pf_id=?";
-			System.out.println(query);
+			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, id);
 			ResultSet rs=pstmt.executeQuery();

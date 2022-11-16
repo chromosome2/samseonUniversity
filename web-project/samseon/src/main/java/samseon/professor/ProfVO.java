@@ -8,7 +8,7 @@ public class ProfVO {
 	Date nt_date;
 	
 	public ProfVO() {
-		
+	
 	}
 
 	public String getHakjum() {

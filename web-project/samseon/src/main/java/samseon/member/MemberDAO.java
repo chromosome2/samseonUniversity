@@ -41,7 +41,7 @@ public class MemberDAO {
 			pstmt.close();
 			conn.close();
 		} catch (Exception e) {
-			System.out.println("로그인 회원정보 확인 중 오류");
+			System.out.println("로그인 회원정보 확인 중 오류" + e.getMessage());
 		}
 		return result;
 	}
@@ -62,7 +62,7 @@ public class MemberDAO {
 			pstmt.close();
 			conn.close();
 		} catch (Exception e) {
-			System.out.println("유저레벨 확인 중 오류");
+			System.out.println("유저레벨 확인 중 오류" + e.getMessage());
 		}
 		return userLevel;
 	}
@@ -155,7 +155,7 @@ public class MemberDAO {
 			pstmt.close();
 			conn.close();
 		} catch (Exception e) {
-			System.out.println("교수 정보 확인 중 에러" + e.getMessage());
+			System.out.println("관리자 정보 확인 중 에러" + e.getMessage());
 		}
 		return adminInfo;
 	}
@@ -176,7 +176,7 @@ public class MemberDAO {
 			pstmt.close();
 			conn.close();
 		} catch (Exception e) {
-			System.out.println("ENTRANCETBL 조회 중 에러 발생");
+			System.out.println("ENTRANCETBL 조회 중 에러 발생" + e.getMessage());
 		}
 		return result;
 	}
@@ -196,7 +196,7 @@ public class MemberDAO {
 			pstmt.close();
 			conn.close();
 		} catch (Exception e) {
-			System.out.println("MEMBERTBL 조회 중 에러 발생");
+			System.out.println("MEMBERTBL 조회 중 에러 발생" + e.getMessage());
 		}
 		return result;
 	}
@@ -217,7 +217,7 @@ public class MemberDAO {
 			pstmt.close();
 			conn.close();
 		} catch (Exception e) {
-			System.out.println("유저레벨 확인 중 오류");
+			System.out.println("유저레벨 확인 중 오류" + e.getMessage());
 		}
 		return userLevel;
 	}
@@ -269,7 +269,7 @@ public class MemberDAO {
 				pstmt.setString(2, pwd);
 				pstmt.setString(3, userLevel);
 				pstmt.executeUpdate();
-				pstmt.close();
+//				pstmt.close();
 				query="insert into studenttbl(st_id,st_pwd,st_name,st_ph,st_email,st_add,m_num,m_name,dan) values(?,?,?,?,?,?,?,?,?)";
 				pstmt=conn.prepareStatement(query);
 				pstmt.setInt(1, id);
@@ -285,7 +285,7 @@ public class MemberDAO {
 				pstmt.close();
 				conn.close();
 			} catch (Exception e) {
-				System.out.println("학생 회원 가입 처리 중 에러 발생");
+				System.out.println("학생 회원 가입 처리 중 에러 발생" + e.getMessage());
 			}		
 		}else if(userLevel.equals("professor")) {
 			try {
@@ -296,7 +296,7 @@ public class MemberDAO {
 				pstmt.setString(2, pwd);
 				pstmt.setString(3, userLevel);
 				pstmt.executeUpdate();
-				pstmt.close();
+//				pstmt.close();
 				query="insert into professortbl values(?,?,?,?,?,?,?,?)";
 				pstmt=conn.prepareStatement(query);
 				pstmt.setInt(1, id);
@@ -311,7 +311,7 @@ public class MemberDAO {
 				pstmt.close();
 				conn.close();
 			} catch (Exception e) {
-				System.out.println("교수 회원 가입 처리 중 에러 발생");
+				System.out.println("교수 회원 가입 처리 중 에러 발생" + e.getMessage());
 			}
 		}
 	}

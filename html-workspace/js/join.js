@@ -188,9 +188,7 @@ const phoneQuery = document.querySelector('.phoneWarning');
 const emailQuery = document.querySelector('.emailWarning');
 
 // ///// functions
-
-// 학번이 미리 주어지는 경우, 어떤 형식으로 이루어지는 지 정해야 정규식을 작성 가능
-// 현재는
+// 전체 alert (submit)
 $('#submit').on('click', function (e) {
   if (id.value.trim() === '') {
     e.preventDefault();
