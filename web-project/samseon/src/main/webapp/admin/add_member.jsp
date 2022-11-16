@@ -22,7 +22,71 @@
                 <script src="${contextPath}/js/menu_second.js"></script>
                 <script>
                 	$(function () {
+                		//서브 메뉴 보이게 설정
                 		$('.my_page_menu').css('display','inline-block');
+                		
+                		//교수, 학생 코드 중복체크
+                		let id_input=document.getElementById("id");
+	                	let id_check=false;
+	                	
+	                	id_input.onblur = function(e){
+	                		let id=$('#id').val();
+	                		$.ajax({
+	                			type:"post",
+	                			async:true,
+	                			dataType:"text",
+	                			url:"${contextPath}/manage/check_id.do",
+	                			data:{id:id},
+	                			success:function(data,textStatus){
+	                				if(data=='usable'){
+	                					id_check=true;
+	                				}else{
+	                					alert("사용 불가능한 학번(ID)입니다.");
+	                					id_check=false;
+	                				}
+	                			},
+	                			error:function(data, textStatus){
+	                				alert("에러발생~!");
+	                			}
+	                		})
+	                	};
+	                	
+	                	//학과명이 collegetbl에 존재하는지
+	                	let m_name_input=document.getElementById("m_name");
+	                	let m_name_check=false;
+	                	
+	                	m_name_input.onblur = function(e){
+	                		let m_name=$('#m_name').val();
+	                		$.ajax({
+	                			type:"post",
+	                			async:true,
+	                			dataType:"text",
+	                			url:"${contextPath}/manage/check_m_name.do",
+	                			data:{m_name:m_name},
+	                			success:function(data,textStatus){
+	                				if(data=='usable'){
+	                					m_name_check=true;
+	                				}else{
+	                					alert("사용 불가능한 학과명입니다.");
+	                					m_name_check=false;
+	                				}
+	                			},
+	                			error:function(data, textStatus){
+	                				alert("에러발생~!");
+	                			}
+	                		})
+	                	};
+	                	
+	                	$('.btn_submit').on('click',function (e){
+	                		if(id_check==false){
+	                			e.preventDefault();
+	                			alert('학번을 변경해주세요.');
+	                		}
+	                		if(m_name_check==false){
+	                			e.preventDefault();
+	                			alert('학과 명을 변경해주세요.');
+	                		}
+	                	});
                 	});
                 </script>
                 <title>삼선대학교</title>
@@ -39,8 +103,8 @@
                     <div id="contents_area">
                         <section class="form_section">
                             <div class="contents_wrapper">
-                                <h3>개인정보</h3>
-                                <form action="" method="post" id="privacy_modForm" name="privacy_modForm">
+                                <h3>교수, 학생 등록</h3>
+                                <form action="${contextPath}/manage/add_member.do" method="post" id="add_memberForm" name="add_memberForm">
                                     <table border="0" cellpadding="0" cellspacing="0" id="main_table">
                                         <tbody>
                                             <tr>
@@ -48,13 +112,13 @@
                                                 <td class="td_radio">
                                                     <div class="tbl_input label_div">
                                                         <label for="user_identity1" class="idt_label">
-                                                            <input type="radio" name="user_identity"
-                                                                id="user_identity1">
+                                                            <input type="radio" name="user_level"
+                                                                id="user_identity1" value="student" required>
                                                             <span class="choose_span">학생</span>
                                                         </label>
                                                         <label for="user_identity2" class="idt_label">
-                                                            <input type="radio" name="user_identity"
-                                                                id="user_identity2">
+                                                            <input type="radio" name="user_level"
+                                                                id="user_identity2" value="professor">
                                                             <span class="choose_span">교수</span>
                                                         </label>
                                                     </div>
@@ -62,48 +126,21 @@
                                             </tr>
                                             <tr>
                                                 <th>학번(아이디)</th>
-                                                <td><input class="tbl_input" type="number" value="1111" disabled></td>
-                                            </tr>
-                                            <tr>
-                                                <th>비밀번호</th>
-                                                <td><input class="tbl_input" type="password" name="pwd"></td>
-                                            </tr>
-                                            <tr>
-                                                <th>이름</th>
-                                                <td><input class="tbl_input" type="text" value="홍길동" disabled></td>
-                                            </tr>
-                                            <tr>
-                                                <th>전화번호</th>
-                                                <td><input class="tbl_input" type="tel" value="01012341111" name="tel">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>이메일</th>
-                                                <td><input class="tbl_input" type="text" value="hong@naver.com"
-                                                        name="email"></td>
-                                            </tr>
-                                            <tr>
-                                                <th>주소</th>
-                                                <td><input class="tbl_input" type="text" value="서울시 종로구 종로동 77-7"
-                                                        name="addr"></td>
-                                            </tr>
-                                            <tr>
-                                                <th>학적 상태</th>
-                                                <td><input class="tbl_input" type="text" value="재직" disabled></td>
-                                            </tr>
-                                            <tr>
-                                                <th>학과 명</th>
-                                                <td><input class="tbl_input" type="text" value="컴퓨터공학과" disabled></td>
+                                                <td><input id="id" class="tbl_input" type="number" name="id" required></td>
                                             </tr>
                                             <tr>
                                                 <th>단과 대학</th>
-                                                <td><input class="tbl_input" type="text" value="IT대학" disabled></td>
+                                                <td><input class="tbl_input" type="text" name="dan"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>학과 명</th>
+                                                <td><input id="m_name" class="tbl_input" type="text"  name="m_name" required></td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <div class="input_submit privacy_submit">
-                                        <input class="btn_submit button" type="submit" value="수정하기">
-                                        <input class="btn_cancle button" type="reset" value="취소">
+                                        <input class="btn_submit button" type="submit" value="등록하기">
+                                        <input class="btn_cancle button" type="button" value="취소" onclick="history.go(-1)"><%--뒤로 가기 --%>
                                     </div>
                                 </form>
                         </section>

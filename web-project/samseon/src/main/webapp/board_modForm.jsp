@@ -51,7 +51,7 @@
                       <thead>
                         <tr>
                           <th scope="col" class="th_title_02">제목</th>
-                          <th scope="col" class="th_title_txt"><input type="text" name="title" value="${notice.title}" required>
+                          <th scope="col" class="th_title_txt"><input type="text" name="title" size="80" value="${notice.title}" required>
                           </th>
                         </tr>
                       </thead>

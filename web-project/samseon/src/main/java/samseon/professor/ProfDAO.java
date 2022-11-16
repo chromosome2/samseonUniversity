@@ -30,7 +30,7 @@ public class ProfDAO {
 			System.out.println("DB 연결 오류");
 		}
 	}
-	
+
 	//나의 수업 전체목록 보기
 	public List<ProfVO> selectMyLectures(int id) {
 		List<ProfVO> list=new ArrayList<ProfVO>();

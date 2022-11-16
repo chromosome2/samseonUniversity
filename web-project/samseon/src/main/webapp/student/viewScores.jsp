@@ -118,7 +118,7 @@
                                             					<td>2022.${score.cl_sem }</td>
                                             					<td>${score.cl_id}</td>
                                             					<td>${score.cl_name }</td>
-			                                                    <td>${score.cl_check }%</td>
+			                                                    <td><fmt:formatNumber value="${score.cl_check/30}" pattern="0.0%"/></td>
 			                                                    <td>${score.cl_pt}</td>
 			                                                    <td>${score.s_final }</td>
 			                                                    <td>${score.comp_subject}</td>

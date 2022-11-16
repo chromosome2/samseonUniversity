@@ -25,7 +25,7 @@ public class SugangSubjectDAO {
 			System.out.println("DB 연결 에러");
 		}
 	}
-	
+
 	//전체 강의 보기
 	public List<SugangSubjectVO> selectAllLectures() {
 		List<SugangSubjectVO> sugangList=new ArrayList<SugangSubjectVO>();
@@ -74,7 +74,7 @@ public class SugangSubjectDAO {
 		List<String> majorList=new ArrayList<String>();
 		try {
 			conn=dataFactory.getConnection();
-			String query="select m_name from collegetbl";
+			String query="select distinct m_name from collegetbl order by m_name";
 			pstmt=conn.prepareStatement(query);
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
@@ -85,9 +85,30 @@ public class SugangSubjectDAO {
 			pstmt.close();
 			conn.close();
 		} catch (Exception e) {
-			System.out.println("전체 전공 조회 중 에러");
+			System.out.println("전체 학과 조회 중 에러");
 		}
 		return majorList;
+	}
+	
+	//전체 단과대학 조회
+	public List<String> selectAllDans() {
+		List<String> danList=new ArrayList<String>();
+		try {
+			conn=dataFactory.getConnection();
+			String query="select distinct dan from collegetbl order by dan";
+			pstmt=conn.prepareStatement(query);
+			ResultSet rs=pstmt.executeQuery();
+			while(rs.next()) {
+				String dan=rs.getString(1);
+				danList.add(dan);
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			System.out.println("전체 단과대학 조회 중 에러");
+		}
+		return danList;
 	}
 
 	//수강 신청 등록

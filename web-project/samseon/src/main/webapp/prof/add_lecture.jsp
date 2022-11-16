@@ -20,8 +20,43 @@
                 <script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
                 <script src="${contextPath}/js/common.js"></script>
                 <script src="${contextPath}/js/menu_second.js"></script>
-                <script src="${contextPath}/js/add_lecture.js"></script>
+                <%-- <script src="${contextPath}/js/add_lecture.js"></script> --%>
                 <title>삼선대학교</title>
+                <script type="text/javascript">
+	                $(function(){
+	                	let cl_id_input=document.getElementById("cl_id");
+	                	let check=false;
+	                	
+	                	cl_id_input.onblur = function(e){
+	                		let cl_id=$('#cl_id').val();
+	                		$.ajax({
+	                			type:"post",
+	                			async:true,
+	                			dataType:"text",
+	                			url:"${contextPath}/view/check_cl_id.do",
+	                			data:{cl_id:cl_id},
+	                			success:function(data,textStatus){
+	                				if(data=='usable'){
+	                					check=true;
+	                				}else{
+	                					alert("사용 불가능한 과목 코드입니다.");
+	                					check=false;
+	                				}
+	                			},
+	                			error:function(data, textStatus){
+	                				alert("에러발생~!");
+	                			}
+	                		})
+	                	}
+	                	
+	                	$('.btn_submit').on('click',function (e){
+	                		if(check==false){
+	                			e.preventDefault();
+	                			alert('과목 코드를 변경해주세요.');
+	                		}
+	                	});
+	                });
+                </script>
             </head>
 
             <body>

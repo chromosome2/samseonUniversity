@@ -63,7 +63,7 @@ public class BoardDAO {
 	//글 목록 페이지로 나눠서 보기
 	public List<ArticleVO> selectAllArticles(Map<String, Integer> pagingMap) {
 		List<ArticleVO> articleList=new ArrayList<ArticleVO>();
-		int section=pagingMap.get("section");
+//		int section=pagingMap.get("section");
 		int pageNum=pagingMap.get("pageNum");
 		//첫 행 번호를 계산
 		int startRow=(pageNum-1)*10+1;
@@ -231,6 +231,66 @@ public class BoardDAO {
 		} catch (Exception e) {
 			System.out.println("공지사항 수정 중 에러");
 		}
+	}
+	
+	//공지사항 검색
+	public List<ArticleVO> selectSearchArticles(Map<String, Integer> pagingMap, String searchKey) {
+		List<ArticleVO> searchList=new ArrayList<ArticleVO>();
+		int pageNum=pagingMap.get("pageNum");
+		int startRow=(pageNum-1)*10+1;
+		try {
+			conn=dataFactory.getConnection();
+			String query="SELECT * FROM"
+					+ " (SELECT rownum AS recNum, N_ID, N_TITLE, N_DATE, DP FROM"
+					+ " (SELECT * FROM ADMINNOTICETBL WHERE N_TITLE like ? OR N_CONTENT like ? ORDER BY N_ID DESC))"
+					+ " WHERE recNum BETWEEN ? AND ?";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1, "%"+searchKey+"%");
+			pstmt.setString(2, "%"+searchKey+"%");
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4, startRow+9);
+			ResultSet rs=pstmt.executeQuery();
+			while(rs.next()) {
+				int articleNo=rs.getInt("n_id");
+				String title=rs.getString("n_title");
+				Date writeDate=rs.getDate("n_date");
+				String department=rs.getString("dp");
+				ArticleVO article=new ArticleVO();
+				article.setArticleNo(articleNo);
+				article.setTitle(title);
+				article.setWriteDate(writeDate);
+				article.setAdminDepartment(department);
+				searchList.add(article);
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			System.out.println("공지사항 검색 중 에러" + e.getMessage());
+		}
+		return searchList;
+	}
+	
+	//검색한 게시물 개수
+	public int selectTotalSearchArticles(String searchKey) {
+		int total=0;
+		try {
+			conn=dataFactory.getConnection();
+			String query="select count(n_id) from adminnoticetbl where n_title like ? or n_content like ?";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1, "%"+searchKey+"%");
+			pstmt.setString(2, "%"+searchKey+"%");
+			ResultSet rs=pstmt.executeQuery();
+			if(rs.next()) {
+				total=rs.getInt(1);
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			System.out.println("검색한 공지사항 개수 반환 중 에러" + e.getMessage());
+		}
+		return total;
 	}
 
 }
