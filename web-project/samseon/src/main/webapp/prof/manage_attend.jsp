@@ -54,7 +54,7 @@
 
     <div id="contents_area">
       <div class="table_header">
-        <h3>${cl_name} 출석 관리</h3>
+        <h3>&lt;${cl_name}&gt; 출석 관리</h3>
       </div>
       <section class="contents_wrapper">
 				<div class="tbl_area">            		
