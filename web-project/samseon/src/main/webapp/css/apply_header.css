@@ -114,6 +114,7 @@ select {
   border: none;
   height: 50px;
   width: 100px;
+  color: #fff;
 }
 
 .btn_move {
@@ -154,3 +155,10 @@ select {
   width: 100%;
   -webkit-tap-highlight-color: transparent;
 */
+
+
+/* 1117 */
+
+button {
+	color: #fff
+}

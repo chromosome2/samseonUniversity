@@ -7,11 +7,13 @@ const btnsOpenModal = document.querySelectorAll('.show-modal');
 
 const openModal = function () {
   modal.classList.remove('hidden');
+  modal.style.display="grid";
   overlay.classList.remove('hidden');
 };
 
 const closeModal = function () {
   modal.classList.add('hidden');
+  modal.style.display="none";
   overlay.classList.add('hidden');
 };
 
