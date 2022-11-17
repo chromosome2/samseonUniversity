@@ -30,6 +30,7 @@
     <script type="text/javascript">
 	    window.onload=function(){//중간고사와 기말고사가 다 입력되면 등록하기버튼과 입력취소 버튼 hidden
 	    	if($('.finish').attr('disabled')=='disabled'){
+	    		$('.attendance').attr('type','hidden');
 				$('.submit').attr('type','hidden');
 				$('.reset').attr('type','hidden');
 	    	}
@@ -110,6 +111,13 @@
             									수업을 듣는 학생이 없습니다.
             								</td>
             							</tr>
+            							<script>
+	            							window.onload=function(){
+		            							$('.attendance').attr('type','hidden');
+		            							$('.submit').attr('type','hidden');
+		            							$('.reset').attr('type','hidden');
+	            							}
+            							</script>
             						</c:when>
             						<c:when test="${!empty studentList}">
             							<c:forEach var="student" items="${studentList}" varStatus="stuNum">
@@ -151,9 +159,10 @@
        				    </table>
        				   </div>
        				   <div class="class_submit">
-    				  		<input type="button" class="btn_submit button" value="출석체크" onclick="fn_chulcheck('${cl_name}', '${contextPath}/professor/chulcheckForm.do')">
+    				  		<input type="button" class="btn_submit button attendance" value="출석체크" onclick="fn_chulcheck('${cl_name}', '${contextPath}/professor/chulcheckForm.do')">
        					    <input type="submit"class="btn_submit button submit" value="등록">
        					    <input type="reset" class="btn_submit button reset" value="입력취소">
+       					    <input type="button" class="btn_submit button back" value="수업목록" onclick="history.go(-1)">
           				</div>
           				<input type="hidden" name="cl_name" value="${cl_name }">
          			 </form>

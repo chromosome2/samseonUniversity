@@ -29,6 +29,7 @@
     <script src="${contextPath}/js/common.js"></script>
 	<script src="${contextPath}/js/menu_third.js"></script>
 	<script src="${contextPath}/js/table.js"></script>
+	<script src="${contextPath}/js/mypage_second.js"></script>
     <title>삼선대학교</title>
     <c:if test="${msg == 'deleted'}">
 		<script type="text/javascript">

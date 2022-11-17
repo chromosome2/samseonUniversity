@@ -74,9 +74,9 @@ public class AdminDAO {
 				}
 				//System.out.println(id+" / "+result+" / "+prof_list.get(i).getCheck_sign());
 			}
-			System.out.println(false_id_list);
+			//System.out.println(false_id_list);
 			for(int false_id:false_id_list) {
-				System.out.println(false_id);
+				//System.out.println(false_id);
 				String query="select id, m_name, dan from entrancetbl where id=?";
 				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
@@ -149,9 +149,9 @@ public class AdminDAO {
 				}
 				//System.out.println(id+" / "+result+" / "+st_list.get(i).getCheck_sign());
 			}
-			System.out.println(false_id_list);
+			//System.out.println(false_id_list);
 			for(int false_id:false_id_list) {
-				System.out.println(false_id);
+				//System.out.println(false_id);
 				String query="select id, m_name, dan from entrancetbl where id=?";
 				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
@@ -203,7 +203,7 @@ public class AdminDAO {
 	//회원가입했는지 확인
 	public boolean check_sign(int id, String user_level) {
 		boolean result=false;
-		System.out.println("회원가입"+id);
+		//System.out.println("회원가입"+id);
 		try {
 			if(user_level.equals("professor")) {
 				String query="select decode(count(*), 1, 'true', 'false') as result from professortbl where pf_id=?";
@@ -212,7 +212,7 @@ public class AdminDAO {
 				pstmt.setInt(1, id);
 				ResultSet rs=pstmt.executeQuery();
 				rs.next();
-				System.out.println(rs.getString("result"));
+				//System.out.println(rs.getString("result"));
 				result=Boolean.parseBoolean(rs.getString("result"));
 			}else if(user_level.equals("student")) {
 				String query="select decode(count(*), 1, 'true', 'false') as result from studenttbl where st_id=?";
@@ -221,7 +221,7 @@ public class AdminDAO {
 				pstmt.setInt(1, id);
 				ResultSet rs=pstmt.executeQuery();
 				rs.next();
-				System.out.println(rs.getString("result"));
+				//System.out.println(rs.getString("result"));
 				result=Boolean.parseBoolean(rs.getString("result"));
 			}
 		}catch(Exception e) {
@@ -264,7 +264,7 @@ public class AdminDAO {
 				query+=" st_id like '%" + id_value + "%'";
 			}
 			query+=" order by pf_name";
-			System.out.println(query);
+			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
@@ -324,7 +324,7 @@ public class AdminDAO {
 				query+=" st_cnd=" + st_cnd_value;
 			}
 			query+=" order by st_id";
-			System.out.println(query);
+			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
@@ -478,7 +478,7 @@ public class AdminDAO {
 			try {
 				conn=dataFactory.getConnection();
 				String query="update entrancetbl set dan=?, m_name=? where id=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setString(1, dan);
 				pstmt.setString(2, m_name);
@@ -497,7 +497,7 @@ public class AdminDAO {
 				conn=dataFactory.getConnection();
 				//professortbl
 				String query="update professortbl set pf_name=?, pf_ph=?, pf_email=?, dan=?, m_name=? where pf_id=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setString(1, pf_name);
 				pstmt.setString(2, pf_ph);
@@ -509,7 +509,7 @@ public class AdminDAO {
 				
 				//entrancetbl
 				query="update entrancetbl set dan=?, m_name=? where id=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setString(1, dan);
 				pstmt.setString(2, m_name);
@@ -518,7 +518,7 @@ public class AdminDAO {
 				
 				//courseregitbl
 				query="update courseregitbl set pf_name=? where pf_id=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setString(1, pf_name);
 				pstmt.setInt(2, pf_id);
@@ -526,7 +526,7 @@ public class AdminDAO {
 				
 				//subjecttbl
 				query="update subjecttbl set pf_name=?, m_name=? where pf_id=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setString(1, pf_name);
 				pstmt.setString(2, m_name);
@@ -535,7 +535,7 @@ public class AdminDAO {
 				
 				//lessonnoticetbl
 				query="update lessonnoticetbl set pf_name=? where pf_id=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setString(1, pf_name);
 				pstmt.setInt(2, pf_id);
@@ -543,7 +543,7 @@ public class AdminDAO {
 				
 				//scoretbl
 				query="update scoretbl set pf_name=? where pf_id=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setString(1, pf_name);
 				pstmt.setInt(2, pf_id);
@@ -565,56 +565,56 @@ public class AdminDAO {
 			if(check_sign==0) {//회원가입했을시
 				//attendancetbl
 				query="delete from attendancetbl where pf_id=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setInt(1, pf_id);
 				pstmt.executeUpdate();
 				
 				//lessonnoticetbl
 				query="delete from lessonnoticetbl where pf_id=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setInt(1, pf_id);
 				pstmt.executeUpdate();
 				
 				//scoretbl
 				query="delete from scoretbl where pf_id=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setInt(1, pf_id);
 				pstmt.executeUpdate();
 				
 				//courseregitbl
 				query="delete from courseregitbl where pf_id=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setInt(1, pf_id);
 				pstmt.executeUpdate();
 				
 				//subjecttbl
 				query="delete from subjecttbl where pf_id=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setInt(1, pf_id);
 				pstmt.executeUpdate();
 				
 				//professortbl
 				query="delete from professortbl where pf_id=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setInt(1, pf_id);
 				pstmt.executeUpdate();
 				
 				//membertbl
 				query="delete from membertbl where id=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setInt(1, pf_id);
 				pstmt.executeUpdate();
 			}
 			//entrancetbl
 			query="delete from entrancetbl where id=?";
-			System.out.println(query);
+			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, pf_id);
 			pstmt.executeUpdate();
@@ -691,7 +691,7 @@ public class AdminDAO {
 			try {
 				conn=dataFactory.getConnection();
 				String query="update entrancetbl set dan=?, m_name=? where id=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setString(1, dan);
 				pstmt.setString(2, m_name);
@@ -710,7 +710,7 @@ public class AdminDAO {
 				conn=dataFactory.getConnection();
 				//studenttbl
 				String query="update studenttbl set st_name=?, st_ph=?, st_email=?, dan=?, m_name=? where st_id=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setString(1, st_name);
 				pstmt.setString(2, st_ph);
@@ -722,7 +722,7 @@ public class AdminDAO {
 				
 				//entrancetbl
 				query="update entrancetbl set dan=?, m_name=? where id=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setString(1, dan);
 				pstmt.setString(2, m_name);
@@ -745,49 +745,49 @@ public class AdminDAO {
 			if(check_sign==0) {//회원가입했을시
 				//graduatetbl
 				query="delete from graduatetbl where st_id=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setInt(1, st_id);
 				pstmt.executeUpdate();
 				
 				//attendancetbl
 				query="delete from attendancetbl where st_id=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setInt(1, st_id);
 				pstmt.executeUpdate();
 				
 				//scoretbl
 				query="delete from scoretbl where st_id=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setInt(1, st_id);
 				pstmt.executeUpdate();
 				
 				//courseregitbl
 				query="delete from courseregitbl where st_id=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setInt(1, st_id);
 				pstmt.executeUpdate();
 				
 				//studenttbl
 				query="delete from studenttbl where st_id=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setInt(1, st_id);
 				pstmt.executeUpdate();
 				
 				//membertbl
 				query="delete from membertbl where id=?";
-				System.out.println(query);
+				//System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setInt(1, st_id);
 				pstmt.executeUpdate();
 			}
 			//entrancetbl
 			query="delete from entrancetbl where id=?";
-			System.out.println(query);
+			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, st_id);
 			pstmt.executeUpdate();
@@ -805,7 +805,7 @@ public class AdminDAO {
 		try {
 			conn=dataFactory.getConnection();
 			String query="select decode(count(*), 1, 'true', 'false') as result from entrancetbl where id=?";
-			System.out.println(query);
+			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, id);
 			ResultSet rs=pstmt.executeQuery();
@@ -826,13 +826,13 @@ public class AdminDAO {
 		try {
 			conn=dataFactory.getConnection();
 			String query="select decode(count(*), 1, 'true', 'false') as result from collegetbl where m_name=?";
-			System.out.println(query);
+			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			pstmt.setString(1, m_name);
 			ResultSet rs=pstmt.executeQuery();
 			rs.next();
 			result=Boolean.parseBoolean(rs.getString("result"));
-			System.out.println(result);
+			//System.out.println(result);
 			rs.close();
 			pstmt.close();
 			conn.close();
