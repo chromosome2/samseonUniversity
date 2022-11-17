@@ -90,9 +90,9 @@ public class AdminController extends HttpServlet {
 				String[] names=request.getParameterValues("nameArr");
 				String[] values=request.getParameterValues("valueArr");
 				String id_value=request.getParameter("id_value");
-				System.out.println("아이디:" +id_value);
+				//System.out.println("아이디:" +id_value);
 				String st_cnd_value=request.getParameter("st_cnd_value");
-				System.out.println("학적상태:"+st_cnd_value);
+				//System.out.println("학적상태:"+st_cnd_value);
 				List<AdminVO> st_searchList=adminDAO.searchSt(names, values, id_value, st_cnd_value);
 				PrintWriter pw=response.getWriter();
 				JSONObject gObject=new JSONObject();
@@ -120,7 +120,7 @@ public class AdminController extends HttpServlet {
 				int id=Integer.parseInt(request.getParameter("id"));
 				String dan=request.getParameter("dan");
 				String m_name=request.getParameter("m_name");
-				System.out.println(user_level+"/"+id+"/"+dan+"/"+m_name);
+				//System.out.println(user_level+"/"+id+"/"+dan+"/"+m_name);
 				
 				AdminVO adminVO=new AdminVO();
 				adminVO.setUser_level(user_level);
@@ -137,7 +137,7 @@ public class AdminController extends HttpServlet {
 				}
 			}else if(action.equals("/mod_prof_form.do")) {//교수 정보 보기
 				int pf_id=Integer.parseInt(request.getParameter("pf_id"));
-				System.out.println(pf_id);
+				//System.out.println(pf_id);
 				AdminVO prof_info=adminDAO.find_prof(pf_id);
 				request.setAttribute("prof_info", prof_info);
 				nextPage="/admin/mod_prof.jsp";
@@ -178,7 +178,7 @@ public class AdminController extends HttpServlet {
 				nextPage="/manage/manage_prof.do";
 			}else if(action.equals("/mod_st_form.do")) {//학생 정보 보기
 				int st_id=Integer.parseInt(request.getParameter("st_id"));
-				System.out.println(st_id);
+				//System.out.println(st_id);
 				AdminVO st_info=adminDAO.find_st(st_id);
 				request.setAttribute("st_info", st_info);
 				nextPage="/admin/mod_st.jsp";
@@ -219,7 +219,7 @@ public class AdminController extends HttpServlet {
 				nextPage="/manage/manage_st.do";
 			}else if(action.equals("/check_id.do")) {//학생,교수 학번 중복 체크
 				int id=Integer.parseInt(request.getParameter("id"));
-				System.out.println("아이디 중복 체크 : " + id);
+				//System.out.println("아이디 중복 체크 : " + id);
 				boolean check_id=adminDAO.check_id(id);
 				if(check_id) {
 					out.print("not_usable");
@@ -229,7 +229,7 @@ public class AdminController extends HttpServlet {
 				return;
 			}else if(action.equals("/check_m_name.do")) {
 				String m_name=request.getParameter("m_name");
-				System.out.println("학과 명 존재 체크 : "+m_name);
+				//System.out.println("학과 명 존재 체크 : "+m_name);
 				boolean check_m_name=adminDAO.check_m_name(m_name);
 				if(check_m_name) {
 					out.print("usable");
