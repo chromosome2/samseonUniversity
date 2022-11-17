@@ -21,7 +21,11 @@
           <link rel="stylesheet" href="${contextPath}/css/board_detail.css">
           <script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
           <script src="${contextPath}/js/common.js"></script>
-
+		  <script type="text/javascript">
+		  	function toList() {
+		  		location.href="${contextPath}/board/listArticles.do";
+		  	}
+		  </script>
           <title>삼선대학교</title>
         </head>
 
@@ -62,7 +66,8 @@
                     
                     <div class="section_sub">
                       <input type="submit" value="작성" class="btn_result">
-                      <input type="reset" value="취소" class="btn_result">
+                      <input type="reset" value="초기화" class="btn_result">
+                      <input type="button" value="글 목록" class="btn_result" onclick="toList()">
                     </div>
                     
                   </form>
