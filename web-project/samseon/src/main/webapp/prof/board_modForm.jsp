@@ -25,6 +25,11 @@
 	<script src="${contextPath}/js/menu_third.js"></script>
 	<script src="${contextPath}/js/table.js"></script>
     <title>삼선대학교</title>
+    <script type="text/javascript">
+		  	function toList() {
+		  		location.href="${contextPath}/professor/lecture_board_list.do?cl_id=${notice.cl_id}";
+		  	}
+		  </script>
     <c:if test="${msg == 'modified'}">
     	<script type="text/javascript">
     		alert('공지가 수정되었습니다.');
@@ -70,7 +75,8 @@
                 <div class="section_sub">
                 	<input type="hidden" name="nt_id" value="${notice.nt_id}">
                   <input type="submit" value="작성" class="btn_result">
-                  <input type="reset" value="취소" class="btn_result">
+                  <input type="reset" value="초기화" class="btn_result">
+                  <input type="button" value="글 목록" class="btn_result" onclick="toList()">
                 </div>
                 
               </form>

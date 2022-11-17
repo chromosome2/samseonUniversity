@@ -25,6 +25,11 @@
 	<script src="${contextPath}/js/menu_third.js"></script>
 	<script src="${contextPath}/js/table.js"></script>
     <title>삼선대학교</title>
+    <script type="text/javascript">
+		  	function toList() {
+		  		location.href="${contextPath}/professor/lecture_board_list.do?cl_id=${cl_id}";
+		  	}
+	</script>
 </head>
 <body>
     <jsp:include page="../common/header.jsp"/>
@@ -66,7 +71,8 @@
                 	<input type="hidden" name="cl_id" value="${cl_id}">
                 	<input type="hidden" name="cl_name" value="${cl_name}">
                   <input type="submit" value="작성" class="btn_result">
-                  <input type="reset" value="취소" class="btn_result">
+                  <input type="reset" value="초기화" class="btn_result">
+                  <input type="button" value="글 목록" class="btn_result" onclick="toList()">
                 </div>
                 
               </form>
