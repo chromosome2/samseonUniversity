@@ -66,7 +66,7 @@
                     
                     <div class="section_sub">
                       <input type="submit" value="작성" class="btn_result">
-                      <input type="reset" value="취소" class="btn_result">
+                      <input type="reset" value="초기화" class="btn_result">
                       <input type="button" value="글 목록" class="btn_result" onclick="toList()">
                     </div>
                     
