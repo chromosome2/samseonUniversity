@@ -239,7 +239,7 @@ td {
   border: none;
 }
 
-.btn_move_b{
+.btn_move_b {
   /* width: 70px; */
   width: 50px;
   padding: 0;
@@ -252,10 +252,11 @@ td {
   border: none;
 }
 
-
-.btn_move_b a, .btn_move a, .apply_btn a {
-	color: #fff !important;
-	display: block;
+.btn_move_b a,
+.btn_move a,
+.apply_btn a {
+  color: #fff !important;
+  display: block;
 }
 
 .btn_td {
@@ -271,6 +272,7 @@ td {
 /* 공지사항으로 가는 td hover event */
 
 .td_notice a:hover {
-	color: rgb(234, 150, 90);
-	transition: all 0.2s;
+  color: rgb(234, 150, 90);
+  transition: all 0.2s;
+  text-decoration: underline;
 }
