@@ -226,14 +226,14 @@ header .head1,
   overflow: hidden;
   /* height 600 -> 650 수정 (1103, 영민) */
   /* height: 650px; => min-height 900으로 수정 (1105, 영민) */
-  min-height: 900px;
+  min-height: 800px;
   width: 100%;
 }
 #main_menu_back {
   background-color: #ea965a;
   float: left;
-  height: 100vw;
-  min-height: 900px;
+  min-height: 55vw;
+  /* min-height: 700px; */
   width: 235px;
   display: block;
 }
