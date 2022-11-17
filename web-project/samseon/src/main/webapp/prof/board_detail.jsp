@@ -21,6 +21,7 @@
           <link rel="stylesheet" href="${contextPath}/css/board_detail.css">
           <script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
           <script src="${contextPath}/js/common.js"></script>
+		  <script src="${contextPath}/js/menu_third.js"></script>
           <script>
             function toList(url) {  //공지사항 목록 보기
               location.href = url;

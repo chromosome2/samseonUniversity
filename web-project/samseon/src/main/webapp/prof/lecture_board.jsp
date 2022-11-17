@@ -25,7 +25,7 @@
 					<link rel="stylesheet" href="${contextPath}/css/board.css">
 					<script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
 					<script src="${contextPath}/js/common.js"></script>
-					<script src="${contextPath}/js/menu_first.js"></script>
+					<script src="${contextPath}/js/menu_third.js"></script>
 					<title>삼선대학교</title>
 					<c:if test="${msg == 'deleted'}">
 						<script type="text/javascript">

@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="${contextPath}/css/board_detail.css">
     <script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
     <script src="${contextPath}/js/common.js"></script>
-	<script src="${contextPath}/js/menu_second.js"></script>
+	<script src="${contextPath}/js/menu_third.js"></script>
 	<script src="${contextPath}/js/table.js"></script>
     <title>삼선대학교</title>
 </head>
@@ -38,7 +38,7 @@
           <section class="notice contents_wrapper">
             <div class="page-title">
               <div class="container">
-                <h3>${cl_name} 공지사항</h3>
+                <h3>&lt;${cl_name}&gt; 공지사항</h3>
               </div>
             </div>
             <div id="board-list">
