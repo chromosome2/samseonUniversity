@@ -228,7 +228,7 @@ td {
   /* width: 70px; */
   width: 50px;
   padding: 0;
-  margin-left: 10px;
+  margin-left: -13px;
   text-align: center;
   height: 30.5px;
   color: #fff;
@@ -266,3 +266,10 @@ td {
 }
 
 /* lecture_manage.html */
+
+/* 공지사항으로 가는 td hover event */
+
+.td_notice a:hover {
+	color: rgb(234, 150, 90);
+	transition: all 0.2s;
+}
