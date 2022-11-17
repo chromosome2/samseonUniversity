@@ -70,7 +70,11 @@
                           				<tr>
 											<td>${listNum.count }</td>
 											<td>${lect.cl_id }</td>
+<<<<<<< HEAD
+											<td><a href="${contextPath}/professor/lecture_board_list.do?cl_id=${lect.cl_id}" class="lecture_board">${lect.cl_name}</a></td>
+=======
 											<td class="td_notice"><a href="${contextPath}/professor/lecture_board_list.do?cl_id=${lect.cl_id}">${lect.cl_name}</a></td>
+>>>>>>> a027c7032179e64bcefaeb4ab0fb99b53fafbb35
 											<td>${lect.pf_name }</td>
 											<td>${lect.cl_pt }</td>
 											<td>${lect.s_first}</td>
