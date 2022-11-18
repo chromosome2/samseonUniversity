@@ -311,13 +311,13 @@ button:hover {
 .btns_join {
   display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
 }
 
 .join_btn {
   font-size: 1.5rem;
   font-weight: 600;
-  padding: 1.75rem 3.5rem;
+  /* padding: 1.75rem 3.5rem; */
   margin: 5rem 2rem;
   border: none;
   background-color: rgb(234, 150, 90);
@@ -328,9 +328,9 @@ button:hover {
 }
 
 .join_btn a {
-	color: #fff;
-	font-size: 1.1rem;
-	font-weight: 600;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 .join_btn:hover {
@@ -389,3 +389,7 @@ button:hover {
   z-index: 5;
 }
 
+.join_btn a {
+  padding: 1.75rem 3.5rem;
+  display: block;
+}
