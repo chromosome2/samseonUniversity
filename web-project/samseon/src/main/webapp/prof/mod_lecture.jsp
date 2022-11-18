@@ -93,7 +93,7 @@
                                         </tbody>
                                     </table>
                                     <div class="input_submit">
-                                        <input class="btn_submit button" type="submit" value="등록하기">
+                                        <input class="btn_submit button" type="submit" value="수정하기">
                                         <a href="${contextPath}/view/pf_lectureList.do"
                                             class="btn_cancle button">취소</a>
                                     </div>

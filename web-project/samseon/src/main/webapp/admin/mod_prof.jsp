@@ -24,6 +24,39 @@
                 <script>
                     $(function () {
                         $('.my_page_menu').css('display', 'inline-block');
+                        
+                      //학과명이 collegetbl에 존재하는지
+	                	let m_name_input=document.getElementById("m_name");
+	                	let m_name_check=false;
+	                	
+	                	m_name_input.onblur = function(e){
+	                		let m_name=$('#m_name').val();
+	                		$.ajax({
+	                			type:"post",
+	                			async:true,
+	                			dataType:"text",
+	                			url:"${contextPath}/manage/check_m_name.do",
+	                			data:{m_name:m_name},
+	                			success:function(data,textStatus){
+	                				if(data=='usable'){
+	                					m_name_check=true;
+	                				}else{
+	                					alert("사용 불가능한 학과명입니다.");
+	                					m_name_check=false;
+	                				}
+	                			},
+	                			error:function(data, textStatus){
+	                				alert("에러발생~!");
+	                			}
+	                		})
+	                	};
+	                	
+	                	$('.btn_submit').on('click',function (e){
+	                		if(m_name_check==false){
+	                			e.preventDefault();
+	                			alert('학과 명을 변경해주세요.');
+	                		}
+	                	});
                     });
                 </script>
                 <title>삼선대학교</title>
@@ -76,7 +109,7 @@
                                                     </tr>
                                                     <tr>
                                                         <th>학과 명</th>
-                                                        <td><input name="m_name" class="tbl_input" type="text"
+                                                        <td><input name="m_name" id="m_name" class="tbl_input" type="text"
                                                                 value="${prof_info.m_name}"></td>
                                                     </tr>
                                                     <input type="hidden" name="check_sign" value="-1">
@@ -109,7 +142,7 @@
                                                     </tr>
                                                     <tr>
                                                         <th>학과 명</th>
-                                                        <td><input name="m_name" class="tbl_input" type="text"
+                                                        <td><input name="m_name" id="m_name" class="tbl_input" type="text"
                                                                 value="${prof_info.m_name}"></td>
                                                     </tr>
                                                     <input type="hidden" name="check_sign" value="0">
