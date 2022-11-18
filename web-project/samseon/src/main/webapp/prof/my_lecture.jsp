@@ -60,7 +60,7 @@
             					<c:choose>
             						<c:when test="${empty lectureList}">
             							<tr>
-            								<td colspan="11">
+            								<td class="no_class" colspan="11">
             									진행중인 수업이 없습니다.
             								</td>
             							</tr>
