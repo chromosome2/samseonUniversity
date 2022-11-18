@@ -28,27 +28,34 @@
                 		//교수, 학생 코드 중복체크
                 		let id_input=document.getElementById("id");
 	                	let id_check=false;
+	                	let id_length_check=false;
 	                	
 	                	id_input.onblur = function(e){
 	                		let id=$('#id').val();
-	                		$.ajax({
-	                			type:"post",
-	                			async:true,
-	                			dataType:"text",
-	                			url:"${contextPath}/manage/check_id.do",
-	                			data:{id:id},
-	                			success:function(data,textStatus){
-	                				if(data=='usable'){
-	                					id_check=true;
-	                				}else{
-	                					alert("사용 불가능한 학번(ID)입니다.");
-	                					id_check=false;
-	                				}
-	                			},
-	                			error:function(data, textStatus){
-	                				alert("에러발생~!");
-	                			}
-	                		})
+	                		if(id.length==8){
+	                			id_length_check=true;
+	                			$.ajax({
+		                			type:"post",
+		                			async:true,
+		                			dataType:"text",
+		                			url:"${contextPath}/manage/check_id.do",
+		                			data:{id:id},
+		                			success:function(data,textStatus){
+		                				if(data=='usable'){
+		                					id_check=true;
+		                				}else{
+		                					alert("사용 불가능한 학번(ID)입니다.");
+		                					id_check=false;
+		                				}
+		                			},
+		                			error:function(data, textStatus){
+		                				alert("에러발생~!");
+		                			}
+		                		});
+	                		}else{
+	                			alert("학번은 8자리입니다.");
+	                		}
+	                		
 	                	};
 	                	
 	                	//학과명이 collegetbl에 존재하는지
@@ -78,7 +85,7 @@
 	                	};
 	                	
 	                	$('.btn_submit').on('click',function (e){
-	                		if(id_check==false){
+	                		if(id_check==false || id_length_check==false){
 	                			e.preventDefault();
 	                			alert('학번을 변경해주세요.');
 	                		}

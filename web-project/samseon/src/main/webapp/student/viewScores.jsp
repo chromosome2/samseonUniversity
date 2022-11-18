@@ -25,6 +25,19 @@
     <script src="${contextPath}/js/menu_third.js"></script>
     <script src="${contextPath}/js/mypage_first.js"></script>
     <title>삼선대학교</title>
+    <script>
+    	function search_seme(){
+    		let select=document.getElementById('search_scores');
+    		let value=select.options[select.selectedIndex].value;
+    		$('.btn_search').click(function(){
+    			if(value== '2'){
+    	    		alert('2학기 정보가 없습니다.');
+    	    	}else{
+    	    		$('.btn_search').attr('onclick',"location.href='${contextPath}/view/viewScores.do'");
+    	    	}
+    		});
+    	}
+    </script>
 </head>
 <body>
     <jsp:include page="../common/header.jsp"/>
@@ -137,12 +150,12 @@
                                         <h3><span>${student_info.t_pt}/128</span></h3>
                                     </div>
                                     <div class="search_area">
-                                        <select id="search_scores" name="search_scores">
+                                        <select id="search_scores" name="search_scores" onchange="search_seme();">
                                             <option value="total">전체</option>
                                             <option value="1">2022년도 1학기</option>
                                             <option value="2">2022년도 2학기</option>
                                         </select>
-                                        <input type="button" value="보기" class="btn_result">
+                                        <input type="button" value="보기" class="btn_result btn_search">
                                     </div>
                                 </div>
                             </section>

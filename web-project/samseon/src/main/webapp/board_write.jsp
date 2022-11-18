@@ -21,6 +21,7 @@
           <link rel="stylesheet" href="${contextPath}/css/board_detail.css">
           <script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
           <script src="${contextPath}/js/common.js"></script>
+            <script src="${contextPath}/js/menu_first.js"></script>
 		  <script type="text/javascript">
 		  	function toList() {
 		  		location.href="${contextPath}/board/listArticles.do";

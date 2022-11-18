@@ -309,9 +309,16 @@ public class ViewLectDAO {
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, cl_id);
 			pstmt.executeUpdate();
+			result="delLect";
+			
+			//공지사항 삭제
+			query="delete from lessonnoticetbl where cl_id=?";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setInt(1, cl_id);
+			pstmt.executeUpdate();
+			
 			pstmt.close();
 			conn.close();
-			result="delLect";
 		}catch(Exception e) {
 			System.out.println("강의 삭제 에러 : "+e.getMessage());
 		}
