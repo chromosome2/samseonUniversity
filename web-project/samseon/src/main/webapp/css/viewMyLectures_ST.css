@@ -275,3 +275,7 @@ td {
   transition: all 0.2s;
   text-decoration: underline;
 }
+
+.no_class {
+	text-align: center;
+}
