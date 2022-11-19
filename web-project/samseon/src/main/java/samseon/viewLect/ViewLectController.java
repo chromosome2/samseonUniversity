@@ -89,6 +89,7 @@ public class ViewLectController extends HttpServlet {
 				}else {
 					out.print("usable");
 				}
+				return;
 			}else if (action.equals("/mod_lecture_form.do")) {
 				int cl_id=Integer.parseInt(request.getParameter("cl_id"));
 				ViewLectVO find_lect=viewLectService.find_mod_lect_serv(cl_id);
