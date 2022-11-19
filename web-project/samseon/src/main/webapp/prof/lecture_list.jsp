@@ -96,8 +96,8 @@
 											<c:choose>
 												<c:when test="${empty pf_LectureList}">
 													<tr>
-														<td colspan="11">
-															<p align="center">등록된 수업이 없습니다.</p>
+														<td class="no_class" colspan="11">
+															등록된 수업이 없습니다.
 														</td>
 													</tr>
 												</c:when>
