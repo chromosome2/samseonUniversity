@@ -162,7 +162,7 @@
     				  		<input type="button" class="btn_submit button attendance" value="출석체크" onclick="fn_chulcheck('${cl_name}', '${contextPath}/professor/chulcheckForm.do')">
        					    <input type="submit"class="btn_submit button submit" value="등록">
        					    <input type="reset" class="btn_submit button reset" value="입력취소">
-       					    <input type="button" class="btn_submit button back" value="수업목록" onclick="history.go(-1)">
+       					    <input type="button" class="btn_submit button back" value="수업목록" onclick="location.href='${contextPath}/professor/listLectures.do'">
           				</div>
           				<input type="hidden" name="cl_name" value="${cl_name }">
          			 </form>
