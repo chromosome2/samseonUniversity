@@ -72,7 +72,7 @@
 												<c:choose>
 													<c:when test="${empty lessonNotice}">
 														<tr>
-															<td colspan="4">
+															<td colspan="4" style="text-align : center">
 																공지사항이 없습니다.
 															</td>
 														</tr>

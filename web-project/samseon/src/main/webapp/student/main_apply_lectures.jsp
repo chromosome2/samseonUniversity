@@ -179,7 +179,7 @@
 	                  <tbody id="sugang"> <!-- ajax로 내용 바뀔 부분 -->
 	                  <c:choose>
 		            		<c:when test="${sugangList == null}">
-		            			<tr colsapn="9"><td colspan="9">수강 신청할 수 있는 강의가 아직 등록되지 않았습니다.</td></tr>
+		            			<tr colsapn="9"><td class="no_class" colspan="9">수강 신청할 수 있는 강의가 아직 등록되지 않았습니다.</td></tr>
 		            		</c:when>
 		            		<c:otherwise>
 	            				<c:forEach var="lecture" items="${sugangList}" varStatus="sugang">
