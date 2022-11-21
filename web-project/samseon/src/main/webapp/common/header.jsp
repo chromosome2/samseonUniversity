@@ -17,7 +17,7 @@
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
     <link rel="stylesheet" href="${contextPath}/css/common.css">
     <script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
-    <script src="${contextPath}/js/common.js"></script>
+    <%--<script src="${contextPath}/js/common.js"></script> --%>
     <title>삼선대학교</title>
    	<!-- 로그인하지 않았을 경우 index.jsp로 이동 -->
     <%-- <c:if test="${isLogin != true && empty studentInfo && empty professorInfo && empty adminInfo}">
