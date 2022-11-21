@@ -17,7 +17,7 @@
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
     <link rel="stylesheet" href="${contextPath}/css/common.css">
     <script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
-    <script src="${contextPath}/js/common.js"></script>
+    <%--<script src="${contextPath}/js/common.js"></script> --%>
     <title>삼선대학교</title>
 </head>
 <body>
