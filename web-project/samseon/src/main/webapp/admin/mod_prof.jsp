@@ -20,6 +20,7 @@
                 <script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
                 <script src="${contextPath}/js/common.js"></script>
                 <script src="${contextPath}/js/menu_second.js"></script>
+                <script src="${contextPath}/js/mypage_first.js"></script>
                 <script defer src="${contextPath}/js/privacy.js"></script>
                 <script>
                     $(function () {
@@ -27,7 +28,11 @@
                         
                       //학과명이 collegetbl에 존재하는지
 	                	let m_name_input=document.getElementById("m_name");
-	                	let m_name_check=false;
+	                	let m_name_check=true;
+	                	
+	                	$('#m_name').change(function(){
+	                		m_name_check=false;
+	                	})
 	                	
 	                	m_name_input.onblur = function(e){
 	                		let m_name=$('#m_name').val();
