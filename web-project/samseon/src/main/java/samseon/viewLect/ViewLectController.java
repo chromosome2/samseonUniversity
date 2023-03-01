@@ -39,7 +39,7 @@ public class ViewLectController extends HttpServlet {
 		int id=(int) session.getAttribute("log_id");
 		System.out.println(id);
 		try {
-			if(action.equals("/viewScores.do")) {
+			if(action.equals("/viewScores.do")) { // 학생 전체 성적 조회
 				//System.out.println(id);
 				List<ViewLectVO> scoresList=viewLectService.viewScores_serv(id);
 				request.setAttribute("scoresList", scoresList);
@@ -48,17 +48,17 @@ public class ViewLectController extends HttpServlet {
 				request.setAttribute("student_info", student_info);
 				
 				nextPage="/student/viewScores.jsp";
-			}else if(action.equals("/viewMyLectures.do")) {
+			}else if(action.equals("/viewMyLectures.do")) { // 학생 수강중인 수업 확인
 				List<ViewLectVO> lectureList=viewLectService.view_lecture_list_serv(id);
 				request.setAttribute("lectureList", lectureList);
 				
 				nextPage="/student/viewMyLectures_ST.jsp";
-			}else if(action.equals("/pf_lectureList.do")) {
+			}else if(action.equals("/pf_lectureList.do")) { // 교수 수업 리스트 불러오기
 				List<ViewLectVO> pf_LectureList=viewLectService.view_pf_lecture_list_serv(id);
 				request.setAttribute("pf_LectureList", pf_LectureList);
 				
 				nextPage="/prof/lecture_list.jsp";
-			}else if(action.equals("/add_lecture.do")) {
+			}else if(action.equals("/add_lecture.do")) { // 교수 수업 등록하기
 				int pf_id=id;
 				int cl_id=Integer.parseInt(request.getParameter("cl_id"));
 				String cl_name=request.getParameter("cl_name");
@@ -80,7 +80,7 @@ public class ViewLectController extends HttpServlet {
 				viewLectService.add_lecture_serv(viewlectVO);
 				request.setAttribute("lect_msg", "addLect");
 				nextPage="/view/pf_lectureList.do";
-			}else if(action.equals("/check_cl_id.do")){
+			}else if(action.equals("/check_cl_id.do")){ // 강의 코드 중복 확인
 				int cl_id=Integer.parseInt(request.getParameter("cl_id"));
 				//System.out.println("cl_id");
 				boolean check_cl_id=viewLectService.check_cl_id_serv(cl_id);
@@ -90,12 +90,12 @@ public class ViewLectController extends HttpServlet {
 					out.print("usable");
 				}
 				return;
-			}else if (action.equals("/mod_lecture_form.do")) {
+			}else if (action.equals("/mod_lecture_form.do")) { //교수 수업 수정하는 페이지로 이동
 				int cl_id=Integer.parseInt(request.getParameter("cl_id"));
 				ViewLectVO find_lect=viewLectService.find_mod_lect_serv(cl_id);
 				request.setAttribute("find_lect", find_lect);
 				nextPage="/prof/mod_lecture.jsp";
-			}else if (action.equals("/mod_lecture.do")){
+			}else if (action.equals("/mod_lecture.do")){ // 교수 수업 수정하기
 				int cl_id=Integer.parseInt(request.getParameter("cl_id"));
 				int cl_pt=Integer.parseInt(request.getParameter("cl_pt"));
 				String cl_time=request.getParameter("cl_time");
@@ -113,7 +113,7 @@ public class ViewLectController extends HttpServlet {
 				viewLectService.mod_lecture_serv(viewlectVO);
 				request.setAttribute("lect_msg", "modLect");
 				nextPage="/view/pf_lectureList.do";
-			}else if(action.equals("/del_lecture.do")) {
+			}else if(action.equals("/del_lecture.do")) { // 강의 삭제
 				int cl_id=Integer.parseInt(request.getParameter("cl_id"));
 				String result=viewLectService.del_lect_serv(cl_id);
 				if(result.equals("delLect")) {
@@ -122,11 +122,11 @@ public class ViewLectController extends HttpServlet {
 					request.setAttribute("lect_msg","fail");
 				}
 				nextPage="/view/pf_lectureList.do";
-			}else if(action.equals("/add_score.do")) {
+			}else if(action.equals("/add_score.do")) { // 강의 점수 등록
 				int count=Integer.parseInt(request.getParameter("count"));
 				String cl_name=request.getParameter("cl_name");
 				String[] st_id=request.getParameterValues("st_id");
-				if(count==1) {
+				if(count==1) {//중간고사 등록
 					String[] s_first_list=request.getParameterValues("s_first");
 					//System.out.println(s_first_list.length);
 					for(int i=0; i<st_id.length; i++) {
@@ -138,7 +138,7 @@ public class ViewLectController extends HttpServlet {
 						viewLectService.add_score_serv(viewlectVO,count);
 					}
 					request.setAttribute("lect_msg", "add_first_score");
-				}else {
+				}else {//기말고사 등록
 					String[] s_second_list=request.getParameterValues("s_second");
 					//System.out.println(s_second_list.length);
 					for(int i=0; i<st_id.length; i++) {

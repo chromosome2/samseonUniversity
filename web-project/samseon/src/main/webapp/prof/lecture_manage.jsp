@@ -130,21 +130,21 @@
 			            						<td><fmt:formatNumber value="${student.cl_check/30}" pattern="0.0%"/></td>
 			            						
 			            						<c:choose>
-			            							<c:when test="${student.s_first eq -1 }" >
+			            							<c:when test="${student.s_first eq -1 }" ><!-- 둘 다 입력 안되어있다면 -->
 			            								<td><input type="number" name="s_first" required></td>
 				            							<td><input type="number" name="s_second" disabled></td>
 				            							<td></td>
 				            							<input type="hidden" name="st_id" value="${student.st_id }">
 				            							<input type="hidden" name="count" value="1">
 				            						</c:when>
-				            						<c:when test="${student.s_second eq -1 }" >
+				            						<c:when test="${student.s_second eq -1 }" > <!-- 중간고사만 입력됐다면 -->
 			            								<td><input type="number" value="${student.s_first}" name="s_first" disabled></td>
 				            							<td><input type="number" name="s_second" required></td>
 				            							<td></td>
 				            							<input type="hidden" name="st_id" value="${student.st_id }">
 				            							<input type="hidden" name="count" value="2">
 				            						</c:when>
-				            						<c:when test="${student.s_first != -1 && student.s_second != -1}">
+				            						<c:when test="${student.s_first != -1 && student.s_second != -1}"><!-- 둘 다 입력되어있다면 -->
 					            						<td><input type="number" value="${student.s_first}" name="s_first"disabled></td>
 					            						<td><input type="number" value="${student.s_second}" name="s_second" class="finish" disabled></td>
 					            						<td>${student.hakjum}</td>    						

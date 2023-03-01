@@ -352,7 +352,7 @@ public class ViewLectDAO {
 		String cl_name=viewlectVO.getCl_name();
 		try {
 			conn=dataFactory.getConnection();
-			if(count==1) {
+			if(count==1) { // 중간고사 등록
 				int s_first=viewlectVO.getS_first();
 				String query="update scoretbl set s_first=? where st_id=? and cl_name=?";
 				//System.out.println(query);
@@ -362,7 +362,7 @@ public class ViewLectDAO {
 				pstmt.setString(3, cl_name);
 				pstmt.executeUpdate();
 				pstmt.close();
-			}else {
+			}else { //기말고사 등록
 				int s_second=viewlectVO.getS_second();
 				String query="update scoretbl set s_second=? where st_id=? and cl_name=?";
 				//System.out.println(query);
@@ -517,7 +517,9 @@ public class ViewLectDAO {
 	public void cal_t_pt(int st_id) {
 		int t_pt=0;
 		try {
-			String query="select sum(cl_pt) as tot_t_pt from courseregitbl where st_id=? and cl_id in (select cl_id from scoretbl where st_id=? and not s_final='F')";
+			//F학점이 아닌 수업의 학점총 합계 가져오기
+			String query="select sum(cl_pt) as tot_t_pt from courseregitbl "
+					+ "where st_id=? and cl_id in (select cl_id from scoretbl where st_id=? and not s_final='F')";
 			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, st_id);
@@ -526,6 +528,7 @@ public class ViewLectDAO {
 			rs.next();
 			t_pt=rs.getInt("tot_t_pt");
 			
+			//graduatetbl에 정보가 있으면 true, 없으면 false
 			query="select decode(count(*), 1, 'true', 'false') as result from graduatetbl where st_id=?";
 			//System.out.println(query);
 			pstmt=conn.prepareStatement(query);
@@ -533,6 +536,7 @@ public class ViewLectDAO {
 			rs=pstmt.executeQuery();
 			rs.next();
 			boolean result=Boolean.parseBoolean(rs.getString("result"));
+			
 			if(result) {
 				query="update graduatetbl set t_pt=? where st_id=?";
 				//System.out.println(query);
